@@ -1,0 +1,17 @@
+
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  margin: 50px auto;
+}
+a{
+  text-decoration: none;
+}
+@media only screen and (max-device-width: 480px) {
+  .container{
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
