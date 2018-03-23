@@ -24,7 +24,13 @@ class Timeline extends Component{
     });
  
     }, 2000);
-        this.props.fetchMessages(this.urlData.url);
+    
+    
+      this.props.fetchMessages(this.urlData.url);
+      
+      // setInterval(()=> {
+      // this.props.fetchMessages(this.urlData.url); 
+      // }, 30000);
     if(this.props.url.params.id){
       this.props.getUserProfile(this.urlData.params.id);
     }else{

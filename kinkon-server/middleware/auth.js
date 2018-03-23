@@ -31,12 +31,3 @@ exports.ensureCorrectUser = function(req, res, next){
   
   }
 };
-  
-  
-  
-  //decode the jwt 
-    //inside of the callback 
-    //if the user Id === req params id
-      //next()
-    //not authorized
-  

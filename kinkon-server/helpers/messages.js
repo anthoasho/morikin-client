@@ -28,7 +28,7 @@ exports.softDeleteMessage = function(req, res, next){
     message.isDeleted = true;
     message.save().then(function(e){
       next();
-    })
+    });
   }).then(function(m){
   return res.status(200).json(m);
   }).catch(next);
