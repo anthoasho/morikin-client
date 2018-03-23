@@ -1,7 +1,5 @@
 .message-container{
   width: 65%;
-  /*flex: 3;*/
-  /*background: black;*/
   padding: 0;
 }
 @media only screen and (max-device-width: 480px) {
