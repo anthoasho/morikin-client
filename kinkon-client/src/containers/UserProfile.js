@@ -3,8 +3,6 @@ import MessageList from "./MessageList";
 import * as Help from "../utils/MainAppFunctions";
 import {Route, Switch} from "react-router-dom"; 
 import NewMessage from"../utils/NewMessage";
-
-
 import UserSmall from "../UserSmall";
 import "./UserProfile.css";
 const svgLoading = require("./Rolling-1s-200px.svg");

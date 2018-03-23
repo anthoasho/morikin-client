@@ -1,0 +1,40 @@
+html{
+  background: url("../images/homepage.JPG") no-repeat center center fixed;
+  background-size: cover;
+  width:100vw;
+  height:100vh;
+}
+.body-container{
+  display:flex;
+align-items: center;
+flex-direction: column;
+}
+.timeline-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  margin: 50px 0;
+}
+.loading{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  font-size: 7rem;
+  width: 100vw;
+  height: 100vh;
+  background: blue;
+}
+a{
+  text-decoration: none;
+}
+@media only screen and (max-device-width: 480px) {
+  .timeline-container{
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+button:hover{
+  border: 1px solid gray;
+  background: #62d0d6;
+}

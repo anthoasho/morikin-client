@@ -1,20 +1,53 @@
-import React, {Component} from "react";
-import Message from "./Message";
+import React from "react";
+import Message from "../components/Message";
+import { removeMessage } from "../store/actions/messages";
 import "./MessageList.css";
+import {connect } from "react-redux";
+const MessageList = props =>{
+  const  {messages, removeMessage, currentUser} = props;
+  let MessageList;
+  if(messages.length < 1){
+      MessageList = <Message loading/>;
+  }else{
+  MessageList = messages.map((m)=> 
+    (<Message {...m} key={m._id} 
+      removeMessage ={removeMessage.bind(this, m.userId._id, m._id)}
+      ownerCheck = {currentUser === m.userId._id} 
+    />)
+  );
+  }
+  return(
+    <div className="message-container"> 
+      {MessageList}
+    </div>
+  );    
+};
 
+export default connect(null, {removeMessage})(MessageList);
 
-class MessageList extends Component{
+/*-----------------------------------------------------------
 
-    render(){
-        const messages = this.props.messages.map((m, index)=> ( !m.isDeleted ? <Message {...m} key={m._id} onDelete = {this.props.onDelete.bind(this, m.userId._id, m._id, index)} userLoggedIn = {this.props.user._id === m.userId._id} /> : null
-        ));
-    
-    return(
-            <div className="message-container"> 
-                {messages}
-            </div>
-        );    
-    }
-    
-}
-export default MessageList;
+THE FOLLOWING IS FOR POTENTIAL FUTURE FEATURES WHICH ARE DISABLED
+
+------------------------------------------------------------*/
+
+  // continueUpdate(){ // adds state to control endless scrolling
+  //   this.setState({
+  //     messageCount:{
+  //     start: this.state.messageCount.start +20,
+  //     end: this.state.messageCount.end +20
+  //     }
+  //   });
+  //   this.props.fetchMessages(this.state.messageCount.start, this.state.messageCount.end);
+  // }
+  // isBottom(el) {
+  //   return el.getBoundingClientRect().bottom <= window.innerHeight; // scrollling to bottom
+  // }
+  // document.addEventListener('scroll', this.trackScrolling);
+  // trackScrolling = () => { //When document is scrolled to the bottom, updates state to get new data 
+  //   const wrappedElement = document.getElementById('body-container');
+  //   if (this.isBottom(wrappedElement)) {
+  //     this.continueUpdate();
+  //   }
+  // };
+  // document.removeEventListener('scroll', this.trackScrolling);

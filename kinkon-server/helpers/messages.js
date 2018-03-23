@@ -1,7 +1,6 @@
 var db = require("../models");
     
 exports.createMessage = function(req, res, next){
-  
   const newMessage = {
     text: req.body.text,
     userId: req.params.id
@@ -25,7 +24,6 @@ exports.createMessage = function(req, res, next){
 };
 
 exports.softDeleteMessage = function(req, res, next){
-  console.log(req.params.mid);
   db.Message.findById(req.params.mid).then(function(message){
     message.isDeleted = true;
     message.save().then(function(e){
