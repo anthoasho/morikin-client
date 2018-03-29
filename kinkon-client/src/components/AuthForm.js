@@ -2,12 +2,8 @@ import React, {Component} from "react";
 import "./Auth.css"
 /*
 -------------------------------------------------------------
-
-PLEASE FIX ERROR HANDLING - COMPLETELY BROKEN AS OF NOW
-
+PLEASE DO SOME KIND OF REACT VALIDATION
 -------------------------------------------------------------
-
-
 */
 
 export default class AuthForm extends Component {
@@ -46,7 +42,7 @@ render(){
     const {heading, buttonText, signUp, errors, history, removeError } = this.props;
     history.listen(() => {
       removeError();
-    })
+    });
     return(
       <div className ="auth-container">
         <p className="title"> {heading} </p>

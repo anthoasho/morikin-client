@@ -39,6 +39,9 @@
   border-radius: 5px;
   border: 1px solid gray;
 }
+.required-field {
+  box-shadow: 1px 1px 1px rgba(200, 0, 0, 0.8);
+}
 .auth-container button{
   width: 40%;
   color: white;

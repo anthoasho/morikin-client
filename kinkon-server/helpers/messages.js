@@ -20,7 +20,6 @@ exports.createMessage = function(req, res, next){
   }else{
     return res.status(400).json({message: "Too many characters!"});
   }
-  
 };
 
 exports.softDeleteMessage = function(req, res, next){

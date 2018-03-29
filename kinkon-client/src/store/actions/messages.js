@@ -12,9 +12,6 @@ export const remove = id => ({
   id
 });
 
-
-
-///////////TASK WHY DOES THIS NOT WORK OMG lol
 export const removeMessage = (user, message) => {
   return dispatch => {
     return apiCall("put", `/api/users/${user}/messages/${message}/delete`, {isDeleted: true})
@@ -25,29 +22,17 @@ export const removeMessage = (user, message) => {
   };
 };
 
-
-// export const removeMessage = (userId, messageId) => {
-//   return (dispatch) => {
-//     return apiCall("put", `/api/users/${userId}/messages/${messageId}/delete`)
-//     .then(() => dispatch(remove(messageId)))
-//     .catch((err) => {
-//       dispatch(addError(err.message));
-//       });
-//   };
-// };
-
 export const fetchMessages = (url) => {
   return dispatch => {
     return apiCall("get", `/api/${url}/messages`)
     .then((res) => { 
       dispatch(loadMessages(res));
     })
-    .catch((err) => {
-      dispatch(addError(err.message));
+    .catch((error) => {
+      dispatch(addError(error));
     });
   };
 };
-
 
 export const postNewMessage = text => (dispatch, getState) => {
   let {currentUser} = getState();
@@ -55,6 +40,6 @@ export const postNewMessage = text => (dispatch, getState) => {
   return apiCall("post", `/api/users/${id}/messages`, {text})
   .then(res => {})
   .catch(err => {
-    dispatch(addError(err.message));
+    dispatch(addError(err.errors.message));
   });
 };

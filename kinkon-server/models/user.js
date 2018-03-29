@@ -19,12 +19,16 @@ var userSchema = new mongoose.Schema({
   profileImgUrl:{
     type: String,
   },
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
   messages: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Message"
   }]
 });
-
+//Putting a follow count, should I do a following or followers, or both? 
 
 userSchema.pre('save', function(next){
   var user = this;

@@ -16,11 +16,11 @@ class Navbar extends Component {
           <div className="logo">
              <NavLink to="/" className="kinkon-logo"><li>Kinkon</li></NavLink>
           </div>
-            {currentUser.isLoggedIn && (<div> <NavLink className="nav-new-message" to="/messages/new"> <li> POST </li> </NavLink> </div>)}
+            {currentUser.isLoggedIn && (<div> <NavLink className="nav-new-message" to="/new"> <li> POST </li> </NavLink> </div>)}
           <div className="navigation">
             {currentUser.isLoggedIn ?
                 <div className="nav-links">
-                  <NavLink  to={`/user/${currentUser.user.userId}`}> <li>{currentUser.user.username} </li></NavLink> 
+                  <NavLink  to={`/user/${currentUser.user.username}`}> <li>{currentUser.user.username} </li></NavLink> 
                   <NavLink  to="/"  onClick={this.logout} ><li>Logout </li></NavLink> 
                 </div>
            :

@@ -52,7 +52,7 @@ const Main = props => {
                 /> 
               );
             }} />
-          <Route path="/messages/new" component={withAuth(NewMessage)} />
+          <Route exact path="/new" component={withAuth(NewMessage)} />
         </Switch>
       </div>
     );
@@ -65,4 +65,4 @@ function mapStateToProps(state){
   };
 }
 
-export default withRouter(connect(mapStateToProps, {authUser, removeError, fetchMessages})(Main));
+export default withRouter(connect(mapStateToProps, {authUser, removeError})(Main));

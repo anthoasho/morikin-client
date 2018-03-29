@@ -6,7 +6,7 @@ exports.signin = function(req, res){
   }
   db.User.findOne({username: req.body.username}).then(function(user){
     if(!user){
-      res.status(400).json({errors: {message: "Sorry, invalid username131/Password!"}});
+      res.status(400).json({errors: {message: "Sorry, invalid username/Password!"}});
     }
     user.comparePassword(req.body.password, function(err, isMatch){
       if(isMatch){
@@ -14,12 +14,13 @@ exports.signin = function(req, res){
           userId: user.id, 
           username: user.username, 
           email:user.email, 
-          profileImgUrl: user.profileImgUrl
+          profileImgUrl: user.profileImgUrl,
         }, process.env.SECRET_KEY);
         res.status(200)
           .json({userId: user.id,
             username: user.username,
             profileImgUrl: user.profileImgUrl,
+            following: user.following,
             token
           });
       }else{
@@ -31,6 +32,9 @@ exports.signin = function(req, res){
   });
 };
 exports.signup = function(req, res, next){
+    if(!req.body.username || !req.body.email){
+    res.status(400).json({errors:{message: "Please input the required fields!"}});
+  }
   db.User.create(req.body).then(function(user){
     var token = jwt.sign({userId: user.id, username: user.username, email:user.email, profileImgUrl: user.profileImgUrl}, process.env.SECRET_KEY);
     res.status(200).json({userId: user.id,

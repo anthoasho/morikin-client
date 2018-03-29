@@ -55,6 +55,8 @@ class NewMessage extends Component{
       <div>
         <div className="new-message-box"> 
           {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
+          <div onClick={this.goBack}> X
+          </div>
           <form
            onSubmit={this.handleSubmit}
           >

@@ -19,7 +19,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
         className="loading-icon"
         type={ICON_TYPE.TAIL_SPIN}
         size={40}
-        strokeWidth={4} // min: 1, max: 50
+        strokeWidth={4} 
         strokeColor="#ae27e8"
         duration={800}
       /> 
@@ -33,20 +33,20 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
       <img alt={`${userId.username}'s profile `} src={userId.profileImgUrl} style={{border: `2px solid ${randomColor()}`}} />
     </div>
     <div style={{width: "100%"}}>
-    <div className="meta-content">
+      <div className="meta-content">
         <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>
-          <Link to={`/user/${userId._id}`}>{userId.username}</Link>
+          <Link to={`/user/${userId.username}`}>{userId.username}</Link>
           <div>
             <span className="time"><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
             <span className="time"> <Moment format="HH:mm">{createdAt}</Moment></span>
           </div>
         </div>
-        </div>
-    <div className="message-content">
-        <p>{text}</p>
-        {ownerCheck && (<button className="delete-btn" onClick={removeMessage} > X </button>)}
+      </div>
+      <div className="message-content">
+          <p>{text}</p>
+          {ownerCheck && (<button className="delete-btn" onClick={removeMessage} > X </button>)}
+      </div>
     </div>
- </div>
   </div>;
   };
 export default Message;

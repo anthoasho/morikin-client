@@ -7,14 +7,24 @@ export const loadProfile = user => ({
   user
 });
 
-export const getUserProfile = (id) => {
+export const getUserProfile = (username) => {
   return dispatch => {
-    return apiCall("get", `/api/user/${id}`)
+    return apiCall("get", `/api/user/${username}`) //This previously used the ID of the user, I may revert if necessary.
     .then((res) => { 
       dispatch(loadProfile(res));
     })
     .catch((err) => {
       dispatch(addError(err.message));
+    });
+  };
+};
+
+export const followUser = (userId) => {
+  return dispatch => {
+    return apiCall("post", `/api/${userId}/follow`)
+    .then((res) => { })
+    .catch(err =>{
+      dispatch(addError(err.errors.message));
     });
   };
 };
