@@ -16,7 +16,6 @@ class Timeline extends Component{
        this.setState({
       isLoading: true
     });
-    console.log(this.props)
   }
   componentDidMount(){
     setTimeout( () =>{ //simulate apiCall - PURELY TEST ONLY 
@@ -26,7 +25,7 @@ class Timeline extends Component{
     this.props.fetchMessages(this.urlData.url);
     this.refreshInterval = setInterval(()=> {
       this.props.fetchMessages(this.urlData.url); 
-      }, 1200000); //Unsure if this is the method I want for refreshing data
+      }, 300000); //Unsure if this is the method I want for refreshing data
     if(this.props.url.params.id){
       this.props.getUserProfile(this.urlData.params.id);
     }else{
@@ -38,31 +37,33 @@ class Timeline extends Component{
       isLoading: true
     });
     clearInterval(this.refreshInterval);
+    
+    //figure out a way to trigger loading upon unmounting component 
   }
   render(){
+    if(this.props.message < 1 || !this.props.profile.username){
     return (
-      this.state.isLoading ? 
+      
       <div className="timeline-container">
         <UserSmall 
-          username="loading"
-
+          loading
           /> 
       <MessageList 
           key={this.props.url.url}
-          user={this.props.user} 
-          messages ={this.props.messages}
-          currentUser={this.props.currentUser.userId}
-          url={this.urlData.url}
+          loading
           />
-      </div> 
-      :
+      </div> );
+      }else{
+        return(
       <div className="timeline-container"> 
         <UserSmall 
+          key={this.props.username}
           username={this.props.profile.username}
           profileImg={this.props.profile.profileImgUrl}
           following = {this.props.profile.following}
+          profile={this.props.profile}
           followUser = {this.props.followUser}
-          currentUser={this.props.currentUser.username}
+          currentUser={this.props.currentUser.userId}
         /> 
         
          <MessageList 
@@ -73,8 +74,8 @@ class Timeline extends Component{
           url={this.urlData.url}
           /> 
         </div>
-      
-  );
+        );
+      }
   }
 }
 function mapStateToProps(state){

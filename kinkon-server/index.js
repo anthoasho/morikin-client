@@ -16,13 +16,6 @@ process.on('unhandledRejection', function(reason, promise) {
     console.log(promise);
 });
 
-app.use(function(req,res,next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
-
-
 app.get("/", function(req, res){
   res.json({message:"Make a post request to sign up!"});
 });
@@ -41,26 +34,56 @@ app.get("/api/user/:id/messages", function(req, res){
   });
 });
 
-app.post("/api/:username/follow", function(req, res, next){
+app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
   var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
   db.User.findOne({username: req.params.username})
   .then(function(user){
-    user.followers.push(currentUser.userId);
-    user.save().then(function(){
-      res.json();
-    });
-  });
+    var index = user.followers.indexOf(currentUser.userId);
+    console.log(currentUser.userId);
+    console.log(user._id);
+    console.log(index);
+    if(index === -1){
+      user.followers.push(currentUser.userId);
+      user.save().then(function(user){
+        db.User.findById(currentUser.userId)
+        .then(function(current){
+          current.following.push(user._id);
+          current.save().then(() =>{
+               res.json({message: "Following!"});
+          });
+        });
+      });
+    }else{
+      user.followers.splice(index, 1);
+      user.save().then(function(user){
+      db.User.findById(currentUser.userId)
+        .then(function(current){
+          var indexSecond = current.followers.indexOf(user._id);
+          current.following.splice(indexSecond, 1);
+          current.save().then(() =>{
+               res.json({message: "Unfollowed!"});
+          });
+        });
+      });
+    }
 });
-
+});
 app.get("/api/user/:id", function(req, res){
   db.User.findOne({username: req.params.id})
+  .populate("messages", {isDeleted: true})
   .then(function(user){
     var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
     let following = user.followers.some(e => e.toString() === currentUser.userId);
+    let followingCount = user.following.length;
+    let followerCount = user.followers.length;
+    let messageCount = user.messages.filter(message => message.isDeleted === false).length;
     res.json({userId: user.id,
               username: user.username,
               profileImgUrl: user.profileImgUrl,
-              following: following
+              following,
+              followingCount, 
+              followerCount,
+              messageCount
             });
   })
   .catch(function(err){

@@ -4,9 +4,9 @@ import { removeMessage } from "../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
 const MessageList = props =>{
-  const  {messages, removeMessage, currentUser} = props;
+  const  {messages, removeMessage, currentUser, loading} = props;
   let MessageList;
-  if(messages.length < 1){
+  if(loading){
       MessageList = <Message loading/>;
   }else{
   MessageList = messages.map((m)=> 

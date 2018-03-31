@@ -18,10 +18,15 @@ var userSchema = new mongoose.Schema({
   },
   profileImgUrl:{
     type: String,
+    
   },
   followers: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+  }],
+  following: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User",
   }],
   messages: [{
     type: mongoose.Schema.Types.ObjectId,
