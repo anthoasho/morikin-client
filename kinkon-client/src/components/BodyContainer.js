@@ -18,10 +18,11 @@ const BodyContainer = (props) => {
   }
     return(
       <div className="body-container">
-        <Timeline 
+        <Timeline
           key={`timeline:${props.match.url}`}
-          user={props.profile.user} 
+          user={props.profile.user}
           url={props.match}
+          {...props}
           />
       </div>
       );

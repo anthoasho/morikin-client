@@ -12,25 +12,28 @@ function randomColor(){
 }
 let color = randomColor();
 const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) => {
- return loading ?   
+  const addDefaultSrc = (e) => {
+    e.target.src =require("./test-profile-picture.jpeg")
+  }
+ return loading ?
   <div className="ind-message" style={{borderRight: `4px solid ${color}`}}>
     <div className="meta-content">
       <PreloaderIcon
         className="loading-icon"
         type={ICON_TYPE.TAIL_SPIN}
         size={40}
-        strokeWidth={4} 
+        strokeWidth={4}
         strokeColor="#ae27e8"
         duration={800}
-      /> 
+      />
     </div>
     <div className="message-content">
     </div>
-  </div> 
+  </div>
   :
   <div className="ind-message" style={{borderRight: `4px solid ${randomColor()}`}}>
     <div className="img-content">
-      <img alt={`${userId.username}'s profile `} src={userId.profileImgUrl} style={{border: `2px solid ${randomColor()}`}} />
+      <img onError={addDefaultSrc} alt={`${userId.username}'s profile `} src={userId.profileImgUrl} style={{border: `2px solid ${randomColor()}`}} />
     </div>
     <div style={{width: "100%"}}>
       <div className="meta-content">

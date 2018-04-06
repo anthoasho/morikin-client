@@ -14,33 +14,43 @@ const UserSmall = ({username, profileImg, following, followUser, currentUser, lo
   const handlefollow = () => {
     followUser(username);
   };
+  const addDefaultSrc = (e) => {
+    e.target.src =require("./test-profile-picture.jpeg")
+  }
   return(
-    !loading ? 
+    !loading ?
       <div className = "user-profile-small" >
         <div className="img-wrapper">
-          <img className="profile-picture" alt={`${username}'s profile `} src={profileImg} style={{border: `2px solid ${randomColor()}`}} /> 
+          <img onError={addDefaultSrc} className="profile-picture" alt={`${username}'s profile `} src={profileImg} style={{border: `2px solid ${randomColor()}`}} />
         </div>
         <div className="user-follow">
         <h3 style={{borderBottom: `4px solid ${randomColor()}`}}>{username}</h3>
-        {following || username === currentUser ?<button  className="follow-button unfollow-button" onClick={handlefollow} >unfollow </button>:<button className="follow-button" onClick={handlefollow} > Follow </button> /* Maybe make this a HOC*/ } 
+        {following || username === currentUser ?<button  className="follow-button unfollow-button" onClick={handlefollow} >unfollow </button>:<button className="follow-button" onClick={handlefollow} > Follow </button> /* Maybe make this a HOC*/ }
         </div>
         <div className="user-meta">
-          <UserMeta 
+          <UserMeta
             text="Posts"
+            type="posts"
             data={profile.messageCount}
+            username={username}
             classDefine="user-meta-item"/>
-          <UserMeta 
+          <UserMeta
+            type="followers"
             text="Followers"
             data={profile.followerCount}
-            classDefine="user-meta-item meta-mid" />
-            
-          <UserMeta 
+            classDefine="user-meta-item meta-mid"
+            username={username} />
+
+          <UserMeta
+            type="following"
             text="Following"
             data={profile.followingCount}
-            classDefine="user-meta-item"/>
+            classDefine="user-meta-item"
+            username={username}
+            />
         </div>
       </div>
-      : 
+      :
       <div className = "user-profile-small" >
         <PreloaderIcon
           className="loading-icon"
@@ -49,7 +59,7 @@ const UserSmall = ({username, profileImg, following, followUser, currentUser, lo
           strokeWidth={4} // min: 1, max: 50
           strokeColor="#ae27e8"
           duration={800}
-        /> 
+        />
         <h3 style={{borderBottom: `4px solid ${randomColor()}`}}>{username}</h3>
       </div>
     );

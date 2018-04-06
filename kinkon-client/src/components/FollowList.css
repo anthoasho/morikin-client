@@ -1,0 +1,31 @@
+.follow-list h3{
+  padding-left: 10px;
+}
+.follow-list-img{
+  margin: 0 5px;
+}
+.follow-left{
+  width: 50%;
+  display: flex;
+  align-items:center;
+  justify-content: flex-start;
+}
+.follow-right{
+  width:40%;
+}
+.follow-list-individual{
+  width: 100%;
+  height: 80px;
+  background: #f7f7f7;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+
+.popup-box .follow-btn-small{
+  height: inherit;
+  width: 80%;
+  margin:0;
+}

@@ -8,7 +8,7 @@ var express   =   require("express"),
     auth = require("./middleware/auth"),
     jwt = require("jsonwebtoken"),
     messagesRoutes  = require("./routes/messages");
-    
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -39,9 +39,6 @@ app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
   db.User.findOne({username: req.params.username})
   .then(function(user){
     var index = user.followers.indexOf(currentUser.userId);
-    console.log(currentUser.userId);
-    console.log(user._id);
-    console.log(index);
     if(index === -1){
       user.followers.push(currentUser.userId);
       user.save().then(function(user){
@@ -49,7 +46,7 @@ app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
         .then(function(current){
           current.following.push(user._id);
           current.save().then(() =>{
-               res.json({message: "Following!"});
+               res.json({following: true, followerCount: user.followers.length});
           });
         });
       });
@@ -61,7 +58,8 @@ app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
           var indexSecond = current.followers.indexOf(user._id);
           current.following.splice(indexSecond, 1);
           current.save().then(() =>{
-               res.json({message: "Unfollowed!"});
+            console.log(user);
+               res.json({following: false, followerCount: user.followers.length});
           });
         });
       });
@@ -81,7 +79,7 @@ app.get("/api/user/:id", function(req, res){
               username: user.username,
               profileImgUrl: user.profileImgUrl,
               following,
-              followingCount, 
+              followingCount,
               followerCount,
               messageCount
             });
@@ -94,6 +92,20 @@ app.get("/api/user/:id", function(req, res){
 });
 app.use("/api/users/:id/messages", auth.loginRequired, auth.ensureCorrectUser, messagesRoutes);
 app.use("/api/auth", authRoutes);
+
+app.get("/api/user/:user/:follow", function(req, res, next){
+  var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
+  if(req.params.follow === "followers" || req.params.follow === "following" ){
+  db.User.findOne({username: req.params.user})
+  .populate(req.params.follow, {username: true, profileImgUrl: true})
+  .then(function(users){
+    res.json(users[req.params.follow])
+  });
+}else{
+  res.status(404).json({message: "Sorry can't be found"})
+}
+
+})
 
 app.get("/api/messages/", function(req, res, next){
   db.Message.find().sort({createdAt: "desc"})

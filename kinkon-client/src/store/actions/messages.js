@@ -22,16 +22,27 @@ export const removeMessage = (user, message) => {
   };
 };
 
-export const fetchMessages = (url) => {
+export const fetchMessages = (user) => {
   return dispatch => {
-    return apiCall("get", `/api/${url}/messages`)
-    .then((res) => { 
-      dispatch(loadMessages(res));
-    })
-    .catch((error) => {
-      dispatch(addError(error));
+    if(user){
+      return apiCall("get", `/api/user/${user}/messages`)
+              .then((res) => {
+                dispatch(loadMessages(res));
+              })
+              .catch((error) => {
+                dispatch(addError(error));
+              });
+    }else if(!user){
+    return apiCall("get", `/api/messages`)
+            .then((res) => {
+              dispatch(loadMessages(res));
+            })
+            .catch((error) => {
+              dispatch(addError(error));
     });
-  };
+  }; // Why is this unreachable?
+}
+
 };
 
 export const postNewMessage = text => (dispatch, getState) => {

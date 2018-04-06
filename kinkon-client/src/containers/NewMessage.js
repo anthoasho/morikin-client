@@ -34,7 +34,7 @@ class NewMessage extends Component{
       this.setState({
         text: ""
       });
-      this.goBack(); 
+      this.goBack();
       }else if(lengthCheck === 0 ){
         this.setState({
           error:"Please write a message!"
@@ -53,10 +53,10 @@ class NewMessage extends Component{
     const currentCharacterCount = this.characterCount(this.state.text);
     return(
       <div>
-        <div className="new-message-box"> 
+        <div className="popup-box">
+        <div className="exit" onClick={this.goBack}> X
+                  </div>
           {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
-          <div onClick={this.goBack}> X
-          </div>
           <form
            onSubmit={this.handleSubmit}
           >
@@ -68,13 +68,13 @@ class NewMessage extends Component{
               value={this.state.text}
               onChange={this.handleChange}
               />
-              <div>
+              <div className="counter-and-button">
                 <p style={{color: this.letterCheck(currentCharacterCount)}}> {currentCharacterCount}</p>
                 <button>
                 POST
                 </button>
               </div>
-              
+
           </form>
         </div>
         <div onClick={this.goBack} className="fullscreen"> {/*Temporary darkend clickable background to escape the new post box --- add escape button listener---*/}
