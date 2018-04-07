@@ -31,7 +31,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
     </div>
   </div>
   :
-  <div className="ind-message" style={{borderRight: `4px solid ${randomColor()}`}}>
+  <div className="ind-message item-box" style={{borderRight: `4px solid ${randomColor()}`}}>
     <div className="img-content">
       <img onError={addDefaultSrc} alt={`${userId.username}'s profile `} src={userId.profileImgUrl} style={{border: `2px solid ${randomColor()}`}} />
     </div>

@@ -44,47 +44,47 @@ render(){
       removeError();
     });
     return(
-      <div className ="auth-container">
+      <div className ="popup-box auth-container">
         <p className="title"> {heading} </p>
-        {errors.message && (<div> {errors.message} </div>) } 
+        {errors.message && (<div> {errors.message} </div>) }
         <form
         className="login-form"
           onSubmit = {this.handleSubmit}
           >
-          <input 
+          <input
             type="text"
             name="username"
             placeholder="Username"
             value ={username}
             onChange = {this.handleChange}
-          /> 
-          <input 
+          />
+          <input
             type="password"
             name="password"
             placeholder="Password"
             value ={password}
             onChange = {this.handleChange}
-          /> 
+          />
           {signUp && (
-          <div className="signup"> 
-            <input 
+          <div className="signup">
+            <input
               type="text"
               name="email"
               placeholder="Email address"
               value ={email}
               onChange = {this.handleChange}
-            /> 
-            <input 
+            />
+            <input
               type="text"
               name="profileImgUrl"
               placeholder="Profile Picture URL"
               value ={profileImgUrl}
               onChange = {this.handleChange}
-            /> 
+            />
           </div>)}
           <button> {buttonText} </button>
       </form>
       </div>
       );
-  }  
+  }
 }

@@ -23,8 +23,8 @@ goBack(){
     render(){
       let FollowerList
       if(!this.props.followUsers.length < 1){
-      FollowerList = this.props.followUsers.map( user => (
-      <Follow {...user}   key={user.username} />
+      FollowerList = this.props.followUsers.map( (user, index) => (
+      <Follow {...user} itemNum={index} key={`${index}${user.username}`} />
     ))}else{
       FollowerList = "...Loading";
     }
@@ -44,7 +44,8 @@ goBack(){
 
 function mapStateToProps(state){
   return {
-    followUsers: state.userProfile.follow
+    followUsers: state.follow,
+    current: state.currentUser.username
   };
 }
 

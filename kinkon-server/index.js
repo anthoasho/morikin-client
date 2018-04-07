@@ -46,7 +46,7 @@ app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
         .then(function(current){
           current.following.push(user._id);
           current.save().then(() =>{
-               res.json({following: true, followerCount: user.followers.length});
+               res.json({following: true, followerCount: user.followers.length, username:user.username});
           });
         });
       });
@@ -59,7 +59,7 @@ app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
           current.following.splice(indexSecond, 1);
           current.save().then(() =>{
             console.log(user);
-               res.json({following: false, followerCount: user.followers.length});
+               res.json({following: false, followerCount: user.followers.length, username:user.username});
           });
         });
       });
@@ -93,14 +93,27 @@ app.get("/api/user/:id", function(req, res){
 app.use("/api/users/:id/messages", auth.loginRequired, auth.ensureCorrectUser, messagesRoutes);
 app.use("/api/auth", authRoutes);
 
+/*
+  ---------------------- THIS IS INNEFFICIENT BUT WILL DO FOR NOW--------------------------------
+*/
 app.get("/api/user/:user/:follow", function(req, res, next){
   var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
   if(req.params.follow === "followers" || req.params.follow === "following" ){
   db.User.findOne({username: req.params.user})
-  .populate(req.params.follow, {username: true, profileImgUrl: true})
+  .populate(req.params.follow, {username: true, profileImgUrl: true, followers: true})
   .then(function(users){
-    res.json(users[req.params.follow])
-  });
+    let data = users[req.params.follow]
+    let newdata = data.map(function(obj){
+        mappedFollowing = obj.followers.some(e => e.toString() === currentUser.userId);
+        let finalData = {
+          username: obj.username,
+          profileImgUrl: obj.profileImgUrl,
+          following: mappedFollowing
+        }
+      return finalData;
+    });
+  res.json(newdata);
+})
 }else{
   res.status(404).json({message: "Sorry can't be found"})
 }

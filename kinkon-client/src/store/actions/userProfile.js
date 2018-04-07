@@ -1,18 +1,24 @@
 import {apiCall } from "../../services/api";
 import {addError} from "./errors";
-import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE} from "../actionTypes";
+import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST} from "../actionTypes";
 
 export const loadProfile = user => ({
   type: LOAD_USER_PROFILE,
   user
 });
+
+export const updateProfile = update => ({
+  type: UPDATE_USER_PROFILE,
+  update
+})
 export const loadFollow = users => ({
   type: LOAD_USER_FOLLOW,
   users
 })
-export const updateProfile = update => ({
-  type: UPDATE_USER_PROFILE,
-  update
+export const updateFollowList = (update, id) => ({
+  type: UPDATE_FOLLOW_LIST,
+  update,
+  id
 })
 export const getUserProfile = (username) => {
   return dispatch => {
@@ -38,11 +44,16 @@ export const getFollowList = (url) => {
   }
 }
 
-export const followUser = (userId) => {
+export const followUser = (userId, location, itemNum) => {
+
   return dispatch => {
     return apiCall("post", `/api/${userId}/follow`)
     .then((res) => {
+      if(location==="followList"){
+        dispatch(updateFollowList(res.following, itemNum));
+      }else{
       dispatch(updateProfile(res));
+    }
      })
     .catch(err =>{
       dispatch(addError(err.errors.message));
