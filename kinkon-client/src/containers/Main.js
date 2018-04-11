@@ -5,6 +5,7 @@ import BodyContainer from "../components/BodyContainer";
 import AuthForm from "../components/AuthForm";
 import {authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
+import EditProfile from "../components/EditProfile.js"
 import NewMessage from "./NewMessage";
 import withAuth from "../hocs/withAuth";
 const Main = props => {
@@ -45,7 +46,10 @@ const Main = props => {
               {...props}
               />}
             />
-
+          <Route exact path ="/editprofile" render ={props =>
+            <EditProfile
+            />}
+          />
           <Route exact path = "/signin" render={props => {
             return(
               <AuthForm

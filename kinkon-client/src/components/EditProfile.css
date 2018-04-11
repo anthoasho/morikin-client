@@ -1,0 +1,66 @@
+.edit-profile-container{
+    margin: auto;
+    margin-top: 50px;
+    background: #efefef;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    position: fixed;
+    right: 0;
+    left:0;
+    bottom: 0;
+    top:0;
+    padding: 20px 0;
+    text-align: center;
+
+}
+.upper{
+  display:flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-content: center;
+  flex: 1;
+}
+
+.form-grouping{
+  display: flex;
+  justify-content: space-between;
+  width: 100%
+}
+
+.edit-profile-form{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  flex:1.5;
+}
+.edit-profile-form input{
+  width: 45%;
+  margin: 7px 0;
+  height: 2rem;
+  padding-left: 5px;
+}
+
+/* DRY DRY DRY DRY DRY DRY DRY DRY ----- CHECK NEWMESSAGE.CSS AND REFACTOR */
+.edit-profile-form button{
+  width: 40%;
+  color: white;
+  font-weight: 700;
+  background-color: #ae27e8;
+  border: 1px solid #dbdbdb;
+    border-radius: 3px;
+  height: 40px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.title{
+  /* font-size: 100px; */
+}
+.small img{
+  max-width: 150px;
+}

@@ -11,16 +11,18 @@ exports.signin = function(req, res){
     user.comparePassword(req.body.password, function(err, isMatch){
       if(isMatch){
         var token = jwt.sign({
-          userId: user.id, 
-          username: user.username, 
-          email:user.email, 
+          userId: user.id,
+          username: user.username,
+          email:user.email,
           profileImgUrl: user.profileImgUrl,
+          profileColor: user.profileColor
         }, process.env.SECRET_KEY);
         res.status(200)
           .json({userId: user.id,
             username: user.username,
             profileImgUrl: user.profileImgUrl,
             following: user.following,
+            profileColor: user.profileColor,
             token
           });
       }else{
