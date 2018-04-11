@@ -1,6 +1,4 @@
 import React from 'react';
-// import Dashboard from "../containers/Dashboard";
-// import UserProfile from "./UserProfile";
 import Timeline from "./Timeline";
 import {Link} from "react-router-dom";
 import "./BodyContainer.css";

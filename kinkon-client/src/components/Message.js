@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
-import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+import ProfileImg from "../common/ProfileImg";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -12,29 +12,21 @@ function randomColor(){
 }
 let color = randomColor();
 const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) => {
-  const addDefaultSrc = (e) => {
-    e.target.src =require("./test-profile-picture.jpeg")
-  }
  return loading ?
   <div className="ind-message" style={{borderRight: `4px solid ${color}`}}>
     <div className="meta-content">
-      <PreloaderIcon
-        className="loading-icon"
-        type={ICON_TYPE.TAIL_SPIN}
-        size={40}
-        strokeWidth={4}
-        strokeColor="#ae27e8"
-        duration={800}
-      />
     </div>
     <div className="message-content">
     </div>
   </div>
   :
   <div className="ind-message item-box" style={{borderRight: `4px solid ${randomColor()}`}}>
-    <div className="img-content">
-      <img onError={addDefaultSrc} alt={`${userId.username}'s profile `} src={userId.profileImgUrl} style={{border: `2px solid ${randomColor()}`}} />
-    </div>
+    <ProfileImg
+      username={userId.username}
+      profileImg= {userId.profileImgUrl}
+      loading={loading}
+
+    />
     <div style={{width: "100%"}}>
       <div className="meta-content">
         <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>

@@ -1,8 +1,8 @@
 import React from "react";
 import "./UserSmall.css";
-import {UserMeta} from "../containers/userMeta";
-import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
-/*Temporary styling for colors for each user*/
+import {UserMetaGroup} from "../containers/UserMetaGroup";
+import FollowButton from "../common/FollowButton";
+import ProfileImg from "../common/ProfileImg";
 function randomColor(){
   let red = Math.floor(Math.random() * 255);
   let blue = Math.floor(Math.random() * 255);
@@ -10,58 +10,30 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 
-const UserSmall = ({username, profileImg, following, followUser, currentUser, loading, profile}) => {
-  const handlefollow = () => {
-    followUser(username);
-  };
-  const addDefaultSrc = (e) => {
-    e.target.src =require("./test-profile-picture.jpeg")
-  }
-  return(
-    !loading ?
+const UserSmall = ({currentUser, loading, profile}) => {
+  if(!loading){
+    let {username, following, profileImgUrl} = profile;
+    return(
       <div className = "user-profile-small" >
-        <div className="img-wrapper">
-          <img onError={addDefaultSrc} className="profile-picture" alt={`${username}'s profile `} src={profileImg} style={{border: `2px solid ${randomColor()}`}} />
-        </div>
-        <div className="user-follow">
-        <h3 style={{borderBottom: `4px solid ${randomColor()}`}}>{username}</h3>
-        {following || username === currentUser ?<button  className="follow-button unfollow-button" onClick={handlefollow} >unfollow </button>:<button className="follow-button" onClick={handlefollow} > Follow </button> /* Maybe make this a HOC*/ }
-        </div>
-        <div className="user-meta">
-          <UserMeta
-            text="Posts"
-            type="posts"
-            data={profile.messageCount}
-            username={username}
-            classDefine="user-meta-item"/>
-          <UserMeta
-            type="followers"
-            text="Followers"
-            data={profile.followerCount}
-            classDefine="user-meta-item meta-mid"
-            username={username} />
-
-          <UserMeta
-            type="following"
-            text="Following"
-            data={profile.followingCount}
-            classDefine="user-meta-item"
-            username={username}
-            />
-        </div>
-      </div>
-      :
-      <div className = "user-profile-small" >
-        <PreloaderIcon
-          className="loading-icon"
-          type={ICON_TYPE.TAIL_SPIN}
-          size={100}
-          strokeWidth={4} // min: 1, max: 50
-          strokeColor="#ae27e8"
-          duration={800}
+        <ProfileImg
+          username={username}
+          profileImg= {profileImgUrl}
+          loading={loading}
         />
-        <h3 style={{borderBottom: `4px solid ${randomColor()}`}}>{username}</h3>
+        <div className="user-follow">
+          <h3 style={{borderBottom: `4px solid ${randomColor()}`}}>{username}</h3>
+          <FollowButton username={username} current={currentUser} followType={[username]} following={following} />
+        </div>
+        <UserMetaGroup
+          profile={profile}
+          username={username}
+        />
       </div>
     );
+  }else{
+    return(
+      <div>Loading..</div>
+      );
+    }
 };
 export default UserSmall;

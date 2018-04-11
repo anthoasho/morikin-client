@@ -1,0 +1,37 @@
+.img-wrapper img{
+    border-radius: 50%;
+}
+
+.item-box .img-wrapper{
+  margin-right:15px;
+  display: flex;
+  align-items: center;
+}
+.item-box .img-wrapper img{
+  width: 50px;
+  height: 50px;
+  flex:1;
+}
+.user-profile-small .img-wrapper {
+  width: 70%;
+  height:0;
+  padding-top: 70%;
+  position: relative;
+}
+.user-profile-small .img-wrapper .profile-picture{
+  width:100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  position: absolute;
+  vertical-align:top;
+}
+.user-profile-small .img-wrapper .loading-icon{
+  width:100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  position: absolute;
+  vertical-align:top;
+
+}

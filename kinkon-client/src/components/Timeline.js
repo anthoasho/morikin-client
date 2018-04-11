@@ -7,39 +7,38 @@ import FollowList from "./FollowList";
 import {connect } from "react-redux";
 
 class Timeline extends Component{
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = { isLoading:true};
+    this.returnFetch = this.returnFetch.bind(this);
   }
-    urlData = this.props.url;
-  componentDidMount(){
-
-
-    const returnFetch = () => {
-      if(this.urlData.params.id){
-        this.props.fetchMessages(this.urlData.params.id);
-      }else{
-        this.props.fetchMessages();
-      }
+  urlData = this.props.url;
+  returnFetch = () => {
+    if(this.urlData.params.id){
+      this.props.fetchMessages(this.urlData.params.id);
+    }else{
+      this.props.fetchMessages();
     }
-
-    returnFetch();
+  }
+  componentDidMount(){
+    this.returnFetch();
     this.refreshInterval = setInterval(()=> {
-      returnFetch();
+      this.returnFetch();
       }, 300000); //Unsure if this is the method I want for refreshing data
     if(this.props.url.params.id){
       this.props.getUserProfile(this.urlData.params.id);
     }else{
       this.props.getUserProfile(this.props.user.username);
     }
-
-}
+  }
   componentWillUnmount(){
     clearInterval(this.refreshInterval);
     //figure out a way to trigger loading upon unmounting component
   }
   render(){
-    if(this.props.message < 1 || !this.props.profile.username){
+
+    const {message, messages, user, username, profile, follow, currentUser, followUser, url, history} = this.props;
+    if(message < 1 || !profile.username){
     return (
       <div className="timeline-container">
         <UserSmall
@@ -52,31 +51,27 @@ class Timeline extends Component{
       }else{
         return(
       <div className="timeline-container">
-      {this.props.follow &&
+      {follow &&
         <FollowList
-                url={this.urlData.url}
-                key={`${this.urlData.url}${this.props.username}`}
-                history={this.props.history}
+            url={this.urlData.url}
+            key={`${this.urlData.url}${username}`}
+            history={history}
         />
       }
-
         <div className="timeline-left">
         <UserSmall
-          key={`user ${this.props.username}`}
-          username={this.props.profile.username}
-          profileImg={this.props.profile.profileImgUrl}
-          following = {this.props.profile.following}
-          profile={this.props.profile}
-          followUser = {this.props.followUser}
-          currentUser={this.props.currentUser.userId}
+          key={`user ${username}`}
+          profile={profile}
+          followUser = {followUser}
+          currentUser={currentUser.username}
         />
         </div>
         <div className="timeline-right">
          <MessageList
-          key={`messages ${this.props.url.url}`}
-          user={this.props.user}
-          messages ={this.props.messages}
-          currentUser={this.props.currentUser.userId}
+          key={`messages ${url.url}`}
+          user={user}
+          messages ={messages}
+          currentUser={currentUser.userId}
           />
           </div>
         </div>

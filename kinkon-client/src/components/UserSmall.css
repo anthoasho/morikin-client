@@ -28,7 +28,7 @@
 }
 
 .unfollow-button{
-  background: white !important; /*This should not be important, change the CSS settings*/ 
+  background: white !important; /*This should not be important, change the CSS settings*/
   color: black !important;
 }
 .meta-mid{
@@ -52,13 +52,13 @@
 
 }
 
-.img-wrapper {
+/* .user-profile-small >.img-wrapper {
   width: 70%;
   height:0;
   padding-top: 70%;
   position: relative;
 }
-.img-wrapper .profile-picture{
+.user-profile-small >.img-wrapper .profile-picture{
   width:100%;
   height: 100%;
   top:0;
@@ -67,7 +67,7 @@
   vertical-align:top;
   border-radius: 50%;
 }
-.img-wrapper .loading-icon{
+.user-profile-small >.img-wrapper .loading-icon{
   width:100%;
   height: 100%;
   top:0;
@@ -75,7 +75,7 @@
   position: absolute;
   vertical-align:top;
 
-}
+} */
 @media only screen and (max-device-width: 480px) {
   .user-profile-small{
     width: 100%;

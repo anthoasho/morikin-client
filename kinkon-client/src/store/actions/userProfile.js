@@ -44,7 +44,7 @@ export const getFollowList = (url) => {
   }
 }
 
-export const followUser = (userId, location, itemNum) => {
+export const followUser = ([userId, location, itemNum]) => {
 
   return dispatch => {
     return apiCall("post", `/api/${userId}/follow`)
