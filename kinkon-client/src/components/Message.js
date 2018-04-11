@@ -20,10 +20,11 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
     </div>
   </div>
   :
-  <div className="ind-message item-box" style={{borderRight: `4px solid ${randomColor()}`}}>
+  <div className="ind-message item-box" style={{borderRight: `4px solid ${userId.profileColor? userId.profileColor:randomColor()}`}}>
     <ProfileImg
       username={userId.username}
       profileImg= {userId.profileImgUrl}
+      profileColor={userId.profileColor}
       loading={loading}
 
     />

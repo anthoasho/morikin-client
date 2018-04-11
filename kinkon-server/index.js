@@ -22,7 +22,7 @@ app.get("/", function(req, res){
 app.get("/api/user/:id/messages", function(req, res){
   db.User.findOne({username: req.params.id}).then(function(user){
     db.Message.find({userId: user._id}).sort({createdAt: "desc"})
-    .populate("userId", {username: true, profileImgUrl: true})
+    .populate("userId", {username: true, profileImgUrl: true, profileColor: true})
     .then(function(messages){
       res.json(messages.filter(message => message.isDeleted === false));
     })
@@ -33,6 +33,8 @@ app.get("/api/user/:id/messages", function(req, res){
     });
   });
 });
+
+
 
 app.post("/api/:username/follow", auth.loginRequired, function(req, res, next){
   var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
@@ -71,17 +73,19 @@ app.get("/api/user/:id", function(req, res){
   .populate("messages", {isDeleted: true})
   .then(function(user){
     var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
-    let following = user.followers.some(e => e.toString() === currentUser.userId);
-    let followingCount = user.following.length;
-    let followerCount = user.followers.length;
-    let messageCount = user.messages.filter(message => message.isDeleted === false).length;
-    res.json({userId: user.id,
-              username: user.username,
-              profileImgUrl: user.profileImgUrl,
-              following,
+    const {followers, following, messages, id, username, profileImgUrl, profileColor} = user;
+    let followingTruthy = followers.some(e => e.toString() === currentUser.userId);
+    let followingCount = following.length;
+    let followerCount = followers.length;
+    let messageCount = messages.filter(message => message.isDeleted === false).length;
+    res.json({userId: id,
+              username,
+              profileImgUrl,
+              following: followingTruthy,
               followingCount,
               followerCount,
-              messageCount
+              messageCount,
+              profileColor
             });
   })
   .catch(function(err){
@@ -100,7 +104,7 @@ app.get("/api/user/:user/:follow", function(req, res, next){
   var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
   if(req.params.follow === "followers" || req.params.follow === "following" ){
   db.User.findOne({username: req.params.user})
-  .populate(req.params.follow, {username: true, profileImgUrl: true, followers: true})
+  .populate(req.params.follow, {username: true, profileImgUrl: true, followers: true, profileColor: true})
   .then(function(users){
     let data = users[req.params.follow]
     let newdata = data.map(function(obj){
@@ -108,8 +112,10 @@ app.get("/api/user/:user/:follow", function(req, res, next){
         let finalData = {
           username: obj.username,
           profileImgUrl: obj.profileImgUrl,
-          following: mappedFollowing
+          following: mappedFollowing,
+          profileColor: obj.profileColor
         }
+        console.log(finalData)
       return finalData;
     });
   res.json(newdata);
@@ -122,7 +128,7 @@ app.get("/api/user/:user/:follow", function(req, res, next){
 
 app.get("/api/messages/", function(req, res, next){
   db.Message.find().sort({createdAt: "desc"})
-    .populate("userId", {username: true, profileImgUrl: true})
+    .populate("userId", {username: true, profileImgUrl: true, profileColor: true})
     .then(function(messages){
       res.json(messages.filter(message => message.isDeleted === false));
     })

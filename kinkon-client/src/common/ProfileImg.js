@@ -14,7 +14,7 @@ const ProfileImg = (props) => {
   return(
     !props.loading ?
     <div className="img-wrapper">
-      <img onError={addDefaultSrc} className="profile-picture" alt={`${props.username}'s profile `} src={props.profileImg} style={{border: `2px solid ${randomColor()}`}} />
+      <img onError={addDefaultSrc} className="profile-picture" alt={`${props.username}'s profile `} src={props.profileImg} style={{boxShadow: `0px 0px 4px ${props.profileColor? props.profileColor : randomColor()}`, border: "2px solid #cccccc", borderBottom: `2px solid ${props.profileColor? props.profileColor : randomColor()}`}} />
     </div>
     :
     <div>

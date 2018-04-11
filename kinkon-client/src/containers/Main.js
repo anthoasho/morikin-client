@@ -12,7 +12,7 @@ const Main = props => {
   return(
       <div className="container">
         <Switch>
-        <Route path="/user/:id/followers" render={props =>
+        <Route exact path="/user/:id/followers" render={props =>
           <BodyContainer
             currentUser={currentUser}
             profile={currentUser}
@@ -21,7 +21,7 @@ const Main = props => {
           />
         }
         />
-        <Route path="/user/:id/following" render={props =>
+        <Route exact path="/user/:id/following" render={props =>
           <BodyContainer
             currentUser={currentUser}
             profile={currentUser}
@@ -38,7 +38,7 @@ const Main = props => {
             />}
           />
 
-          <Route path="/user/:id/" render={props =>
+          <Route exact path="/user/:id/" render={props =>
             <BodyContainer
               currentUser={currentUser}
               profile={currentUser}

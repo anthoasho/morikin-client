@@ -10,6 +10,7 @@ const Follower = (props) => {
     <ProfileImg
       username={props.username}
       profileImg= {props.profileImgUrl}
+      profileColor={props.profileColor}
     />
       <div>
       <Link to={`/user/${props.username}`}>
