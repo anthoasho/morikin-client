@@ -123,8 +123,33 @@ app.get("/api/user/:user/:follow", function(req, res, next){
 }else{
   res.status(404).json({message: "Sorry can't be found"})
 }
+});
 
-})
+app.post("/api/user/updateprofile", function(req, res, next){
+    var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
+    var data = req.body.userData
+    var {username, email, profileImgUrl, color} = data;
+    db.User.findById(currentUser.userId).then(function(user){
+      for(var i in data){
+        if(data[i].length > 1){
+          user[i] = data[i]
+        }
+      }
+      user.save().then(function(response){
+            var token = jwt.sign({
+              userId: response.id,
+              username: response.username,
+              email:response.email,
+              profileImgUrl: response.profileImgUrl,
+              profileColor: response.profileColor
+            }, process.env.SECRET_KEY);
+            res.status(200)
+              .json({response,
+                token
+              });
+        });
+      })
+    });
 
 app.get("/api/messages/", function(req, res, next){
   db.Message.find().sort({createdAt: "desc"})

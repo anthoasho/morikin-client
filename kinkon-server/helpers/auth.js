@@ -4,7 +4,7 @@ exports.signin = function(req, res){
   if(!req.body.username){
     res.status(400).json({errors:{message: "Please input your information!"}});
   }
-  db.User.findOne({username: req.body.username}).then(function(user){
+  db.User.findOne({username: req.body.username}).select("+password").then(function(user){
     if(!user){
       res.status(400).json({errors: {message: "Sorry, invalid username/Password!"}});
     }
@@ -20,9 +20,9 @@ exports.signin = function(req, res){
         res.status(200)
           .json({userId: user.id,
             username: user.username,
+            email:user.email,
             profileImgUrl: user.profileImgUrl,
-            following: user.following,
-            profileColor: user.profileColor,
+            profileColor: user.profileColor, //don't forget you changed this.
             token
           });
       }else{

@@ -1,6 +1,7 @@
 import React from "react";
 import {connect } from "react-redux";
 import {followUser} from "../store/actions/userProfile";
+import {Link} from "react-router-dom";
 const followButton = (props) => {
   const handleFollow = () =>{
     props.followUser(props.followType)
@@ -25,7 +26,7 @@ const followButton = (props) => {
     case "unfollow":
       return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`}onClick={handleFollow} >unfollow </button>
     case "profileEdit":
-      return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} onClick={handleProfileOptions} >Edit Profile</button>
+      return   <Link to={`/editprofile`} style={{width: "80%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%"}} onClick={handleProfileOptions} >Edit Profile</button></Link>
     default:
     return  <button  className={`follow-button unfollow-button`} style={{background: "gray"}}>loading...</button>
   }

@@ -21,7 +21,6 @@ goBack(){
   this.props.history.goBack(); //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
 }
     render(){
-      console.log(this.props)
       let FollowerList
       if(!this.props.followUsers.length < 1){
       FollowerList = this.props.followUsers.map( (user, index) => (

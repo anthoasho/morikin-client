@@ -1,18 +1,19 @@
 import React, {Component} from "react";
 import {connect } from "react-redux";
+import {editProfile} from "../store/actions/userProfile";
+import {Link} from "react-router-dom";
 import "./EditProfile.css";
 import ProfileImg from "../common/ProfileImg"
 class EditProfile extends Component{
   constructor(props){
     super(props)
     let {user} = this.props;
-    console.log(user)
     this.state = {username: user.username,
                   email: user.email,
                   passwordOne: "",
                   passwordTwo: "",
-                  profileImgUrl: user.profileImg,
-                  profileColor: ""
+                  profileImgUrl: user.profileImgUrl,
+                  profileColor: user.profileColor
                   };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,25 +26,28 @@ class EditProfile extends Component{
   }
   handleSubmit = e =>{
     e.preventDefault();
-    const authType = this.props.signUp ? "signup" : "signin"; //Clarify type of API call to be used through props
-    this.props.onAuth(authType, this.state).then(() => {
-    this.props.history.push("/");
+    this.props.editProfile(this.state).then(() => {
     })
     .catch(() => {
       return;
     });
-    this.setState({username: "",
-              email: "",
-              password: "",
-              profileImgUrl: ""
-              });
   }
 
   render(){
     const {username, email, passwordOne, passwordTwo, profileImgUrl, profileColor} = this.state;
     const {errors, user} = this.props;
 
-
+    if(!this.props.isLoggedIn){
+      return(
+        <div className="landing-page">
+          <div className="home-box">
+            <div><h2>Welcome to Kinkon</h2></div>
+            <div> <Link to="/signup"><button className="sign-up-btn">Sign Up</button></Link></div>
+            <div> <Link to="/signin"><button className="sign-in-btn">Sign In</button></Link></div>
+          </div>
+        </div>
+        );
+    }
     return(
       <div className="edit-profile-container" style={{boxShadow: `0 -5px 4px -4px ${user.profileColor}`}}>
       <div>
@@ -108,7 +112,7 @@ class EditProfile extends Component{
             type="text"
             name="profileColor"
             placeholder="Profile Color"
-            value ={profileImgUrl}
+            value ={profileColor}
             onChange = {this.handleChange}
           />
           </div>
@@ -122,8 +126,9 @@ class EditProfile extends Component{
 function mapStateToProps(state){
   return {
     user: state.currentUser.user,
+    isLoggedIn: state.currentUser.isLoggedIn,
     errors: state.errors
   };
 }
 
-export default connect(mapStateToProps)(EditProfile);
+export default connect(mapStateToProps, {editProfile})(EditProfile);
