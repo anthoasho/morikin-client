@@ -15,7 +15,7 @@ class FollowersList extends Component {
 }
 
 componentDidMount(){
-    this.props.getFollowList(this.props.url);
+    this.props.getFollowList(`/user/${this.props.url}`);
 }
 goBack(){
   this.props.history.goBack(); //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
@@ -32,7 +32,7 @@ goBack(){
       <div>
       <div className="popup-box follow-list">
         <h3>
-          {this.props.url.split("/")[3].toUpperCase()} {/*Temporary*/}
+          {this.props.url.split("/")[2].toUpperCase()} {/*Temporary*/}
         </h3>
         {FollowerList}
       </div>

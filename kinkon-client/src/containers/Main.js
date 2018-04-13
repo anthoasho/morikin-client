@@ -13,7 +13,7 @@ const Main = props => {
   return(
       <div className="container">
         <Switch>
-        <Route exact path="/user/:id/followers" render={props =>
+        <Route exact path="/:id/followers" render={props =>
           <BodyContainer
             currentUser={currentUser}
             profile={currentUser}
@@ -22,7 +22,7 @@ const Main = props => {
           />
         }
         />
-        <Route exact path="/user/:id/following" render={props =>
+        <Route exact path="/:id/following" render={props =>
           <BodyContainer
             currentUser={currentUser}
             profile={currentUser}
@@ -38,18 +38,11 @@ const Main = props => {
               {...props}
             />}
           />
-
-          <Route exact path="/user/:id/" render={props =>
-            <BodyContainer
-              currentUser={currentUser}
-              profile={currentUser}
-              {...props}
-              />}
-            />
-          <Route exact path ="/editprofile" render ={props =>
-            <EditProfile
-            />}
+          <Route exact path="/new" component={withAuth(NewMessage)} />
+          <Route exact path ="/editprofile" component={withAuth(EditProfile)}
           />
+
+
           <Route exact path = "/signin" render={props => {
             return(
               <AuthForm
@@ -75,7 +68,13 @@ const Main = props => {
                 />
               );
             }} />
-          <Route exact path="/new" component={withAuth(NewMessage)} />
+            <Route path="/:id/" render={props =>
+              <BodyContainer
+                currentUser={currentUser}
+                profile={currentUser}
+                {...props}
+                />}
+              />
         </Switch>
       </div>
     );

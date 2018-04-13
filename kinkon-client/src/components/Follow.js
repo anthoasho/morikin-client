@@ -13,7 +13,7 @@ const Follower = (props) => {
       profileColor={props.profileColor}
     />
       <div>
-      <Link to={`/user/${props.username}`}>
+      <Link to={`/${props.username}`}>
       {props.username}
       </Link>
       </div>

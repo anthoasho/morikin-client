@@ -76,6 +76,21 @@ button:hover{
   text-transform: uppercase;
   cursor: pointer;
 }
+.follow-button{
+  width: 80%;
+  background: #ae27e8;
+  border: 1px solid gray;
+  color: white;
+  border-radius: 3px;
+  text-transform: uppercase;
+  padding: 2px 0;
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+.unfollow-button{
+  background: white !important; /*This should not be important, change the CSS settings*/
+  color: black !important;
+}
 
 
 
