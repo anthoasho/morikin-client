@@ -31,7 +31,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
     <div style={{width: "100%"}}>
       <div className="meta-content">
         <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>
-          <Link to={`/user/${userId.username}`}>{userId.username}</Link>
+          <Link to={`/user/${userId.username}`}>{userId.displayName} <span style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
           <div>
             <span className="time"><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
             <span className="time"> <Moment format="HH:mm">{createdAt}</Moment></span>

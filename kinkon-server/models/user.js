@@ -12,6 +12,9 @@ var userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  displayName:{
+    type:String
+    },
   password:{
     type: String,
     required: true,
@@ -21,7 +24,8 @@ var userSchema = new mongoose.Schema({
     type: String,
   },
   profileColor:{
-    type: String
+    type: String,
+    default: "purple"
   },
   followers: [{
     type: mongoose.Schema.Types.ObjectId,

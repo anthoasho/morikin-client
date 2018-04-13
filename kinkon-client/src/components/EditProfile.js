@@ -3,7 +3,8 @@ import {connect } from "react-redux";
 import {editProfile} from "../store/actions/userProfile";
 import {Link} from "react-router-dom";
 import "./EditProfile.css";
-import ProfileImg from "../common/ProfileImg"
+import ProfileImg from "../common/ProfileImg";
+import Input from "../common/InputField";
 class EditProfile extends Component{
   constructor(props){
     super(props)
@@ -13,15 +14,16 @@ class EditProfile extends Component{
                   passwordOne: "",
                   passwordTwo: "",
                   profileImgUrl: user.profileImgUrl,
+                  displayName: user.displayName,
                   profileColor: user.profileColor
                   };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange = e =>{
+  handleChange = (name, value) =>{
     this.setState({
-        [e.target.name]: e.target.value
+        [name]: value
     });
   }
   handleSubmit = e =>{
@@ -32,9 +34,11 @@ class EditProfile extends Component{
       return;
     });
   }
-
+  handleFocus = e=>{
+    e.preventDefault();
+  }
   render(){
-    const {username, email, passwordOne, passwordTwo, profileImgUrl, profileColor} = this.state;
+    const {username, email, passwordOne, displayName, passwordTwo, profileImgUrl, profileColor} = this.state;
     const {errors, user} = this.props;
 
     if(!this.props.isLoggedIn){
@@ -55,68 +59,79 @@ class EditProfile extends Component{
       {errors.message && (<div> {errors.message} </div>) }
       </div>
       <div className="upper">
-        <div className="img-wrapper small">
+        <div className="img-wrapper small padded">
           <ProfileImg
             username={user.username}
             profileImg= {user.profileImgUrl}
             profileColor={user.profileColor}
           />
         </div>
-        <div> {username} </div>
-        <p>Edit profile </p>
+        <div className="right-upper">
+        <h3>Edit profile </h3>
+        <Input
+          type={"text"}
+          name={"username"}
+          placeholder={"Username"}
+          value={username}
+          onChange={this.handleChange}
+
+        />
+        {/*<div className="input-style"> <input className="test-input" type="text" name="username" placeholder="Username" value={username} onfocus={this.handleFocus} onChange={this.handleChange}/><hr className={classNames({input-hr:true, hr-active:this.state.active})}"input-hr"/> </div>*/}
+
+        </div>
       </div>
       <form
       className="edit-profile-form"
         onSubmit = {this.handleSubmit}
         ><div className="form-grouping">
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value ={username}
-          onChange = {this.handleChange}
+        <Input
+          type={"text"}
+          name={"displayName"}
+          placeholder={"Display Name"}
+          value={displayName}
+          onChange={this.handleChange}
         />
-        <input
-        type="text"
-        name="email"
-        placeholder="Email address"
-        value ={email}
-        onChange = {this.handleChange}
+        <Input
+          type={"text"}
+          name={"email"}
+          placeholder={"Email Address"}
+          value={email}
+          onChange={this.handleChange}
         />
         </div>
         <div className="form-grouping">
-        <input
-        type="password"
-        name="passwordOne"
-        placeholder="Password"
-        value ={passwordOne}
-        onChange = {this.handleChange}
+        <Input
+          type={"password"}
+          name={"passwordOne"}
+          placeholder={"Password"}
+          value={passwordOne}
+          onChange={this.handleChange}
         />
-        <input
-        type="password"
-        name="passwordTwo"
-        placeholder="Password (repeat)"
-        value ={passwordTwo}
-        onChange = {this.handleChange}
+        <Input
+          type={"password"}
+          name={"passwordTwo"}
+          placeholder={"Repeat your password"}
+          value={passwordTwo}
+          onChange={this.handleChange}
         />
           </div>
-                  <div className="form-grouping">
-          <input
+        <div className="form-grouping">
+        <Input
+          type={"text"}
+          name={"profileImgUrl"}
+          placeholder={"URL of your Profile Image"}
+          value={profileImgUrl}
+          onChange={this.handleChange}
+        />
+        <Input
           type="text"
-          name="profileImgUrl"
-          placeholder="Profile Picture URL"
-          value ={profileImgUrl}
-          onChange = {this.handleChange}
-          />
-          <input
-            type="text"
-            name="profileColor"
-            placeholder="Profile Color"
-            value ={profileColor}
-            onChange = {this.handleChange}
-          />
+          name={"profileColor"}
+          placeholder={"Profile Color"}
+          value={profileColor}
+          onChange={this.handleChange}
+        />
           </div>
-        <button> submit  </button>
+        <button className="submit-button"> submit  </button>
       </form>
       </div>
     )

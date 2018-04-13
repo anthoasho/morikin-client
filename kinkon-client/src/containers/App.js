@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {configureStore} from "../store";
 import Navbar from "./Navbar";
 import Main from "./Main";
-import './App.css';
+import "../common/common.css";
 import {setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwt from "jsonwebtoken";
 const store = configureStore();
@@ -20,14 +20,14 @@ if(localStorage.jwtToken){
 }
 const App = () => (
   <Provider store = {store}>
-    <Router> 
-      <div> 
-        <Navbar /> 
+    <Router>
+      <div>
+        <Navbar />
         <Main />
       </div>
     </Router>
   </Provider>
-  
+
   );
 export default App;
 
@@ -66,7 +66,7 @@ constructor(props){
     //   username: "loading"
     // }]
   };
-  
+
   //Binding this from the "Help" file to minimize space in App -I am still learning
   this.login = Help.login.bind(this);
   this.logout = Help.logout.bind(this);
@@ -92,18 +92,18 @@ constructor(props){
     return (
         <Router>
           <div>
-            <Navbar 
-              onLogout={this.logout} 
+            <Navbar
+              onLogout={this.logout}
               user ={user}
             />
-              { !user.isLoggedIn ?  
-                <Login 
+              { !user.isLoggedIn ?
+                <Login
                   onLogin={this.login}
-                /> 
+                />
                 :
-                null 
+                null
               }
-            <Container 
+            <Container
               user= {user}
               messages={messages}
 
@@ -115,6 +115,3 @@ constructor(props){
   }
 }
 */
-
-
-

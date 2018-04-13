@@ -22,7 +22,7 @@ app.get("/", function(req, res){
 app.get("/api/user/:id/messages", function(req, res){
   db.User.findOne({username: req.params.id}).then(function(user){
     db.Message.find({userId: user._id}).sort({createdAt: "desc"})
-    .populate("userId", {username: true, profileImgUrl: true, profileColor: true})
+    .populate("userId", {username: true, profileImgUrl: true, profileColor: true, displayName: true})
     .then(function(messages){
       res.json(messages.filter(message => message.isDeleted === false));
     })
@@ -73,7 +73,7 @@ app.get("/api/user/:id", function(req, res){
   .populate("messages", {isDeleted: true})
   .then(function(user){
     var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
-    const {followers, following, messages, id, username, profileImgUrl, profileColor} = user;
+    const {followers, following, messages, id, username, profileImgUrl, profileColor, displayName} = user;
     let followingTruthy = followers.some(e => e.toString() === currentUser.userId);
     let followingCount = following.length;
     let followerCount = followers.length;
@@ -85,6 +85,7 @@ app.get("/api/user/:id", function(req, res){
               followingCount,
               followerCount,
               messageCount,
+              displayName,
               profileColor
             });
   })
@@ -113,7 +114,8 @@ app.get("/api/user/:user/:follow", function(req, res, next){
           username: obj.username,
           profileImgUrl: obj.profileImgUrl,
           following: mappedFollowing,
-          profileColor: obj.profileColor
+          profileColor: obj.profileColor,
+          displayName: obj.displayName
         }
         console.log(finalData)
       return finalData;
@@ -141,7 +143,8 @@ app.post("/api/user/updateprofile", function(req, res, next){
               username: response.username,
               email:response.email,
               profileImgUrl: response.profileImgUrl,
-              profileColor: response.profileColor
+              profileColor: response.profileColor,
+              displayName: response.displayName
             }, process.env.SECRET_KEY);
             res.status(200)
               .json({response,
@@ -153,7 +156,7 @@ app.post("/api/user/updateprofile", function(req, res, next){
 
 app.get("/api/messages/", function(req, res, next){
   db.Message.find().sort({createdAt: "desc"})
-    .populate("userId", {username: true, profileImgUrl: true, profileColor: true})
+    .populate("userId", {username: true, profileImgUrl: true, profileColor: true, displayName: true})
     .then(function(messages){
       res.json(messages.filter(message => message.isDeleted === false));
     })

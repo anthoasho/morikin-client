@@ -26,7 +26,6 @@
   padding: 2px 0;
   font-weight: 400 !important;
 }
-
 .unfollow-button{
   background: white !important; /*This should not be important, change the CSS settings*/
   color: black !important;
@@ -51,37 +50,13 @@
   flex: 1;
 
 }
-
-/* .user-profile-small >.img-wrapper {
-  width: 70%;
-  height:0;
-  padding-top: 70%;
-  position: relative;
-}
-.user-profile-small >.img-wrapper .profile-picture{
-  width:100%;
-  height: 100%;
-  top:0;
-  left: 0;
-  position: absolute;
-  vertical-align:top;
-  border-radius: 50%;
-}
-.user-profile-small >.img-wrapper .loading-icon{
-  width:100%;
-  height: 100%;
-  top:0;
-  left: 0;
-  position: absolute;
-  vertical-align:top;
-
-} */
 @media only screen and (max-device-width: 480px) {
   .user-profile-small{
-    width: 100%;
+    max-width: 100%;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding-top:10px;
   }
   .follow-button{
     margin-top: 20px;
@@ -94,19 +69,4 @@
   .user-profile-small h3{
     margin: 0;
   }
-  .img-wrapper {
-  width: 40%;
-  height:0;
-  padding-top: 40%;
-  position: relative;
-}
-.img-wrapper img {
-  width:100%;
-  height: 100%;
-  top:0;
-  left: 0;
-  position: absolute;
-  vertical-align:top;
-  border-radius: 50%;
-}
 }

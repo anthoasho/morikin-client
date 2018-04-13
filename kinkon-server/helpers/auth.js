@@ -15,6 +15,7 @@ exports.signin = function(req, res){
           username: user.username,
           email:user.email,
           profileImgUrl: user.profileImgUrl,
+          displayName: user.displayName,
           profileColor: user.profileColor
         }, process.env.SECRET_KEY);
         res.status(200)
@@ -22,6 +23,7 @@ exports.signin = function(req, res){
             username: user.username,
             email:user.email,
             profileImgUrl: user.profileImgUrl,
+            displayName: user.displayName,
             profileColor: user.profileColor, //don't forget you changed this.
             token
           });

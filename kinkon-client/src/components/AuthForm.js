@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import "./Auth.css"
+import Input from "../common/InputField";
 /*
 -------------------------------------------------------------
 PLEASE DO SOME KIND OF REACT VALIDATION
 -------------------------------------------------------------
 */
-
 export default class AuthForm extends Component {
   constructor(props){
     super(props);
@@ -17,9 +17,9 @@ export default class AuthForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange = e =>{
+  handleChange = (name, value) =>{
     this.setState({
-        [e.target.name]: e.target.value
+        [name]: value
     });
   }
   handleSubmit = e =>{
@@ -51,38 +51,42 @@ render(){
         className="login-form"
           onSubmit = {this.handleSubmit}
           >
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value ={username}
-            onChange = {this.handleChange}
+          <Input
+            ref={"username"}
+            type={"text"}
+            name={"username"}
+            placeholder={"Username"}
+            value={username}
+            onChange={this.handleChange}
+            isRequired={true}
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value ={password}
-            onChange = {this.handleChange}
+          <Input
+            type={"password"}
+            name={"password"}
+            placeholder={"Password"}
+            value={password}
+            isRequired={true}
+            onChange={this.handleChange}
           />
           {signUp && (
-          <div className="signup">
-            <input
-              type="text"
-              name="email"
-              placeholder="Email address"
-              value ={email}
-              onChange = {this.handleChange}
+            <Input
+              type={"text"}
+              name={"email"}
+              placeholder={"Email Address"}
+              value={email}
+              isRequired={true}
+              onChange={this.handleChange}
+            /> )}
+          {signUp && (
+            <Input
+              type={"text"}
+              name={"profileImgUrl"}
+              placeholder={"Url of your Profile Picture"}
+              value={profileImgUrl}
+              onChange={this.handleChange}
             />
-            <input
-              type="text"
-              name="profileImgUrl"
-              placeholder="Profile Picture URL"
-              value ={profileImgUrl}
-              onChange = {this.handleChange}
-            />
-          </div>)}
-          <button> {buttonText} </button>
+          )}
+          <button className="submit-button"> {buttonText} </button>
       </form>
       </div>
       );

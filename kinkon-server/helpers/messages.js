@@ -11,7 +11,7 @@ exports.createMessage = function(req, res, next){
       user.messages.push(message.id);
       user.save().then(function(user){
         return db.Message.findById(message._id)
-          .populate("userId", {username: true, profileImgUrl: true, profileColor: true});
+          .populate("userId", {username: true, profileImgUrl: true, profileColor: true, displayName: true});
       }).then(function(m){
         return res.status(200).json(m);
       }).catch(next);

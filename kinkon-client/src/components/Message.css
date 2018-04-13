@@ -1,17 +1,6 @@
 .ind-message{
   justify-content: stretch;
 }
-
-.item-box{
-  background: #f7f7f7;
-  border: 1px solid #dbdbdb;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  padding: 10px 10px;
-  display: flex;
-}
-.item-box:hover{
-  background-color:#e5e5e5 ;
-}
 .message-content{
   margin: 0;
   display: flex;

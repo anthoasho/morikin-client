@@ -4,6 +4,7 @@
 
 .item-box .img-wrapper{
   margin-right:15px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
 }
@@ -33,5 +34,17 @@
   left: 0;
   position: absolute;
   vertical-align:top;
+
+}
+
+@media only screen and (max-device-width: 480px) {
+  .user-profile-small .img-wrapper {
+    width: 25%;
+    padding-top: 25%;
+  }
+  .item-box .img-wrapper {
+    margin-right: 15px;
+}
+
 
 }

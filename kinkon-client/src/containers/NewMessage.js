@@ -53,24 +53,31 @@ class NewMessage extends Component{
     const currentCharacterCount = this.characterCount(this.state.text);
     return(
       <div>
-        <div className="popup-box">
+        <div className="new-message-box popup-box">
         <div className="exit" onClick={this.goBack}> X
                   </div>
           {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
           <form
            onSubmit={this.handleSubmit}
+           className="new-message-form"
           >
           <label>Make a new Post</label>
             <textarea
               name="text"
               rows="3"
               column="10"
+              className="new-message-textarea"
               value={this.state.text}
               onChange={this.handleChange}
               />
               <div className="counter-and-button">
-                <p style={{color: this.letterCheck(currentCharacterCount)}}> {currentCharacterCount}</p>
-                <button>
+                <p
+                  style={{color: this.letterCheck(currentCharacterCount)}}
+                  className="character-counter"
+                >
+                  {currentCharacterCount}
+                </p>
+                <button className="submit-button">
                 POST
                 </button>
               </div>
