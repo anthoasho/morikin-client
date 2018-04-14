@@ -5,7 +5,7 @@ import {getUserProfile, followUser} from "../store/actions/userProfile";
 import { fetchMessages } from "../store/actions/messages";
 import FollowList from "./FollowList";
 import {connect } from "react-redux";
-
+import PopError from "../common/error";
 class Timeline extends Component{
   constructor(props) {
     super(props);
@@ -37,7 +37,10 @@ class Timeline extends Component{
   }
   render(){
 
-    const {message, messages, user, username, profile, follow, currentUser, followUser, url, history} = this.props;
+    const {message, messages, user, username, profile, follow, currentUser, followUser, url, history, errors} = this.props;
+    if(errors.message || errors.code){
+      return(<PopError />)
+    }
     if(message < 1 || !profile.username){
     return (
       <div className="timeline-container">

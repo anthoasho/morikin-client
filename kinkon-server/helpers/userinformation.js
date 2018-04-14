@@ -9,8 +9,8 @@ exports.getUserMessages = function(req, res){
     })
     .catch(function(err){
      if(err.reason === undefined){
-      res.status(404).json({message: "Sorry this user does not exist!"});
-    }
+      res.status(404).json({code: 404, message: "Sorry this user does not exist!"});
+    } res.json(err);
     });
   });
 };
@@ -64,8 +64,9 @@ exports.updateProfile = function(req, res, next){
               .json({response,
                 token
               });
-        });
-      })
+        })
+        .catch(err => res.json(err))
+      }).catch(err=> res.json(err))
     };
     exports.getUserProfile = function(req, res){
       db.User.findOne({username: req.params.id})
@@ -90,8 +91,9 @@ exports.updateProfile = function(req, res, next){
       })
       .catch(function(err){
         if(err.reason === undefined){
-          res.status(404).json({message: "Sorry this user does not exist!"});
+          res.status(404).json({code: 404, message: "Sorry this user does not exist!"});
         }
+          res.json(err)
       });
     };
     module.exports = exports;

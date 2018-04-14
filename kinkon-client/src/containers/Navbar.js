@@ -20,15 +20,15 @@ class Navbar extends Component {
           <div className="navigation">
             {currentUser.isLoggedIn ?
                 <div className="nav-links">
-                  <NavLink  to={`/user/${currentUser.user.username}`}> <li>{currentUser.user.username} </li></NavLink> 
-                  <NavLink  to="/"  onClick={this.logout} ><li>Logout </li></NavLink> 
+                  <NavLink  to={`/${currentUser.user.username}`}> <li>{currentUser.user.username} </li></NavLink> 
+                  <NavLink  to="/"  onClick={this.logout} ><li>Logout </li></NavLink>
                 </div>
            :
               <div className="nav-links">
                 <NavLink  activeStyle={s} to="/signin"><li>Signin</li>  </NavLink>
-                <NavLink  activeStyle={s} to="/signup"><li>SignUp </li></NavLink> 
+                <NavLink  activeStyle={s} to="/signup"><li>SignUp </li></NavLink>
               </div>
-           } 
+           }
           </div>
         </nav>
       );

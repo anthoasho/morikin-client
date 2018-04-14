@@ -1,5 +1,5 @@
 import {apiCall, setAuthToken } from "../../services/api";
-import {addError} from "./errors";
+import {addError, removeError} from "./errors";
 import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER} from "../actionTypes";
 
 export const loadProfile = user => ({
@@ -31,9 +31,10 @@ export const getUserProfile = (username) => {
     return apiCall("get", `/api/user/${username}`) //This previously used the ID of the user, I may revert if necessary.
     .then((res) => {
       dispatch(loadProfile(res));
+      dispatch(removeError());
     })
     .catch((err) => {
-      dispatch(addError(err.message));
+      dispatch(addError(err));
     });
   };
 };
@@ -43,6 +44,8 @@ export const getFollowList = (url) => {
     return apiCall("get", `/api/${url}`)
       .then((res) => {
         dispatch(loadFollow(res));
+        dispatch(removeError());
+
       })
       .catch((err) => {
         dispatch(addError(err.message));
@@ -55,6 +58,8 @@ export const editProfile = userData => (dispatch) => {
   .then(res => {
     localStorage.setItem("jwtToken", res.token)
     dispatch(updateCurrentUser(res.response));
+    dispatch(removeError());
+
   })
   .catch(err => {
     dispatch(addError(err.errors.message));
@@ -67,8 +72,12 @@ export const followUser = ([userId, location, itemNum]) => {
     .then((res) => {
       if(location==="followList"){
         dispatch(updateFollowList(res.following, itemNum));
+        dispatch(removeError());
+
       }else{
       dispatch(updateProfile(res));
+      dispatch(removeError());
+
     }
      })
     .catch(err =>{

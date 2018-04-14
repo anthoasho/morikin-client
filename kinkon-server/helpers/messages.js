@@ -18,7 +18,7 @@ exports.createMessage = function(req, res, next){
     }).catch(next);
   }).catch(next);
   }else{
-    return res.status(400).json({message: "Too many characters!"});
+    return res.status(400).json({message: "Too many characters!", code: 400});
   }
 };
 
