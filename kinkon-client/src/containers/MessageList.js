@@ -1,29 +1,30 @@
 import React from "react";
 import Message from "../components/Message";
-import { removeMessage } from "../store/actions/messages";
+import { removeMessage, likeMessage } from "../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
 const MessageList = props =>{
-  const  {messages, removeMessage, currentUser, loading} = props;
+  const  {messages, removeMessage, currentUser, loading, likeMessage} = props;
   let MessageList;
   if(loading){
       MessageList = <Message loading/>;
   }else{
-  MessageList = messages.map((m)=> 
-    (<Message {...m} key={m._id} 
+  MessageList = messages.map((m)=>
+    (<Message {...m} key={m._id}
       removeMessage ={removeMessage.bind(this, m.userId._id, m._id)}
-      ownerCheck = {currentUser === m.userId._id} 
+      likeMessage = {likeMessage.bind(this, m._id)}
+      ownerCheck = {currentUser === m.userId._id}
     />)
   );
   }
   return(
-    <div className="message-container"> 
+    <div className="message-container">
       {MessageList}
     </div>
-  );    
+  );
 };
 
-export default connect(null, {removeMessage})(MessageList);
+export default connect(null, {removeMessage, likeMessage})(MessageList);
 
 /*-----------------------------------------------------------
 
@@ -44,7 +45,7 @@ THE FOLLOWING IS FOR POTENTIAL FUTURE FEATURES WHICH ARE DISABLED
   //   return el.getBoundingClientRect().bottom <= window.innerHeight; // scrollling to bottom
   // }
   // document.addEventListener('scroll', this.trackScrolling);
-  // trackScrolling = () => { //When document is scrolled to the bottom, updates state to get new data 
+  // trackScrolling = () => { //When document is scrolled to the bottom, updates state to get new data
   //   const wrappedElement = document.getElementById('body-container');
   //   if (this.isBottom(wrappedElement)) {
   //     this.continueUpdate();

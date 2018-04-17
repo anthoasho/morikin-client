@@ -69,33 +69,33 @@ exports.updateProfile = function(req, res, next){
         .catch(err => res.json(err))
       }).catch(err=> res.json(err))
     };
-    exports.getUserProfile = function(req, res){
-      db.User.findOne({username: req.params.id})
-      .populate("messages", {isDeleted: true})
-      .then(function(user){
-        var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
-        const {followers, following, messages, id, username, profileImgUrl, profileColor, displayName, description} = user;
-        let followingTruthy = followers.some(e => e.toString() === currentUser.userId);
-        let followingCount = following.length;
-        let followerCount = followers.length;
-        let messageCount = messages.filter(message => message.isDeleted === false).length;
-        res.json({userId: id,
-                  username,
-                  following: followingTruthy,
-                  profileImgUrl,
-                  followingCount,
-                  followerCount,
-                  messageCount,
-                  displayName,
-                  profileColor,
-                  description
-                });
-      })
-      .catch(function(err){
-        if(err.reason === undefined){
-          res.status(404).json({code: 404, message: "Sorry this user does not exist!"});
-        }
-          res.json(err)
-      });
-    };
-    module.exports = exports;
+exports.getUserProfile = function(req, res){
+  db.User.findOne({username: req.params.id})
+  .populate("messages", {isDeleted: true})
+  .then(function(user){
+    var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
+    const {followers, following, messages, id, username, profileImgUrl, profileColor, displayName, description} = user;
+    let followingTruthy = followers.some(e => e.toString() === currentUser.userId);
+    let followingCount = following.length;
+    let followerCount = followers.length;
+    let messageCount = messages.filter(message => message.isDeleted === false).length;
+    res.json({userId: id,
+              username,
+              following: followingTruthy,
+              profileImgUrl,
+              followingCount,
+              followerCount,
+              messageCount,
+              displayName,
+              profileColor,
+              description
+            });
+  })
+  .catch(function(err){
+    if(err.reason === undefined){
+      res.status(404).json({code: 404, message: "Sorry this user does not exist!"});
+    }
+      res.json(err)
+  });
+};
+module.exports = exports;

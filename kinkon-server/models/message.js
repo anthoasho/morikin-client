@@ -14,8 +14,13 @@ var messageSchema = new mongoose.Schema({
   isDeleted: {
     type: Boolean,
     default: false
-  }
-}, {
+  },
+  likedBy: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  }]
+},
+ {
     timestamps:true
 });
 messageSchema.pre("remove", function(next){

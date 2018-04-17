@@ -1,4 +1,5 @@
-var db = require("../models");
+var db = require("../models"),
+    jwt = require("jsonwebtoken");
 
 exports.createMessage = function(req, res, next){
   const newMessage = {
@@ -32,5 +33,6 @@ exports.softDeleteMessage = function(req, res, next){
   return res.status(200).json(m);
   }).catch(next);
 };
+
 
 module.exports = exports;

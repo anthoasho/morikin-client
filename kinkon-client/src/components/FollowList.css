@@ -12,10 +12,13 @@
   align-items: center;
   justify-content: space-between;
   width:100%;
+
 }
 .follow-list{
   width: 400px;
   background: white;
+  display: flex !important;
+  flex-direction: column;
 }
 .follow-container{
   display: flex;

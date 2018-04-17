@@ -16,7 +16,7 @@ exports.followUser = function(req, res, next){
           current.save().then(() =>{
                res.json({following: true, followerCount: user.followers.length, username:user.username});
           }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500})); //Later arrange this to its own Separate thing
-        }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
+        }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500})); //this is literally disgusting...
       }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
     }else{
       user.followers.splice(index, 1);
@@ -34,12 +34,45 @@ exports.followUser = function(req, res, next){
   }).catch(res => res.status(500).json({message: "We couldn't find that user! Please try again later", code: 404}));
 };
 
+exports.likeMessage = function(req, res, next){
+  var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
+  db.Message.findById(req.params.mid).then(function(message){
+    var index = message.likedBy.indexOf(currentUser.userId);
+    if(index === -1) {
+      message.likedBy.push(currentUser.userId);
+      message.save().then((response) => {
+        response = {...response._doc, isLiked: true, likedBy: response.likedBy.length}
+        res.status(200).json(response);
+      })
+    }
+    else{
+      message.likedBy.splice(index, 1);
+      message.save().then((response) => {
+        response = {...response._doc, isLiked: false, likedBy: response.likedBy.length}
+        res.status(200).json(response);
+      })
+
+    }
+  })
+  .catch(err => res.json(err));
+}
 
 exports.getGetAllMessages = function(req, res, next){
+  var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
   db.Message.find().sort({createdAt: "desc"})
     .populate("userId", {username: true, profileImgUrl: true, profileColor: true, displayName: true})
     .then(function(messages){
-      res.json(messages.filter(message => message.isDeleted === false));
+      messages = messages.filter(message => message.isDeleted === false);
+      let newData = messages.map(function(obj){
+        mappedLiked = obj.likedBy.some(e => e.toString() === currentUser.userId)
+        let finalData = {
+          ...obj._doc,
+          isLiked: mappedLiked,
+          likedBy: obj.likedBy.length
+        }
+        return finalData;
+      })
+      res.json(newData);
     })
     .catch(function(err){
       res.status(500).json({message: "There was a problem finding the messages, please try again later", code: 500});

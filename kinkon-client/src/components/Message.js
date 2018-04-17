@@ -11,7 +11,7 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading,likedBy,  likeMessage, isLiked}) => {
  return loading ?
   <div className="ind-message" style={{borderRight: `4px solid ${color}`}}>
     <div className="meta-content">
@@ -33,6 +33,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
         <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>
           <Link to={`/${userId.username}`}>{userId.displayName} <span style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
           <div>
+
             <span className="time"><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
             <span className="time"> <Moment format="HH:mm">{createdAt}</Moment></span>
           </div>
@@ -40,8 +41,10 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading}) 
       </div>
       <div className="message-content">
           <p>{text}</p>
+          <button onClick={likeMessage} > {isLiked ? "Unlike" : "Like"} </button>
           {ownerCheck && (<button className="delete-btn" onClick={removeMessage} > X </button>)}
       </div>
+      <span>{likedBy} likes </span>
     </div>
   </div>;
   };
