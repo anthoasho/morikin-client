@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import ProfileImg from "../common/ProfileImg";
+import classNames from "classnames";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -41,10 +42,12 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading,li
       </div>
       <div className="message-content">
           <p>{text}</p>
-          <button onClick={likeMessage} > {isLiked ? "Unlike" : "Like"} </button>
+
           {ownerCheck && (<button className="delete-btn" onClick={removeMessage} > X </button>)}
+
       </div>
-      <span>{likedBy} likes </span>
+      <span>{likedBy} likes   <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} > </div> </span>
+
     </div>
   </div>;
   };

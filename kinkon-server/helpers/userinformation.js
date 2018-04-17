@@ -1,11 +1,22 @@
 var db = require("../models"),
     jwt = require("jsonwebtoken");
 exports.getUserMessages = function(req, res){
+  var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
   db.User.findOne({username: req.params.id}).then(function(user){
     db.Message.find({userId: user._id}).sort({createdAt: "desc"})
     .populate("userId", {username: true, profileImgUrl: true, profileColor: true, displayName: true})
     .then(function(messages){
-      res.json(messages.filter(message => message.isDeleted === false));
+      messages = messages.filter(message => message.isDeleted === false);
+      let newData = messages.map(function(obj){
+        mappedLiked = obj.likedBy.some(e => e.toString() === currentUser.userId)
+        let finalData = {
+          ...obj._doc,
+          isLiked: mappedLiked,
+          likedBy: obj.likedBy.length
+        }
+        return finalData;
+      })
+      res.json(newData);
     })
     .catch(function(err){
      if(err.reason === undefined){

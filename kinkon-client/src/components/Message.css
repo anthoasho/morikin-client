@@ -35,3 +35,37 @@
   font-size: 0.7rem;
   margin-right: 4px;
 }
+.like-button{
+  width: 8px;
+  height: 8px;
+  background: gray;
+  transform: rotate(-45deg);
+  transition: all 0.4s ease-in-out;
+  display: inline-block;
+}
+.like-button:before,
+.like-button:after{
+  content: "";
+  border-radius: 50%;
+  height:8px;
+  width:8px;
+  position:absolute;
+  background: inherit;
+
+}
+.like-button:before{
+  top: -4px;
+  left:0;
+}
+.like-button:after{
+  right:-4px;
+}
+.like-button:hover{
+  transform:scale(1.1) rotate(-45deg);
+}
+.like-button:active{
+  transform: rotate(180deg) scale(1.21);
+}
+.like-button-true{
+  background: red;
+}
