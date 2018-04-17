@@ -61,22 +61,22 @@ class Timeline extends Component{
             history={history}
         />
       }
-        <div className="timeline-left">
+
         <UserSmall
           key={`user ${username}`}
           profile={profile}
           followUser = {followUser}
           currentUser={currentUser.username}
         />
-        </div>
-        <div className="timeline-right">
+        
+
          <MessageList
           key={`messages ${url.url}`}
           user={user}
           messages ={messages}
           currentUser={currentUser.userId}
           />
-          </div>
+
         </div>
         );
       }

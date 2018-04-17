@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import {connect } from "react-redux";
 import "./NewMessage.css";
 import  {postNewMessage}  from "../store/actions/messages";
+import {Button} from "../common/Button";
 class NewMessage extends Component{
     constructor(props){
     super(props);
-    this.state = {text: ""
+    this.state = {text: "",
+                  loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,9 +34,10 @@ class NewMessage extends Component{
     if(lengthCheck < 161 && lengthCheck > 0 ){ //Prevent sending if over character limit of database
       this.props.postNewMessage(this.state.text);
       this.setState({
-        text: ""
+        text: "",
+        loading:true
       });
-      this.goBack();
+      setTimeout(this.goBack, 2000)
       }else if(lengthCheck === 0 ){
         this.setState({
           error:"Please write a message!"
@@ -51,37 +54,34 @@ class NewMessage extends Component{
   }
     render(){
     const currentCharacterCount = this.characterCount(this.state.text);
+    console.log(this.state)
     return(
       <div>
-        <div className="new-message-box popup-box">
-        <div className="exit" onClick={this.goBack}> X
-                  </div>
+        <div className=" new-message-box popup-box">
+          <div className="exit" onClick={this.goBack}> X
+          </div>
           {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
           <form
            onSubmit={this.handleSubmit}
            className="new-message-form"
           >
-          <label>Make a new Post</label>
+            <label>Make a new Post</label>
             <textarea
               name="text"
-              rows="3"
-              column="10"
               className="new-message-textarea"
               value={this.state.text}
               onChange={this.handleChange}
-              />
-              <div className="counter-and-button">
-                <p
-                  style={{color: this.letterCheck(currentCharacterCount)}}
-                  className="character-counter"
-                >
-                  {currentCharacterCount}
-                </p>
-                <button className="submit-button">
-                POST
-                </button>
-              </div>
-
+            />
+            <p
+              style={{color: this.letterCheck(currentCharacterCount)}}
+              className="character-counter"
+            >
+              {currentCharacterCount}
+            </p>
+            <Button
+              type={"submit"}
+              text={"POST"}
+              loading={this.state.loading}/>
           </form>
         </div>
         <div onClick={this.goBack} className="fullscreen"> {/*Temporary darkend clickable background to escape the new post box --- add escape button listener---*/}

@@ -1,0 +1,45 @@
+.sign-up-btn{
+  color: white;
+  font-weight: 700;
+  background-color: #ae27e8;
+  border: 1px solid #dbdbdb;
+  height: 40px;
+  margin: 15px;
+  padding: 0 20px;
+  text-transform: uppercase;
+}
+.sign-in-btn{
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #dbdbdb;
+  margin: 15px;
+  padding: 5px 20px;
+  text-transform: uppercase;
+}
+
+.button-loading{
+  animation: pulsate 2s infinite;
+}
+.button-loading::after{
+  content: "ING...";
+  height: 40px;
+  background: #ae27e8;
+  animation: pulsate 2s infinite;
+
+
+}
+
+@keyframes pulsate {
+  0%{
+    transform: scale(1);
+  }
+  30%{
+    transform: scale(1.01);
+  }
+  70%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.01);
+  }
+}

@@ -22,7 +22,7 @@ class Input extends Component{
     })
   }
   placeHolderMovement = () => {
-    if(this.props.value.length > 0){
+    if(this.props.value && this.props.value.length > 0){
       return true;
     }else{
       return false;
@@ -53,33 +53,38 @@ class Input extends Component{
     })
     this.requirementTest();
   }
+
   render(){
     let {type, name, placeholder} = this.props;
+    //May alter this to accept other types of input (textarea/dropdown etc)
+    const inputField =
+    <div className="input-container">
+            <p
+              className={classNames({
+                          "input-placeholder":true,
+                          "input-placeholder-active":this.state.placeholderFloat,
+                          "input-placeholder-default": !this.state.placeholderFloat,
+                          "input-placeholder-error": this.state.error
+                        })}>
+                {placeholder} {this.state.error && <span> is required </span>}
+            </p>
+            <input
+              className={classNames({"input-box": true, "input-error": this.state.error})}
+              type={type}
+              name={name}
+              placeholder=""
+              value={this.props.value}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              onChange={this.handleChange}
+            />
+            <hr
+              className={classNames({"input-hr":true, "hr-active":this.state.active})}
+            />
+          </div>
+
     return(
-      <div className="input-container">
-        <p
-          className={classNames({
-                      "input-placeholder":true,
-                      "input-placeholder-active":this.state.placeholderFloat,
-                      "input-placeholder-default": !this.state.placeholderFloat,
-                      "input-placeholder-error": this.state.error
-                    })}>
-          {placeholder} {this.state.error && <span> is required </span>}
-        </p>
-        <input
-          className={classNames({"input-box": true, "input-error": this.state.error})}
-          type={type}
-          name={name}
-          placeholder=""
-          value={this.props.value}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onChange={this.handleChange}
-        />
-        <hr
-          className={classNames({"input-hr":true, "hr-active":this.state.active})}
-        />
-      </div>
+      inputField
     )
   }
 }

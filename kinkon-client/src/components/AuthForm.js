@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./Auth.css"
 import Input from "../common/InputField";
+import {Button} from "../common/Button";
 /*
 -------------------------------------------------------------
 PLEASE DO SOME KIND OF REACT VALIDATION
@@ -86,7 +87,9 @@ render(){
               onChange={this.handleChange}
             />
           )}
-          <button className="submit-button"> {buttonText} </button>
+          <Button
+            type={"submit"}
+            text={buttonText} />
       </form>
       </div>
       );

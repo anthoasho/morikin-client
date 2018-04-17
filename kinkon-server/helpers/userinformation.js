@@ -58,7 +58,8 @@ exports.updateProfile = function(req, res, next){
               email:response.email,
               profileImgUrl: response.profileImgUrl,
               profileColor: response.profileColor,
-              displayName: response.displayName
+              displayName: response.displayName,
+              description: response.description
             }, process.env.SECRET_KEY);
             res.status(200)
               .json({response,
@@ -73,7 +74,7 @@ exports.updateProfile = function(req, res, next){
       .populate("messages", {isDeleted: true})
       .then(function(user){
         var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
-        const {followers, following, messages, id, username, profileImgUrl, profileColor, displayName} = user;
+        const {followers, following, messages, id, username, profileImgUrl, profileColor, displayName, description} = user;
         let followingTruthy = followers.some(e => e.toString() === currentUser.userId);
         let followingCount = following.length;
         let followerCount = followers.length;
@@ -86,7 +87,8 @@ exports.updateProfile = function(req, res, next){
                   followerCount,
                   messageCount,
                   displayName,
-                  profileColor
+                  profileColor,
+                  description
                 });
       })
       .catch(function(err){

@@ -15,7 +15,8 @@ class EditProfile extends Component{
                   passwordTwo: "",
                   profileImgUrl: user.profileImgUrl,
                   displayName: user.displayName,
-                  profileColor: user.profileColor
+                  profileColor: user.profileColor,
+                  description: user.description
                   };
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,10 +39,11 @@ class EditProfile extends Component{
     e.preventDefault();
   }
   render(){
-    const {username, email, passwordOne, displayName, passwordTwo, profileImgUrl, profileColor} = this.state;
+    const {username, email, passwordOne, displayName, passwordTwo, profileImgUrl, profileColor, description} = this.state;
     const {errors, user} = this.props;
 
     if(!this.props.isLoggedIn){
+      //Make own Component or redirect
       return(
         <div className="landing-page">
           <div className="home-box">
@@ -58,32 +60,30 @@ class EditProfile extends Component{
 
       {errors.message && (<div> {errors.message} </div>) }
       </div>
-      <div className="upper">
         <div className="img-wrapper small padded">
-          <ProfileImg
-            username={user.username}
-            profileImg= {user.profileImgUrl}
-            profileColor={user.profileColor}
-          />
-        </div>
-        <div className="right-upper">
-        <h3>Edit profile </h3>
+            <ProfileImg
+              username={user.username}
+              profileImg= {user.profileImgUrl}
+              profileColor={user.profileColor}
+            />
+          </div>
+
+          <div className="edit-profile-title">
+            <h3>Edit profile </h3>
+            <h3>{user.username}</h3>
+          </div>
+      <form
+      className="edit-profile-form"
+        onSubmit = {this.handleSubmit}
+        >
+
         <Input
           type={"text"}
           name={"username"}
           placeholder={"Username"}
           value={username}
           onChange={this.handleChange}
-
         />
-        {/*<div className="input-style"> <input className="test-input" type="text" name="username" placeholder="Username" value={username} onfocus={this.handleFocus} onChange={this.handleChange}/><hr className={classNames({input-hr:true, hr-active:this.state.active})}"input-hr"/> </div>*/}
-
-        </div>
-      </div>
-      <form
-      className="edit-profile-form"
-        onSubmit = {this.handleSubmit}
-        ><div className="form-grouping">
         <Input
           type={"text"}
           name={"displayName"}
@@ -92,14 +92,20 @@ class EditProfile extends Component{
           onChange={this.handleChange}
         />
         <Input
+              type={"text"}
+              name={"description"}
+              placeholder={"Profile Description"}
+              value={description}
+              onChange={this.handleChange}
+          />
+        <Input
           type={"text"}
           name={"email"}
           placeholder={"Email Address"}
           value={email}
           onChange={this.handleChange}
         />
-        </div>
-        <div className="form-grouping">
+
         <Input
           type={"password"}
           name={"passwordOne"}
@@ -114,8 +120,6 @@ class EditProfile extends Component{
           value={passwordTwo}
           onChange={this.handleChange}
         />
-          </div>
-        <div className="form-grouping">
         <Input
           type={"text"}
           name={"profileImgUrl"}
@@ -123,6 +127,7 @@ class EditProfile extends Component{
           value={profileImgUrl}
           onChange={this.handleChange}
         />
+
         <Input
           type="text"
           name={"profileColor"}
@@ -130,7 +135,6 @@ class EditProfile extends Component{
           value={profileColor}
           onChange={this.handleChange}
         />
-          </div>
         <button className="submit-button"> submit  </button>
       </form>
       </div>

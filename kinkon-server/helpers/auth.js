@@ -16,7 +16,8 @@ exports.signin = function(req, res){
           email:user.email,
           profileImgUrl: user.profileImgUrl,
           displayName: user.displayName,
-          profileColor: user.profileColor
+          profileColor: user.profileColor,
+          description: user.description
         }, process.env.SECRET_KEY);
         res.status(200)
           .json({userId: user.id,
