@@ -1,47 +1,54 @@
 .ind-message{
   justify-content: stretch;
+  display:grid !important;
+  grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
+  grid-template-rows: 5px 20px 1fr 20px 5px;
+  overflow: hidden;
+  transform: translateX(0);
 }
-.message-content{
+.ind-message-on-delete{
+  transform: translateX(5000px);
+  transition: transform 2s ease;
+}
+.ind-message .img-wrapper{
+  grid-row: 1/6;
+  grid-column: 2/3;
+}
+.message-username{
+  grid-row: 2/3;
+  grid-column: 3/5;
+  display:flex;
+  flex-wrap:nowrap;
+}
+.message-text{
+  grid-row: 3/4;
+  grid-column: 3/5;
   margin: 0;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-self: start;
   white-space: pre-line;
 }
-.message-content p{
-  margin: 0;
-}
-.message-meta{
+.message-likes{
+  grid-row: 4/5;
+  grid-column: 5/6;
   display: flex;
-  padding: 10px;
+  align-items:center;
+  justify-content: space-around;
 }
-.meta-content{
-  display: flex;
-  justify-content: space-between;
-  flex: 2;
-}
-.delete-btn{
-  background: #f7f7f7;
-  border: 1px solid black;
-  opacity: 0;
-  height: 40%;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-  transition: 0.1s ease-in-out;
-}
-.ind-message:hover .delete-btn{
-  opacity: 1;
-}
+
 .time{
   font-size: 0.7rem;
-  margin-right: 4px;
+  grid-column:5/6;
+  grid-row: 2/3;
+  justify-self: end;
 }
 .like-button{
   width: 8px;
   height: 8px;
   background: gray;
   transform: rotate(-45deg);
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease;
   display: inline-block;
+  cursor: pointer;
 }
 .like-button:before,
 .like-button:after{
@@ -64,7 +71,7 @@
   transform:scale(1.1) rotate(-45deg);
 }
 .like-button:active{
-  transform: rotate(180deg) scale(1.21);
+  transform: rotate(-60deg) scale(1.2);
 }
 .like-button-true{
   background: red;

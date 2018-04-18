@@ -53,42 +53,42 @@ render(){
           onSubmit = {this.handleSubmit}
           >
           <Input
-            ref={"username"}
-            type={"text"}
-            name={"username"}
-            placeholder={"Username"}
+            ref="username"
+            type="text"
+            name="username"
+            placeholder="Username"
             value={username}
             onChange={this.handleChange}
             isRequired={true}
           />
           <Input
-            type={"password"}
-            name={"password"}
-            placeholder={"Password"}
+            type="password"
+            name="password"
+            placeholder="Password"
             value={password}
             isRequired={true}
             onChange={this.handleChange}
           />
           {signUp && (
             <Input
-              type={"text"}
-              name={"email"}
-              placeholder={"Email Address"}
+              type="text"
+              name="email"
+              placeholder="Email Address"
               value={email}
               isRequired={true}
               onChange={this.handleChange}
             /> )}
           {signUp && (
             <Input
-              type={"text"}
-              name={"profileImgUrl"}
-              placeholder={"Url of your Profile Picture"}
+              type="text"
+              name="profileImgUrl"
+              placeholder="Url of your Profile Picture"
               value={profileImgUrl}
               onChange={this.handleChange}
             />
           )}
           <Button
-            type={"submit"}
+            type="submit"
             text={buttonText} />
       </form>
       </div>

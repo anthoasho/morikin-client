@@ -79,8 +79,8 @@ class NewMessage extends Component{
               {currentCharacterCount}
             </p>
             <Button
-              type={"submit"}
-              text={"POST"}
+              type="submit"
+              text="POST"
               loading={this.state.loading}/>
           </form>
         </div>

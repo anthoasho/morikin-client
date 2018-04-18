@@ -2,6 +2,7 @@ export const ADD_ERROR = "ADD_ERROR";
 export const REMOVE_ERROR = "REMOVE_ERROR";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LOAD_MESSAGES = "LOAD_MESSAGES";
+export const ANIMATE_REMOVE = "ANIMATE_REMOVE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 export const LIKE_MESSAGE = "LIKE_MESSAGE";
 export const LOAD_USER_PROFILE = "LOAD_USER_PROFILE";

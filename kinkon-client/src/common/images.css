@@ -3,15 +3,18 @@
 }
 
 .item-box .img-wrapper{
-  margin-right:15px;
-  margin-left: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:  1fr ;
   align-items: center;
+  justify-content: center;
+
+
 }
 .item-box .img-wrapper img{
   width: 50px;
   height: 50px;
-  flex:1;
+  justify-self: center;
 }
 .user-profile-small .img-wrapper {
   width: 70%;

@@ -78,60 +78,60 @@ class EditProfile extends Component{
         >
 
         <Input
-          type={"text"}
-          name={"username"}
-          placeholder={"Username"}
+          type="text"
+          name="username"
+          placeholder="Username"
           value={username}
           onChange={this.handleChange}
         />
         <Input
-          type={"text"}
-          name={"displayName"}
-          placeholder={"Display Name"}
+          type="text"
+          name="displayName"
+          placeholder="Display Name"
           value={displayName}
           onChange={this.handleChange}
         />
         <Input
-              type={"text"}
-              name={"description"}
-              placeholder={"Profile Description"}
+              type="text"
+              name="description"
+              placeholder="Profile Description"
               value={description}
               onChange={this.handleChange}
           />
         <Input
-          type={"text"}
-          name={"email"}
-          placeholder={"Email Address"}
+          type="text"
+          name="email"
+          placeholder="Email Address"
           value={email}
           onChange={this.handleChange}
         />
 
         <Input
-          type={"password"}
-          name={"passwordOne"}
-          placeholder={"Password"}
+          type="password"
+          name="passwordOne"
+          placeholder="Password"
           value={passwordOne}
           onChange={this.handleChange}
         />
         <Input
-          type={"password"}
-          name={"passwordTwo"}
-          placeholder={"Repeat your password"}
+          type="password"
+          name="passwordTwo"
+          placeholder="Repeat your password"
           value={passwordTwo}
           onChange={this.handleChange}
         />
         <Input
-          type={"text"}
-          name={"profileImgUrl"}
-          placeholder={"URL of your Profile Image"}
+          type="text"
+          name="profileImgUrl"
+          placeholder="URL of your Profile Image"
           value={profileImgUrl}
           onChange={this.handleChange}
         />
 
         <Input
           type="text"
-          name={"profileColor"}
-          placeholder={"Profile Color"}
+          name="profileColor"
+          placeholder="Profile Color"
           value={profileColor}
           onChange={this.handleChange}
         />

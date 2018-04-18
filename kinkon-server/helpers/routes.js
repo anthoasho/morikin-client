@@ -10,28 +10,18 @@ exports.followUser = function(req, res, next){
     if(index === -1){
       user.followers.push(currentUser.userId);
       user.save().then(function(user){
-        db.User.findById(currentUser.userId)
-        .then(function(current){
-          current.following.push(user._id);
-          current.save().then(() =>{
-               res.json({following: true, followerCount: user.followers.length, username:user.username});
-          }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500})); //Later arrange this to its own Separate thing
-        }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500})); //this is literally disgusting...
-      }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
+        res.json({following: true, followerCount: user.followers.length, username:user.username});
+      })
+      .catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500})); //this is literally disgusting...
     }else{
       user.followers.splice(index, 1);
       user.save().then(function(user){
-      db.User.findById(currentUser.userId)
-        .then(function(current){
-          var indexSecond = current.followers.indexOf(user._id);
-          current.following.splice(indexSecond, 1);
-          current.save().then(() =>{
-               res.json({following: false, followerCount: user.followers.length, username:user.username});
-          }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
-        }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
-      }).catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
+        res.json({following: false, followerCount: user.followers.length, username:user.username});
+      })
+      .catch(res => res.status(500).json({message: "We couldn't save your data right now, please try again later", code: 500}));
     }
-  }).catch(res => res.status(500).json({message: "We couldn't find that user! Please try again later", code: 404}));
+  })
+  .catch(res => res.status(500).json({message: "We couldn't find that user! Please try again later", code: 404}));
 };
 
 exports.likeMessage = function(req, res, next){

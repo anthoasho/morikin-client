@@ -6,21 +6,15 @@ import ProfileImg from "../common/ProfileImg"
 const Follower = (props) => {
   return(
     <div className="follow-list-box item-box">
-    <div className="follow-left">
-    <ProfileImg
-      username={props.username}
-      profileImg= {props.profileImgUrl}
-      profileColor={props.profileColor}
-    />
-      <div>
+      <ProfileImg
+        username={props.username}
+        profileImg= {props.profileImgUrl}
+        profileColor={props.profileColor}
+      />
       <Link to={`/${props.username}`}>
       {props.username}
       </Link>
-      </div>
-      </div>
-      <div className="follow-right">
-        <FollowButton username={props.username} current={props.currentUser.current} followType={[props.username, "followList", props.itemNum]} extraClass={"follow-btn-small"}following={props.following} itemNum={props.itemNum} />
-      </div>
+      <FollowButton username={props.username} current={props.currentUser.current} followType={[props.username, "followList", props.itemNum]} extraClass={"follow-btn-small"}following={props.following} itemNum={props.itemNum} />
     </div>
   )
 }

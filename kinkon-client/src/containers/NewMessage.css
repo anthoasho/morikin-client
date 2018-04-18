@@ -32,19 +32,7 @@
   grid-column: 2/3;
   grid-row: 3/4;
 }
-/* .new-message-form{
-  height: 100%;
-  margin: 35px 0;
-  width: 100%;
-  align-items: center;
- justify-content: space-around;
-} */
-/* .counter-and-button{
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  align-items: center;
-} */
+
 .new-message-textarea{
   font-size: 2rem;
   grid-row: 2/3;

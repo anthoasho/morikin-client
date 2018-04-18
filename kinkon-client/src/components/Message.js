@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import ProfileImg from "../common/ProfileImg";
 import classNames from "classnames";
+import {Button, DeleteButton} from "../common/Button";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -12,16 +13,17 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading,likedBy,  likeMessage, isLiked}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted}) => {
  return loading ?
-  <div className="ind-message" style={{borderRight: `4px solid ${color}`}}>
+  <div className={classNames({"ind-message": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
     <div className="meta-content">
     </div>
     <div className="message-content">
     </div>
   </div>
   :
-  <div className="ind-message item-box" style={{borderRight: `4px solid ${userId.profileColor? userId.profileColor:randomColor()}`}}>
+  <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${userId.profileColor? userId.profileColor:randomColor()}`}}>
+    {console.log(isDeleted)}
     <ProfileImg
       username={userId.username}
       profileImg= {userId.profileImgUrl}
@@ -29,26 +31,16 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading,li
       loading={loading}
 
     />
-    <div style={{width: "100%"}}>
-      <div className="meta-content">
-        <div style={{display: "flex", justifyContent: "space-between", width: "100%"}}>
-          <Link to={`/${userId.username}`}>{userId.displayName} <span style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
-          <div>
-
-            <span className="time"><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
-            <span className="time"> <Moment format="HH:mm">{createdAt}</Moment></span>
-          </div>
-        </div>
-      </div>
-      <div className="message-content">
-          <p>{text}</p>
-
-          {ownerCheck && (<button className="delete-btn" onClick={removeMessage} > X </button>)}
-
-      </div>
-      <span>{likedBy} likes   <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} > </div> </span>
-
+    <div className="message-username">
+          <Link to={`/${userId.username}`}>{userId.displayName} <span  style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
     </div>
+    <div className="time">
+            <span ><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
+            <span > <Moment format="HH:mm">{createdAt}</Moment></span>
+    </div>
+          <p className="message-text">{text}</p>
+          {ownerCheck && (<DeleteButton type="delete" onClick={removeMessage} />)}
+      <span className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div> {likedBy} likes </span>
   </div>;
   };
 export default Message;

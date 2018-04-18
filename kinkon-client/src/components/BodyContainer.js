@@ -9,8 +9,8 @@ const BodyContainer = (props) => {
       <div className="landing-page">
         <div className="home-box">
           <div><h2>Welcome to Kinkon</h2></div>
-          <div> <Link to="/signup"><Button type={"signup"} text={"Sign Up"} /></Link></div>
-          <div> <Link to="/signin"><Button type={"signin"} text={"Sign in"}/></Link></div>
+          <div> <Link to="/signup"><Button type="signup" text="Sign Up" /></Link></div>
+          <div> <Link to="/signin"><Button type="signin" text="Sign in"/></Link></div>
         </div>
       </div>
       );

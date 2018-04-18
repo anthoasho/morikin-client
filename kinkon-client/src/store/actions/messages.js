@@ -1,6 +1,6 @@
 import {apiCall } from "../../services/api";
 import {addError} from "./errors";
-import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE } from "../actionTypes";
+import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE } from "../actionTypes";
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
@@ -11,6 +11,11 @@ export const remove = id => ({
   type: REMOVE_MESSAGE,
   id
 });
+
+export const animateRemove = id => ({
+  type: ANIMATE_REMOVE,
+  id
+})
 export const likeMsg = message => ({
   type: LIKE_MESSAGE,
   message
@@ -19,7 +24,10 @@ export const likeMsg = message => ({
 export const removeMessage = (user, message) => {
   return dispatch => {
     return apiCall("put", `/api/users/${user}/messages/${message}/delete`, {isDeleted: true})
-    .then(() => dispatch(remove(message)))
+    .then(() =>
+    dispatch(animateRemove(message))
+  )
+    .then(() => setTimeout(() => {dispatch(remove(message))}, 500))
     .catch((err) => {
       dispatch(addError(err.message));
     });
