@@ -3,7 +3,7 @@ import React from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import {configureStore} from "../store";
-import Navbar from "./Navbar";
+
 import Main from "./Main";
 import "../common/common.css";
 import {setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
@@ -21,10 +21,7 @@ if(localStorage.jwtToken){
 const App = () => (
   <Provider store = {store}>
     <Router>
-      <div>
-        <Navbar />
         <Main />
-      </div>
     </Router>
   </Provider>
 

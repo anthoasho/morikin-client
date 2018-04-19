@@ -1,6 +1,7 @@
 .message-container{
   grid-column: 4/ 5;
   grid-row: 2/5;
+
 }
 @media only screen and (max-device-width: 480px) {
   .message-container{

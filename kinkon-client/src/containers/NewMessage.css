@@ -10,6 +10,9 @@
   border-bottom: 1px solid gray;
   cursor: pointer;
 }
+.disable-click{
+  pointer-events: none;
+}
 .new-message-box{
   position: absolute;
   width: 500px;

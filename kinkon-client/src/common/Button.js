@@ -4,18 +4,14 @@ import classNames from "classnames";
 
 
 export const Button = (props) => {
-  let {type, onClick, text, loading, removeMessage} = props;
-
-  function test(){
-    console.log(this)
-  }
+  let {type, onClick, text, loading} = props;
   switch(type){
  case "submit":
-   return <button className={classNames({"submit-button": true, "button-loading":loading})} onClick={onClick} >{text}</button>
+   return <button id="submit" className={classNames({"submit-button": true, "button-loading":loading})} onClick={onClick} >{text}</button>
  case "signin":
-  return <button className="sign-in-btn" onClick={onClick} >{text}</button>
+  return <button id="signin" className="sign-in-btn" onClick={onClick} >{text}</button>
   case "signup":
-   return <button className="sign-up-btn" onClick={onClick} >{text}</button>
+   return <button id="signup" className="sign-up-btn" onClick={onClick} >{text}</button>
   case "delete":
     return <button className="delete-btn" onClick={test}> Delete </button>
 
@@ -65,7 +61,7 @@ export class DeleteButton extends Component{
     const {verify, text} = this.state;
 
     return(
-     <div className={classNames({"delete-btn": true, "delete-btn-danger": this.state.verify, "delete-btn-loading": this.state.loading})} onClick={this.test}> {text} </div>
+     <div className={classNames({"delete-btn": true, "delete-btn-danger": verify, "delete-btn-loading": this.state.loading})} onClick={this.test}> {text} </div>
     )
   }
 

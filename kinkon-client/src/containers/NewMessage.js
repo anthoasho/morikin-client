@@ -3,6 +3,7 @@ import {connect } from "react-redux";
 import "./NewMessage.css";
 import  {postNewMessage}  from "../store/actions/messages";
 import {Button} from "../common/Button";
+import classNames from "classnames";
 class NewMessage extends Component{
     constructor(props){
     super(props);
@@ -84,7 +85,7 @@ class NewMessage extends Component{
               loading={this.state.loading}/>
           </form>
         </div>
-        <div onClick={this.goBack} className="fullscreen"> {/*Temporary darkend clickable background to escape the new post box --- add escape button listener---*/}
+        <div onClick={this.goBack} className={classNames({"fullscreen": true, "disable-click": this.state.loading})}> {/*Disable click necessary to prevent a bug which logs the user out if clicked during loading sequence*/}
         </div>
       </div>
       );

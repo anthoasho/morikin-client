@@ -26,7 +26,6 @@ function changeStateTwo(desc, theState){
       let valueToString = value.toString();
       if(i === valueToString){
         test[i].isDeleted = true;
-        console.log(test[i])
         break;
       }
     }

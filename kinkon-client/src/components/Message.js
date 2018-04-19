@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import ProfileImg from "../common/ProfileImg";
 import classNames from "classnames";
-import {Button, DeleteButton} from "../common/Button";
+import {DeleteButton} from "../common/Button";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -23,7 +23,6 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
   </div>
   :
   <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${userId.profileColor? userId.profileColor:randomColor()}`}}>
-    {console.log(isDeleted)}
     <ProfileImg
       username={userId.username}
       profileImg= {userId.profileImgUrl}

@@ -6,11 +6,14 @@ import "./Navbar.css";
 class Navbar extends Component {
   logout = e => {
     e.preventDefault();
-    this.props.logout();
+    this.props.logout()
+    this.props.history.push("/");
+
   }
   render(){
     const s={color: "#ae27e8"};
     const {currentUser} = this.props;
+
     return(
         <nav>
           <div className="logo">
@@ -20,7 +23,7 @@ class Navbar extends Component {
           <div className="navigation">
             {currentUser.isLoggedIn ?
                 <div className="nav-links">
-                  <NavLink  to={`/${currentUser.user.username}`}> <li>{currentUser.user.username} </li></NavLink> 
+                  <NavLink  to={`/${currentUser.user.username}`}> <li>{currentUser.user.username} </li></NavLink>
                   <NavLink  to="/"  onClick={this.logout} ><li>Logout </li></NavLink>
                 </div>
            :

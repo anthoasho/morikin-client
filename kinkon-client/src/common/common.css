@@ -62,7 +62,8 @@ a{
   cursor: default;
 }
 .popup-box{
-  background: rgba(239, 239, 239, 0.8);
+  /* background: rgba(239, 239, 239, 0.8); */
+  background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
   top: 30%;
   left: 50%;
   position: absolute;

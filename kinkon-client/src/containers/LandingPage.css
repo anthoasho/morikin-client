@@ -1,0 +1,97 @@
+.landing-page{
+  display: flex;
+  flex-direction: column;
+  width:100vw;
+  height:100vh;
+  justify-content: center;
+  background-image: radial-gradient(circle closest-corner, #00c6fbf0, #005beaf0);
+  align-items:center;
+}
+.home-box{
+  background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
+  display: grid;
+  grid-template-rows: 50px  50px repeat(8, 1fr) 50px ;
+  grid-template-columns: 50px repeat(5, 1fr) 50px;
+  /* grid-gap: 1em; */
+  box-shadow: -1px 2px 10px rgba(0,0,0,0.7);
+  animation: slideIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.welcome-title{
+  grid-column: 2/7;
+  grid-row: 2/3;
+  text-align: center;
+  margin: 0;
+}
+.welcome-title h2{
+  margin: 0;
+}
+.signup-btn-div{
+  grid-column: 2/7;
+  grid-row: 6/7;
+  align-self: stretch;
+  justify-self: stretch;
+}
+
+.signin-btn-div{
+  grid-column: 4/5;
+  grid-row: 8/9;
+  align-self: stretch;
+  justify-self: stretch;
+}
+.enter-animation{
+    animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.enter-animation-reverse{
+    animation: slideInReverse 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.exit-animation{
+  animation: slideOut 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-direction: alternate;
+}
+.exit-animation-reverse{
+  animation: slideOutReverse 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0px);
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: translateX(1000px);
+    transform-origin: 50% 50%;
+  }
+}
+@keyframes slideOutReverse {
+  0% {
+    transform: translateX(0px);
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: translateX(-1000px);
+    transform-origin: 50% 50%;
+  }
+}
+@keyframes slideInReverse {
+  0% {
+    transform: translateX(1000px);
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: translateX(0px);
+    transform-origin: 50% 50%;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-1000px);
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: translateX(0px);
+    transform-origin: 50% 50%;
+  }
+}

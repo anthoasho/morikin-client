@@ -3,17 +3,16 @@
   font-weight: 700;
   background-color: #ae27e8;
   border: 1px solid #dbdbdb;
-  height: 40px;
-  margin: 15px;
-  padding: 0 20px;
+  width: 100%;
+  height: 100%;
   text-transform: uppercase;
 }
 .sign-in-btn{
   color: white;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid #dbdbdb;
-  margin: 15px;
-  padding: 5px 20px;
+width: 100%;
+height: 100%;
   text-transform: uppercase;
 }
 
