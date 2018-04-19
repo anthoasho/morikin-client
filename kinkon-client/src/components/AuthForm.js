@@ -3,11 +3,7 @@ import "./Auth.css"
 import Input from "../common/InputField";
 import {Button} from "../common/Button";
 import classNames from "classnames";
-/*
--------------------------------------------------------------
-PLEASE DO SOME KIND OF REACT VALIDATION
--------------------------------------------------------------
-*/
+
 export default class AuthForm extends Component {
   constructor(props){
     super(props);

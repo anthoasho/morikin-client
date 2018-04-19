@@ -1,13 +1,13 @@
 import React from "react";
 import {Switch, Route, withRouter} from "react-router-dom";
 import {connect } from "react-redux";
-import BodyContainer from "../components/BodyContainer";
-import Navbar from "./Navbar";
+import BodyContainer from "./BodyContainer";
+import Navbar from "../components/Navbar";
 import { removeError } from "../store/actions/errors";
 import EditProfile from "../components/EditProfile.js"
-import NewMessage from "./NewMessage";
+import NewMessage from "../components/NewMessage";
 import withAuth from "../hocs/withAuth";
-import LandingPage from "./Landing";
+import LandingPage from "../components/Landing";
 const Main = props => {
   const {currentUser } = props;
   return(

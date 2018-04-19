@@ -6,7 +6,7 @@ import {connect } from "react-redux";
 import {authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import classNames from "classnames";
-import "./LandingPage.css";
+import "./Landing.css";
 class LandingPage extends Component{
   constructor(props){
     super(props);

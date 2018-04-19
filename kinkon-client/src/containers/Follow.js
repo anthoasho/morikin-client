@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Message.css";
 import {Link} from "react-router-dom";
 import FollowButton from "../common/FollowButton";
 import ProfileImg from "../common/ProfileImg"
@@ -20,8 +19,3 @@ const Follower = (props) => {
 }
 
 export default Follower;
-
-//
-// {props.following?
-//   <button  className="follow-button follow-btn-small unfollow-button" onClick={handlefollow} >unfollow </button>:<button className="follow-button follow-btn-small" onClick={handlefollow} > Follow </button>}
-//   {/* CHANGE THIS BUTTON TO A SEPARATE ENTITY*/}

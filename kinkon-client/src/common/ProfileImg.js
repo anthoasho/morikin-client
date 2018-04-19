@@ -2,7 +2,7 @@ import React from "react";
 import "./images.css";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 const addDefaultSrc = (e) => {
-  e.target.src = require("./test-profile-picture.jpeg")
+  e.target.src = require("../images/default-profile.jpeg")
 }
 function randomColor(){
   let red = Math.floor(Math.random() * 255);

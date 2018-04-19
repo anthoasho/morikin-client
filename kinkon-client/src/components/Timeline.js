@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import MessageList from "../containers/MessageList";
-import UserSmall from "./UserSmall";
+import UserSmall from "../containers/UserSmall";
 import {getUserProfile, followUser} from "../store/actions/userProfile";
 import { fetchMessages } from "../store/actions/messages";
 import FollowList from "./FollowList";
@@ -18,7 +18,7 @@ class Timeline extends Component{
     if(this.fetchUrl){
       if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){ //This is a temporary fix to prevent a 404 error between logging in and fetching content
         this.props.fetchMessages(this.fetchUrl);                    //It is caused by the fetch method relying on the url, which contains "signin"/"signup" briefly on logging in
-      }                                                             //TODO: fix.
+      }                                                          //TODO: fix.
     }else{
       this.props.fetchMessages();
     }
@@ -31,6 +31,9 @@ class Timeline extends Component{
     if(this.fetchUrl){
       if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){
         this.props.getUserProfile(this.fetchUrl);
+      }else if((this.fetchUrl === "signin") || (this.fetchUrl === "signup")){
+
+        this.props.history.push("/")
       }
     }else{
       this.props.getUserProfile(this.props.user.username);

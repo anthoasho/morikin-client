@@ -1,5 +1,5 @@
 import React from "react";
-import {UserMeta} from "../components/UserMetaItem";
+import {UserMeta} from "./UserMetaItem";
 export const UserMetaGroup = ({profile}) => {
   let {messageCount, followerCount, followingCount, username} = profile;
   return(

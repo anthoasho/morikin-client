@@ -1,5 +1,5 @@
 import React from "react";
-import Message from "../components/Message";
+import Message from "./Message";
 import { removeMessage, likeMessage } from "../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
