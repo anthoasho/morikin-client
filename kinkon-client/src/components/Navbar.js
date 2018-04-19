@@ -4,16 +4,17 @@ import { connect } from "react-redux"
 import {logout } from "../store/actions/auth";
 import "./Navbar.css";
 class Navbar extends Component {
+  //logout removes the token in headers, followed by a redirect to login page
+
   logout = e => {
     e.preventDefault();
     this.props.logout()
     this.props.history.push("/");
-
   }
   render(){
-    const s={color: "#ae27e8"};
+    //Current user is passed through props to display Username in the Navbar
+    //TODO Navbar is no longer visible when not logged in, remove the if statements
     const {currentUser} = this.props;
-
     return(
         <nav>
           <div className="logo">
@@ -28,8 +29,8 @@ class Navbar extends Component {
                 </div>
            :
               <div className="nav-links">
-                <NavLink  activeStyle={s} to="/signin"><li>Signin</li>  </NavLink>
-                <NavLink  activeStyle={s} to="/signup"><li>SignUp </li></NavLink>
+                <NavLink  activeStyle={"#ffffffab"} to="/signin"><li>Signin</li>  </NavLink>
+                <NavLink  activeStyle={"#ffffffab"} to="/signup"><li>SignUp </li></NavLink>
               </div>
            }
           </div>

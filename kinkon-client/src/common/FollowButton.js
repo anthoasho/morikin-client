@@ -6,8 +6,7 @@ const followButton = (props) => {
   const handleFollow = () =>{
     props.followUser(props.followType)
   }
-  const handleProfileOptions =() => {
-  }
+// Checks to see if the API has responded with a truthy determining following for the current user and the user of profile button
   const following = () => {
     if(props.following){
       return "unfollow"
@@ -19,6 +18,8 @@ const followButton = (props) => {
     }
   }
   const buttonType = following();
+
+  //Pass in a "type" to choose the correct kind of button
   const buttonSelector = (buttonType) => {
      switch(buttonType){
     case "follow":
@@ -26,7 +27,7 @@ const followButton = (props) => {
     case "unfollow":
       return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`}onClick={handleFollow} >unfollow </button>
     case "profileEdit":
-      return   <Link to={`/editprofile`} style={{width: "80%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%"}} onClick={handleProfileOptions} >Edit Profile</button></Link>
+      return   <Link to={`/editprofile`} style={{width: "80%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%"}} onClick={props.handleProfileOptions} >Edit Profile</button></Link>
     default:
     return  <button  className={`follow-button unfollow-button`} style={{background: "gray"}}>loading...</button>
   }

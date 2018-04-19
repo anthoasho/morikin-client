@@ -4,6 +4,8 @@ import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 const addDefaultSrc = (e) => {
   e.target.src = require("../images/default-profile.jpeg")
 }
+
+//A random color if the user has not specified a color, this will later become a default purple within the actual database (user.profileColor)
 function randomColor(){
   let red = Math.floor(Math.random() * 255);
   let blue = Math.floor(Math.random() * 255);

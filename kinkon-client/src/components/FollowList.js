@@ -14,11 +14,13 @@ class FollowersList extends Component {
       this.props.getFollowList(`/user/${this.props.url}`);
   }
   goBack(){
-    this.props.history.goBack(); //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
+    //At the moment this just sends the user back to the previous page - think of a better solution site-wide
+    this.props.history.goBack();
   }
   render(){
     let FollowerList
     if(!this.props.followUsers.length < 1){
+      //Similar to messages; maps over the the returned data and makes a list of followers with functioning following buttons (reason for currentUser)
     FollowerList = this.props.followUsers.map( (user, index) => (
       <Follow {...user} currentUser={this.props}  itemNum={index} key={`${index}${user.username}`} />
     ))}else{

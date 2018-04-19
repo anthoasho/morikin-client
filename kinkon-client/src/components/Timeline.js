@@ -16,18 +16,22 @@ class Timeline extends Component{
   fetchUrl = this.urlData.params.id;
   returnFetch = () => {
     if(this.fetchUrl){
-      if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){ //This is a temporary fix to prevent a 404 error between logging in and fetching content
-        this.props.fetchMessages(this.fetchUrl);                    //It is caused by the fetch method relying on the url, which contains "signin"/"signup" briefly on logging in
-      }                                                          //TODO: fix.
+       //This is a temporary fix to prevent a 404 error between logging in and fetching content
+       //It is caused by the fetch method relying on the url, which contains "signin"/"signup" briefly on logging in
+       //TODO: Find a much better solution
+      if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){
+        this.props.fetchMessages(this.fetchUrl);
+      }
     }else{
       this.props.fetchMessages();
     }
   }
   componentDidMount(){
     this.returnFetch();
+    //Set an interval for automatically refreshing data, this will become a button or link in the future rather than self-refreshing
     this.refreshInterval = setInterval(()=> {
       this.returnFetch();
-      }, 300000); //Unsure if this is the method I want for refreshing data
+      }, 300000);
     if(this.fetchUrl){
       if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){
         this.props.getUserProfile(this.fetchUrl);
@@ -41,7 +45,6 @@ class Timeline extends Component{
   }
   componentWillUnmount(){
     clearInterval(this.refreshInterval);
-    //figure out a way to trigger loading upon unmounting component
   }
   render(){
     const { messages, profile, follow, currentUser, followUser, history, errors} = this.props;

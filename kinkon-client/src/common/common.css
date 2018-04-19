@@ -10,14 +10,7 @@
 a{
   text-decoration: none;
 }
-/*change to grid */
-/* .timeline-container{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 90%;
-  margin: 50px 0;
-} */
+
 .timeline-container{
   width:100%;
   display:grid;
@@ -45,10 +38,6 @@ a{
 .item-box:hover{
   background-color:#e5e5e5 ;
 }
-/* button:hover{
-  border: 1px solid gray;
-  background: #62d0d6;
-} */
 .fullscreen{
   position:fixed;
   top:0;
@@ -60,6 +49,7 @@ a{
   background: rgba(0, 0, 0, 0.4);
   animation: fadeInOpacity 200ms ease-in-out;
   cursor: default;
+  z-index: 1;
 }
 .popup-box{
   /* background: rgba(239, 239, 239, 0.8); */
@@ -89,7 +79,7 @@ a{
   cursor: pointer;
 }
 .unfollow-button{
-  background: white !important; /*This should not be important, change the CSS settings*/
+  background: white !important;
   color: black !important;
 }
 

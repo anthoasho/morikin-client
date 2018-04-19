@@ -9,6 +9,8 @@ class EditProfile extends Component{
   constructor(props){
     super(props)
     let {user} = this.props;
+    //Decided to fill with default values of information already present - password is exempt from this
+    //TODO handle password change, make it a separate entity
     this.state = {username: user.username,
                   email: user.email,
                   passwordOne: "",
@@ -29,11 +31,7 @@ class EditProfile extends Component{
   }
   handleSubmit = e =>{
     e.preventDefault();
-    this.props.editProfile(this.state).then(() => {
-    })
-    .catch(() => {
-      return;
-    });
+    this.props.editProfile(this.state)
   }
   handleFocus = e=>{
     e.preventDefault();
@@ -43,7 +41,7 @@ class EditProfile extends Component{
     const {errors, user} = this.props;
 
     if(!this.props.isLoggedIn){
-      //Make own Component or redirect
+      //Make own Component or redirect TODO redirect, I have made the component.
       return(
         <div className="landing-page">
           <div className="home-box">

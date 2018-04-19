@@ -1,6 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 
+
+
+//Basic error handling - pops up when API returns an error
 const PopError = (props) => {
   return(
     <div className="popup-box" style={{padding: "40px", boxShadow:"0 0 10px 2px #FF0000AB"}}>

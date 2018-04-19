@@ -3,6 +3,7 @@ import {connect } from "react-redux";
 import "./NewMessage.css";
 import  {postNewMessage}  from "../store/actions/messages";
 import {Button} from "../common/Button";
+import SlideBox from "../common/SlideBox"
 import classNames from "classnames";
 class NewMessage extends Component{
     constructor(props){
@@ -26,18 +27,21 @@ class NewMessage extends Component{
         text: e.target.value
     });
   }
+  //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
   goBack(){
-    this.props.history.goBack(); //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
+    this.props.history.goBack();
   }
   handleSubmit(e){
     e.preventDefault();
     const lengthCheck = this.state.text.length;
-    if(lengthCheck < 161 && lengthCheck > 0 ){ //Prevent sending if over character limit of database
+    //Prevent sending if over character limit of database (160 characters - subject to change )
+    if(lengthCheck < 161 && lengthCheck > 0 ){
       this.props.postNewMessage(this.state.text);
       this.setState({
         text: "",
         loading:true
       });
+      //2 second delay to simulate loading - purely for test purposes
       setTimeout(this.goBack, 2000)
       }else if(lengthCheck === 0 ){
         this.setState({
@@ -45,6 +49,7 @@ class NewMessage extends Component{
         });
       }
   }
+  //Check the letter count and change the color of the text
   letterCheck(count){
     if(count < 0){
       return "red";
@@ -55,36 +60,40 @@ class NewMessage extends Component{
   }
     render(){
     const currentCharacterCount = this.characterCount(this.state.text);
-    console.log(this.state)
-    return(
-      <div>
-        <div className=" new-message-box popup-box">
-          <div className="exit" onClick={this.goBack}> X
-          </div>
-          {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
-          <form
-           onSubmit={this.handleSubmit}
-           className="new-message-form"
+    const content = (
+      <div className="hidden-contents">
+        {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
+        <form
+         onSubmit={this.handleSubmit}
+         className="new-message-form"
+        >
+          <label>Make a new Post</label>
+          <textarea
+            name="text"
+            className="new-message-textarea"
+            value={this.state.text}
+            onChange={this.handleChange}
+          />
+          <p
+            style={{color: this.letterCheck(currentCharacterCount)}}
+            className="character-counter"
           >
-            <label>Make a new Post</label>
-            <textarea
-              name="text"
-              className="new-message-textarea"
-              value={this.state.text}
-              onChange={this.handleChange}
-            />
-            <p
-              style={{color: this.letterCheck(currentCharacterCount)}}
-              className="character-counter"
-            >
-              {currentCharacterCount}
-            </p>
-            <Button
-              type="submit"
-              text="POST"
-              loading={this.state.loading}/>
-          </form>
-        </div>
+            {currentCharacterCount}
+          </p>
+          <Button
+            type="submit"
+            text="POST"
+            loading={this.state.loading}/>
+        </form>
+      </div>
+    )
+    return(
+      <div className="landing-page"> {/* Alter this class name to be more site-wide*/}
+        <SlideBox
+          exit={null}
+          exitReverse={null}
+          backAction={this.goBack}
+          content={content} />
         <div onClick={this.goBack} className={classNames({"fullscreen": true, "disable-click": this.state.loading})}> {/*Disable click necessary to prevent a bug which logs the user out if clicked during loading sequence*/}
         </div>
       </div>

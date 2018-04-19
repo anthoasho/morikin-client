@@ -12,12 +12,18 @@ const follow = (state = [], action) => {
   }
 };
 
-function changeState(value, desc, theState){
-  let test = theState;
+//I wasn't exactly sure how to alter the followlist and keep the previous state largely intact
+//This therefore takes a loop and goes through the object until it finds the correct value
+// id = part of the object we are targeting
+//data = the new data returned from api apiCall
+//state = current state
+function changeState(id, data, state){
+  let test = state;
     for (var i in test){
-      let valueToString = value.toString();
-      if(i === valueToString){
-        test[i].following = desc;
+      //This was a bit of a headache
+      let idToString = id.toString();
+      if(i === idToString){
+        test[i].following = data;
         break;
       }
     }

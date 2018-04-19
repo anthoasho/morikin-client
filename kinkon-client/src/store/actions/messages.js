@@ -1,6 +1,6 @@
 import {apiCall } from "../../services/api";
 import {addError} from "./errors";
-import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE } from "../actionTypes";
+import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE } from "../actionTypes";
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
@@ -13,7 +13,7 @@ export const remove = id => ({
 });
 
 export const animateRemove = id => ({
-  type: ANIMATE_REMOVE,
+  type: ANIMATE_REMOVE_MESSAGE,
   id
 })
 export const likeMsg = message => ({
@@ -21,6 +21,8 @@ export const likeMsg = message => ({
   message
 })
 
+//soft deletes the message, sets isDeleted: true
+//if a message isDeleted, it does not return from the api call
 export const removeMessage = (user, message) => {
   return dispatch => {
     return apiCall("put", `/api/users/${user}/messages/${message}/delete`, {isDeleted: true})
@@ -33,7 +35,6 @@ export const removeMessage = (user, message) => {
     });
   };
 };
-
 export const likeMessage = (id) => {
   return dispatch => {
     return apiCall("post", `/api/messages/${id}/like`)
@@ -46,7 +47,9 @@ export const likeMessage = (id) => {
       })
   }
 }
-
+//Gets messages from API,
+//If there is a user profile being viewed it will bring the users messages
+//otherwise it will return all messages
 export const fetchMessages = (user) => {
   return dispatch => {
     if(user){
@@ -65,11 +68,12 @@ export const fetchMessages = (user) => {
             .catch((error) => {
               dispatch(addError(error));
     });
-  }; // Why is this unreachable?
+  };
 }
 
 };
-
+//posts with the current user
+//Backend checks login authentication and authorisation
 export const postNewMessage = text => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.userId;

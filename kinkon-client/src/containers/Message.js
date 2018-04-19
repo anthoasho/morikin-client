@@ -14,6 +14,7 @@ function randomColor(){
 }
 let color = randomColor();
 const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted}) => {
+  //If it is currently loading empty divs are generated, this should be better handled in the future
  return loading ?
   <div className={classNames({"ind-message": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
     <div className="meta-content">
@@ -28,7 +29,6 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
       profileImg= {userId.profileImgUrl}
       profileColor={userId.profileColor}
       loading={loading}
-
     />
     <div className="message-username">
           <Link to={`/${userId.username}`}>{userId.displayName} <span  style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
@@ -39,6 +39,13 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
     </div>
           <p className="message-text">{text}</p>
           {ownerCheck && (<DeleteButton type="delete" onClick={removeMessage} />)}
+          {/* This handles liking
+           if the user has already liked it (as returned from the API in a truthy) it will show a red heart
+           otherwise it is clear
+           isLiked is passed through props using classNames.
+           likedBy refers to the number of likes the post has recieved
+           this is returned from the API as a number only (array.length())
+           */}
       <span className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div> {likedBy} likes </span>
   </div>;
   };

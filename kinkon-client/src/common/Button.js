@@ -15,9 +15,7 @@ export const Button = (props) => {
   case "delete":
     return <button className="delete-btn" onClick={test}> Delete </button>
 
- // case "profileEdit":
- //   return   <Link to={`/editprofile`} style={{width: "80%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%"}} onClick={handleProfileOptions} >Edit Profile</button></Link>
- default:
+  default:
  return  <button  className={`submit-button`} style={{background: "gray"}}>loading...</button>
 }
 }
@@ -50,11 +48,7 @@ export class DeleteButton extends Component{
         verify: false,
         text: ""
       })
-
-      // setTimeout(() =>{
-
-        this.props.onClick();
-      // }, 300)
+    this.props.onClick();
     }
   }
   render(){

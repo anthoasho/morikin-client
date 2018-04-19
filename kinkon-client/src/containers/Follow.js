@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import FollowButton from "../common/FollowButton";
-import ProfileImg from "../common/ProfileImg"
+import ProfileImg from "../common/ProfileImg";
+
+//Individual element within the list of followers, this is used for both followers and following
 const Follower = (props) => {
   return(
     <div className="follow-list-box item-box">

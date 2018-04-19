@@ -3,6 +3,7 @@ import currentUser  from "./currentUser";
 import errors from "./errors";
 import messages from "./messages";
 import userProfile from "./userinformation";
+import animate from "./transitions";
 import  follow from "./following";
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
   errors,
   messages,
   userProfile,
-  follow
+  follow,
+  animate
 });
 
 export default rootReducer;

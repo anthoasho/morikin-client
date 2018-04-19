@@ -2,6 +2,8 @@ import React from "react";
 import {UserMeta} from "./UserMetaItem";
 export const UserMetaGroup = ({profile}) => {
   let {messageCount, followerCount, followingCount, username} = profile;
+  //Small area for displaying some meta deta at the bottom of a users profile
+  //This may get combined into another file for small things such as this. 
   return(
   <div className="user-meta">
     <UserMeta

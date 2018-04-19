@@ -3,6 +3,10 @@ import "./UserSmall.css";
 import {UserMetaGroup} from "../containers/UserMetaGroup";
 import FollowButton from "../common/FollowButton";
 import ProfileImg from "../common/ProfileImg";
+
+//User profile area on the left of the main timeline
+//adapts to the url following a fetch request
+//Has automatic updating of the follow button and can distinguish current user (to display a edit profile button)
 const UserSmall = ({currentUser, loading, profile}) => {
   if(!loading){
     let {username, following, profileImgUrl, profileColor, description, displayName} = profile;

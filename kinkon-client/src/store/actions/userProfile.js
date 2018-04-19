@@ -26,6 +26,8 @@ export const updateFollowList = (update, id) => ({
 export function setAuthorizationToken(token){
   setAuthToken(token);
 }
+
+//This is used to get the profile of the user (not including messages, that is a seperate API call)
 export const getUserProfile = (username) => {
   return dispatch => {
     return apiCall("get", `/api/user/${username}`) //This previously used the ID of the user, I may revert if necessary.
@@ -39,6 +41,8 @@ export const getUserProfile = (username) => {
   };
 };
 
+//Collects the list of followers/following
+//url is passed as an argument to clarify following || followers
 export const getFollowList = (url) => {
   return dispatch => {
     return apiCall("get", `/api/${url}`)
@@ -53,6 +57,8 @@ export const getFollowList = (url) => {
   }
 }
 
+//Edits part of the profile (not the password currently - TODO)
+//Upon edit, it will update the token within the local storage
 export const editProfile = userData => (dispatch) => {
   return apiCall("post", `/api/user/updateprofile`, {userData})
   .then(res => {
@@ -66,6 +72,9 @@ export const editProfile = userData => (dispatch) => {
   });
 };
 
+//This took a long time, this is intended to handle an update in both the user profile and follow followList
+//Honestly, I can't remember why I made the arguments an array to be honest.
+//TODO - figure out the above problem
 export const followUser = ([userId, location, itemNum]) => {
   return dispatch => {
     return apiCall("post", `/api/${userId}/follow`)

@@ -8,6 +8,7 @@ import EditProfile from "../components/EditProfile.js"
 import NewMessage from "../components/NewMessage";
 import withAuth from "../hocs/withAuth";
 import LandingPage from "../components/Landing";
+//"Main" handles most of the URL with react-router - It should be renamed. 
 const Main = props => {
   const {currentUser } = props;
   return(

@@ -21,6 +21,7 @@ class Input extends Component{
       placeholderFloat: this.placeHolderMovement()
     })
   }
+  //Checks the status of the input, if there is a value it will move up to clarify input field
   placeHolderMovement = () => {
     if(this.props.value && this.props.value.length > 0){
       return true;
@@ -28,6 +29,7 @@ class Input extends Component{
       return false;
     }
   }
+//On focus the placeholder will move upwards (permanent) and a green active bar will fill underneath (during focus)
   handleFocus = e=>{
     e.preventDefault();
     this.setState({
@@ -36,6 +38,8 @@ class Input extends Component{
       error: false
     })
   }
+
+  //If the field is required and unfocused it will give a red highlight and state the field is required
   requirementTest = () =>{
     if(this.props.value < 1 && this.props.isRequired){
       this.setState({
@@ -46,6 +50,7 @@ class Input extends Component{
         })
       }
   }
+  //Leaving the field will remove the green active bar
   handleBlur = e =>{
     e.preventDefault();
     this.setState({

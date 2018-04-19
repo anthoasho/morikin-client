@@ -7,6 +7,15 @@ import {authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import classNames from "classnames";
 import "./Landing.css";
+
+/*
+---------------------------------------------
+
+This no longer needs to be a component: TODO make a stateless function
+
+---------------------------------------------
+
+*/
 class LandingPage extends Component{
   constructor(props){
     super(props);
@@ -16,8 +25,11 @@ class LandingPage extends Component{
       enterReverse: true
     }
     this.handleClick = this.handleClick.bind(this);
-    this.test = this.test.bind(this);
+    this.authThenRedirect = this.authThenRedirect.bind(this);
   }
+
+  //This should change very soon due to redux
+  //START changes
     handleClick(e, type){
       if(type==="next"){
       this.setState({
@@ -44,7 +56,8 @@ class LandingPage extends Component{
       }, 500)
     }
     }
-    test(...args){
+    //END of changes for Redux
+    authThenRedirect(...args){
       this.props.authUser(...args).then(()=>{
         this.props.history.push("/");
       })
@@ -57,7 +70,7 @@ class LandingPage extends Component{
         return(
           <AuthForm removeError={this.props.removeError}
             errors={this.props.errors}
-            onAuth={this.test} {...props}
+            onAuth={this.authThenRedirect} {...props}
             buttonText="Log in"
             heading="Welcome!"
             exit={this.state.exit}
@@ -81,6 +94,7 @@ class LandingPage extends Component{
             />
           );
         }} />
+        {/* This shouuld become its own fuction: */}
         <Route exact path = "/" render={props =>
           <div className={classNames({
             "home-box": true,
