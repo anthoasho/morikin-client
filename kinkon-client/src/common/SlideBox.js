@@ -12,7 +12,16 @@ const SlideBox = ({animate, backAction, content, animateEnter, animateEnterRever
   }
 
     return(
-    <div className={classNames({"home-box": true, "exit-animation": animate.exit, "exit-animation-reverse": animate.exitReverse})}>
+    <div className={classNames({"home-box": true,
+               "exit-animation": animate.exit,
+                "exit-animation-reverse": animate.exitReverse,
+                "enter-animation-reverse": animate.enterReverse,
+                "enter-animation": animate.enter})}>
+              <div className={classNames({"hide-box": true, "animate-delay":true,
+                 "exit-animation": animate.exitReverse,
+                  "exit-animation-reverse": animate.exit,
+                  "enter-animation-reverse": animate.enter,
+                  "enter-animation": animate.enterReverse})} > </div>
       <div onClick={back} className="back-button"> <div className="back-icon"></div> </div>
         {content}
     </div>)

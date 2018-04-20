@@ -23,7 +23,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
     </div>
   </div>
   :
-  <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${userId.profileColor? userId.profileColor:randomColor()}`}}>
+  <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} >
     <ProfileImg
       username={userId.username}
       profileImg= {userId.profileImgUrl}
@@ -47,6 +47,9 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            this is returned from the API as a number only (array.length())
            */}
       <span className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div> {likedBy} likes </span>
+      <div className="color-message-border"
+        style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>
+        </div>
   </div>;
   };
 export default Message;

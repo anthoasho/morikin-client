@@ -2,19 +2,20 @@ import React from "react";
 import {Switch, Route, withRouter} from "react-router-dom";
 import {connect } from "react-redux";
 import BodyContainer from "./BodyContainer";
-import Navbar from "../components/Navbar";
+import Navbar from "./Navbar";
 import { removeError } from "../store/actions/errors";
 import EditProfile from "../components/EditProfile.js"
 import NewMessage from "../components/NewMessage";
 import withAuth from "../hocs/withAuth";
 import LandingPage from "../components/Landing";
-//"Main" handles most of the URL with react-router - It should be renamed. 
+//"Main" handles most of the URL with react-router - It should be renamed.
 const Main = props => {
   const {currentUser } = props;
+  console.log(props)
   return(
     currentUser.isLoggedIn ?
       <div className="container">
-      <Navbar history={props.history} />
+      <Navbar history={props.history} location={props.location} />
         <Switch>
         <Route exact path="/:id/followers" render={props =>
           <BodyContainer

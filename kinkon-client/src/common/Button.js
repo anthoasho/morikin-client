@@ -13,7 +13,7 @@ export const Button = (props) => {
   case "signup":
    return <button id="signup" className="sign-up-btn" onClick={onClick} >{text}</button>
   case "delete":
-    return <button className="delete-btn" onClick={test}> Delete </button>
+    return <button className="delete-btn"> Delete </button>
 
   default:
  return  <button  className={`submit-button`} style={{background: "gray"}}>loading...</button>
@@ -29,18 +29,21 @@ export class DeleteButton extends Component{
       loading: false,
       text: "Delete"
     }
-    this.test = this.test.bind(this);
+    this.verifyDelete = this.verifyDelete.bind(this);
+    this.reset = this.reset.bind(this);
   }
-   test(){
+  reset(){
+    this.setState({
+      verify: false,
+      loading: false,
+      text: "Delete"
+    })
+  }
+   verifyDelete(){
      if(!this.state.verify){
-       setTimeout(() => {
-         this.setState({
-           text: "Are you sure?"
-         })
-       }, 300)
     this.setState({
       verify: true,
-      text: ""
+      text: "Are you sure?"
     })}
     else{
       this.setState({
@@ -55,7 +58,7 @@ export class DeleteButton extends Component{
     const {verify, text} = this.state;
 
     return(
-     <div className={classNames({"delete-btn": true, "delete-btn-danger": verify, "delete-btn-loading": this.state.loading})} onClick={this.test}> {text} </div>
+     <div tabIndex="0" className={classNames({"delete-btn": true, "delete-btn-danger": verify, "delete-btn-loading": this.state.loading})} onClick={this.verifyDelete} onBlur={this.reset}> {text} </div>
     )
   }
 

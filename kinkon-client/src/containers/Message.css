@@ -2,9 +2,20 @@
   justify-content: stretch;
   display:grid !important;
   grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
-  grid-template-rows: 5px 20px 1fr 20px 5px;
+  grid-template-rows: 10px 20px 1fr 20px 10px;
   overflow: hidden;
   transform: translateX(0);
+  background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: none!important;
+  transition: all 1s ease !important;
+}
+.color-message-border{
+  grid-column: 1/2;
+  grid-row: 1/6;
+  margin: 0;
 }
 .ind-message-on-delete{
   transform: translateX(5000px);

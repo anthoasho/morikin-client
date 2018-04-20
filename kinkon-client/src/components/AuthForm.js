@@ -3,7 +3,7 @@ import "./Auth.css"
 import Input from "../common/InputField";
 import {Button} from "../common/Button";
 import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../store/actions/animate";
-import classNames from "classnames";
+import { removeError } from "../store/actions/errors";
 import {connect} from "react-redux";
 import SlideBox from "../common/SlideBox";
 class AuthForm extends Component {
@@ -23,9 +23,11 @@ class AuthForm extends Component {
     this.setState({
         [name]: value
     });
+    this.props.removeError();
   }
   handleSubmit = e =>{
     e.preventDefault();
+    this.props.removeError();
     //Clarify type of API call to be used through props to simplify the API call in store/actions
     const authType = this.props.signUp ? "signup" : "signin";
     this.props.onAuth(authType, this.state)
@@ -37,7 +39,7 @@ class AuthForm extends Component {
   }
 render(){
     const {username, email, password, profileImgUrl } = this.state;
-    const {heading, buttonText, signUp, errors, history, removeError, backAction, exit, exitReverse } = this.props; 
+    const {heading, buttonText, signUp, errors, backAction, exit, exitReverse } = this.props;
 
     const form = (<div className="login-form-container"><p className="title"> {heading} </p>
     {errors.message && (<p className="login-error"> {errors.message} </p>) }
@@ -84,9 +86,9 @@ render(){
         type="submit"
         text={buttonText} />
   </form></div>)
-    history.listen(() => {
-      removeError();
-    });
+    // history.listen(() => {
+    //   removeError();
+    // });
     return(
       <SlideBox
         exit={exit}
@@ -103,7 +105,8 @@ render(){
 function mapStateToProps(state){
   return {
     animate: state.animate,
+    errors: state.errors
   };
 }
 
-export default connect(mapStateToProps, {animateEnter, animateEnterReverse, animateExit, animateExitReverse})(AuthForm)
+export default connect(mapStateToProps, {removeError, animateEnter, animateEnterReverse, animateExit, animateExitReverse})(AuthForm)

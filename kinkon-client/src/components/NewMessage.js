@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {connect } from "react-redux";
 import "./NewMessage.css";
 import  {postNewMessage}  from "../store/actions/messages";
+import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../store/actions/animate";
 import {Button} from "../common/Button";
 import SlideBox from "../common/SlideBox"
 import classNames from "classnames";
@@ -29,8 +30,16 @@ class NewMessage extends Component{
   }
   //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
   goBack(){
-    this.props.history.goBack();
+    this.props.animateExitReverse();
+    setTimeout(() => {
+      this.props.history.push("/")
+    }, 400)
+    // this.props.history.goBack();
   }
+  componentWillMount(){
+    this.props.animateEnter();
+  }
+
   handleSubmit(e){
     e.preventDefault();
     const lengthCheck = this.state.text.length;
@@ -42,7 +51,8 @@ class NewMessage extends Component{
         loading:true
       });
       //2 second delay to simulate loading - purely for test purposes
-      setTimeout(this.goBack, 2000)
+      setTimeout(this.props.history.goBack, 200)
+      this.props.animateExit();
       }else if(lengthCheck === 0 ){
         this.setState({
           error:"Please write a message!"
@@ -105,4 +115,4 @@ function mapStateToProps(state){
     errors: state.errors
   };
 }
-export default connect(mapStateToProps, {postNewMessage})(NewMessage);
+export default connect(mapStateToProps, {postNewMessage, animateEnter, animateEnterReverse, animateExit, animateExitReverse})(NewMessage);

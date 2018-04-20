@@ -1,7 +1,7 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import { SET_CURRENT_USER } from "../actionTypes";
 import {addError, removeError} from "./errors";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse, removeAnimation} from "./animate";
+import {animateExit, removeAnimation} from "./animate";
 
 export function setCurrentUser(user){
   return {
