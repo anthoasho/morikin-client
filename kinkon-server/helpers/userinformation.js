@@ -39,6 +39,8 @@ const combineData = (users, currentUser) => {
   });
   return finalData;
 }
+
+
 exports.getUserFollow = function(req, res, next){
   var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
   if(req.params.follow === "followers"){

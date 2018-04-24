@@ -6,6 +6,7 @@ import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from
 import {Button} from "../common/Button";
 import SlideBox from "../common/SlideBox"
 import classNames from "classnames";
+
 class NewMessage extends Component{
     constructor(props){
     super(props);

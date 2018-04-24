@@ -13,14 +13,13 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp}) => {
   //If it is currently loading empty divs are generated, this should be better handled in the future
  return loading ?
   <div className={classNames({"ind-message": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
-    <div className="meta-content">
-    </div>
-    <div className="message-content">
-    </div>
+    <ProfileImg
+      loading={loading}
+    />
   </div>
   :
   <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} >
@@ -49,6 +48,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
       <span className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div> {likedBy} likes </span>
       <div className="color-message-border"
         style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>
+
         </div>
   </div>;
   };

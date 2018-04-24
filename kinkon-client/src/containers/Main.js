@@ -11,7 +11,6 @@ import LandingPage from "../components/Landing";
 //"Main" handles most of the URL with react-router - It should be renamed.
 const Main = props => {
   const {currentUser } = props;
-  console.log(props)
   return(
     currentUser.isLoggedIn ?
       <div className="container">

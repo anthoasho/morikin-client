@@ -1,6 +1,7 @@
 import React from "react";
 import "./images.css";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+import {Link} from "react-router-dom";
 const addDefaultSrc = (e) => {
   e.target.src = require("../images/default-profile.jpeg")
 }
@@ -16,10 +17,21 @@ const ProfileImg = (props) => {
   return(
     !props.loading ?
     <div className="img-wrapper">
-      <img onError={addDefaultSrc} className="profile-picture" alt={`${props.username}'s profile `} src={props.profileImg} style={{boxShadow: `0px 0px 4px ${props.profileColor? props.profileColor : randomColor()}`, border: "2px solid #cccccc", borderBottom: `2px solid ${props.profileColor? props.profileColor : randomColor()}`}} />
+    <Link to={`/${props.username}`} >
+      <img onError={addDefaultSrc}
+        className="profile-picture"
+        alt={`${props.username}'s profile `}
+        src={props.profileImg}
+        style={{
+          boxShadow: `0px 0px 4px ${props.profileColor? props.profileColor : randomColor()}`,
+          border: "2px solid #cccccc",
+          borderBottom: `2px solid ${props.profileColor? props.profileColor : randomColor()}`}}
+        />
+    </Link>
     </div>
     :
     <div>
+    <div className="img-wrapper">
     <PreloaderIcon
       className="loading-icon"
       type={ICON_TYPE.TAIL_SPIN}
@@ -28,7 +40,7 @@ const ProfileImg = (props) => {
       strokeColor="#ae27e8"
       duration={800}
     />
-    <h3 style={{borderBottom: `4px solid ${randomColor()}`}}>{props.username}</h3>
+    </div>
     </div>
   )
 }

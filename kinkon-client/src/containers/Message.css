@@ -4,22 +4,27 @@
   grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
   grid-template-rows: 10px 20px 1fr 20px 10px;
   overflow: hidden;
-  transform: translateX(0);
-  background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
   border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   border: none!important;
-  transition: all 1s ease !important;
+  transition: transform 0.15s ease-out;
+  -webkit-font-smoothing: subpixel-antialiased;
+  grid-row-gap: 4px;
 }
 .color-message-border{
   grid-column: 1/2;
   grid-row: 1/6;
   margin: 0;
 }
+.ind-message:hover{
+  transform: scale(1) translateX(2px) ;
+}
+div{
+  -webkit-font-smoothing: subpixel-antialiased;
+
+}
 .ind-message-on-delete{
-  transform: translateX(5000px);
-  transition: transform 2s ease;
+  transform: scale(0.001) !important;
 }
 .ind-message .img-wrapper{
   grid-row: 1/6;
@@ -50,7 +55,8 @@
   font-size: 0.7rem;
   grid-column:5/6;
   grid-row: 2/3;
-  justify-self: end;
+  align-self: center;
+  justify-self: center;
 }
 .like-button{
   width: 8px;
