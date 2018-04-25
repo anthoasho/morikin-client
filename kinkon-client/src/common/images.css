@@ -22,6 +22,8 @@
   margin: auto;
 }
 
+.profile-picture
+
 @media only screen and (max-device-width: 480px) {
   .user-profile-small .img-wrapper {
     width: 25%;

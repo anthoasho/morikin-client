@@ -31,7 +31,7 @@ const ProfileImg = (props) => {
     </div>
     :
     <div className="img-wrapper">
-    <a>
+    <a className="img-link">
     <PreloaderIcon
       className="profile-picture"
       type={ICON_TYPE.TAIL_SPIN}
