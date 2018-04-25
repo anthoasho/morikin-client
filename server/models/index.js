@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/kinkon", {
+mongoose.connect("mongodb://localhost/morikin", {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE
 });

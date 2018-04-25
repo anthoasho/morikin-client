@@ -16,7 +16,7 @@ function randomColor(){
 }
 let color = randomColor();
 const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id}) => {
-  //If it is currently loading empty divs are generated, this should be better handled in the future
+  //If it is currently loading empty divs are generated, this should be better handled in the future  
   const handleFollowList = () =>{
     getFollowList(`/users/${userId._id}/messages/${_id}/likes`);
 

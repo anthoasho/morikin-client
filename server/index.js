@@ -21,8 +21,7 @@ app.get("/", function(req, res){
   res.json({message:"Make a post request to sign up!"});
 });
 
-//, auth.loginRequired, auth.ensureCorrectUser,
-app.use("/api/users/:id/messages", messagesRoutes);
+app.use("/api/users/:id/messages", auth.loginRequired, auth.ensureCorrectUser, messagesRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", auth.loginRequired, userInfoRoutes);
 app.post("/api/:username/follow", helpers.followUser);

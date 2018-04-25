@@ -3,7 +3,9 @@ import "./images.css";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import {Link} from "react-router-dom";
 const addDefaultSrc = (e) => {
-  e.target.src = require("../images/default-profile.jpeg")
+  e.target.src = require("../images/logo.svg");
+
+  e.target.style = "opacity: 0.1"
 }
 
 //A random color if the user has not specified a color, this will later become a default purple within the actual database (user.profileColor)
