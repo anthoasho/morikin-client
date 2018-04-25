@@ -21,11 +21,12 @@ const Navbar = (props) => {
   //   }
   // }
   return(
-      <nav> <div className="nav-logo"> <Logo width="auto" height="100%"/> </div>
-           <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
-           <NavLink  to="/new" className="nav-new-message"> <li > POST </li> </NavLink>
-           <NavLink  to={`/${currentUser.username}`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
-           <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
+      <nav>
+        <div className="nav-logo"> <Logo /> </div>
+        <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
+        <NavLink  to="/new" className="nav-new-message"> <li > POST </li> </NavLink>
+        <NavLink  to={`/${currentUser.username}`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
+        <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
       </nav>
     );
 }
