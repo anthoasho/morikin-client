@@ -1,7 +1,11 @@
 import {apiCall } from "../../services/api";
 import {addError} from "./errors";
-import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE } from "../actionTypes";
+import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES } from "../actionTypes";
 
+
+export const fetchingData = () =>({
+  type:FETCHING_MESSAGES,
+})
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
   messages
@@ -52,6 +56,7 @@ export const likeMessage = (id) => {
 //otherwise it will return all messages
 export const fetchMessages = (user) => {
   return dispatch => {
+    dispatch(fetchingData());
     if(user){
       return apiCall("get", `/api/user/${user}/messages`)
               .then((res) => {

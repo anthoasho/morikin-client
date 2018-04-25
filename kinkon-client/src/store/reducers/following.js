@@ -12,6 +12,7 @@ const follow = (state = [], action) => {
   }
 };
 
+
 //I wasn't exactly sure how to alter the followlist and keep the previous state largely intact
 //This therefore takes a loop and goes through the object until it finds the correct value
 // id = part of the object we are targeting

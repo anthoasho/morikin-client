@@ -10,7 +10,7 @@ const MessageList = props =>{
       MessageList = <Message loading/>;
   }else{
     //Map through and generate the list of Messages
-  MessageList = messages.map((m)=>
+  MessageList = messages.data.map((m)=>
     (<Message {...m} key={m._id}
       removeMessage ={removeMessage.bind(this, m.userId._id, m._id)}
       likeMessage = {likeMessage.bind(this, m._id)}

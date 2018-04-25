@@ -8,7 +8,21 @@ import ProfileImg from "../common/ProfileImg";
 //adapts to the url following a fetch request
 //Has automatic updating of the follow button and can distinguish current user (to display a edit profile button)
 const UserSmall = ({currentUser, loading, profile}) => {
-  if(!loading){
+
+  if(loading){
+   return(
+     <div className = "user-profile-small" >
+       <ProfileImg
+         loading={loading}
+       />
+       <div className="user-follow">
+       <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> Loading  </p>
+         <h3 style={{borderBottom: `4px solid purple`, margin: "0"}}>...</h3>
+       </div>
+
+     </div>
+     );
+   }
     let {username, following, profileImgUrl, profileColor, description, displayName} = profile;
     return(
       <div className = "user-profile-small" >
@@ -16,7 +30,7 @@ const UserSmall = ({currentUser, loading, profile}) => {
           username={username}
           profileImg= {profileImgUrl}
           profileColor={profileColor}
-          loading={loading}
+          loading={false}
         />
         <div className="user-follow">
         <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> @{username}  </p>
@@ -29,11 +43,7 @@ const UserSmall = ({currentUser, loading, profile}) => {
           username={username}
         />
       </div>
-    );
-  }else{
-    return(
-      <div>Loading..</div>
-      );
-    }
+    )
+
 };
 export default UserSmall;

@@ -17,8 +17,8 @@ const ProfileImg = (props) => {
   return(
     !props.loading ?
     <div className="img-wrapper">
-    <Link to={`/${props.username}`} >
-      <img onError={addDefaultSrc}
+    <Link className="img-link" to={`/${props.username}`} >
+        <img onError={addDefaultSrc}
         className="profile-picture"
         alt={`${props.username}'s profile `}
         src={props.profileImg}
@@ -30,18 +30,19 @@ const ProfileImg = (props) => {
     </Link>
     </div>
     :
-    <div>
     <div className="img-wrapper">
+    <a>
     <PreloaderIcon
-      className="loading-icon"
+      className="profile-picture"
       type={ICON_TYPE.TAIL_SPIN}
-      size={100}
+      size={50}
       strokeWidth={4} // min: 1, max: 50
       strokeColor="#ae27e8"
       duration={800}
     />
+    </a>
     </div>
-    </div>
+
   )
 }
 

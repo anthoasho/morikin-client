@@ -4,6 +4,8 @@ import Moment from "react-moment";
 import ProfileImg from "../common/ProfileImg";
 import classNames from "classnames";
 import {DeleteButton} from "../common/Button";
+import {connect } from "react-redux";
+import {getFollowList} from "../store/actions/userProfile";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -13,13 +15,20 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id}) => {
   //If it is currently loading empty divs are generated, this should be better handled in the future
+  const handleFollowList = () =>{
+    getFollowList(`/users/${userId._id}/messages/${_id}/likes`);
+
+  }
  return loading ?
-  <div className={classNames({"ind-message": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
+  <div className={classNames({"ind-message": true,"item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
     <ProfileImg
       loading={loading}
     />
+    <div className="message-loading-text">
+    Loading
+    </div>
   </div>
   :
   <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} >
@@ -45,11 +54,11 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            likedBy refers to the number of likes the post has recieved
            this is returned from the API as a number only (array.length())
            */}
-      <span className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div> {likedBy} likes </span>
+      <div className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div><span onClick={handleFollowList}> {likedBy} likes</span> </div>
       <div className="color-message-border"
         style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>
 
         </div>
   </div>;
   };
-export default Message;
+export default connect(null, {getFollowList})(Message);

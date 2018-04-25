@@ -1,11 +1,14 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import {addError, removeError} from "./errors";
-import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER} from "../actionTypes";
+import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE} from "../actionTypes";
 
 export const loadProfile = user => ({
   type: LOAD_USER_PROFILE,
   user
 });
+export const fetchingProfile = () => ({
+  type: FETCHING_PROFILE
+})
 export const updateCurrentUser = user => ({
   type: UPDATE_CURRENT_USER,
   user
@@ -30,6 +33,7 @@ export function setAuthorizationToken(token){
 //This is used to get the profile of the user (not including messages, that is a seperate API call)
 export const getUserProfile = (username) => {
   return dispatch => {
+    dispatch(fetchingProfile())
     return apiCall("get", `/api/user/${username}`) //This previously used the ID of the user, I may revert if necessary.
     .then((res) => {
       dispatch(loadProfile(res));
@@ -65,7 +69,6 @@ export const editProfile = userData => (dispatch) => {
     localStorage.setItem("jwtToken", res.token)
     dispatch(updateCurrentUser(res.response));
     dispatch(removeError());
-
   })
   .catch(err => {
     dispatch(addError(err.errors.message));

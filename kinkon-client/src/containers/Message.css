@@ -21,7 +21,12 @@
 }
 div{
   -webkit-font-smoothing: subpixel-antialiased;
-
+}
+.message-loading-text{
+  grid-column: 5/6;
+  grid-row: 3/6;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 2rem;
 }
 .ind-message-on-delete{
   transform: scale(0.001) !important;

@@ -51,18 +51,18 @@ class Timeline extends Component{
     if(errors.message || errors.code){
       return(<PopError />)
     }
-    if(messages.length < 1 || !profile.username){
-      return (
-        <div className="timeline-container">
-          <UserSmall
-            loading
-            />
-        <MessageList
-            loading
-            />
-        </div>
-      );
-    }else{
+    // if(messages.length < 1 || !profile.username){
+    //   return (
+    //     <div className="timeline-container">
+    //       <UserSmall
+    //         loading
+    //         />
+    //     <MessageList
+    //         loading
+    //         />
+    //     </div>
+    //   );
+    // }else{
       return(
         <div className="timeline-container">
           {follow &&
@@ -74,24 +74,26 @@ class Timeline extends Component{
           }
           <UserSmall
             key={`user ${profile.username}`}
-            profile={profile}
+            profile={profile.user}
             followUser = {followUser}
             currentUser={currentUser.username}
+            loading={profile.loading}
           />
           <MessageList
             key={`messages ${this.urlData.url}`}
             messages ={messages}
             currentUser={currentUser.userId}
+            loading={messages.loading}
           />
 
           </div>
       );
-      }
+      // }
   }
 }
 function mapStateToProps(state){
   return {
-    profile: state.userProfile.user,
+    profile: state.userProfile,
     messages:state.messages,
     currentUser: state.currentUser.user,
     errors: state.errors
