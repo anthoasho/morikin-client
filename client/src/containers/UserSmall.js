@@ -7,13 +7,12 @@ import ProfileImg from "../common/ProfileImg";
 //User profile area on the left of the main timeline
 //adapts to the url following a fetch request
 //Has automatic updating of the follow button and can distinguish current user (to display a edit profile button)
-const UserSmall = ({currentUser, loading, profile}) => {
-
-  if(loading){
+const UserSmall = ({currentUser, profile}) => {
+  if(profile.loading || !profile.user.username){
    return(
      <div className = "user-profile-small" >
        <ProfileImg
-         loading={loading}
+         loading={profile.loading}
        />
        <div className="user-follow">
        <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> Loading  </p>
@@ -23,7 +22,7 @@ const UserSmall = ({currentUser, loading, profile}) => {
      </div>
      );
    }
-    let {username, following, profileImgUrl, profileColor, description, displayName} = profile;
+    let {username, following, profileImgUrl, profileColor, description, displayName} = profile.user;
     return(
       <div className = "user-profile-small" >
         <ProfileImg
@@ -39,7 +38,7 @@ const UserSmall = ({currentUser, loading, profile}) => {
           <FollowButton username={username} current={currentUser} followType={[username]} following={following} />
         </div>
         <UserMetaGroup
-          profile={profile}
+          profile={profile.user}
           username={username}
         />
       </div>

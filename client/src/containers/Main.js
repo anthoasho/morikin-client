@@ -8,6 +8,7 @@ import EditProfile from "../components/EditProfile.js"
 import NewMessage from "../components/NewMessage";
 import withAuth from "../hocs/withAuth";
 import LandingPage from "../components/Landing";
+import FollowList from "../components/FollowList";
 //"Main" handles most of the URL with react-router - It should be renamed.
 const Main = props => {
   const {currentUser } = props;
@@ -34,20 +35,22 @@ const Main = props => {
           />
         }
         />
+
         <Route path="/message/:mid/likes" render={props =>
+          <FollowList
+            url={props.match.url}
+            key={`123`}
+            history={props.history}
+            type={"likes"}
+          />
+        } />
+        <Route exact path = "/" render={props =>
           <BodyContainer
             currentUser={currentUser}
             profile={currentUser}
             {...props}
-          follow="likes" />
-        } />
-          <Route exact path = "/" render={props =>
-            <BodyContainer
-              currentUser={currentUser}
-              profile={currentUser}
-              {...props}
-            />}
-          />
+          />}
+        />
           <Route exact path="/new" component={withAuth(NewMessage)} />
           <Route exact path ="/editprofile" component={withAuth(EditProfile)}
           />

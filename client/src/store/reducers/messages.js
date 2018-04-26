@@ -1,17 +1,26 @@
-import { LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES }  from "../actionTypes";
+import { LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES }  from "../actionTypes";
 const initialState = {
   loading: false,
+  page: 0,
   data: []
 }
 const messages = (state = initialState, action) => {
   switch(action.type){
     case FETCHING_MESSAGES:
       return {
+        ...state,
         loading: true
       };
+    case UPDATE_MESSAGES:
+      return {
+        loading: false,
+        page: state.page+1,
+        data: state.data.concat([...action.messages])
+      }
     case LOAD_MESSAGES:
       return {
         loading: false,
+        page: 0,
         data: [...action.messages]
       }// FIX the continuous scroll by allowing it to concat with prevState -- perhaps it's worth making that a separate state?
     case ANIMATE_REMOVE_MESSAGE:

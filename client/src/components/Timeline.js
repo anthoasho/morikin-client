@@ -2,18 +2,23 @@ import React, {Component} from "react";
 import MessageList from "../containers/MessageList";
 import UserSmall from "../containers/UserSmall";
 import {getUserProfile, followUser} from "../store/actions/userProfile";
-import { fetchMessages } from "../store/actions/messages";
+import { fetchMessages, updateMessages } from "../store/actions/messages";
 import {connect } from "react-redux";
 import PopError from "../common/error";
+
+
 class Timeline extends Component{
   constructor(props) {
     super(props);
-    this.state = { isLoading:true};
+    this.state={
+      page: 0
+    }
     this.returnFetch = this.returnFetch.bind(this);
+    this.handleBottom = this.handleBottom.bind(this);
   }
   urlData = this.props.url;
   fetchUrl = this.urlData.params.id;
-  returnFetch = () => {
+  returnFetch = (page) => {
     if(this.fetchUrl){
        //This is a temporary fix to prevent a 404 error between logging in and fetching content
        //It is caused by the fetch method relying on the url, which contains "signin"/"signup" briefly on logging in
@@ -22,10 +27,21 @@ class Timeline extends Component{
         this.props.fetchMessages(this.fetchUrl);
       }
     }else{
-      this.props.fetchMessages();
+      this.props.fetchMessages("", page);
+      console.log(this.fetchUrl)
     }
   }
+  handleBottom = () => {
+    console.log(this.state.page)
 
+
+    this.setState({
+      page: this.state.page+1
+    })
+    let method = this.fetchUrl ? this.fetchUrl : ""
+    console.log(this.props.messages)
+    this.props.updateMessages(method, this.props.messages.page);
+  }
   componentDidMount(){
     this.returnFetch();
     //Set an interval for automatically refreshing data, this will become a button or link in the future rather than self-refreshing
@@ -34,9 +50,9 @@ class Timeline extends Component{
       }, 300000);
     if(this.fetchUrl){
       if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){
+
         this.props.getUserProfile(this.fetchUrl);
       }else if((this.fetchUrl === "signin") || (this.fetchUrl === "signup")){
-
         this.props.history.push("/")
       }
     }else{
@@ -51,33 +67,21 @@ class Timeline extends Component{
     if(errors.message || errors.code){
       return(<PopError />)
     }
-    // if(messages.length < 1 || !profile.username){
-    //   return (
-    //     <div className="timeline-container">
-    //       <UserSmall
-    //         loading
-    //         />
-    //     <MessageList
-    //         loading
-    //         />
-    //     </div>
-    //   );
-    // }else{
       return(
         <div className="timeline-container">
 
           <UserSmall
             key={`user ${profile.username}`}
-            profile={profile.user}
+            profile={profile}
             followUser = {followUser}
             currentUser={currentUser.username}
-            loading={profile.loading}
+
           />
           <MessageList
             key={`messages ${this.urlData.url}`}
             messages ={messages}
             currentUser={currentUser.userId}
-            loading={messages.loading}
+            bottomClick={this.handleBottom}
           />
 
           </div>
@@ -93,4 +97,4 @@ function mapStateToProps(state){
     errors: state.errors
   };
 }
-export default connect(mapStateToProps, {getUserProfile, fetchMessages, followUser})(Timeline);
+export default connect(mapStateToProps, {getUserProfile, fetchMessages, followUser, updateMessages})(Timeline);
