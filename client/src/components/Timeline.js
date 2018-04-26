@@ -10,9 +10,6 @@ import PopError from "../common/error";
 class Timeline extends Component{
   constructor(props) {
     super(props);
-    this.state={
-      page: 0
-    }
     this.returnFetch = this.returnFetch.bind(this);
     this.handleBottom = this.handleBottom.bind(this);
   }
@@ -27,27 +24,20 @@ class Timeline extends Component{
         this.props.fetchMessages(this.fetchUrl);
       }
     }else{
-      this.props.fetchMessages("", page);
-      console.log(this.fetchUrl)
+      this.props.fetchMessages("", "");
     }
   }
   handleBottom = () => {
-    console.log(this.state.page)
-
-
-    this.setState({
-      page: this.state.page+1
-    })
     let method = this.fetchUrl ? this.fetchUrl : ""
-    console.log(this.props.messages)
-    this.props.updateMessages(method, this.props.messages.page);
+    let lastMessage = this.props.messages.data[this.props.messages.data.length -1]
+    this.props.updateMessages(method, lastMessage._id);
   }
   componentDidMount(){
     this.returnFetch();
     //Set an interval for automatically refreshing data, this will become a button or link in the future rather than self-refreshing
     this.refreshInterval = setInterval(()=> {
       this.returnFetch();
-      }, 300000);
+    }, 300000);
     if(this.fetchUrl){
       if((this.fetchUrl !== "signin") && (this.fetchUrl !== "signup")){
 

@@ -61,11 +61,11 @@ export const likeMessage = (id) => {
 //Gets messages from API,
 //If there is a user profile being viewed it will bring the users messages
 //otherwise it will return all messages
-export const fetchMessages = (user, page) => {
+export const fetchMessages = (user) => {
   return dispatch => {
     dispatch(fetchingData());
     if(user){
-      return apiCall("get", `/api/user/${user}/messages/?page=${page}`)
+      return apiCall("get", `/api/user/${user}/messages/`)
               .then((res) => {
                 dispatch(loadMessages(res));
               })
@@ -73,7 +73,7 @@ export const fetchMessages = (user, page) => {
                 dispatch(addError(error));
               });
     }else if(!user){
-    return apiCall("get", `/api/messages/?page=${page}`)
+    return apiCall("get", `/api/messages/`)
             .then((res) => {
               dispatch(loadMessages(res));
             })
@@ -86,10 +86,10 @@ export const fetchMessages = (user, page) => {
 };
 
 
-export const updateMessages = (user, page) =>{
+export const updateMessages = (user, lastMessage) =>{
   return dispatch => {
     if(user){
-      return apiCall("get", `/api/user/${user}/messages/?page=${page+1}`)
+      return apiCall("get", `/api/user/${user}/messages/?from=${lastMessage}`)
               .then((res) => {
                 dispatch(updateMessageList(res));
               })
@@ -97,7 +97,7 @@ export const updateMessages = (user, page) =>{
                 dispatch(addError(error));
               });
     }else if(!user){
-    return apiCall("get", `/api/messages/?page=${page+1}`)
+    return apiCall("get", `/api/messages/?from=${lastMessage}`)
             .then((res) => {
               dispatch(updateMessageList(res));
             })

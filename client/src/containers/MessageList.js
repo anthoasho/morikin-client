@@ -4,7 +4,7 @@ import { removeMessage, likeMessage } from "../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
 const MessageList = props =>{
-  const  {messages, removeMessage, currentUser, loading, likeMessage, bottomClick} = props;
+  const  {messages, removeMessage, currentUser, likeMessage, bottomClick} = props;
   let MessageList;
   if(messages.loading || messages.data.length === 0){
       MessageList = <Message loading/>;
@@ -23,7 +23,7 @@ const MessageList = props =>{
     <div className="message-container">
       {MessageList}
 
-      <div className={"item-box page-change"}  onClick={bottomClick}> <h3> See more </h3> </div>
+      {!messages.loading && <div className={"item-box page-change"}  onClick={bottomClick}> <h3> See more </h3> </div>}
     </div>
   );
 };
