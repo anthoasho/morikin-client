@@ -16,11 +16,8 @@ function randomColor(){
 }
 let color = randomColor();
 const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id}) => {
-  //If it is currently loading empty divs are generated, this should be better handled in the future  
-  const handleFollowList = () =>{
-    getFollowList(`/users/${userId._id}/messages/${_id}/likes`);
+  //If it is currently loading empty divs are generated, this should be better handled in the future
 
-  }
  return loading ?
   <div className={classNames({"ind-message": true,"item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
     <ProfileImg
@@ -54,7 +51,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            likedBy refers to the number of likes the post has recieved
            this is returned from the API as a number only (array.length())
            */}
-      <div className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div><span onClick={handleFollowList}> {likedBy} likes</span> </div>
+      <div className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div><Link to={`/message/${_id}/likes`} ><span> {likedBy} likes</span> </Link> </div>
       <div className="color-message-border"
         style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>
 

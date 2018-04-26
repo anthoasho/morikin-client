@@ -21,7 +21,7 @@ const Main = props => {
             currentUser={currentUser}
             profile={currentUser}
             {...props}
-            follow
+            follow="follow"
           />
         }
         />
@@ -30,10 +30,17 @@ const Main = props => {
             currentUser={currentUser}
             profile={currentUser}
             {...props}
-            follow
+            follow="follow"
           />
         }
         />
+        <Route path="/message/:mid/likes" render={props =>
+          <BodyContainer
+            currentUser={currentUser}
+            profile={currentUser}
+            {...props}
+          follow="likes" />
+        } />
           <Route exact path = "/" render={props =>
             <BodyContainer
               currentUser={currentUser}
@@ -51,6 +58,7 @@ const Main = props => {
                 {...props}
                 />}
               />
+
         </Switch>
       </div>
       :

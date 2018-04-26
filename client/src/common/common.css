@@ -7,7 +7,11 @@
   flex-direction: column;
 }
 a{
+  color: #0f75ee;
   text-decoration: none;
+}
+a:visted{
+  color: teal;
 }
 
 .timeline-container{

@@ -11,7 +11,15 @@ class FollowersList extends Component {
   this.goBack = this.goBack.bind(this);
   }
   componentDidMount(){
-      this.props.getFollowList(`/user/${this.props.url}`);
+    switch(this.props.type){
+      case "follow":
+        return this.props.getFollowList(`/user/${this.props.url}`);
+      case "likes":
+        return this.props.getFollowList(`${this.props.url}`);
+      default:
+        return null
+    }
+      // this.props.getFollowList(`/user/${this.props.url}`);
   }
   goBack(){
     //At the moment this just sends the user back to the previous page - think of a better solution site-wide
@@ -24,13 +32,13 @@ class FollowersList extends Component {
     FollowerList = this.props.followUsers.map( (user, index) => (
       <Follow {...user} currentUser={this.props}  itemNum={index} key={`${index}${user.username}`} />
     ))}else{
-    FollowerList = "...Loading";
+    FollowerList = <h3>Uh-oh, there is nothing here yet! :(</h3>
     }
     return(
       <div>
       <div className="popup-box follow-list">
         <h3>
-          {this.props.url.split("/")[2].toUpperCase()} {/*Temporary*/}
+          {this.props.type.toUpperCase()} {/*Temporary*/}
         </h3>
         {FollowerList}
       </div>

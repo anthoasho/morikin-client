@@ -3,7 +3,6 @@ import MessageList from "../containers/MessageList";
 import UserSmall from "../containers/UserSmall";
 import {getUserProfile, followUser} from "../store/actions/userProfile";
 import { fetchMessages } from "../store/actions/messages";
-import FollowList from "./FollowList";
 import {connect } from "react-redux";
 import PopError from "../common/error";
 class Timeline extends Component{
@@ -26,6 +25,7 @@ class Timeline extends Component{
       this.props.fetchMessages();
     }
   }
+
   componentDidMount(){
     this.returnFetch();
     //Set an interval for automatically refreshing data, this will become a button or link in the future rather than self-refreshing
@@ -47,7 +47,7 @@ class Timeline extends Component{
     clearInterval(this.refreshInterval);
   }
   render(){
-    const { messages, profile, follow, currentUser, followUser, history, errors} = this.props;
+    const { messages, profile,  currentUser, followUser, errors} = this.props;
     if(errors.message || errors.code){
       return(<PopError />)
     }
@@ -65,13 +65,7 @@ class Timeline extends Component{
     // }else{
       return(
         <div className="timeline-container">
-          {follow &&
-            <FollowList
-              url={this.urlData.url}
-              key={`${this.urlData.url}${profile.username}`}
-              history={history}
-            />
-          }
+
           <UserSmall
             key={`user ${profile.username}`}
             profile={profile.user}
