@@ -16,7 +16,7 @@ DONE
 */
 
 const LandingPage = (props) =>{
-
+  console.log(props)
   const handleClick = (e, type) =>{
     if(type==="next"){
       props.animateExit();
@@ -64,7 +64,7 @@ const LandingPage = (props) =>{
         );
       }} />
       {/* This shouuld become its own fuction: */}
-      <Route exact path = "/" render={props =>
+      <Route path = "/" render={props =>
           <div className={classNames({
             "home-box": true,
             "exit-animation": animate.exit,
@@ -72,7 +72,6 @@ const LandingPage = (props) =>{
             "enter-animation-reverse": animate.enterReverse,
             "enter-animation": animate.enter,
           })}>
-          {console.log(animate)}
             <div className="welcome-title"><h2>Welcome to Kinkon</h2></div>
             <div className="signup-btn-div"> <Button onClick={handleClick.bind(this, "/signup", "next")} type="signup" text="Sign Up" /></div>
             <div className="signin-btn-div"> <Button onClick={handleClick.bind(this, "/signin", "next")} type="signin" value="value" text="Sign in"/></div>

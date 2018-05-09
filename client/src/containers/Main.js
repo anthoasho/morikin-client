@@ -65,7 +65,9 @@ const Main = props => {
         </Switch>
       </div>
       :
-      <LandingPage {...props} />
+      <Route path="/" render={props =>
+        <LandingPage {...props} />
+      } />
     );
 };
 

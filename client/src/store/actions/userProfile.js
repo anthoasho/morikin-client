@@ -1,6 +1,6 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import {addError, removeError} from "./errors";
-import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE} from "../actionTypes";
+import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE, GET_DISCOVER_USERS} from "../actionTypes";
 
 export const loadProfile = user => ({
   type: LOAD_USER_PROFILE,
@@ -26,10 +26,26 @@ export const updateFollowList = (update, id) => ({
   update,
   id
 })
+export const discoverUsers = users => ({
+  type: GET_DISCOVER_USERS,
+  users
+})
+
+
+
 export function setAuthorizationToken(token){
   setAuthToken(token);
 }
 
+
+export const getDiscoverUsers = () => {
+  return dispatch => {
+    return apiCall("get", "/api/discover/users")
+    .then(res => {
+      dispatch(discoverUsers(res));
+    })
+  }
+}
 //This is used to get the profile of the user (not including messages, that is a seperate API call)
 export const getUserProfile = (username) => {
   return dispatch => {

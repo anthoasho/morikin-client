@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import MessageList from "../containers/MessageList";
 import UserSmall from "../containers/UserSmall";
-import {getUserProfile, followUser} from "../store/actions/userProfile";
+import {getUserProfile, followUser, getDiscoverUsers} from "../store/actions/userProfile";
 import { fetchMessages, updateMessages } from "../store/actions/messages";
 import {connect } from "react-redux";
 import PopError from "../common/error";
+import Discover from "../containers/Discover";
 
 
 class Timeline extends Component{
@@ -33,6 +34,7 @@ class Timeline extends Component{
     this.props.updateMessages(method, lastMessage._id);
   }
   componentDidMount(){
+    this.props.getDiscoverUsers();
     this.returnFetch();
     //Set an interval for automatically refreshing data, this will become a button or link in the future rather than self-refreshing
     this.refreshInterval = setInterval(()=> {
@@ -53,7 +55,7 @@ class Timeline extends Component{
     clearInterval(this.refreshInterval);
   }
   render(){
-    const { messages, profile,  currentUser, followUser, errors} = this.props;
+    const { messages, profile,  currentUser, followUser, errors, discover} = this.props;
     if(errors.message || errors.code){
       return(<PopError />)
     }
@@ -73,7 +75,7 @@ class Timeline extends Component{
             currentUser={currentUser.userId}
             bottomClick={this.handleBottom}
           />
-
+          <Discover users={discover.users}/>
           </div>
       );
       // }
@@ -84,7 +86,8 @@ function mapStateToProps(state){
     profile: state.userProfile,
     messages:state.messages,
     currentUser: state.currentUser.user,
-    errors: state.errors
+    errors: state.errors,
+    discover: state.discover
   };
 }
-export default connect(mapStateToProps, {getUserProfile, fetchMessages, followUser, updateMessages})(Timeline);
+export default connect(mapStateToProps, {getUserProfile, fetchMessages, followUser, updateMessages, getDiscoverUsers})(Timeline);
