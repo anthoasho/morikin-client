@@ -6,7 +6,7 @@ import {connect } from "react-redux";
 const MessageList = props =>{
   const  {messages, removeMessage, currentUser, likeMessage, bottomClick} = props;
   let MessageList;
-  if(messages.loading || messages.data.length === 0){
+  if(messages.loading ){
       MessageList = <Message loading/>;
   }else{
     //Map through and generate the list of Messages

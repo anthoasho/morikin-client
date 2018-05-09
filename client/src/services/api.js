@@ -9,15 +9,20 @@ export function setAuthToken(token){
 }
 
 //Typical Api call used throughout requests on the front end
-export function apiCall(method, path, data){
-  return new Promise((resolve, reject) => {
-    return axios[method](path, data)
+export function apiCall(method, path, data, attempt = 1){
+  return new Promise(function withRetry(resolve, reject){
+    axios[method](path, data)
     .then(res => {
-      return resolve(res.data);
+      resolve(res.data)
     })
     .catch(err => {
-      console.log(err);
-      return reject(err.response.data);
-    });
+      if(attempt > 2) {
+        reject(err.response? err.response : {statusText: "Something went wrong", status: 520})
+      } else {
+          attempt+=1;
+          withRetry(resolve, reject);
+      }
+    })
+
   });
 }
