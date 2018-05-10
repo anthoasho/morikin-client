@@ -16,7 +16,6 @@ DONE
 */
 
 const LandingPage = (props) =>{
-  console.log(props)
   const handleClick = (e, type) =>{
     if(type==="next"){
       props.animateExit();

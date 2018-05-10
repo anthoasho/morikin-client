@@ -39,7 +39,7 @@ export const removeMessage = (user, message) => {
   )
     .then(() => setTimeout(() => {dispatch(remove(message))}, 500))
     .catch((err) => {
-      dispatch(addError(err.message));
+      dispatch(addError(err));
     });
   };
 };
@@ -115,6 +115,6 @@ export const postNewMessage = text => (dispatch, getState) => {
   return apiCall("post", `/api/users/${id}/messages`, {text})
   .then(res => {})
   .catch(err => {
-    dispatch(addError(err.errors.message));
+    dispatch(addError(err));
   });
 };

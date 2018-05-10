@@ -10,10 +10,7 @@ const Discover = (props) => {
       <div>
         <DiscoverUser {...props} />
       </div>
-      <div className="discover-popular">
-      <div className="discover-titles">  Popular Messages </div>
-      Messages with most likes recently?
-      </div>
+
     </div>
   )
 }
@@ -21,8 +18,13 @@ const Discover = (props) => {
 export default Discover
 
 
-{/*
+/*
   <div className="discover-recent">
   <div className="discover-titles">  Recent Messages </div>
   Recent messages? Maybe this will go
-  </div> */}
+  </div>
+  <div className="discover-popular">
+  <div className="discover-titles">  Popular Messages </div>
+  Messages with most likes recently?
+  </div>
+  */

@@ -72,7 +72,7 @@ export const getFollowList = (url) => {
 
       })
       .catch((err) => {
-        dispatch(addError(err.message));
+        dispatch(addError(err));
       })
   }
 }
@@ -87,7 +87,7 @@ export const editProfile = userData => (dispatch) => {
     dispatch(removeError());
   })
   .catch(err => {
-    dispatch(addError(err.errors.message));
+    dispatch(addError(err));
   });
 };
 

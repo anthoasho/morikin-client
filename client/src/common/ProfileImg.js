@@ -4,7 +4,7 @@ import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import {Link} from "react-router-dom";
 const addDefaultSrc = (e) => {
   e.target.src = require("../images/logo.svg");
-  e.target.style = "opacity: 0.1"
+  e.target.style = "opacity: 0.3"
 }
 // const profileImgCheck (e) => {
 //   if(props.profileImg.length() < 1) {

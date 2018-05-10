@@ -45,7 +45,8 @@ export function authUser(type, userData){
             }, 500)
         })
         .catch(err => {
-          dispatch(addError(err.errors));
+          console.log(err)
+          dispatch(addError(err));
           reject();
         });
     });
