@@ -4,8 +4,9 @@ import Moment from "react-moment";
 import ProfileImg from "../common/ProfileImg";
 import classNames from "classnames";
 import {DeleteButton} from "../common/Button";
-import {connect } from "react-redux";
+import {connect} from "react-redux";
 import {getFollowList} from "../store/actions/userProfile";
+import {lastMessageCheck} from "../store/actions/messages";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -15,9 +16,7 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id}) => {
-  //If it is currently loading empty divs are generated, this should be better handled in the future
-
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id, isLast, lastMessageCheck}) => {
  return loading ?
   <div className={classNames({"ind-message": true,"item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
     <ProfileImg
@@ -58,4 +57,4 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
         </div>
   </div>;
   };
-export default connect(null, {getFollowList})(Message);
+export default connect(null, {getFollowList, lastMessageCheck})(Message);

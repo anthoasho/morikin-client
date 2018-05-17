@@ -101,7 +101,6 @@ export const followUser = ([userId, location, itemNum]) => {
       if(location==="followList"){
         dispatch(updateFollowList(res.following, itemNum));
         dispatch(removeError());
-
       }else{
       dispatch(updateProfile(res));
       dispatch(removeError());

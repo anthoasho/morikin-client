@@ -1,7 +1,8 @@
-import { LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES }  from "../actionTypes";
+import { LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES, LAST_MESSAGE }  from "../actionTypes";
 const initialState = {
   loading: false,
-  data: []
+  data: [],
+  isLast: false
 }
 const messages = (state = initialState, action) => {
   switch(action.type){
@@ -34,6 +35,11 @@ const messages = (state = initialState, action) => {
         return {
           loading: false,
           data: [...newState]};
+    case LAST_MESSAGE:
+        return {
+          ...state,
+          isLast: true
+        }
     default:
       return state;
   }
