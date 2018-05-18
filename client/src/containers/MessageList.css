@@ -13,24 +13,32 @@
 }
 
 .page-change{
-  cursor: pointer;
   width: 95%;
-margin: 10px auto;
-border: 1px solid black;
+  margin: 10px auto;
+  border: 1px solid black;
   color: #0f75ee;
-justify-content: center;
-border-radius: 3px;
-transition: all 0.3s ease;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
+.page-change-active{
+  cursor: pointer;
+
+}
+.page-change-inactive{
+  cursor: default;
+
+}
+
 .page-change h3{
 /* margin:10px  auto; */
 /* padding: 3px 3px; */
 }
-.page-change:hover {
+.page-change-active:hover {
   transform: scale(1.01);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
-.page-change:active{
+.page-change-active:active{
   transform: scale(1.01) translateX(2px);
 }
 @media only screen and (max-device-width: 480px) {

@@ -29,12 +29,12 @@ const MessageList = props =>{
 const loadingTest = props =>{
   const {messages, bottomClick} = props;
   if(messages.loading){
-    return  <div className={"item-box"}> <h3> Loading </h3> </div>
+    return  <div className={"item-box page-change"}> <h3> Loading </h3> </div>
   }else if(messages.isLast){
-    return <div className={"item-box"}> <h3> No More Content </h3> </div>
+    return <div className={"item-box page-change"}> <h3> No More Content </h3> </div>
   }
   else{
-    return <div className={"item-box page-change"}  onClick={bottomClick}> <h3> See more </h3> </div>
+    return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}> <h3> See more </h3> </div>
   }
 }
 export default connect(null, {removeMessage, likeMessage})(MessageList);
