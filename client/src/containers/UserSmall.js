@@ -3,11 +3,13 @@ import "./UserSmall.css";
 import {UserMetaGroup} from "../containers/UserMetaGroup";
 import FollowButton from "../common/FollowButton";
 import ProfileImg from "../common/ProfileImg";
+import FollowList from "../components/FollowList";
+import {connect} from "react-redux";
 
 //User profile area on the left of the main timeline
 //adapts to the url following a fetch request
 //Has automatic updating of the follow button and can distinguish current user (to display a edit profile button)
-const UserSmall = ({currentUser, profile}) => {
+const UserSmall = ({currentUser, profile, ui}) => {
   if(profile.loading || !profile.user.username){
    return(
      <div className = "user-profile-small" >
@@ -41,8 +43,15 @@ const UserSmall = ({currentUser, profile}) => {
           profile={profile.user}
           username={username}
         />
+         {ui.display && <FollowList /> }
       </div>
     )
 
 };
-export default UserSmall;
+function mapStateToProps(state){
+  return {
+    ui: state.ui.follow
+  };
+}
+
+export default connect(mapStateToProps, null)(UserSmall);

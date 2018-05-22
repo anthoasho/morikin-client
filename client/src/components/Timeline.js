@@ -3,6 +3,7 @@ import MessageList from "../containers/MessageList";
 import UserSmall from "../containers/UserSmall";
 import {getUserProfile, followUser, getDiscoverUsers} from "../store/actions/userProfile";
 import { fetchMessages, updateMessages } from "../store/actions/messages";
+import {clearAllPopUps} from "../store/actions/UI";
 import {connect } from "react-redux";
 import PopError from "../common/error";
 import Discover from "../containers/Discover";
@@ -50,11 +51,17 @@ class Timeline extends Component{
     }else{
       this.props.getUserProfile(this.props.user.username);
     }
+    this.props.clearAllPopUps()
+  }
+  componentDidUpdate(prevProps){
+    if(this.props.location !== prevProps.location){
+    }
   }
   componentWillUnmount(){
     clearInterval(this.refreshInterval);
   }
   render(){
+
     const { messages, profile,  currentUser, followUser, errors, discover} = this.props;
     if(errors.message || errors.code){
       return(<PopError />)
@@ -90,4 +97,4 @@ function mapStateToProps(state){
     discover: state.discover
   };
 }
-export default connect(mapStateToProps, {getUserProfile, fetchMessages, followUser, updateMessages, getDiscoverUsers})(Timeline);
+export default connect(mapStateToProps, {getUserProfile, fetchMessages, followUser, updateMessages, getDiscoverUsers, clearAllPopUps})(Timeline);

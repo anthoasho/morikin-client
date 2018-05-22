@@ -1,6 +1,6 @@
 import {apiCall } from "../../services/api";
 import {addError, removeError} from "./errors";
-import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES, LAST_MESSAGE } from "../actionTypes";
+import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES, LAST_MESSAGE, POST_MESSAGE, LOAD_MSG_LIKES, UPDATE_LIKE_LIST } from "../actionTypes";
 
 
 export const fetchingData = () =>({
@@ -15,6 +15,15 @@ export const updateMessageList = messages => ({
   type: UPDATE_MESSAGES,
   messages
 })
+export const loadLikes = users => ({
+  type: LOAD_MSG_LIKES,
+  users
+})
+export const updateLikeList = (update, id) => ({
+  type: UPDATE_LIKE_LIST,
+  update,
+  id
+})
 export const remove = id => ({
   type: REMOVE_MESSAGE,
   id
@@ -28,18 +37,53 @@ export const likeMsg = message => ({
   type: LIKE_MESSAGE,
   message
 })
+export const postMessage = message => ({
+  type: POST_MESSAGE,
+  message
+})
 export const lastMessage = () =>({
   type: LAST_MESSAGE
 })
 
 
 export const lastMessageCheck = (message, dispatch) =>{
-  if(message.isLast){
+  if(message && message.isLast){
   return  dispatch(lastMessage());
   }
 
 }
 
+export const getLikeList = (url) => {
+  return dispatch => {
+    return apiCall("get", `/api/${url}`)
+      .then((res) => {
+        dispatch(loadLikes(res));
+        dispatch(removeError());
+
+      })
+      .catch((err) => {
+        dispatch(addError(err));
+      })
+  }
+}
+
+export const followUser = ([userId, location, itemNum]) => {
+  return dispatch => {
+    return apiCall("post", `/api/${userId}/follow`)
+    .then((res) => {
+      if(location==="followList"){
+        dispatch(updateLikeList(res.following, itemNum));
+        dispatch(removeError());
+      }else{
+      dispatch(removeError());
+
+    }
+     })
+    .catch(err =>{
+      dispatch(addError(err.errors.message));
+    });
+  };
+};
 //soft deletes the message, sets isDeleted: true
 //if a message isDeleted, it does not return from the api call
 
@@ -135,7 +179,9 @@ export const postNewMessage = text => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.userId;
   return apiCall("post", `/api/users/${id}/messages`, {text})
-  .then(res => {})
+  .then(res => {
+    dispatch(postMessage(res));
+  })
   .catch(err => {
     dispatch(addError(err));
   });

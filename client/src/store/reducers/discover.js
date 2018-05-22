@@ -4,7 +4,8 @@ export default (state ={users: []}, action) => {
   switch (action.type){
     case GET_DISCOVER_USERS:
       return {
-          users: action.users
+          ...state,
+          users:[...action.users]
       }
     default:
       return state;

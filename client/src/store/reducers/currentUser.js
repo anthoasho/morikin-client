@@ -9,8 +9,9 @@ export default (state = DEFAULT_STATE, action) => {
   switch (action.type){
     case SET_CURRENT_USER:
       return {
+        ...state,
         isLoggedIn: !!Object.keys(action.user).length,
-        user: action.user
+        user: {...action.user}
       };
     case UPDATE_CURRENT_USER:
       return {

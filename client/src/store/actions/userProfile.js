@@ -1,6 +1,6 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import {addError, removeError} from "./errors";
-import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE, GET_DISCOVER_USERS} from "../actionTypes";
+import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE, GET_DISCOVER_USERS, CLEAR_FOLLOW} from "../actionTypes";
 
 export const loadProfile = user => ({
   type: LOAD_USER_PROFILE,
@@ -20,6 +20,9 @@ export const updateProfile = update => ({
 export const loadFollow = users => ({
   type: LOAD_USER_FOLLOW,
   users
+})
+export const clearFollow = () => ({
+  type: CLEAR_FOLLOW
 })
 export const updateFollowList = (update, id) => ({
   type: UPDATE_FOLLOW_LIST,
@@ -74,6 +77,12 @@ export const getFollowList = (url) => {
       .catch((err) => {
         dispatch(addError(err));
       })
+  }
+}
+
+export const clearFollowList = () => {
+  return dispatch => {
+    dispatch(clearFollow());
   }
 }
 

@@ -4,9 +4,8 @@ import "./NewMessage.css";
 import  {postNewMessage}  from "../store/actions/messages";
 import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../store/actions/animate";
 import {Button} from "../common/Button";
+import {showNewMessage} from "../store/actions/UI";
 import SlideBox from "../common/SlideBox"
-import classNames from "classnames";
-
 class NewMessage extends Component{
     constructor(props){
     super(props);
@@ -33,7 +32,7 @@ class NewMessage extends Component{
   goBack(){
     this.props.animateExitReverse();
     setTimeout(() => {
-      this.props.history.push("/")
+      this.props.showNewMessage();
     }, 400)
     // this.props.history.goBack();
   }
@@ -52,7 +51,7 @@ class NewMessage extends Component{
         loading:true
       });
       //2 second delay to simulate loading - purely for test purposes
-      setTimeout(this.props.history.goBack, 200)
+      setTimeout(this.props.showNewMessage, 200)
       this.props.animateExit();
       }else if(lengthCheck === 0 ){
         this.setState({
@@ -99,14 +98,14 @@ class NewMessage extends Component{
       </div>
     )
     return(
-      <div className="landing-page"> {/* Alter this class name to be more site-wide*/}
+      <div className="new-message-box"> {/* Alter this class name to be more site-wide*/}
         <SlideBox
           exit={null}
           exitReverse={null}
           backAction={this.goBack}
           content={content} />
-        <div onClick={this.goBack} className={classNames({"fullscreen": true, "disable-click": this.state.loading})}> {/*Disable click necessary to prevent a bug which logs the user out if clicked during loading sequence*/}
-        </div>
+      {/*  <div onClick={this.goBack} className={classNames({"fullscreen": true, "disable-click": this.state.loading})}> Disable click necessary to prevent a bug which logs the user out if clicked during loading sequence
+        </div> */}
       </div>
       );
   }
@@ -116,4 +115,4 @@ function mapStateToProps(state){
     errors: state.errors
   };
 }
-export default connect(mapStateToProps, {postNewMessage, animateEnter, animateEnterReverse, animateExit, animateExitReverse})(NewMessage);
+export default connect(mapStateToProps, {postNewMessage, animateEnter, animateEnterReverse, animateExit, animateExitReverse, showNewMessage})(NewMessage);

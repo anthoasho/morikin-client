@@ -7,6 +7,8 @@ import {DeleteButton} from "../common/Button";
 import {connect} from "react-redux";
 import {getFollowList} from "../store/actions/userProfile";
 import {lastMessageCheck} from "../store/actions/messages";
+import {showLikesList} from "../store/actions/UI";
+import MessageLikes from "./MessageLikes";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -15,8 +17,39 @@ function randomColor(){
   let green = Math.floor(Math.random() * 255);
   return `rgb(${red}, ${blue}, ${green})`;
 }
+
+
+
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id, isLast, lastMessageCheck}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id, isLast, lastMessageCheck, showLikesList, ui}) => {
+  function handleLikesShow(id){
+    let obj = {
+      method: "list",
+      title: "Message likes",
+      url: `/message/${id}/likes`
+    }
+    if(ui.display === true && likeId ===_id){
+      showLikesList(obj, true)
+    }else{
+      showLikesList(obj)
+    }
+  }
+  let likeId
+
+  if(ui.url){
+    likeId = ui.url.split("/")[2]
+  }
+
+  function showLikes(){
+  if(likeId === _id){
+      return <div className="likes-area">
+        <div className="likes-inner">
+        <MessageLikes />
+        </div>
+        </div>
+  }
+}
+
  return loading ?
   <div className={classNames({"ind-message": true,"item-box": true, "ind-message-on-delete": isDeleted})} style={{borderRight: `4px solid ${color}`}}>
     <ProfileImg
@@ -27,6 +60,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
     </div>
   </div>
   :
+  <div>
   <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} >
     <ProfileImg
       username={userId.username}
@@ -50,11 +84,18 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            likedBy refers to the number of likes the post has recieved
            this is returned from the API as a number only (array.length())
            */}
-      <div className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div><Link to={`/message/${_id}/likes`} ><span> {likedBy} likes</span> </Link> </div>
+      <div className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div><a onClick={() =>  handleLikesShow(_id)}><span> {likedBy} likes</span> </a> </div>
       <div className="color-message-border"
         style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>
 
         </div>
+  </div>
+  {ui.display && showLikes()}
   </div>;
   };
-export default connect(null, {getFollowList, lastMessageCheck})(Message);
+  function mapStateToProps(state){
+    return {
+      ui: state.ui.likes
+    };
+  }
+export default connect(mapStateToProps, {getFollowList, lastMessageCheck, showLikesList})(Message);

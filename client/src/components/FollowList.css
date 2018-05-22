@@ -18,7 +18,9 @@
   grid-column: 4/5;
 }
 .follow-list{
-  width: 400px;
+  /* overflow-y: scroll; */
+  height: 100%;
+  /* width: 400px; */
   background: white;
   display: flex !important;
   flex-direction: column;

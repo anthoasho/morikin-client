@@ -3,8 +3,9 @@ import Message from "./Message";
 import { removeMessage, likeMessage } from "../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
+import NewMessage from "../components/NewMessage";
 const MessageList = props =>{
-  const  {messages, removeMessage, currentUser, likeMessage} = props;
+  const  {messages, removeMessage, currentUser, likeMessage, ui} = props;
   let MessageList;
   if(messages.loading ){
       MessageList = <Message loading/>;
@@ -21,6 +22,8 @@ const MessageList = props =>{
   }
   return(
     <div className="message-container">
+    {ui.newMessage.display &&
+      <NewMessage />}
       {MessageList}
       {loadingTest(props)}
     </div>
@@ -30,14 +33,20 @@ const loadingTest = props =>{
   const {messages, bottomClick} = props;
   if(messages.loading){
     return  <div className={"item-box page-change"}> <h3> Loading </h3> </div>
-  }else if(messages.isLast){
+  }else if(messages.isLast || messages.data.length < 1){
     return <div className={"item-box page-change"}> <h3> No More Content </h3> </div>
   }
   else{
     return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}> <h3> See more </h3> </div>
   }
 }
-export default connect(null, {removeMessage, likeMessage})(MessageList);
+
+function mapStateToProps(state){
+  return {
+    ui: state.ui
+    };
+}
+export default connect(mapStateToProps, {removeMessage, likeMessage})(MessageList);
 
 /*-----------------------------------------------------------
 

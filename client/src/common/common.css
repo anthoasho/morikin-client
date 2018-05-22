@@ -9,6 +9,7 @@
 a{
   color: #0f75ee;
   text-decoration: none;
+  cursor: pointer;
 }
 a:visted{
   color: teal;
@@ -81,7 +82,7 @@ background-image: radial-gradient(circle closest-corner, #d7d7d7, #f4f4f4 );
 
 
 .follow-button{
-  width: 80%;
+  width: 100%;
   background: #ae27e8;
   border: 1px solid gray;
   color: white;
@@ -90,6 +91,7 @@ background-image: radial-gradient(circle closest-corner, #d7d7d7, #f4f4f4 );
   padding: 2px 0;
   font-weight: 400 !important;
   cursor: pointer;
+  font-size: 0.7rem;
 }
 .unfollow-button{
   background: white !important;

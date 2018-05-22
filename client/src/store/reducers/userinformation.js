@@ -10,7 +10,7 @@ const userProfile = (state = initialState, action) => {
     case FETCHING_PROFILE:
       return {...state, loading: true, user: {...state.user}}
     case LOAD_USER_PROFILE:
-      return {...state, loading: false, user: action.user};// Load the profile with data from api call
+      return {...state, loading: false, user: {...action.user}};// Load the profile with data from api call
     case UPDATE_USER_PROFILE:
       return {...state, loading: false, user: {...state.user, ...action.update}} //alter elements of the user profile
     default:

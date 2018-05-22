@@ -8,21 +8,23 @@ import EditProfile from "../components/EditProfile.js"
 import NewMessage from "../components/NewMessage";
 import withAuth from "../hocs/withAuth";
 import LandingPage from "../components/Landing";
-import FollowList from "../components/FollowList";
 //"Main" handles most of the URL with react-router - It should be renamed.
 const Main = props => {
   const {currentUser } = props;
+
+  
   return(
     currentUser.isLoggedIn ?
       <div className="container">
       <Navbar history={props.history} location={props.location} />
         <Switch>
-        <Route exact path="/:id/followers" render={props =>
+        {/*<Route exact path="/:id/followers" render={props =>
           <BodyContainer
             currentUser={currentUser}
             profile={currentUser}
             {...props}
             follow="follow"
+            title="Followers"
           />
         }
         />
@@ -32,6 +34,7 @@ const Main = props => {
             profile={currentUser}
             {...props}
             follow="follow"
+            title="Following"
           />
         }
         />
@@ -42,8 +45,10 @@ const Main = props => {
             key={`123`}
             history={props.history}
             type={"likes"}
+            title="Likes"
           />
         } />
+        */}
         <Route exact path = "/" render={props =>
           <BodyContainer
             currentUser={currentUser}
@@ -51,8 +56,8 @@ const Main = props => {
             {...props}
           />}
         />
-          <Route exact path="/new" component={withAuth(NewMessage)} />
-          <Route exact path ="/editprofile" component={withAuth(EditProfile)}
+        <Route exact path="/new" component={withAuth(NewMessage)} />
+        <Route exact path ="/editprofile" component={withAuth(EditProfile)}
           />
             <Route path="/:id/" render={props =>
               <BodyContainer
@@ -63,6 +68,7 @@ const Main = props => {
               />
 
         </Switch>
+
       </div>
       :
       <Route path="/" render={props =>

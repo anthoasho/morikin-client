@@ -12,6 +12,8 @@
   width:100%;
   box-shadow: -1px 2px 10px rgba(0,0,0,0.7);
   position: sticky;
+  max-height: 90vh;
+  overflow-y: inherit;
 }
 .user-follow{
   width: 100%;

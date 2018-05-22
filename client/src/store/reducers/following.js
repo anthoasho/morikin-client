@@ -1,12 +1,14 @@
-import {LOAD_USER_FOLLOW, UPDATE_FOLLOW_LIST} from "../actionTypes";
+import {LOAD_USER_FOLLOW, UPDATE_FOLLOW_LIST, CLEAR_FOLLOW} from "../actionTypes";
 
 const follow = (state = [], action) => {
   switch(action.type){
     case LOAD_USER_FOLLOW:
       return action.users
       case UPDATE_FOLLOW_LIST:
-        state = changeState(action.id, action.update, state);
-        return [...state]
+        let newState = changeState(action.id, action.update, state);
+        return [...newState]
+      case CLEAR_FOLLOW:
+        return []
       default:
         return state;
   }

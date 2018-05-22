@@ -1,58 +1,44 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Follow from "../containers/Follow";
 import {getFollowList} from "../store/actions/userProfile";
+import {popUpHide} from "../store/actions/UI";
 import "./FollowList.css";
-import {connect } from "react-redux";
+import {connect} from "react-redux";
 
-class FollowersList extends Component {
-  constructor(props) {
-  super(props);
-  this.state = { isLoading:true};
-  this.goBack = this.goBack.bind(this);
-  }
-  componentDidMount(){
-    switch(this.props.type){
-      case "follow":
-        return this.props.getFollowList(`/user/${this.props.url}`);
-      case "likes":
-        return this.props.getFollowList(`${this.props.url}`);
-      default:
-        return null
-    }
-      // this.props.getFollowList(`/user/${this.props.url}`);
-  }
-  goBack(){
+const FollowersList =  (props) => {
+  const goBack = () =>{
     //At the moment this just sends the user back to the previous page - think of a better solution site-wide
-    this.props.history.goBack();
+    // props.history.goBack();
+    props.popUpHide()
   }
-  render(){
+
     let FollowerList
-    if(!this.props.followUsers.length < 1){
+    if(!props.followUsers.length < 1){
       //Similar to messages; maps over the the returned data and makes a list of followers with functioning following buttons (reason for currentUser)
-    FollowerList = this.props.followUsers.map( (user, index) => (
-      <Follow {...user} currentUser={this.props}  itemNum={index} key={`${index}${user.username}`} />
+    FollowerList = props.followUsers.map( (user, index) => (
+      <Follow {...user} currentUser={props}  itemNum={index} key={`${index}${user.username}`} />
     ))}else{
     FollowerList = <h3>Uh-oh, there is nothing here yet! :(</h3>
     }
     return(
+      <div className="follow-list">
       <div>
-      <div className="popup-box follow-list">
         <h3>
-          {this.props.type.toUpperCase()} {/*Temporary*/}
+          {props.ui.title} {/*Temporary*/}
         </h3>
         {FollowerList}
       </div>
-        <div onClick={this.goBack} className="fullscreen"> </div>
+        <div onClick={goBack} className=""> </div>
       </div>
     )
-  }
 }
 
 function mapStateToProps(state){
   return {
     followUsers: state.follow,
-    current: state.currentUser.user.username
+    current: state.currentUser.user.username,
+    ui: state.ui.follow
   };
 }
 
-export default connect(mapStateToProps, {getFollowList})(FollowersList);
+export default connect(mapStateToProps, {getFollowList, popUpHide})(FollowersList);

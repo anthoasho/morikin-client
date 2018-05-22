@@ -2,7 +2,7 @@
 .title{
   text-align: center;
   grid-row: 2/3;
-  grid-column: 4/5;
+  grid-column: 5/6;
   margin: 0;
   font-weight: 700;
   align-self: center;
@@ -16,7 +16,7 @@
 .back-button{
   grid-column: 1/2;
   grid-row:1/12;
-  width: 50%;
+  width: 100%;
   background-image: linear-gradient(to right, #ae27e8f5, #cf27e8f7);
   border-radius: 1%;
   cursor: pointer;
@@ -65,7 +65,7 @@
 }
 .login-form{
   grid-row: 3/11;
-  grid-column: 2/7;
+  grid-column: 3/8;
   display:flex;
   flex-direction: column;
   align-items: center;

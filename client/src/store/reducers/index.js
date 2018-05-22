@@ -6,6 +6,7 @@ import userProfile from "./userinformation";
 import animate from "./transitions";
 import  follow from "./following";
 import discover from "./discover";
+import ui from "./UI";
 
 const rootReducer = combineReducers({
   currentUser,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   userProfile,
   follow,
   animate,
-  discover
+  discover,
+  ui
 });
 
 export default rootReducer;

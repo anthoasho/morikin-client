@@ -4,8 +4,17 @@ import { connect } from "react-redux"
 import {logout } from "../store/actions/auth";
 import {animateEnter} from "../store/actions/animate";
 import {Logo} from "../common/logo.js";
+import {showNewMessage} from "../store/actions/UI";
 import "./Navbar.css";
 const Navbar = (props) => {
+  function handlePopUpShow(){
+    let obj = {
+      method: "postMessage",
+    }
+    props.showNewMessage(obj)
+
+  }
+
   const {logout, history, animateEnter, currentUser} = props;
   //logout removes the token in headers, followed by a redirect to login page
   const handleLogout = e =>{
@@ -24,7 +33,7 @@ const Navbar = (props) => {
       <nav>
         <div className="nav-logo"> <Logo /> </div>
         <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
-        <NavLink  to="/new" className="nav-new-message"> <li > POST </li> </NavLink>
+        <a  onClick={handlePopUpShow} className="nav-new-message"> <li > POST </li> </a>
         <NavLink  to={`/${currentUser.username}`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
         <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
       </nav>
@@ -35,4 +44,4 @@ function mapStateToProps(state){
     currentUser: state.currentUser.user
   };
 }
-export default connect(mapStateToProps, {logout, animateEnter})(Navbar);
+export default connect(mapStateToProps, {logout, animateEnter, showNewMessage})(Navbar);

@@ -21,7 +21,9 @@
   height: auto;
   margin: auto;
 }
-
+img{
+  text-indent: -9999px;
+}
 .profile-picture
 
 @media only screen and (max-device-width: 480px) {
