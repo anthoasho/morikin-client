@@ -17,7 +17,7 @@ const MessageLikes = props => {
   }
   return(
     <div className="likes-area">
-      <div  onClick={goBack} className="back-button"> <div className="back-icon"></div>  <h3 className="likes-title">
+          <div  onClick={goBack} className="back-button back-button-reverse"> <div className="back-icon back-icon-reverse"></div>  <h3 className="likes-title">
           Likes {/*Temporary*/}
         </h3> </div>
 

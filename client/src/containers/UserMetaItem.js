@@ -7,7 +7,7 @@ const UserMeta = ({text, data, classDefine, username, type, popUpDisplay, ui, hi
   function handleFollowShow(){
     let obj = {
       method: "list",
-      title: type.toUpperCase(),
+      title: `${type[0].toUpperCase()}${type.slice(1)}`, //bit hacky 
       url: `/user/${username}/${type}`
     }
     if(obj.url === ui.url ){

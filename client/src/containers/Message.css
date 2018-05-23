@@ -3,19 +3,19 @@
   display:grid !important;
   grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
   grid-template-rows: 10px 20px 1fr 20px 10px;
-  /* overflow: hidden; */
+  overflow: hidden;
   border-radius: 3px;
   margin-bottom: 5px;
   border: none!important;
   transition: transform 0.15s ease-out;
   -webkit-font-smoothing: subpixel-antialiased;
   grid-row-gap: 4px;
+
 }
 .likes-area{
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 5px;
@@ -33,12 +33,6 @@
   width: 100%;
   text-align: right;
 }
-.likes-container{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .likes-list{
   width: 100%;
   display: flex;
@@ -47,25 +41,21 @@
   flex-wrap: wrap;
   text-align: center;
 }
-.likes-area .back-button{
+.back-button-reverse{
   display: flex;
-  background-image: linear-gradient(to top, #ae27e8f5, #cf27e8f7);
+  background-image: linear-gradient(to top, #ae27e8f5, #cf27e8f7)!important;
 }
-.likes-area .back-icon{
-  transform: rotate(45deg);
-  margin: 3px 7px ;
+.back-icon-reverse{
+  transform: rotate(45deg)!important;
+  margin: 3px 7px !important;
 }
 .likes-list-box{
-  /* width:32%; */
   flex: 0 1 calc(33% - 10px);
   border-bottom: 1px solid gray;
-  background: #FFFFFFAB;
+  background: #FFFFFFDD;
   padding: 4px 0;
   margin: 7px 5px;
   display: grid;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
   grid-template-columns:5px 1fr 3fr 3fr 5px;
   grid-template-rows: 10% 25px 10%;
   align-items: center;
@@ -76,7 +66,6 @@
   grid-column: 2/3;
 }
 .likes-list-box a{
-  color: black;
   grid-row: 2/3;
   grid-column: 3/4;
 }
@@ -92,9 +81,7 @@
 .ind-message:hover{
   transform: scale(1) translateX(2px) ;
 }
-div{
-  -webkit-font-smoothing: subpixel-antialiased;
-}
+
 .message-loading-text{
   grid-column: 5/6;
   grid-row: 3/6;

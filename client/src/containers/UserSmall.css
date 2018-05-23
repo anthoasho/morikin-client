@@ -1,10 +1,9 @@
 
 .user-profile-small{
-  grid-column: 2 / 3;
-  grid-row: 3/4;
   padding-top: 10px;
   display: grid;
-  grid-gap: 1em;
+  grid-gap: 0.5em;
+  box-sizing: border-box;
   overflow: hidden;
   justify-items: center;
   background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
@@ -12,8 +11,25 @@
   width:100%;
   box-shadow: -1px 2px 10px rgba(0,0,0,0.7);
   position: sticky;
-  max-height: 90vh;
-  overflow-y: inherit;
+  max-width: 100%;
+  padding: 10px 2px 0;
+  margin-bottom: 10px;
+}
+.user-profile-container{
+  overflow-y: scroll;
+  /* background: #FFFFFF30; */
+  padding-right: 4px;
+  grid-column: 2 / 3;
+  grid-row: 3/4;
+  max-height: calc(100vh - 65px);
+}
+.user-profile-small  > ::-webkit-scrollbar-thumb:hover{
+  border-radius: 0px;
+  background: rgba(44, 44, 44, 0.8);
+  transition: color 1s ease-in;
+  z-index: 10;
+  position: absolute;
+
 }
 .user-follow{
   width: 100%;

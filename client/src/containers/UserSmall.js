@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 const UserSmall = ({currentUser, profile, ui}) => {
   if(profile.loading || !profile.user.username){
    return(
+       <div className = "user-profile-container" >
      <div className = "user-profile-small" >
        <ProfileImg
          loading={profile.loading}
@@ -20,12 +21,13 @@ const UserSmall = ({currentUser, profile, ui}) => {
        <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> Loading  </p>
          <h3 style={{borderBottom: `4px solid purple`, margin: "0"}}>...</h3>
        </div>
-
+      </div>
      </div>
      );
    }
     let {username, following, profileImgUrl, profileColor, description, displayName} = profile.user;
     return(
+      <div className = "user-profile-container" >
       <div className = "user-profile-small" >
         <ProfileImg
           username={username}
@@ -43,6 +45,7 @@ const UserSmall = ({currentUser, profile, ui}) => {
           profile={profile.user}
           username={username}
         />
+        </div>
          {ui.display && <FollowList /> }
       </div>
     )
