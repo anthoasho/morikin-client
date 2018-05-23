@@ -15,11 +15,74 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  /* align-items: flex-start; */
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 5px;
+  background: #FFFFFF30;
+  border-radius: 5px;
+  padding: 0 0 5px 0;
+  overflow: hidden;
 }
-.likes-inner{
-  width: 65%;
+.likes-title{
+  align-self: flex-end;
+  color: white;
+  font-weight: 400;
+  padding: 2px;
+  margin: 0 5px ;
+  width: 100%;
+  text-align: right;
+}
+.likes-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.likes-list{
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.likes-area .back-button{
+  display: flex;
+  background-image: linear-gradient(to top, #ae27e8f5, #cf27e8f7);
+}
+.likes-area .back-icon{
+  transform: rotate(45deg);
+  margin: 3px 7px ;
+}
+.likes-list-box{
+  /* width:32%; */
+  flex: 0 1 calc(33% - 10px);
+  border-bottom: 1px solid gray;
+  background: #FFFFFFAB;
+  padding: 4px 0;
+  margin: 7px 5px;
+  display: grid;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  grid-template-columns:5px 1fr 3fr 3fr 5px;
+  grid-template-rows: 10% 25px 10%;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.likes-list-box .img-wrapper{
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+.likes-list-box a{
+  color: black;
+  grid-row: 2/3;
+  grid-column: 3/4;
+}
+.likes-list-box .follow-container{
+  grid-row: 2/3;
+  grid-column: 4/5;
 }
 .color-message-border{
   grid-column: 1/2;

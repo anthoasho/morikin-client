@@ -57,8 +57,11 @@ const messages = (state = initialState, action) => {
         likes: action.users
       }
     case  UPDATE_LIKE_LIST:
-        state.likes = changeState(action.id, action.update, state.likes);
-        return {...state, likes: [...state.likes]}
+      let newLikes = changeState(action.id, action.update, state.likes);
+      return {
+        ...state,
+        likes: [...newLikes]
+      }
     default:
       return state;
   }
@@ -96,7 +99,6 @@ function stateWithLikeMessage(data, state){
 function changeState(id, data, state){
   let test = state;
     for (var i in test){
-      //This was a bit of a headache
       let idToString = id.toString();
       if(i === idToString){
         test[i].following = data;

@@ -1,5 +1,6 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import {addError, removeError} from "./errors";
+import {updateLikeList} from "./messages";
 import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE, GET_DISCOVER_USERS, CLEAR_FOLLOW} from "../actionTypes";
 
 export const loadProfile = user => ({
@@ -110,13 +111,19 @@ export const followUser = ([userId, location, itemNum]) => {
       if(location==="followList"){
         dispatch(updateFollowList(res.following, itemNum));
         dispatch(removeError());
-      }else{
+      }else if(location ==="likesList"){
+        console.log(updateLikeList)
+        dispatch(updateLikeList(res.following, itemNum));
+        dispatch(removeError());
+      }
+        else{
       dispatch(updateProfile(res));
       dispatch(removeError());
 
     }
      })
     .catch(err =>{
+      console.log(err)
       dispatch(addError(err.errors.message));
     });
   };

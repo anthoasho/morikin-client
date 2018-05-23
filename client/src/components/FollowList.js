@@ -16,7 +16,7 @@ const FollowersList =  (props) => {
     if(!props.followUsers.length < 1){
       //Similar to messages; maps over the the returned data and makes a list of followers with functioning following buttons (reason for currentUser)
     FollowerList = props.followUsers.map( (user, index) => (
-      <Follow {...user} currentUser={props}  itemNum={index} key={`${index}${user.username}`} />
+      <Follow {...user} currentUser={props} followType={"followList"}  itemNum={index} key={`${index}${user.username}`} />
     ))}else{
     FollowerList = <h3>Uh-oh, there is nothing here yet! :(</h3>
     }

@@ -27,7 +27,7 @@ const followButton = (props) => {
     case "unfollow":
       return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`}onClick={handleFollow} >unfollow </button>
     case "profileEdit":
-      return   <Link to={`/editprofile`} style={{width: "80%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%"}} onClick={props.handleProfileOptions} >Edit Profile</button></Link>
+      return   <Link to={`/editprofile`} style={{width: "100%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%", fontSize: "70%"}} onClick={props.handleProfileOptions} >Edit Profile</button></Link>
     default:
     return  <button  className={`follow-button unfollow-button`} style={{background: "gray"}}>loading...</button>
   }

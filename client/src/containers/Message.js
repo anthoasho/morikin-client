@@ -42,11 +42,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
 
   function showLikes(){
   if(likeId === _id){
-      return <div className="likes-area">
-        <div className="likes-inner">
-        <MessageLikes />
-        </div>
-        </div>
+      return  <MessageLikes />
   }
 }
 

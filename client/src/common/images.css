@@ -1,7 +1,7 @@
 .img-wrapper{
   display: grid;
-  grid-template-columns: 10px 1fr 10px;
-  grid-template-rows:10px  1fr 10px ;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-rows:10%  1fr 10% ;
   align-items: center;
   justify-content: center;
 }
@@ -17,7 +17,7 @@
 .profile-picture{
   display: block;
   border-radius: 50%;
-  width: 70%;
+  width: 100%;
   height: auto;
   margin: auto;
 }
