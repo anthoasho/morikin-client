@@ -1,14 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
-import ProfileImg from "../common/ProfileImg";
+import ProfileImg from "../../common/ProfileImg";
 import classNames from "classnames";
-import {DeleteButton} from "../common/Button";
+import {DeleteButton} from "../../common/Button";
 import {connect} from "react-redux";
-import {getFollowList} from "../store/actions/userProfile";
-import {lastMessageCheck} from "../store/actions/messages";
-import {showLikesList} from "../store/actions/UI";
-import MessageLikes from "./MessageLikes";
+import {getFollowList} from "../../store/actions/userProfile";
+import {lastMessageCheck} from "../../store/actions/messages";
+import {showLikesList} from "../../store/actions/UI";
+import ListUsers from "../../common/ListUsers";
 import "./Message.css";
 /*Temporary styling for colors for each user*/
 function randomColor(){
@@ -17,9 +17,6 @@ function randomColor(){
   let green = Math.floor(Math.random() * 255);
   return `rgb(${red}, ${blue}, ${green})`;
 }
-
-
-
 let color = randomColor();
 const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id, isLast, lastMessageCheck, showLikesList, ui}) => {
   function handleLikesShow(id){
@@ -42,7 +39,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
 
   function showLikes(){
   if(likeId === _id){
-      return  <MessageLikes />
+      return  <ListUsers type="likes" />
   }
 }
 

@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {connect } from "react-redux";
-import {editProfile} from "../store/actions/userProfile";
+import {editProfile} from "../../store/actions/userProfile";
 // import {Link} from "react-router-dom";
 import "./EditProfile.css";
-import ProfileImg from "../common/ProfileImg";
-import Input from "../common/InputField";
+import ProfileImg from "../../common/ProfileImg";
+import Input from "../../common/InputField";
 class EditProfile extends Component{
   constructor(props){
     super(props)
@@ -32,10 +32,13 @@ class EditProfile extends Component{
   handleSubmit = e =>{
     e.preventDefault();
     this.props.editProfile(this.state)
+    this.props.history.push("/")
   }
   handleFocus = e=>{
     e.preventDefault();
   }
+
+  //TODO redesign/alter this
   render(){
     const {username, email, displayName,  profileImgUrl, profileColor, description} = this.state;
     const {errors, user} = this.props;

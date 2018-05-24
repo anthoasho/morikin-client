@@ -14,22 +14,25 @@
   max-width: 100%;
   padding: 10px 2px 0;
   margin-bottom: 10px;
+  overflow: hidden;
+  flex: 1 0 ;
 }
+
 .user-profile-container{
-  overflow-y: scroll;
-  /* background: #FFFFFF30; */
   padding-right: 4px;
   grid-column: 2 / 3;
   grid-row: 3/4;
   max-height: calc(100vh - 65px);
+  display: flex;
+  flex-direction: column;
 }
+
 .user-profile-small  > ::-webkit-scrollbar-thumb:hover{
   border-radius: 0px;
   background: rgba(44, 44, 44, 0.8);
   transition: color 1s ease-in;
   z-index: 10;
   position: absolute;
-
 }
 .user-follow{
   width: 100%;
@@ -60,6 +63,9 @@
   margin-bottom: 0px;
   padding: 4px 0;
 
+}
+.follow-container{
+  width:70%;
 }
 .user-meta-item{
   padding: 0 8px;

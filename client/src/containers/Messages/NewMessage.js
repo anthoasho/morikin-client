@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {connect } from "react-redux";
 import "./NewMessage.css";
-import  {postNewMessage}  from "../store/actions/messages";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../store/actions/animate";
-import {Button} from "../common/Button";
-import {showNewMessage} from "../store/actions/UI";
-import SlideBox from "../common/SlideBox"
+import  {postNewMessage}  from "../../store/actions/messages";
+import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
+import {Button} from "../../common/Button";
+import {showNewMessage} from "../../store/actions/UI";
+import SlideBox from "../../common/SlideBox"
 class NewMessage extends Component{
     constructor(props){
     super(props);
@@ -71,7 +71,7 @@ class NewMessage extends Component{
     render(){
     const currentCharacterCount = this.characterCount(this.state.text);
     const content = (
-      <div className="hidden-contents">
+      <div className="new-inner-contents">
         {this.props.errors.message && (<div>{this.props.errors.message}</div>)}
         <form
          onSubmit={this.handleSubmit}
@@ -104,8 +104,6 @@ class NewMessage extends Component{
           exitReverse={null}
           backAction={this.goBack}
           content={content} />
-      {/*  <div onClick={this.goBack} className={classNames({"fullscreen": true, "disable-click": this.state.loading})}> Disable click necessary to prevent a bug which logs the user out if clicked during loading sequence
-        </div> */}
       </div>
       );
   }

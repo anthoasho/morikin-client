@@ -25,8 +25,6 @@ nav{
   grid-row: 1/4;
   align-self: stretch;
   justify-self: center;
-
-
 }
 .nav-logo svg {
   background: gray;

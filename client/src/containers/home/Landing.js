@@ -1,10 +1,10 @@
 import React from "react";
-import {Button} from "../common/Button";
-import AuthForm from "../components/AuthForm";
+import {Button} from "../../common/Button";
+import AuthForm from "../settings/AuthForm";
 import {Switch, Route} from "react-router-dom";
 import {connect } from "react-redux";
-import {authUser } from "../store/actions/auth";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../store/actions/animate";
+import {authUser } from "../../store/actions/auth";
+import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import classNames from "classnames";
 import "./Landing.css";
 

@@ -4,15 +4,15 @@ import {connect } from "react-redux";
 import BodyContainer from "./BodyContainer";
 import Navbar from "./Navbar";
 import { removeError } from "../store/actions/errors";
-import EditProfile from "../components/EditProfile.js"
-import NewMessage from "../components/NewMessage";
+import EditProfile from "./settings/EditProfile.js"
+import NewMessage from "./Messages/NewMessage";
 import withAuth from "../hocs/withAuth";
-import LandingPage from "../components/Landing";
+import LandingPage from "./home/Landing";
 //"Main" handles most of the URL with react-router - It should be renamed.
-const Main = props => {
+const RouterConfig = props => {
   const {currentUser } = props;
 
-  
+
   return(
     currentUser.isLoggedIn ?
       <div className="container">
@@ -84,4 +84,4 @@ function mapStateToProps(state){
   };
 }
 
-export default withRouter(connect(mapStateToProps, {removeError})(Main));
+export default withRouter(connect(mapStateToProps, {removeError})(RouterConfig));

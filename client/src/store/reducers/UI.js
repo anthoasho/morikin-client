@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE} from "../actionTypes";
 
 const DEFAULT_STATE = {
   popUp: {
@@ -8,7 +8,8 @@ const DEFAULT_STATE = {
       url: null
   },
   follow:{
-    display: false
+    display: false,
+    animateOut: false
   },
   newMessage:{
     display:false
@@ -57,7 +58,15 @@ export default(state = DEFAULT_STATE, action) =>{
           url: null
         }
       }
-
+    case ANIMATE_CLOSE:
+      return {
+        ...state,
+        [action.select]:
+          {
+            ...state[action.select],
+            animateOut: true
+          }
+      }
     case SHOW_NEW_MESSAGE:
       return{
         ...state,

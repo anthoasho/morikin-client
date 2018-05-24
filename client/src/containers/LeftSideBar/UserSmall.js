@@ -1,9 +1,9 @@
 import React from "react";
 import "./UserSmall.css";
-import {UserMetaGroup} from "../containers/UserMetaGroup";
-import FollowButton from "../common/FollowButton";
-import ProfileImg from "../common/ProfileImg";
-import FollowList from "../components/FollowList";
+import {UserMetaGroup} from "./UserMetaGroup";
+import FollowButton from "../../common/FollowButton";
+import ProfileImg from "../../common/ProfileImg";
+import ListUsers from "../../common/ListUsers";
 import {connect} from "react-redux";
 
 //User profile area on the left of the main timeline
@@ -28,25 +28,25 @@ const UserSmall = ({currentUser, profile, ui}) => {
     let {username, following, profileImgUrl, profileColor, description, displayName} = profile.user;
     return(
       <div className = "user-profile-container" >
-      <div className = "user-profile-small" >
-        <ProfileImg
-          username={username}
-          profileImg= {profileImgUrl}
-          profileColor={profileColor}
-          loading={false}
-        />
-        <div className="user-follow">
-        <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> @{username}  </p>
-          <h3 style={{borderBottom: `4px solid ${profileColor}`, margin: "0"}}>{displayName}</h3>
-          <p className="profile-description">{description}</p>
-          <FollowButton username={username} current={currentUser} followType={[username]} following={following} />
+        <div className = "user-profile-small" >
+          <ProfileImg
+            username={username}
+            profileImg= {profileImgUrl}
+            profileColor={profileColor}
+            loading={false}
+          />
+          <div className="user-follow">
+          <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> @{username}  </p>
+            <h3 style={{borderBottom: `4px solid ${profileColor}`, margin: "0"}}>{displayName}</h3>
+            <p className="profile-description">{description}</p>
+            <FollowButton username={username} current={currentUser} followType={[username]} following={following} />
+          </div>
+          <UserMetaGroup
+            profile={profile.user}
+            username={username}
+          />
         </div>
-        <UserMetaGroup
-          profile={profile.user}
-          username={username}
-        />
-        </div>
-         {ui.display && <FollowList /> }
+         {ui.display && <ListUsers type="follow" /> }
       </div>
     )
 

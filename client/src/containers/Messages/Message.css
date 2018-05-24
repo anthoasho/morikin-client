@@ -1,85 +1,23 @@
 .ind-message{
-  justify-content: stretch;
-  display:grid !important;
+  display:grid!important;
   grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
   grid-template-rows: 10px 20px 1fr 20px 10px;
   overflow: hidden;
   border-radius: 3px;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   border: none!important;
   transition: transform 0.15s ease-out;
   -webkit-font-smoothing: subpixel-antialiased;
   grid-row-gap: 4px;
+}
 
-}
-.likes-area{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  background: #FFFFFF30;
-  border-radius: 5px;
-  padding: 0 0 5px 0;
-  overflow: hidden;
-}
-.likes-title{
-  align-self: flex-end;
-  color: white;
-  font-weight: 400;
-  padding: 2px;
-  margin: 0 5px ;
-  width: 100%;
-  text-align: right;
-}
-.likes-list{
-  width: 100%;
-  display: flex;
-  align-content: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  text-align: center;
-}
-.back-button-reverse{
-  display: flex;
-  background-image: linear-gradient(to top, #ae27e8f5, #cf27e8f7)!important;
-}
-.back-icon-reverse{
-  transform: rotate(45deg)!important;
-  margin: 3px 7px !important;
-}
-.likes-list-box{
-  flex: 0 1 calc(33% - 10px);
-  border-bottom: 1px solid gray;
-  background: #FFFFFFDD;
-  padding: 4px 0;
-  margin: 7px 5px;
-  display: grid;
-  grid-template-columns:5px 1fr 3fr 3fr 5px;
-  grid-template-rows: 10% 25px 10%;
-  align-items: center;
-  font-size: 0.8rem;
-}
-.likes-list-box .img-wrapper{
-  grid-row: 2/3;
-  grid-column: 2/3;
-}
-.likes-list-box a{
-  grid-row: 2/3;
-  grid-column: 3/4;
-}
-.likes-list-box .follow-container{
-  grid-row: 2/3;
-  grid-column: 4/5;
-}
 .color-message-border{
   grid-column: 1/2;
   grid-row: 1/6;
   margin: 0;
 }
 .ind-message:hover{
-  transform: scale(1) translateX(2px) ;
+  transform: translateY(-1px) ;
 }
 
 .message-loading-text{
@@ -98,14 +36,12 @@
 .message-username{
   grid-row: 2/3;
   grid-column: 3/5;
-  display:flex;
-  flex-wrap:nowrap;
+  overflow: hidden;
 }
 .message-text{
   grid-row: 3/4;
-  grid-column: 3/5;
+  grid-column: 3/6;
   margin: 0;
-  align-self: start;
   white-space: pre-line;
 }
 .message-likes{
@@ -114,6 +50,9 @@
   display: flex;
   align-items:center;
   justify-content: space-around;
+}
+.message-likes span {
+  margin-left: 6px;
 }
 
 .time{
@@ -129,7 +68,6 @@
   background: gray;
   transform: rotate(-45deg);
   transition: all 0.3s ease;
-  display: inline-block;
   cursor: pointer;
 }
 .like-button:before,

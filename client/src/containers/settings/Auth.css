@@ -21,6 +21,17 @@
   border-radius: 1%;
   cursor: pointer;
 }
+.back-button-reverse{
+  display: flex;
+    flex: 0 0;
+    background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF)!important;
+    z-index: 2;
+    position:relative;
+}
+.back-icon-reverse{
+  transform: rotate(45deg)!important;
+  margin: 3px 7px !important;
+}
 .login-error{
   color: red;
   grid-row:1/2;

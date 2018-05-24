@@ -1,9 +1,7 @@
 .message-container{
   grid-column: 4/5;
   grid-row: 3/5;
-  /* background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 ); */
   border-radius: 3px;
-  /* height:90vh; */
   overflow-y: scroll;
   overflow-x: hidden;
   padding-right: 5px;
@@ -11,7 +9,6 @@
   transform: translateX(0%);
   max-height: calc(100vh - 65px);
 }
-
 .page-change{
   width: 95%;
   margin: 10px auto;
@@ -31,15 +28,15 @@
 }
 
 .page-change h3{
-/* margin:10px  auto; */
-/* padding: 3px 3px; */
+margin:10px  auto;
+padding: 3px 3px;
 }
 .page-change-active:hover {
-  transform: scale(1.01);
+  transform: translateY(-1px);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 .page-change-active:active{
-  transform: scale(1.01) translateX(2px);
+  transform: translateY(1px);
 }
 @media only screen and (max-device-width: 480px) {
   .message-container{

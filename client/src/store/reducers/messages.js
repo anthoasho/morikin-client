@@ -27,6 +27,7 @@ const messages = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        isLast: false,
         data: [...action.messages]
       }// FIX the continuous scroll by allowing it to concat with prevState -- perhaps it's worth making that a separate state?
     case ANIMATE_REMOVE_MESSAGE:

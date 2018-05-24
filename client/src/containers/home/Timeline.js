@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import MessageList from "../containers/MessageList";
-import UserSmall from "../containers/UserSmall";
-import {getUserProfile, followUser, getDiscoverUsers} from "../store/actions/userProfile";
-import { fetchMessages, updateMessages } from "../store/actions/messages";
-import {clearAllPopUps} from "../store/actions/UI";
+import MessageList from "../Messages/MessageList";
+import UserSmall from "../LeftSideBar/UserSmall";
+import {getUserProfile, followUser, getDiscoverUsers} from "../../store/actions/userProfile";
+import { fetchMessages, updateMessages } from "../../store/actions/messages";
+import {clearAllPopUps} from "../../store/actions/UI";
 import {connect } from "react-redux";
-import PopError from "../common/error";
-import Discover from "../containers/Discover";
+import PopError from "../../common/error";
+import Discover from "../RightSideBar/Discover";
 
 
 class Timeline extends Component{

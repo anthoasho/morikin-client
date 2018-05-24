@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE} from "../actionTypes";
 import {getFollowList, clearFollowList} from "./userProfile";
 import {getLikeList} from "./messages";
 
@@ -25,6 +25,11 @@ export const likesList = (obj) => ({
 export const hideLikes = () => ({
   type: CLOSE_LIKES
 })
+
+export const animateHide = (select) => ({
+  type: ANIMATE_CLOSE,
+  select
+})
 export const clearAll = () => ({
   type: CLEAR_ALL
 })
@@ -36,7 +41,10 @@ export const showMessageBox = (obj) => {
 export const showLikesList = (obj, hide) => {
   return dispatch => {
     if(hide) {
-      dispatch(hideLikes());
+      dispatch(animateHide(hide))
+      setTimeout( () => {
+        dispatch(hideLikes());
+      }, 400)
     }else{
       dispatch(getLikeList(obj.url)).then(()=> {
         dispatch(likesList(obj))
@@ -63,9 +71,14 @@ export const clearAllPopUps = () => {
     dispatch(clearAll())
   }
 }
-export const popUpHide = () => {
+export const popUpHide = (select) => {
   return dispatch => {
-    dispatch(hideFollow())
-    dispatch(clearFollowList())
+    dispatch(animateHide(select))
+    setTimeout( () => {
+
+      dispatch(hideFollow())
+      dispatch(clearFollowList())
+    }, 400)
+
   }
 }

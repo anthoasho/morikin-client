@@ -6,14 +6,6 @@ const addDefaultSrc = (e) => {
   e.target.src = require("../images/logo.svg");
   e.target.style = "opacity: 0.3"
 }
-// const profileImgCheck (e) => {
-//   if(props.profileImg.length() < 1) {
-//      return addDefaultSrc(e)
-//    }
-//    else{
-//       return props.profileImg
-//    }
-// }
 //A random color if the user has not specified a color, this will later become a default purple within the actual database (user.profileColor)
 function randomColor(){
   let red = Math.floor(Math.random() * 255);

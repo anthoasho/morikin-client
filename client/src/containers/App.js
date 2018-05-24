@@ -1,10 +1,8 @@
-/* This really needs to be cleaned up - find a way to split this into other files */
 import React from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import {configureStore} from "../store";
-
-import Main from "./Main";
+import RouterConfig from "./RouterConfig";
 import "../common/common.css";
 import {setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwt from "jsonwebtoken";
@@ -22,7 +20,7 @@ if(localStorage.jwtToken){
 const App = () => (
   <Provider store = {store}>
     <Router>
-        <Main />
+        <RouterConfig />
     </Router>
   </Provider>
   );

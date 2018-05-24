@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import "./Auth.css"
-import Input from "../common/InputField";
-import {Button} from "../common/Button";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../store/actions/animate";
-import { removeError } from "../store/actions/errors";
+import Input from "../../common/InputField";
+import {Button} from "../../common/Button";
+import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
+import { removeError } from "../../store/actions/errors";
 import {connect} from "react-redux";
-import SlideBox from "../common/SlideBox";
+import SlideBox from "../../common/SlideBox";
 class AuthForm extends Component {
   constructor(props){
     super(props);

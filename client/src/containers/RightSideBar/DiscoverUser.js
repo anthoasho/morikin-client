@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileImg from "../common/ProfileImg";
+import ProfileImg from "../../common/ProfileImg";
 import {Link} from "react-router-dom";
 
 const DiscoverUser = props => {

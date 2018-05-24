@@ -1,9 +1,9 @@
 import React from "react";
 import Message from "./Message";
-import { removeMessage, likeMessage } from "../store/actions/messages";
+import { removeMessage, likeMessage } from "../../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
-import NewMessage from "../components/NewMessage";
+import NewMessage from "./NewMessage";
 const MessageList = props =>{
   const  {messages, removeMessage, currentUser, likeMessage, ui} = props;
   let MessageList;
