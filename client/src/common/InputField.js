@@ -54,7 +54,7 @@ class Input extends Component{
   handleBlur = e =>{
     e.preventDefault();
     this.setState({
-      active:false,
+      active:false
     })
     this.requirementTest();
   }
@@ -75,6 +75,7 @@ class Input extends Component{
             </p>
             <input
               className={classNames({"input-box": true, "input-error": this.state.error})}
+              style={this.state.error ? {boxShadow: "0 2px 0px 0px #FF0000"} : {boxShadow: "0 1px 0px 0px gray"}}
               type={type}
               name={name}
               placeholder=""
@@ -83,9 +84,11 @@ class Input extends Component{
               onBlur={this.handleBlur}
               onChange={this.handleChange}
             />
+            <div className={classNames({"input-hr-holder":true, "input-hr-holder-active":this.state.active})}>
             <hr
               className={classNames({"input-hr":true, "hr-active":this.state.active})}
             />
+            </div>
           </div>
 
     return(

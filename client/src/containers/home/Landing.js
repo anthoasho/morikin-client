@@ -5,6 +5,7 @@ import {Switch, Route} from "react-router-dom";
 import {connect } from "react-redux";
 import {authUser } from "../../store/actions/auth";
 import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
+import {removeError} from "../../store/actions/errors";
 import classNames from "classnames";
 import "./Landing.css";
 
@@ -20,10 +21,12 @@ const LandingPage = (props) =>{
     if(type==="next"){
       props.animateExit();
       props.animateEnter();
+      props.removeError();
       props.history.push(e)
     }else if(type==="back"){
       props.animateExitReverse();
       props.animateEnterReverse();
+      props.removeError();
       props.history.push(e)
 
   }
@@ -87,4 +90,4 @@ function mapStateToProps(state){
     animate: state.animate
   };
 }
-export default connect(mapStateToProps, {authUser, animateEnter, animateEnterReverse, animateExit, animateExitReverse})(LandingPage);
+export default connect(mapStateToProps, {authUser, animateEnter, animateEnterReverse, animateExit, animateExitReverse, removeError})(LandingPage);
