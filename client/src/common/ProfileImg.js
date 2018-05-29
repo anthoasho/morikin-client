@@ -3,6 +3,7 @@ import "./images.css";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import {Link} from "react-router-dom";
 const addDefaultSrc = (e) => {
+  this.onerror=null;
   e.target.src = require("../images/logo.svg");
   e.target.style = "opacity: 0.3"
 }
@@ -17,6 +18,7 @@ const ProfileImg = (props) => {
   return(
     !props.loading ?
     <div className="img-wrapper">
+
     <Link className="img-link" to={`/${props.username}`} >
         <img onError={addDefaultSrc} //If there is an error with the loading of the profile picture, the default logo will display instead
         className="profile-picture"

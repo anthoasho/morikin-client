@@ -11,62 +11,15 @@ import LandingPage from "./home/Landing";
 //"Main" handles most of the URL with react-router - It should be renamed.
 const RouterConfig = props => {
   const {currentUser } = props;
-
-
   return(
     currentUser.isLoggedIn ?
       <div className="container">
-      <Navbar history={props.history} location={props.location} />
+       <Navbar history={props.history} location={props.location} />
         <Switch>
-        {/*<Route exact path="/:id/followers" render={props =>
-          <BodyContainer
-            currentUser={currentUser}
-            profile={currentUser}
-            {...props}
-            follow="follow"
-            title="Followers"
-          />
-        }
-        />
-        <Route exact path="/:id/following" render={props =>
-          <BodyContainer
-            currentUser={currentUser}
-            profile={currentUser}
-            {...props}
-            follow="follow"
-            title="Following"
-          />
-        }
-        />
-
-        <Route path="/message/:mid/likes" render={props =>
-          <FollowList
-            url={props.match.url}
-            key={`123`}
-            history={props.history}
-            type={"likes"}
-            title="Likes"
-          />
-        } />
-        */}
-        <Route exact path = "/" render={props =>
-          <BodyContainer
-            currentUser={currentUser}
-            profile={currentUser}
-            {...props}
-          />}
-        />
-        <Route exact path="/new" component={withAuth(NewMessage)} />
-        <Route exact path ="/editprofile" component={withAuth(EditProfile)}
-          />
-            <Route path="/:id/" render={props =>
-              <BodyContainer
-                currentUser={currentUser}
-                profile={currentUser}
-                {...props}
-                />}
-              />
-
+          <Route exact path = "/" component={BodyContainer} />
+          <Route exact path="/new" component={withAuth(NewMessage)} />
+          <Route exact path ="/editprofile" component={withAuth(EditProfile)} />
+          <Route path="/:id/" component={BodyContainer}/>
         </Switch>
 
       </div>
@@ -80,8 +33,44 @@ const RouterConfig = props => {
 function mapStateToProps(state){
   return {
     currentUser: state.currentUser,
-    errors: state.errors
+    errors: state.errors,
+    isMobile: state.isMobile
   };
 }
 
 export default withRouter(connect(mapStateToProps, {removeError})(RouterConfig));
+
+
+
+
+/*<Route exact path="/:id/followers" render={props =>
+  <BodyContainer
+    currentUser={currentUser}
+    profile={currentUser}
+    {...props}
+    follow="follow"
+    title="Followers"
+  />
+}
+/>
+<Route exact path="/:id/following" render={props =>
+  <BodyContainer
+    currentUser={currentUser}
+    profile={currentUser}
+    {...props}
+    follow="follow"
+    title="Following"
+  />
+}
+/>
+
+<Route path="/message/:mid/likes" render={props =>
+  <FollowList
+    url={props.match.url}
+    key={`123`}
+    history={props.history}
+    type={"likes"}
+    title="Likes"
+  />
+} />
+*/

@@ -25,25 +25,29 @@ const MessageList = props =>{
     {ui.newMessage.display &&
       <NewMessage />}
       {MessageList}
-      {loadingTest(props)}
+      {loadMoreContent(props)}
     </div>
   );
 };
-const loadingTest = props =>{
+
+
+const loadMoreContent = props =>{
   const {messages, bottomClick} = props;
   if(messages.loading){
     return  <div className={"item-box page-change"}> <h3> Loading </h3> </div>
   }else if(messages.isLast || messages.data.length < 1){
-    return <div className={"item-box page-change"}> <h3> No More Content </h3> </div>
+    return <div className={"item-box pag-change inactive"}> <h3> No More Content </h3> </div>
   }
   else{
-    return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}> <h3> See more </h3> </div>
+    return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}> <h1> + </h1> </div>
   }
 }
 
 function mapStateToProps(state){
   return {
-    ui: state.ui
+    ui: state.ui,
+    messages: state.messages,
+    currentUser: state.currentUser.user.userId
     };
 }
 export default connect(mapStateToProps, {removeMessage, likeMessage})(MessageList);

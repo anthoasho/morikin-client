@@ -1,6 +1,7 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import {addError, removeError} from "./errors";
 import {updateLikeList} from "./messages";
+import {isLoading, isLoaded} from "./UI";
 import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE, GET_DISCOVER_USERS, CLEAR_FOLLOW} from "../actionTypes";
 
 export const loadProfile = user => ({
@@ -53,11 +54,12 @@ export const getDiscoverUsers = () => {
 //This is used to get the profile of the user (not including messages, that is a seperate API call)
 export const getUserProfile = (username) => {
   return dispatch => {
-    dispatch(fetchingProfile())
+    dispatch(isLoading());
     return apiCall("get", `/api/user/${username}`) //This previously used the ID of the user, I may revert if necessary.
     .then((res) => {
       dispatch(loadProfile(res));
       dispatch(removeError());
+      dispatch(isLoaded());
     })
     .catch((err) => {
       dispatch(addError(err));

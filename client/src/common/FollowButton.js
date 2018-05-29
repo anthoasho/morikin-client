@@ -34,9 +34,13 @@ const followButton = (props) => {
 }
 return(
   <div className="follow-container">
-  {buttonSelector(buttonType)}
+    {buttonSelector(buttonType)}
   </div>
 )
 }
-
-export default connect(null, {followUser})(followButton);
+function mapStateToProps(state){
+  return {
+    current: state.currentUser.user.username
+  };
+}
+export default connect(mapStateToProps, {followUser})(followButton);

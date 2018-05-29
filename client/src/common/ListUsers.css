@@ -7,6 +7,7 @@
   align-items: center;
   align-content: center;
   border-top: 1px solid grey;
+  margin-left: 4px;
 }
 .likes-list-box{
   flex: 0 1 calc(33.33% - 2px);
@@ -42,7 +43,6 @@
 .follow-list{
   overflow-y: scroll;
   flex: 1 1;
-  max-height: 30%;
   background: white;
   flex-wrap: wrap;
   display: flex !important;
@@ -57,9 +57,12 @@
   justify-content: flex-end;
   flex-wrap: wrap;
   text-align: center;
-  margin-left: 4px;
+  /* margin-left: 4px; */
   max-height: 350px;
   overflow-y: scroll;
+  padding-bottom: 3px;
+  background: #FFFFFF30;
+  /* border-radius: 5px; */
 }
 
 .follow-list-container{
@@ -71,10 +74,9 @@
 }
 .likes-area{
   justify-content: space-between;
-  margin-bottom: 3px;
-  background: #FFFFFF30;
-  border-radius: 5px;
-  padding: 0 0 5px 0;
+  /* margin-bottom: 3px; */
+  background: #FFFFFF00;
+  padding: 0 0 0 0;
   overflow: hidden;
 }
 .likes-title{
@@ -94,20 +96,20 @@
 }
 
 .list-enter{
-    animation: slideInList 0.4s ease-in-out forwards;
+    animation: slideInList 0.3s ease-in-out forwards;
 }
 .list-exit{
-      animation: slideOutList 0.4s ease-in-out  forwards !important;
+      animation: slideOutList 0.3s ease-in-out  forwards !important;
 }
 
 @keyframes slideInList {
   0% {
-    transform: translateY(-50vh);
+    transform: translateY(-100%);
     transform-origin: 100% 0%;
     opacity: 0;
   }
   100% {
-    transform: translateY(0vh);
+    transform: translateY(0%);
     transform-origin:100% 0%;
   }
 }

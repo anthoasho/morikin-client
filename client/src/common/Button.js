@@ -14,7 +14,6 @@ export const Button = (props) => {
    return <button id="signup" className="sign-up-btn" onClick={onClick} >{text}</button>
   case "delete":
     return <button className="delete-btn"> Delete </button>
-
   default:
  return  <button  className={`submit-button`} style={{background: "gray"}}>loading...</button>
 }

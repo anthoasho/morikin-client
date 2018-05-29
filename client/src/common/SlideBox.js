@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 const SlideBox = ({animate, backAction, content, animateEnter, animateEnterReverse, animateExit, animateExitReverse}) =>{
 //When clicking the back button, it will animate outwards (to left) then revert to previous page/action (passed in through props)
   const back = () =>{
-
     animateExitReverse()
     backAction()
   }
@@ -21,8 +20,11 @@ const SlideBox = ({animate, backAction, content, animateEnter, animateEnterRever
                  "exit-animation": animate.exitReverse,
                   "exit-animation-reverse": animate.exit,
                   "enter-animation-reverse": animate.enter,
-                  "enter-animation": animate.enterReverse})} > </div>
-      <div onClick={back} className="back-button"> <div className="back-icon"></div> </div>
+                  "enter-animation": animate.enterReverse})} >
+              </div>
+      <div onClick={back} className="back-button">
+        <div className="back-icon"></div> 
+      </div>
         {content}
     </div>)
 }

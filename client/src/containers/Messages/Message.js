@@ -26,7 +26,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
       url: `/message/${id}/likes`
     }
     if(ui.display === true && likeId ===_id){
-      showLikesList(obj, true)
+      showLikesList(null, "likes");
     }else{
       showLikesList(obj)
     }
@@ -53,7 +53,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
     </div>
   </div>
   :
-  <div>
+  <div className="message-tester">
   <div className={classNames({"ind-message": true, "item-box": true, "ind-message-on-delete": isDeleted})} >
     <ProfileImg
       username={userId.username}

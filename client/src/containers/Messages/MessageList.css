@@ -10,13 +10,21 @@
   max-height: calc(100vh - 65px);
 }
 .page-change{
-  width: 95%;
-  margin: 10px auto;
-  border: 1px solid black;
-  color: #0f75ee;
+  width: 100%;
+  /* margin: 0 auto; */
+  /* border: 1px solid black; */
+  color: white;
+    background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF)!important;
   justify-content: center;
-  border-radius: 3px;
+  border: none !important;
+  /* border-radius: 3px; */
   transition: all 0.3s ease;
+  border-radius: 0  0 3px 0;
+}
+.inactive{
+  opacity: 0.65;
+  background: #FFF!important;
+  color: gray;
 }
 .page-change-active{
   cursor: pointer;
@@ -27,12 +35,15 @@
 
 }
 
-.page-change h3{
-margin:10px  auto;
+.page-change h1{
+margin: 0  auto;
 padding: 3px 3px;
 }
+.page-change h3{
+  margin: 10px auto;
+}
 .page-change-active:hover {
-  transform: translateY(-1px);
+  /* transform: translateY(-1px); */
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 .page-change-active:active{

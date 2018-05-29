@@ -43,6 +43,8 @@ height: 100%;
   padding-right: 3px;
   color: #444444;
   font-size: 0.8rem;
+  white-space: nowrap;
+  
 }
 .delete-btn::after{
   background: #EE40407d;

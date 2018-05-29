@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED} from "../actionTypes";
 import {getFollowList, clearFollowList} from "./userProfile";
 import {getLikeList} from "./messages";
 
@@ -33,6 +33,13 @@ export const animateHide = (select) => ({
 export const clearAll = () => ({
   type: CLEAR_ALL
 })
+export const isLoading = () => ({
+  type: IS_LOADING
+})
+export const isLoaded = () => ({
+  type: IS_LOADED
+})
+
 export const showMessageBox = (obj) => {
   return dispatch => {
     dispatch(showNewMessage())

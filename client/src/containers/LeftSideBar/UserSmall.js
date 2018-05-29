@@ -1,6 +1,7 @@
 import React from "react";
 import "./UserSmall.css";
 import {UserMetaGroup} from "./UserMetaGroup";
+import {followUser} from "../../store/actions/userProfile";
 import FollowButton from "../../common/FollowButton";
 import ProfileImg from "../../common/ProfileImg";
 import ListUsers from "../../common/ListUsers";
@@ -18,8 +19,8 @@ const UserSmall = ({currentUser, profile, ui}) => {
          loading={profile.loading}
        />
        <div className="user-follow">
-       <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> Loading  </p>
-         <h3 style={{borderBottom: `4px solid purple`, margin: "0"}}>...</h3>
+       <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px 50px"}}> Loading  </p>
+
        </div>
       </div>
      </div>
@@ -36,9 +37,9 @@ const UserSmall = ({currentUser, profile, ui}) => {
             loading={false}
           />
           <div className="user-follow">
-          <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> @{username}  </p>
-            <h3 style={{borderBottom: `4px solid ${profileColor}`, margin: "0"}}>{displayName}</h3>
-            <p className="profile-description">{description}</p>
+          <p className="user-profile-username" style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px"}}> @{username}  </p>
+            <h3 className="user-profile-display-name" style={{borderBottom: `2px solid ${profileColor}`, margin: "0"}}>{displayName}</h3>
+            {!ui.display &&<p className="profile-description">{description}</p>}
             <FollowButton username={username} current={currentUser} followType={[username]} following={following} />
           </div>
           <UserMetaGroup
@@ -53,8 +54,10 @@ const UserSmall = ({currentUser, profile, ui}) => {
 };
 function mapStateToProps(state){
   return {
-    ui: state.ui.follow
+    ui: state.ui.follow,
+    profile: state.userProfile,
+    currentUser:state.currentUser.username
   };
 }
 
-export default connect(mapStateToProps, null)(UserSmall);
+export default connect(mapStateToProps, {followUser})(UserSmall);

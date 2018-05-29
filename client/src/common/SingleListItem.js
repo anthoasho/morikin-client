@@ -8,7 +8,7 @@ import {connect } from "react-redux";
 //Individual element within the list of followers, this is used for both followers and following
 const SingleListItem = (props) => {
   return(
-    <div className={`${props.className} list-enter`}>
+    <div className={`${props.className} `}>
       <ProfileImg
         username={props.username}
         profileImg= {props.profileImgUrl}

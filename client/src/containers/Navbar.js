@@ -12,7 +12,6 @@ const Navbar = (props) => {
       method: "postMessage",
     }
     props.showNewMessage(obj)
-
   }
 
   const {logout, history, animateEnter, currentUser} = props;

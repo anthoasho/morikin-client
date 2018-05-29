@@ -9,13 +9,6 @@ import {removeError} from "../../store/actions/errors";
 import classNames from "classnames";
 import "./Landing.css";
 
-/*
----------------------------------------------
-This no longer needs to be a component: TODO make a stateless function
-DONE
----------------------------------------------
-*/
-
 const LandingPage = (props) =>{
   const handleClick = (e, type) =>{
     if(type==="next"){

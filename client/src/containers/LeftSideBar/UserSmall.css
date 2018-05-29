@@ -17,22 +17,15 @@
   overflow: hidden;
   flex: 1 0 ;
 }
-
+.user-profile-small .img-wrapper{
+  width: 65%;
+}
 .user-profile-container{
-  padding-right: 4px;
   grid-column: 2 / 3;
   grid-row: 3/4;
   max-height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
-}
-
-.user-profile-small  > ::-webkit-scrollbar-thumb:hover{
-  border-radius: 0px;
-  background: rgba(44, 44, 44, 0.8);
-  transition: color 1s ease-in;
-  z-index: 10;
-  position: absolute;
 }
 .user-follow{
   width: 100%;
@@ -65,25 +58,11 @@
 
 }
 .follow-container{
-  width:70%;
+  width:90%;
+  text-align: center;
 }
 .user-meta-item{
   padding: 0 8px;
   flex: 1;
 
-}
-@media only screen and (max-device-width: 480px) { /* edit this later for mobiles*/
-  .user-follow{
-    flex:1;
-    align-content: center;
-    justify-content:space-between;
-  }
-  .user-profile-small h3{
-    margin: 0;
-  }
-  .user-profile-small{
-    position: static;
-    margin: 10px 0;
-    display:none;
-  }
 }

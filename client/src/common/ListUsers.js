@@ -10,11 +10,10 @@ const ListUsers =  (props) => {
   //Type decides if the List renders for likes under messages, or followers/following under userprofile
   const {type} = props;
   const goBack = () =>{
-
     if(type === "likes"){
-      props.showLikesList(null, "likes")
+      props.showLikesList(null, "likes");
     }else if(type ==="follow"){
-      props.popUpHide("follow")
+      props.popUpHide("follow");
     }
   }
     let List
@@ -28,10 +27,10 @@ const ListUsers =  (props) => {
     return(
       <div className={type === "follow" ? "follow-list-container" : "likes-area"}>
         <div  onClick={goBack} className="back-button back-button-reverse"> <div className="back-icon back-icon-reverse"></div>  <h3 className="likes-title">
-          {props.ui[type].title} {/*Temporary*/}
+          {props.ui[type].title}
 
         </h3> </div>
-        <div className={`${type}-list`}>
+        <div className={classNames({[`${type}-list`]:true,  "list-enter": true, "list-exit":props.ui[type].animateOut })}>
         {List}
       </div>
         <div onClick={goBack} className=""> </div>

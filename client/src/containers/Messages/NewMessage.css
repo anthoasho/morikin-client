@@ -1,7 +1,7 @@
 .new-message-box{
-  width: 90%;
+  width: 100%;
   margin: auto;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 .new-message-form{
   display:contents;

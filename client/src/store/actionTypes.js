@@ -45,3 +45,5 @@ export const SHOW_NEW_MESSAGE = "SHOW_NEW_MESSAGE";
 export const CLEAR_ALL = "CLEAR_ALL";
 export const GET_DISCOVER_USERS = "GET_DISCOVER_USERS";
 export const ANIMATE_CLOSE = "ANIMATE_CLOSE";
+export const IS_LOADING = "IS_LOADING";
+export const IS_LOADED = "IS_LOADED";

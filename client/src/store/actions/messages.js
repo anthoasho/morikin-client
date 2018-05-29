@@ -1,5 +1,6 @@
 import {apiCall } from "../../services/api";
 import {addError, removeError} from "./errors";
+import {isLoading, isLoaded} from "./UI";
 import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES, LAST_MESSAGE, POST_MESSAGE, LOAD_MSG_LIKES, UPDATE_LIKE_LIST } from "../actionTypes";
 
 
@@ -121,13 +122,15 @@ export const likeMessage = (id) => {
 //otherwise it will return all messages
 export const fetchMessages = (user) => {
   return dispatch => {
-    dispatch(fetchingData());
+    // dispatch(fetchingData());
+    dispatch(isLoading());
     if(user){
       return apiCall("get", `/api/user/${user}/messages/`)
               .then((res) => {
                 dispatch(loadMessages(res));
                 lastMessageCheck(res[res.length -1], dispatch)
                 dispatch(removeError());
+                dispatch(isLoaded());
               })
               .catch((error) => {
                 dispatch(addError(error));
@@ -137,6 +140,7 @@ export const fetchMessages = (user) => {
             .then((res) => {
               dispatch(loadMessages(res));
               lastMessageCheck(res[res.length -1], dispatch)
+              dispatch(isLoaded());
               dispatch(removeError());
             })
             .catch((error) => {

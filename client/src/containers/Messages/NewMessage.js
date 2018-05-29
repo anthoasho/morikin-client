@@ -98,7 +98,7 @@ class NewMessage extends Component{
       </div>
     )
     return(
-      <div className="new-message-box"> {/* Alter this class name to be more site-wide*/}
+      <div className="new-message-box"> 
         <SlideBox
           exit={null}
           exitReverse={null}
