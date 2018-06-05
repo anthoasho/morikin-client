@@ -53,7 +53,7 @@ export class DeleteButton extends Component{
       this.setState({
         loading: true,
         verify: false,
-        text: ""
+        text: "Deleting.."
       })
     this.props.onClick();
     }
@@ -70,6 +70,6 @@ export class DeleteButton extends Component{
 
 }
 DeleteButton.propTypes = {
-  onClick: PropTypes.func.isRequired, 
+  onClick: PropTypes.func.isRequired,
 
 }
