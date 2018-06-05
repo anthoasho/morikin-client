@@ -16,7 +16,6 @@ export const TabNav = props =>{
     props.history.push(`/${page}`)
   }
 if(props.isMobile){
-  console.log(props.history.location.pathname === "/")
   return(
     <div className="tab-nav">
       <div className={classNames({"tab-item": true, "icon-current": props.history.location.pathname === "/"})} onClick = {()=> pageSelector("")}>
