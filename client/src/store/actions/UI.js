@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED, WINDOW_RESIZE} from "../actionTypes";
 import {getFollowList, clearFollowList} from "./userProfile";
 import {getLikeList} from "./messages";
 
@@ -39,7 +39,17 @@ export const isLoading = () => ({
 export const isLoaded = () => ({
   type: IS_LOADED
 })
+export const windowResize = (size) => ({
+  type: WINDOW_RESIZE,
+  size
+})
 
+
+export const resizeFunction = (obj) => {
+  return dispatch => {
+    dispatch(windowResize(obj <= 500))
+  }
+}
 export const showMessageBox = (obj) => {
   return dispatch => {
     dispatch(showNewMessage())

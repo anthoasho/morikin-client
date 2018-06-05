@@ -182,9 +182,11 @@ export const updateMessages = (user, lastMessage) =>{
 export const postNewMessage = text => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.userId;
+  dispatch(isLoading())
   return apiCall("post", `/api/users/${id}/messages`, {text})
   .then(res => {
     dispatch(postMessage(res));
+    dispatch(isLoaded())
   })
   .catch(err => {
     dispatch(addError(err));

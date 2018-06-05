@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import UserMeta from "./UserMetaItem";
 export const UserMetaGroup = ({profile}) => {
   let {messageCount, followerCount, followingCount, username} = profile;
@@ -28,4 +29,11 @@ export const UserMetaGroup = ({profile}) => {
       username={username}
     />
   </div>)
+}
+
+UserMetaGroup.propTypes = {
+  messageCount: PropTypes.number,
+  followerCount: PropTypes.number,
+  followingCount: PropTypes.number,
+  username: PropTypes.string
 }

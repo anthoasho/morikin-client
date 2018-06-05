@@ -8,7 +8,7 @@ import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from
 import {removeError} from "../../store/actions/errors";
 import classNames from "classnames";
 import "./Landing.css";
-
+import PropTypes from "prop-types";
 const LandingPage = (props) =>{
   const handleClick = (e, type) =>{
     if(type==="next"){
@@ -21,7 +21,6 @@ const LandingPage = (props) =>{
       props.animateEnterReverse();
       props.removeError();
       props.history.push(e)
-
   }
 }
   const authThenRedirect = (...args) =>{
@@ -76,6 +75,12 @@ const LandingPage = (props) =>{
     </Switch>
     </div>
   )
+}
+
+LandingPage.propTypes = {
+  animate: PropTypes.object,
+  errors: PropTypes.object,
+  authUser: PropTypes.func
 }
 function mapStateToProps(state){
   return {

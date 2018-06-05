@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import "./Auth.css"
 import Input from "../../common/InputField";
 import {Button} from "../../common/Button";
@@ -86,9 +87,6 @@ render(){
         type="submit"
         text={buttonText} />
   </form></div>)
-    // history.listen(() => {
-    //   removeError();
-    // });
     return(
       <SlideBox
         exit={exit}
@@ -100,7 +98,15 @@ render(){
   }
 }
 
-
+AuthForm.propTypes = {
+  heading: PropTypes.string,
+  buttonText: PropTypes.string,
+  signUp: PropTypes.bool,
+  errors: PropTypes.object,
+  backAction: PropTypes.func,
+  exit: PropTypes.func,
+  exitReverse: PropTypes.func
+}
 
 function mapStateToProps(state){
   return {

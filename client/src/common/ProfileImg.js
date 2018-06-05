@@ -2,11 +2,7 @@ import React from "react";
 import "./images.css";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import {Link} from "react-router-dom";
-const addDefaultSrc = (e) => {
-  this.onerror=null;
-  e.target.src = require("../images/logo.svg");
-  e.target.style = "opacity: 0.3"
-}
+import PropTypes from "prop-types";
 //A random color if the user has not specified a color, this will later become a default purple within the actual database (user.profileColor)
 function randomColor(){
   let red = Math.floor(Math.random() * 255);
@@ -20,16 +16,19 @@ const ProfileImg = (props) => {
     <div className="img-wrapper">
 
     <Link className="img-link" to={`/${props.username}`} >
-        <img onError={addDefaultSrc} //If there is an error with the loading of the profile picture, the default logo will display instead
+        <object onLoad={e => props.profileImg && (e.target.style.opacity = 1)} //If there is an error with the loading of the profile picture, the default logo will display instead
+        // onError = {e => e.target.src = require("../images/logo.svg")}
         className="profile-picture"
         alt={`${props.username}'s profile `}
-        src={props.profileImg ? props.profileImg : require("../images/logo.svg")}
+        data={props.profileImg ? props.profileImg : require("../images/logo.svg")}
+        type="image/jpg"
         style={{
-          boxShadow: `0px 0px 4px ${props.profileColor? props.profileColor : randomColor()}`,
-          opacity: props.profileImg ? 1 : 0.3,                                                  //This displays the logo with an opacity of 0.3 if the user does not have a profile picture
-          borderBottom: `2px solid ${props.profileColor? props.profileColor : randomColor()}`,
-          border: props.profileImg ? 0 :"2px solid #cccccc"}}
-        />
+          boxShadow: `0px 0px 2px 0px ${props.profileColor? props.profileColor : randomColor()}`,
+          opacity: 0.3,                                                  //This displays the logo with an opacity of 0.3 if the user does not have a profile picture
+        }}
+        >
+        <img alt="" className="profile-picture no-img" src={require("../images/logo.svg")} />
+        </object>
     </Link>
     </div>
     :
@@ -48,5 +47,17 @@ const ProfileImg = (props) => {
 
   )
 }
+ProfileImg.propTypes = {
+  username: PropTypes.string,
+  profileImg: PropTypes.string,
+  profileColor: PropTypes.string
+}
 
+
+// const addDefaultSrc = (e) => {
+//   delete e.onerror;
+//   e.target.className = "profile-picture noImg"
+//   console.log(e)
+//   console.log(e.target.className)
+// }
 export default ProfileImg;

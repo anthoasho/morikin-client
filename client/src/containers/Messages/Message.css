@@ -103,7 +103,7 @@ background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
   background: red;
 }
 
-@media only screen and (max-device-width: 480px) { /* edit this later for mobiles*/
+@media only screen and (max-device-width: 500px) { /* edit this later for mobiles*/
 
   .message-container{
     overflow:visible;

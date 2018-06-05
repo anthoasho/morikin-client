@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./Button.css";
 import classNames from "classnames";
-
+import PropTypes from "prop-types";
 
 export const Button = (props) => {
   let {type, onClick, text, loading} = props;
@@ -18,7 +18,12 @@ export const Button = (props) => {
  return  <button  className={`submit-button`} style={{background: "gray"}}>loading...</button>
 }
 }
-
+Button.propTypes = {
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  loading: PropTypes.bool,
+  text: PropTypes.string
+}
 
 export class DeleteButton extends Component{
   constructor(props){
@@ -62,5 +67,9 @@ export class DeleteButton extends Component{
   }
 
 
+
+}
+DeleteButton.propTypes = {
+  onClick: PropTypes.func.isRequired, 
 
 }

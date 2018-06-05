@@ -43,7 +43,7 @@
 .small img{
   max-width: 150px;
 }
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 500px) {
   .edit-profile-container{
     display: flex;
     flex-direction: column;

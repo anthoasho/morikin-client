@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 //Basic error handling - pops up when API returns an error
 const PopError = (props) => {
@@ -12,6 +13,10 @@ const PopError = (props) => {
         </div>
     </div>
   )
+}
+
+PopError.propTypes = {
+  error: PropTypes.obj
 }
 
 function mapStateToProps(state){

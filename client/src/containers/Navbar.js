@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 import { connect } from "react-redux"
 import {logout } from "../store/actions/auth";
@@ -28,6 +29,14 @@ const Navbar = (props) => {
   //     return true
   //   }
   // }
+
+  if(props.isMobile){
+    return (<nav>
+      <NavLink to="/"  className="nav-logo" > <Logo /> </NavLink>
+        <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
+      </nav>
+    )
+  }
   return(
       <nav>
         <div className="nav-logo"> <Logo /> </div>
@@ -38,9 +47,19 @@ const Navbar = (props) => {
       </nav>
     );
 }
+Navbar.propTypes= {
+  currentUser: PropTypes.object,
+  isMobile: PropTypes.bool,
+  logout: PropTypes.func,
+  animateEnter: PropTypes.func,
+  showNewMessage: PropTypes.func
+
+}
+
 function mapStateToProps(state){
   return {
-    currentUser: state.currentUser.user
+    currentUser: state.currentUser.user,
+    isMobile: state.ui.isMobile,
   };
 }
 export default connect(mapStateToProps, {logout, animateEnter, showNewMessage})(Navbar);

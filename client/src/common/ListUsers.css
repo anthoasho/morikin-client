@@ -8,6 +8,7 @@
   align-content: center;
   border-top: 1px solid grey;
   margin-left: 4px;
+  width: 100%;
 }
 .likes-list-box{
   flex: 0 1 calc(33.33% - 2px);

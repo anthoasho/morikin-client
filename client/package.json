@@ -1,12 +1,14 @@
 {
   "name": "morikin-client",
-  "version": "0.1.0",
+  "version": "0.2",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "jsonwebtoken": "^8.2.0",
     "moment": "^2.21.0",
+    "prop-types": "^15.6.0",
+    "react-fontawesome": "^1.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-moment": "^0.7.0",
@@ -19,6 +21,7 @@
     "redux-thunk": "^2.2.0"
   },
   "proxy": "http://localhost:8081",
+  "author": "Anthony Ashurst",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

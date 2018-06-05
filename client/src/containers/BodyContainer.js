@@ -1,10 +1,10 @@
 import React from 'react';
-// import Mobile from "./Mobile/mobile";
+import PropTypes from "prop-types";
+import TabNav from "./Mobile/Tab";
 import Timeline from "./home/Timeline";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 const BodyContainer = (props) => {
-//   if(props.isMobile){
 //     return(
 //     <div className="body-container">
 //       <Mobile
@@ -19,11 +19,18 @@ const BodyContainer = (props) => {
         <Timeline
           key={`timeline:${props.match.url}`}
           />
+        {props.isMobile &&<TabNav />}
       </div>
     )
     // }
-
 };
+
+BodyContainer.propTypes = {
+  currentUser: PropTypes.object,
+  errors: PropTypes.object,
+  isMobile: PropTypes.bool
+}
+
 function mapStateToProps(state){
   return {
     currentUser: state.currentUser,

@@ -5,19 +5,14 @@
   overflow-y: scroll;
   overflow-x: hidden;
   padding-right: 5px;
-  transition: all 1s ease-in-out;
-  transform: translateX(0%);
   max-height: calc(100vh - 65px);
 }
 .page-change{
   width: 100%;
-  /* margin: 0 auto; */
-  /* border: 1px solid black; */
   color: white;
-    background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF)!important;
+  background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF)!important;
   justify-content: center;
   border: none !important;
-  /* border-radius: 3px; */
   transition: all 0.3s ease;
   border-radius: 0  0 3px 0;
 }
@@ -28,11 +23,9 @@
 }
 .page-change-active{
   cursor: pointer;
-
 }
 .page-change-inactive{
   cursor: default;
-
 }
 
 .page-change h1{
@@ -43,13 +36,12 @@ padding: 3px 3px;
   margin: 10px auto;
 }
 .page-change-active:hover {
-  /* transform: translateY(-1px); */
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 .page-change-active:active{
   transform: translateY(1px);
 }
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 500px) {
   .message-container{
     width: 100%;
     overflow: auto;

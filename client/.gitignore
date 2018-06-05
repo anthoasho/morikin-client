@@ -21,5 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 
-# Mobile testing
-/src/containers/Mobile
+#font-awesome
+
+public/fontawesome-all.min.js

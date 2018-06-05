@@ -67,9 +67,21 @@ nav a {
   text-decoration: none;
  }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 500px) {
   nav{
     width: 100%;
+    /* display: flex; */
+    /* text-align: center; */
 
+  }
+  .nav-logo{
+    border: none;
+    grid-column: 6/7;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  .nav g{
+    border: none;
+    /* margin: none!important; */
   }
 }

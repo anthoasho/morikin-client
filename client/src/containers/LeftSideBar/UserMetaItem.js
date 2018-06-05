@@ -1,6 +1,7 @@
 import React from "react";
 import {popUpDisplay, clearAllPopUps} from "../../store/actions/UI";
 import {connect } from "react-redux";
+import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 //Each individual item seen in the Meta group
 const UserMeta = ({text, data, classDefine, username, type, popUpDisplay, ui, history, clearAllPopUps}) => {
@@ -34,6 +35,17 @@ const UserMeta = ({text, data, classDefine, username, type, popUpDisplay, ui, hi
         </div>
     );
 };
+UserMeta.propTypes= {
+  text: PropTypes.string,
+  data: PropTypes.number,
+  classDefine: PropTypes.string,
+  username: PropTypes.string,
+  type: PropTypes.string,
+  popUpDisplay: PropTypes.func,
+  ui: PropTypes.object,
+  history: PropTypes.object,
+  clearAllPopUps: PropTypes.func
+}
 function mapStateToProps(state){
   return {
     ui: state.ui.follow

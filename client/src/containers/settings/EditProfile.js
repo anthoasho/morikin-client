@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {connect } from "react-redux";
 import {editProfile} from "../../store/actions/userProfile";
 // import {Link} from "react-router-dom";
@@ -130,6 +131,14 @@ class EditProfile extends Component{
     )
   }
 }
+EditProfile.propTypes = {
+  user: PropTypes.object,
+  isLoggedIn: PropTypes.bool,
+  errors: PropTypes.object,
+  editProfile: PropTypes.func
+
+}
+
 
 function mapStateToProps(state){
   return {

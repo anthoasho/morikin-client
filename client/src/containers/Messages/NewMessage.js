@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {connect } from "react-redux";
 import "./NewMessage.css";
 import  {postNewMessage}  from "../../store/actions/messages";
 import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import {Button} from "../../common/Button";
 import {showNewMessage} from "../../store/actions/UI";
+import {withRouter} from "react-router-dom";
 import SlideBox from "../../common/SlideBox"
 class NewMessage extends Component{
     constructor(props){
@@ -31,10 +33,8 @@ class NewMessage extends Component{
   //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
   goBack(){
     this.props.animateExitReverse();
-    setTimeout(() => {
-      this.props.showNewMessage();
-    }, 400)
-    // this.props.history.goBack();
+    this.props.showNewMessage();
+    this.props.history.push("/");
   }
   componentWillMount(){
     this.props.animateEnter();
@@ -50,8 +50,9 @@ class NewMessage extends Component{
         text: "",
         loading:true
       });
+
       //2 second delay to simulate loading - purely for test purposes
-      setTimeout(this.props.showNewMessage, 200)
+      setTimeout(this.goBack, 400)
       this.props.animateExit();
       }else if(lengthCheck === 0 ){
         this.setState({
@@ -98,7 +99,7 @@ class NewMessage extends Component{
       </div>
     )
     return(
-      <div className="new-message-box"> 
+      <div className="new-message-box">
         <SlideBox
           exit={null}
           exitReverse={null}
@@ -108,9 +109,19 @@ class NewMessage extends Component{
       );
   }
 }
+NewMessage.propTypes = {
+  errors: PropTypes.obj,
+  postNewMessage: PropTypes.func,
+  animateEnter: PropTypes.func,
+  animateEnterReverse: PropTypes.func,
+  animateExit: PropTypes.func,
+  animateExitReverse: PropTypes.func,
+  showNewMessage: PropTypes.func
+}
+
 function mapStateToProps(state){
   return {
     errors: state.errors
   };
 }
-export default connect(mapStateToProps, {postNewMessage, animateEnter, animateEnterReverse, animateExit, animateExitReverse, showNewMessage})(NewMessage);
+export default withRouter(connect(mapStateToProps, {postNewMessage, animateEnter, animateEnterReverse, animateExit, animateExitReverse, showNewMessage})(NewMessage));

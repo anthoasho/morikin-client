@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import classNames from "classnames";
 import "./InputField.css";
-
+import PropTypes from "prop-types";
 class Input extends Component{
   constructor(props){
     super(props);
@@ -95,5 +95,13 @@ class Input extends Component{
       inputField
     )
   }
+}
+
+Input.propTypes = {
+    value: PropTypes.string,
+    type: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    isRequired: PropTypes.bool
 }
 export default Input;

@@ -1,12 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import ProfileImg from "../../common/ProfileImg";
 import classNames from "classnames";
 import {DeleteButton} from "../../common/Button";
 import {connect} from "react-redux";
-import {getFollowList} from "../../store/actions/userProfile";
-import {lastMessageCheck} from "../../store/actions/messages";
 import {showLikesList} from "../../store/actions/UI";
 import ListUsers from "../../common/ListUsers";
 import "./Message.css";
@@ -18,7 +17,7 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, animate, animateUp, getFollowList, _id, isLast, lastMessageCheck, showLikesList, ui}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, _id,  showLikesList, ui}) => {
   function handleLikesShow(id){
     let obj = {
       method: "list",
@@ -85,10 +84,27 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
   </div>
   {ui.display && showLikes()}
   </div>;
-  };
+};
+Message.propTypes ={
+text: PropTypes.string,
+userId: PropTypes.object,
+createdAt:PropTypes.string,
+ownerCheck:PropTypes.bool,
+removeMessage: PropTypes.func,
+loading: PropTypes.bool,
+likedBy: PropTypes.number,
+likeMessage:PropTypes.func,
+isLiked: PropTypes.bool,
+isDeleted:PropTypes.bool,
+_id:PropTypes.string,
+showLikesList:PropTypes.func,
+ui:PropTypes.object
+}
+
+
   function mapStateToProps(state){
     return {
       ui: state.ui.likes
     };
   }
-export default connect(mapStateToProps, {getFollowList, lastMessageCheck, showLikesList})(Message);
+export default connect(mapStateToProps, {  showLikesList})(Message);

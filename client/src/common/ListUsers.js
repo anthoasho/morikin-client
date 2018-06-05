@@ -5,6 +5,7 @@ import "./ListUsers.css";
 import {popUpHide, showLikesList} from "../store/actions/UI";
 import {connect} from "react-redux";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 const ListUsers =  (props) => {
   //Type decides if the List renders for likes under messages, or followers/following under userprofile
@@ -37,7 +38,13 @@ const ListUsers =  (props) => {
       </div>
     )
 }
-
+ListUsers.propTypes = {
+  type: PropTypes.string,
+  popUpHide: PropTypes.func,
+  follow: PropTypes.array,
+  ui: PropTypes.object,
+  likes: PropTypes.array
+}
 function mapStateToProps(state){
   return {
     follow: state.follow,

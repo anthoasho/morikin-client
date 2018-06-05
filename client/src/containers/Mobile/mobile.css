@@ -1,0 +1,224 @@
+.mobile-container{
+  width: 100vw;
+  height: 100vh;
+  padding-top: 60px;
+}
+
+.tab-nav{
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  /* border-top: 1px solid gray; */
+  box-shadow: 1px -1px 3px #000000AA;
+  background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
+  background: white;
+}
+.tab-item{
+  flex: 1 1;
+  height: 50px;
+  margin-right:  1px ;
+  font-size: 1.7rem;
+  /* max-width: 20%; */
+  display: flex;
+  font-weight: 300;
+  align-items: center;
+  text-align: center;
+  color: gray;
+  transition: all 0.2s ease-in;
+}
+.icon{
+  margin: 0 auto;
+  font-size: 1.3rem;
+  opacity: 0.8;
+  transition: all 0.2s ease-in;
+}
+.icon-current{
+  color:#cf27e8FF!important;
+  opacity: 0.8;
+  background: #00000015;
+
+}
+.hidden{
+  display: none!important;
+}
+.tab{
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+@media only screen and (max-device-width: 750px){
+
+  .discover-box{
+    display: none;
+  }
+  .message-container{
+    grid-column: 4/7;
+  }
+}
+
+@media only screen and (max-device-width: 500px) { /* edit this later for mobiles*/
+
+  /*
+USER PROFILE
+  */
+  .discover-box{
+    display:flex;
+  }
+  .user-follow{
+    flex:1;
+    align-content: center;
+    justify-content:space-between;
+  }
+  .user-profile-small h3{
+    margin: 0;
+  }
+  .user-profile-small{
+    position: static;
+    /* width: 100vh; */
+    display: grid;
+    grid-template-columns: 1px 1fr 1fr 1fr 1px;
+    grid-template-rows: 1px 40px 30px 40px 1fr 1px;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+  .user-profile-small .img-wrapper{
+    grid-column: 2/3;
+    grid-row: 2/4;
+    width: 70%;
+    height: 70%;
+  }
+.user-profile-username{
+  grid-column: 2/3;
+  grid-row: 4/5;
+  align-self: flex-end;
+}
+.user-profile-display-name{
+  grid-column: 3/6;
+  grid-row: 2/3;
+  margin: 0;
+  align-self: center;
+}
+.discover-box{
+  /* opacity: 0.3; */
+  margin-top: 55px;
+  height: 100%;
+}
+
+  .user-meta{
+    grid-column: 3/5;
+    grid-row: 3/4;
+    border: none;
+  }
+  .user-profile-small .follow-container{
+    grid-column: 3/5;
+    grid-row: 4/5;
+    align-self: center;
+  }
+  .profile-description{
+    grid-column: 2/5;
+    grid-row: 5/6;
+    background-color: #FFFFFF00;
+    margin: 0;
+    border: none;
+  }
+  .user-follow{
+    grid-column: 3/5;
+    grid-row: 2/5;
+    display: contents;
+  }
+  .user-profile-container{
+    padding-right: 0;
+    /* display: flex;
+    flex-direction: column; */
+    /* wdith: 500px; */
+    flex: 1 1;
+
+  }
+  .back-button{
+    flex: 0 0 25px;
+  }
+  .user-profile-small .img-wrapper {
+  grid-column: 2/3;
+  grid-row: 2/4;
+
+  }
+
+  /*
+
+  MESSAGELIST
+
+
+  */
+  .ind-message{
+    font-size: 90%;
+  }
+  .follow-container{
+    width: 100%;
+    flex-direction: column;
+  }
+  .follow-button{
+    width: 90%;
+  }
+  .likes-list{
+    flex-direction: column;
+  }
+  .likes-list-box{
+    flex: 1 1;
+    margin: 0;
+    padding: 10px 0;
+  }
+  .likes-list-box.list-box{
+    margin: 0;
+  }
+  .likes-list{
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .follow-list-container{
+    position: absolute;
+    z-index: 20;
+    /* height: 100%; */
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+  }
+
+  .message-container{
+    overflow:visible;
+    margin: 0 0 60px;
+    max-height: none;
+  }
+
+  .new-message-box{
+    margin: auto!important;
+    height: 100vh!important;
+    display: flex;
+    align-items: center;
+  }
+  .new-message-box .back-button{
+    display: none!important;
+    /* overflow: hidden; */
+  }
+  .container{
+    overflow: hidden;
+  }
+  .new-inner-contents{
+    grid-column: 1/12;
+    width: 100vw !important;
+    height: 45vh !important;
+
+  }
+  .new-message-textarea{
+    height: 90%;
+  }
+
+
+
+}

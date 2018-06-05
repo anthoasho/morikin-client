@@ -4,7 +4,7 @@ import FollowButton from "./FollowButton";
 import ProfileImg from "./ProfileImg";
 import {popUpHide} from "../store/actions/UI";
 import {connect } from "react-redux";
-
+import PropTypes from "prop-types";
 //Individual element within the list of followers, this is used for both followers and following
 const SingleListItem = (props) => {
   return(
@@ -29,4 +29,15 @@ const SingleListItem = (props) => {
     </div>
   )
 }
+
+SingleListItem.propTypes = {
+  className: PropTypes.string,
+  username: PropTypes.string,
+  profileImgUrl: PropTypes.string,
+  profileColor: PropTypes.string,
+  currentUser: PropTypes.object,
+  followType: PropTypes.string,
+  itemNum: PropTypes.number
+}
+
 export default connect(null, {popUpHide})(SingleListItem);

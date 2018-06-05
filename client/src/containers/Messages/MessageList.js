@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Message from "./Message";
 import { removeMessage, likeMessage } from "../../store/actions/messages";
 import "./MessageList.css";
@@ -36,11 +37,19 @@ const loadMoreContent = props =>{
   if(messages.loading){
     return  <div className={"item-box page-change"}> <h3> Loading </h3> </div>
   }else if(messages.isLast || messages.data.length < 1){
-    return <div className={"item-box pag-change inactive"}> <h3> No More Content </h3> </div>
+    return <div className={"item-box page-change inactive"}> <h3> Nothing to show! </h3> </div>
   }
   else{
     return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}> <h1> + </h1> </div>
   }
+}
+
+MessageList.propTypes = {
+  messages: PropTypes.object,
+  removeMessage: PropTypes.func,
+  currentUser: PropTypes.string,
+  likeMessage: PropTypes.func,
+  ui: PropTypes.object
 }
 
 function mapStateToProps(state){
@@ -51,30 +60,3 @@ function mapStateToProps(state){
     };
 }
 export default connect(mapStateToProps, {removeMessage, likeMessage})(MessageList);
-
-/*-----------------------------------------------------------
-
-THE FOLLOWING IS FOR POTENTIAL FUTURE FEATURES WHICH ARE DISABLED
-
-------------------------------------------------------------*/
-
-  // continueUpdate(){ // adds state to control endless scrolling
-  //   this.setState({
-  //     messageCount:{
-  //     start: this.state.messageCount.start +20,
-  //     end: this.state.messageCount.end +20
-  //     }
-  //   });
-  //   this.props.fetchMessages(this.state.messageCount.start, this.state.messageCount.end);
-  // }
-  // isBottom(el) {
-  //   return el.getBoundingClientRect().bottom <= window.innerHeight; // scrollling to bottom
-  // }
-  // document.addEventListener('scroll', this.trackScrolling);
-  // trackScrolling = () => { //When document is scrolled to the bottom, updates state to get new data
-  //   const wrappedElement = document.getElementById('body-container');
-  //   if (this.isBottom(wrappedElement)) {
-  //     this.continueUpdate();
-  //   }
-  // };
-  // document.removeEventListener('scroll', this.trackScrolling);

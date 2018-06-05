@@ -44,7 +44,7 @@ height: 100%;
   color: #444444;
   font-size: 0.8rem;
   white-space: nowrap;
-  
+
 }
 .delete-btn::after{
   background: #EE40407d;
@@ -115,6 +115,22 @@ transition: all 0.4s ease;
 }
 .delete-btn-loading::after{
   background: white!important;
+}
+.follow-button{
+  width: 100%;
+  background: #ae27e8;
+  border: 1px solid gray;
+  color: white;
+  border-radius: 3px;
+  text-transform: uppercase;
+  padding: 2px 4px;
+  font-weight: 400 !important;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+.unfollow-button{
+  background: white !important;
+  color: black !important;
 }
 .submit-button{
   width: 80%;

@@ -1,10 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ProfileImg from "../../common/ProfileImg";
 import {Link} from "react-router-dom";
+import {getDiscoverUsers} from "../../store/actions/userProfile";
+import {connect} from "react-redux";
 
 const DiscoverUser = props => {
-
-  const users = props.users.map(user => {
+    // props.getDiscoverUsers();
+  const users = props.discover.map(user => {
     return <DiscoverUserIndividual key={`discover-${user.username}`} user={user}/>
   })
   return(
@@ -15,6 +18,9 @@ const DiscoverUser = props => {
       </div>
   </div>
   )
+}
+DiscoverUser.propTypes ={
+  discover: PropTypes.array
 }
 
 const DiscoverUserIndividual = ({user}) => {
@@ -33,4 +39,15 @@ const DiscoverUserIndividual = ({user}) => {
   )
 }
 
-export default DiscoverUser
+DiscoverUserIndividual.propTypes = {
+    user: PropTypes.object
+}
+
+
+function mapStateToProps(state){
+  return {
+    discover: state.discover.users,
+
+  };
+}
+export default connect(mapStateToProps, {getDiscoverUsers})(DiscoverUser)

@@ -1,14 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {Switch, Route, withRouter} from "react-router-dom";
 import {connect } from "react-redux";
 import BodyContainer from "./BodyContainer";
+import {TabNav} from "./Mobile/Tab";
+import "./Mobile/mobile.css";
 import Navbar from "./Navbar";
-import { removeError } from "../store/actions/errors";
 import EditProfile from "./settings/EditProfile.js"
 import NewMessage from "./Messages/NewMessage";
-import withAuth from "../hocs/withAuth";
+import withAuth, {apiHOC} from "../hocs/withAuth";
 import LandingPage from "./home/Landing";
-//"Main" handles most of the URL with react-router - It should be renamed.
+import Discover from "./RightSideBar/Discover";
+
+//React Router config
 const RouterConfig = props => {
   const {currentUser } = props;
   return(
@@ -19,9 +23,10 @@ const RouterConfig = props => {
           <Route exact path = "/" component={BodyContainer} />
           <Route exact path="/new" component={withAuth(NewMessage)} />
           <Route exact path ="/editprofile" component={withAuth(EditProfile)} />
+          <Route exact path = "/discover" component={apiHOC(Discover)} />
           <Route path="/:id/" component={BodyContainer}/>
         </Switch>
-
+         <TabNav history={props.history}   currentUser={currentUser.user.username} isMobile={props.isMobile} />
       </div>
       :
       <Route path="/" render={props =>
@@ -30,15 +35,19 @@ const RouterConfig = props => {
     );
 };
 
+RouterConfig.propTypes = {
+  currentUser: PropTypes.object
+}
+
 function mapStateToProps(state){
   return {
     currentUser: state.currentUser,
     errors: state.errors,
-    isMobile: state.isMobile
+    isMobile: state.ui.isMobile
   };
 }
 
-export default withRouter(connect(mapStateToProps, {removeError})(RouterConfig));
+export default withRouter(connect(mapStateToProps)(RouterConfig));
 
 
 
