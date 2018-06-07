@@ -9,7 +9,7 @@ nav{
   display: grid;
   grid-template-columns: 20px repeat(9, 1fr) 20px;
   grid-template-rows: 10px 1fr 10px;
-  box-shadow: 1px 2px 1px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 3px  #00000030;
   color: #3a3a3a;
   z-index: 100;
   padding: 0;

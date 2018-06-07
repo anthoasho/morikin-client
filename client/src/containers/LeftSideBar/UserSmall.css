@@ -20,6 +20,11 @@
 .user-profile-small .img-wrapper{
   width: 65%;
 }
+.meta-number{
+  font-weight: 700;
+  font-size: 1.0rem;
+
+}
 .user-profile-container{
   grid-column: 2 / 3;
   grid-row: 3/4;
@@ -38,14 +43,14 @@
   font-size: 0.8rem;
   background: #FFFFFFB2;
   line-height: 1.5rem;
-  border-top:1px solid gray;
+  border-top:1px solid #ae27e8;
   border-bottom: 1px solid #ae27e8;
   width: 100%;
 }
 
 .meta-mid{
-  border-left: 1px solid #ae27e8;
-  border-right: 1px solid #ae27e8;
+  /* border-left: 1px solid #ae27e8;
+  border-right: 1px solid #ae27e8; */
 }
 .user-meta{
   display:flex;
@@ -64,5 +69,7 @@
 .user-meta-item{
   padding: 0 8px;
   flex: 1;
-
+}
+.user-meta-item a{
+  color:  #ae27e8;
 }

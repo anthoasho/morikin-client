@@ -36,7 +36,7 @@ a:visted{
   z-index: 100;
   width: 100vw;
   height: 100vh;
-  background: #FFFFFF50;
+  background: #FFFFFFCC;
 }
 .item-box{
   background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );

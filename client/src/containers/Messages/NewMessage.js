@@ -110,7 +110,7 @@ class NewMessage extends Component{
   }
 }
 NewMessage.propTypes = {
-  errors: PropTypes.obj,
+  errors: PropTypes.object,
   postNewMessage: PropTypes.func,
   animateEnter: PropTypes.func,
   animateEnterReverse: PropTypes.func,

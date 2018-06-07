@@ -11,7 +11,7 @@
   bottom: 0;
   z-index: 100;
   /* border-top: 1px solid gray; */
-  box-shadow: 1px -1px 3px #000000AA;
+  box-shadow: 1px -1px 3px  #00000030;
   background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
   background: white;
 }
@@ -37,8 +37,42 @@
 .icon-current{
   color:#cf27e8FF!important;
   opacity: 0.8;
+  /* background: #00000015; */
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.icon-current:before{
   background: #00000015;
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height:50px;
+  margin: auto;
+  /* transform: scale(3); */
+  animation: currentHighlight 0.2s ease-in  forwards;
+}
 
+@keyframes currentHighlight {
+  0% {
+    transform: scale(0) translateY(200%);
+    /* transform-origin: center -300%; */
+
+
+  }
+  50% {
+  transform: scale(1.5) translateY(0%);
+  }
+  100% {
+    transform: scale(3) translateY(0%);
+    /* transform-origin: center -200%; */
+    /* opacity: 0; */
+  }
 }
 .hidden{
   display: none!important;
@@ -90,13 +124,18 @@ USER PROFILE
   .user-profile-small .img-wrapper{
     grid-column: 2/3;
     grid-row: 2/4;
-    width: 70%;
-    height: 70%;
+    grid-template-columns: 15% 1fr 15%;
+  }
+  .user-profile-small .follow-container{
+    align-self: flex-end!important;
   }
 .user-profile-username{
   grid-column: 2/3;
   grid-row: 4/5;
   align-self: flex-end;
+  padding: 0!important;
+  margin: 0;
+
 }
 .user-profile-display-name{
   grid-column: 3/6;

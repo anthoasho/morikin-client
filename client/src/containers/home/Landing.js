@@ -25,11 +25,13 @@ const LandingPage = (props) =>{
 }
   const authThenRedirect = (...args) =>{
     props.authUser(...args).then(()=>{
-      props.history.push("/");
       props.animateEnter();
     })
   }
   const {errors, animate} = props;
+  if(props.isLoggedIn){
+    props.history.push("/")
+  }
   return(
     <div className="landing-page">
     <Switch>
@@ -85,7 +87,8 @@ LandingPage.propTypes = {
 function mapStateToProps(state){
   return {
     errors: state.errors,
-    animate: state.animate
+    animate: state.animate,
+    isLoggedIn: state.currentUser.isLoggedIn
   };
 }
 export default connect(mapStateToProps, {authUser, animateEnter, animateEnterReverse, animateExit, animateExitReverse, removeError})(LandingPage);

@@ -50,17 +50,16 @@ export const lastMessage = () =>({
 export const lastMessageCheck = (message, dispatch) =>{
   if(message && message.isLast){
   return  dispatch(lastMessage());
-  }
-
+  };
 }
 
+// Use context to combine this with Follow list
 export const getLikeList = (url) => {
   return dispatch => {
     return apiCall("get", `/api/${url}`)
       .then((res) => {
         dispatch(loadLikes(res));
         dispatch(removeError());
-
       })
       .catch((err) => {
         dispatch(addError(err));
@@ -77,7 +76,6 @@ export const followUser = ([userId, location, itemNum]) => {
         dispatch(removeError());
       }else{
       dispatch(removeError());
-
     }
      })
     .catch(err =>{
@@ -85,9 +83,9 @@ export const followUser = ([userId, location, itemNum]) => {
     });
   };
 };
+
 //soft deletes the message, sets isDeleted: true
 //if a message isDeleted, it does not return from the api call
-
 export const removeMessage = (user, message) => {
   return dispatch => {
     return apiCall("put", `/api/users/${user}/messages/${message}/delete`, {isDeleted: true})
@@ -99,11 +97,11 @@ export const removeMessage = (user, message) => {
       dispatch(removeError());
     }, 500))
     .catch((err) => {
-
       dispatch(addError(err));
     });
   };
 };
+
 export const likeMessage = (id) => {
   return dispatch => {
     return apiCall("post", `/api/messages/${id}/like`)
@@ -116,41 +114,6 @@ export const likeMessage = (id) => {
       })
   }
 }
-
-//Gets messages from API,
-//If there is a user profile being viewed it will bring the users messages
-//otherwise it will return all messages
-export const fetchMessages = (user) => {
-  return dispatch => {
-    // dispatch(fetchingData());
-    dispatch(isLoading());
-    if(user){
-      return apiCall("get", `/api/user/${user}/messages/`)
-              .then((res) => {
-                dispatch(loadMessages(res));
-                lastMessageCheck(res[res.length -1], dispatch)
-                dispatch(removeError());
-                dispatch(isLoaded());
-              })
-              .catch((error) => {
-                dispatch(addError(error));
-              });
-    }else if(!user){
-    return apiCall("get", `/api/messages/`)
-            .then((res) => {
-              dispatch(loadMessages(res));
-              lastMessageCheck(res[res.length -1], dispatch)
-              dispatch(isLoaded());
-              dispatch(removeError());
-            })
-            .catch((error) => {
-              dispatch(addError(error));
-    });
-  };
-}
-
-};
-
 
 export const updateMessages = (user, lastMessage) =>{
   return dispatch => {
@@ -177,6 +140,7 @@ export const updateMessages = (user, lastMessage) =>{
   };
 }
 }
+
 //posts with the current user
 //Backend checks login authentication and authorisation
 export const postNewMessage = text => (dispatch, getState) => {
@@ -192,3 +156,36 @@ export const postNewMessage = text => (dispatch, getState) => {
     dispatch(addError(err));
   });
 };
+
+
+
+/*
+
+OLD CODE FOR REFERENCE
+Has been replaced with a single function for both user profile and messages
+*/
+
+
+//Gets messages from API,
+// export const fetchMessages = (user) => {
+//   return (dispatch, getState) => {
+//     // dispatch(fetchingData());
+//     let {currentUser} = getState()
+//     let username = currentUser.user.username
+//  if(!user){
+//           dispatch(isLoading());
+//     Promise.all([apiCall("get", `/api/messages/`), apiCall("get", `/api/user/${username}`)])
+//             .then((res) => {
+//               dispatch(loadProfile(res[1]));
+//               dispatch(loadMessages(res[0]));
+//               lastMessageCheck(res[0][res[0].length -1], dispatch)
+//               dispatch(isLoaded());
+//               dispatch(removeError());
+//             })
+//             .catch((error) => {
+//               dispatch(addError(error)); //Alter this later
+//     });
+//   };
+// }
+//
+// };

@@ -28,6 +28,7 @@ class AuthForm extends Component {
   }
   handleSubmit = e =>{
     e.preventDefault();
+    // this.props.history.push("/")
     this.props.removeError();
     //Clarify type of API call to be used through props to simplify the API call in store/actions
     const authType = this.props.signUp ? "signup" : "signin";
@@ -37,6 +38,9 @@ class AuthForm extends Component {
               password: "",
               profileImgUrl: ""
               });
+  }
+  componentWillUnmount(){
+    this.props.history.push("/")
   }
 render(){
     const {username, email, password, profileImgUrl } = this.state;
@@ -111,7 +115,8 @@ AuthForm.propTypes = {
 function mapStateToProps(state){
   return {
     animate: state.animate,
-    errors: state.errors
+    errors: state.errors,
+    isLoggedIn: state.currentUser.isLoggedIn
   };
 }
 

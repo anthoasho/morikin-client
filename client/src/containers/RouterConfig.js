@@ -23,7 +23,9 @@ const RouterConfig = props => {
           <Route exact path = "/" component={BodyContainer} />
           <Route exact path="/new" component={withAuth(NewMessage)} />
           <Route exact path ="/editprofile" component={withAuth(EditProfile)} />
-          <Route exact path = "/discover" component={apiHOC(Discover)} />
+          <Route exact path ="/discover" component={apiHOC(Discover)} />
+          <Route exact path="/signin" render={props =>  <LandingPage {...props} /> } /> {/* These are both present to prevent a bug which the route */}
+          <Route exact path="/signup" render={props =>  <LandingPage {...props} /> } />{/*"/:id/" tries to do an API call on "signin" / "signup" after auth */} 
           <Route path="/:id/" component={BodyContainer}/>
         </Switch>
          <TabNav history={props.history}   currentUser={currentUser.user.username} isMobile={props.isMobile} />

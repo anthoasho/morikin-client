@@ -108,9 +108,12 @@ height: 100%;
   color: white;
   border-radius: 3px;
   text-transform: uppercase;
-  padding: 2px 4px;
+  padding: 3px 4px;
+  width: 100%;
+  margin-top: 3px;
   font-weight: 400 !important;
   cursor: pointer;
+  letter-spacing: 1px;
   font-size: 0.7rem;
 }
 .unfollow-button{
