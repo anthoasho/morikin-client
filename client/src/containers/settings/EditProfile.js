@@ -33,7 +33,7 @@ class EditProfile extends Component{
   handleSubmit = e =>{
     e.preventDefault();
     this.props.editProfile(this.state)
-    this.props.history.push("/")
+    setTimeout( () => this.props.history.push("/"), 300)
   }
   handleFocus = e=>{
     e.preventDefault();
@@ -142,8 +142,8 @@ EditProfile.propTypes = {
 
 function mapStateToProps(state){
   return {
-    user: state.currentUser.user,
-    isLoggedIn: state.currentUser.isLoggedIn,
+    user: state.myProfile.auth,
+    isLoggedIn: state.myProfile.auth.isLoggedIn,
     errors: state.errors
   };
 }

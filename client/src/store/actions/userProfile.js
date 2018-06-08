@@ -4,14 +4,15 @@ import {updateLikeList, loadMessages, lastMessageCheck} from "./messages";
 import {isLoading, isLoaded} from "./UI";
 import {LOAD_USER_PROFILE, LOAD_USER_FOLLOW, UPDATE_USER_PROFILE, UPDATE_FOLLOW_LIST, UPDATE_CURRENT_USER, FETCHING_PROFILE, GET_DISCOVER_USERS, CLEAR_FOLLOW} from "../actionTypes";
 
-export const loadProfile = user => ({
+export const loadProfile = (user, context) => ({
   type: LOAD_USER_PROFILE,
-  user
+  user,
+ context
 });
 export const fetchingProfile = () => ({
   type: FETCHING_PROFILE
 })
-export const updateCurrentUser = user => ({
+export const updateCurrentUser = (user, context) => ({
   type: UPDATE_CURRENT_USER,
   user
 })
@@ -61,10 +62,11 @@ export const getDiscoverUsers = () => {
 //TODO everything
 
 
-export const getUserProfile = (url, username) => {
+export const getUserProfile = (context1, username) => {
   return (dispatch, getState) => {
-    let {currentUser} = getState()
-    let usernameCurrent = currentUser.user.username
+    let {myProfile, ui} = getState()
+    let {context}  = ui;
+    let usernameCurrent = myProfile.auth.username
     let apiUrl = {              //If More urls need to be added, they can be done so here
       dashboard: {
         messages: `/api/messages/`,
@@ -73,20 +75,26 @@ export const getUserProfile = (url, username) => {
       profile: {
         messages: `/api/user/${username}/messages/`,
         profile: `/api/user/${username}`
+      },
+      myProfile:{
+        messages: `/api/user/${usernameCurrent}/messages/`,
+        profile: `/api/user/${usernameCurrent}`
       }
     }
+    if((getState()[context].messages.data.length < 1) || ((context === "profile") && (getState().profile.profile.username !== username)) ){
     dispatch(isLoading());
-    Promise.all([apiCall("get", apiUrl[url].messages), apiCall("get", apiUrl[url].profile)])
+    Promise.all([apiCall("get", apiUrl[context].messages), apiCall("get", apiUrl[context].profile)])
     .then((res) => {
-      dispatch(loadMessages(res[0]));
-        lastMessageCheck(res[0][res[0].length -1], dispatch)
-      dispatch(loadProfile(res[1]));
+      dispatch(loadMessages(res[0], context));
+      lastMessageCheck(res[0][res[0].length -1], dispatch, context)
+      dispatch(loadProfile(res[1], context));
       dispatch(removeError());
       dispatch(isLoaded());
     })
     .catch((err) => {
       dispatch(addError(err));
     });
+  }
   }
 }
 
@@ -113,7 +121,7 @@ export const clearFollowList = () => {
 
 //Edits part of the profile (not the password currently - TODO)
 //Upon edit, it will update the token within the local storage
-export const editProfile = userData => (dispatch) => {
+export const editProfile = userData => (dispatch, getState) => {
   return apiCall("post", `/api/user/updateprofile`, {userData})
   .then(res => {
     localStorage.setItem("jwtToken", res.token)
@@ -128,14 +136,22 @@ export const editProfile = userData => (dispatch) => {
 //This took a long time, this is intended to handle an update in both the user profile and follow followList
 //TODO - Make this more reusable with context in the reducer
 export const followUser = ([userId, location, itemNum]) => {
-  return dispatch => {
+
+
+
+  return (dispatch, getState) => {
+
+
+
+    let {ui} = getState()
+    let {context} = ui
     return apiCall("post", `/api/${userId}/follow`)
     .then((res) => {
       if(location==="followList"){
         dispatch(updateFollowList(res.following, itemNum));
         dispatch(removeError());
       }else if(location ==="likesList"){
-        dispatch(updateLikeList(res.following, itemNum));
+        dispatch(updateLikeList(res.following, itemNum, context));
         dispatch(removeError());
       }
         else{

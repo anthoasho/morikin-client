@@ -116,7 +116,7 @@ function mapStateToProps(state){
   return {
     animate: state.animate,
     errors: state.errors,
-    isLoggedIn: state.currentUser.isLoggedIn
+    isLoggedIn: state.myProfile.auth.isLoggedIn
   };
 }
 

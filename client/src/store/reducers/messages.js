@@ -7,7 +7,9 @@ const initialState = {
   isLast: false,
   likes: null
 }
-const messages = (state = initialState, action) => {
+const messages = (context, state = initialState, action) => {
+  
+  if(context !== action.context) return state
   switch(action.type){
     case FETCHING_MESSAGES:
       return {
@@ -69,6 +71,6 @@ const messages = (state = initialState, action) => {
       }
     default:
       return state;
-  }
+}
 };
 export default messages;

@@ -12,7 +12,7 @@
   grid-row-gap: 4px;
 }
 .message-tester:nth-of-type(even) .ind-message{
-background-image: radial-gradient(circle closest-corner, #eef1f5, #f4f4f4 );
+background: #fdfdfd;
 }
 .message-tester:nth-of-type(even) .ind-message:hover{
 background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );

@@ -16,7 +16,7 @@ class Input extends Component{
   handleChange = e =>{
       this.props.onChange(this.state.name, e.target.value)
   }
-  componentDidMount(){
+  componentWillMount(){
     this.setState({
       placeholderFloat: this.placeHolderMovement()
     })

@@ -3,7 +3,7 @@ import MessageList from "../Messages/MessageList";
 import UserSmall from "../LeftSideBar/UserSmall";
 import {getUserProfile, followUser, getDiscoverUsers} from "../../store/actions/userProfile";
 import { updateMessages } from "../../store/actions/messages";
-import {clearAllPopUps, resizeFunction} from "../../store/actions/UI";
+import {clearAllPopUps, resizeFunction, setContext} from "../../store/actions/UI";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import { withRouter} from "react-router-dom";
 import {connect } from "react-redux";
@@ -14,28 +14,23 @@ import PropTypes from "prop-types";
 class Timeline extends Component{
   constructor(props) {
     super(props);
-    this.state ={
-      location: this.paramsID ? "profile" : "dashboard"
-    }
-    this.getUserProfile = this.props.getUserProfile.bind(this, this.state.location)
+    this.getUserProfile = this.props.getUserProfile.bind(this, this.props.page)
+    this.updateMessages = this.props.updateMessages.bind(this)
     this.handleBottom = this.handleBottom.bind(this);
   }
   urlData = this.props.match;
   paramsID = this.urlData.params.id;
   handleBottom = () => {
     let method = this.paramsID ? this.paramsID : ""
-    let lastMessage = this.props.messages.data[this.props.messages.data.length -1]
-    this.props.updateMessages(method, lastMessage._id);
+    let lastMessage = this.props.state[this.props.page].messages.data[this.props.state[this.props.page].messages.data.length -1]
+    this.updateMessages(method, lastMessage._id);
   }
   componentWillMount(){
     window.addEventListener("resize", () => (this.props.resizeFunction(window.innerWidth)))
+    this.props.setContext(this.props.page)
   }
   componentDidMount(){
-    if(this.paramsID){
-      this.getUserProfile(this.paramsID);
-    }else{
-      this.getUserProfile();
-    }
+    this.getUserProfile(this.props.fetcher);
     this.props.getDiscoverUsers();
     this.props.clearAllPopUps()
   }
@@ -44,29 +39,35 @@ class Timeline extends Component{
     // clearInterval(this.refreshInterval);
   }
   render(){
-    const { errors, discover, profile, loadingBool} = this.props;
-    const {url} = this.urlData
+    const { errors, discover, loadingBool, page} = this.props;
+    const {url} = this.urlData;
+    let messages = this.props.state[page].messages;
+    let profile = this.props.state[page].profile;
     if(errors.message || errors.code){
       return(<PopError />)
     }
-    if((this.props.isMobile) && (url === "/")){
+    if((this.props.isMobile) && (this.props.page === "dashboard")){
       return     (<div className="timeline-container">
-            {loadingBool && <Loading /> }
+            {loadingBool && <Loading isMobile={this.props.isMobile}/> }
               <MessageList
                 key={`messages ${url}`}
+                messages = {messages}
                 bottomClick={this.handleBottom}
               />
             </div>)
     }
       return(
         <div className="timeline-container">
-          {loadingBool && <Loading /> }
+          {loadingBool && <Loading isMobile={this.props.isMobile} /> }
           <UserSmall
-            key={`user ${profile.username}`}
+            key={`user ${this.props.state[page].username}`}
+            profile={profile}
+
           />
           <MessageList
             key={`messages ${url}`}
             bottomClick={this.handleBottom}
+            messages={messages}
           />
 
           {!this.props.isMobile &&<Discover users={discover.users}/>}
@@ -89,9 +90,9 @@ Timeline.propTypes = {
   clearAllPopUps: PropTypes.func,
   resizeFunction: PropTypes.func
 }
-const Loading = () => {
+const Loading = (props) => {
   return(
-    <div className="loading">
+    <div className="loading" style={{background: props.isMobile ? "#fdfdfd" : "#fdfdfdcc"}}>
       <PreloaderIcon
         className="profile-picture"
         type={ICON_TYPE.TAIL_SPIN}
@@ -108,14 +109,15 @@ function mapStateToProps(state){
   return {
     profile: state.userProfile,
     messages:state.messages,
-    currentUser: state.currentUser.user,
+    currentUser: state.myProfile.auth,
     errors: state.errors,
     discover: state.discover,
     loadingBool: state.ui.loading,
-    isMobile: state.ui.isMobile
+    isMobile: state.ui.isMobile,
+    state: state
   };
 }
-export default withRouter(connect(mapStateToProps, {getUserProfile, followUser, updateMessages, getDiscoverUsers, clearAllPopUps, resizeFunction})(Timeline));
+export default withRouter(connect(mapStateToProps, {getUserProfile, followUser, updateMessages, getDiscoverUsers, clearAllPopUps, resizeFunction, setContext})(Timeline));
 
 
 //Currently disabled refreshInterval, aim to replace with socket io (pushdata)

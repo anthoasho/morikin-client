@@ -5,7 +5,9 @@ const initialState = {
   loading: false,
   user: {}
 }
-const userProfile = (state = initialState, action) => {
+const userProfile = (context, state = initialState, action) => {
+
+  if(context !== action.context) return state
   switch(action.type){
     case FETCHING_PROFILE:
       return {...state, loading: true, user: {...state.user}}
@@ -15,7 +17,8 @@ const userProfile = (state = initialState, action) => {
       return {...state, loading: false, user: {...state.user, ...action.update}} //alter elements of the user profile
     default:
       return state;
-  }
+
+}
 };
 
 export default userProfile;

@@ -28,7 +28,7 @@ export default function withAuth(ComponentAuth){
 
 function mapStateToProps(state){
   return{
-    isAuthenticated: state.currentUser.isLoggedIn
+    isAuthenticated: state.myProfile.auth.isLoggedIn
   }
 }
 

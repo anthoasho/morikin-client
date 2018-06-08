@@ -5,7 +5,7 @@ nav{
   left: 0;
   width: 100%;
   height: 50px;
-  background: #efefef;
+  background: #fdfdfd;
   display: grid;
   grid-template-columns: 20px repeat(9, 1fr) 20px;
   grid-template-rows: 10px 1fr 10px;
@@ -14,7 +14,7 @@ nav{
   z-index: 100;
   padding: 0;
   border: 1px solid #dbdbdb;
-  border-top: 2px solid #ae27e8;
+  /* border: 2px solid #ae27e8; */
   align-items: center;
   justify-items:center;
   overflow: hidden;
@@ -25,11 +25,19 @@ nav{
   grid-row: 1/4;
   align-self: stretch;
   justify-self: center;
+  margin: 2px 4px;
 }
 .nav-logo svg {
-  background: gray;
+  background: #ae27e8FF;
   width: auto;
   margin: auto;
+  border-radius: 50%;
+  opacity: 0.6;
+  transition: all 0.5s ease-out;
+
+}
+.nav-logo svg:active{
+    transform: rotateZ(90deg);
 }
 .nav-username{
   grid-row: 2/3;
@@ -45,7 +53,52 @@ nav{
   position: relative;
 
 }
+nav .back-button{
+  grid-column: 1/2!important;
+  grid-row: 1/4!important;
+  height: 100%;
+  display: flex;
+  background: #00000000;
 
+}
+nav .back-button .back-icon{
+  margin: auto;
+  border-color: #ae27e8FF;
+  height: 10px;
+  width: 10px;
+}
+nav .back-button .back-icon::before,
+nav .back-button .back-icon::after{
+  border-color: #ae27e8FF;
+}
+nav .back-button .back-icon::before{
+  height: 8px;
+  width: 8px;
+  opacity: 0.8;
+}
+nav .back-button .back-icon::after{
+  opacity: 0.7;
+  height: 8px;
+  width: 8px;
+}
+.profile-user-nav{
+  font-size: 0.8rem;
+  grid-column: 2/4;
+  grid-row: 2/3;
+  margin-left: 10px;
+  justify-self: flex-start;
+}
+/* .back-icon::before,
+.back-icon::after{
+  content:"";
+  width: 8px;
+  height: 8px;
+  border-radius: 10%;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  position: absolute;
+
+} */
 .nav-new-message{
   grid-row: 2/3;
   grid-column: 6/7;

@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED, WINDOW_RESIZE} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED, WINDOW_RESIZE, SET_CONTEXT} from "../actionTypes";
 import {getFollowList, clearFollowList} from "./userProfile";
 import {getLikeList} from "./messages";
 
@@ -30,6 +30,7 @@ export const animateHide = (select) => ({
   type: ANIMATE_CLOSE,
   select
 })
+
 export const clearAll = () => ({
   type: CLEAR_ALL
 })
@@ -43,6 +44,10 @@ export const windowResize = (size) => ({
   type: WINDOW_RESIZE,
   size
 })
+export const contextSet = context => ({
+  type: SET_CONTEXT,
+  context
+})
 
 
 export const resizeFunction = (obj) => {
@@ -55,8 +60,8 @@ export const showMessageBox = (obj) => {
     dispatch(showNewMessage())
   }
 }
-export const showLikesList = (obj, hide) => {
-  return dispatch => {
+export const showLikesList = (obj, hide ) => {
+  return (dispatch, getState) => {
     if(hide) {
       dispatch(animateHide(hide))
       setTimeout( () => {
@@ -87,6 +92,13 @@ export const clearAllPopUps = () => {
   return dispatch => {
     dispatch(clearAll())
   }
+}
+
+export const setContext = (context) => {
+  return dispatch => {
+    dispatch(contextSet(context))
+  }
+
 }
 export const popUpHide = (select) => {
   return dispatch => {

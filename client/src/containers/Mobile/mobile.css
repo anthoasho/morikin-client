@@ -13,7 +13,7 @@
   /* border-top: 1px solid gray; */
   box-shadow: 1px -1px 3px  #00000030;
   background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
-  background: white;
+  background: #fdfdfd;
 }
 .tab-item{
   flex: 1 1;
@@ -85,7 +85,7 @@
 }
 
 
-@media only screen and (max-device-width: 750px){
+@media only screen and (max-device-width: 768px){
 
   .discover-box{
     display: none;
@@ -97,6 +97,20 @@
 
 @media only screen and (max-device-width: 500px) { /* edit this later for mobiles*/
 
+
+
+
+/*
+
+NAVBAR
+
+*/
+
+
+.nav-logout{
+  grid-row: 2/3;
+  grid-column: 9/11;
+}
   /*
 USER PROFILE
   */
@@ -196,6 +210,7 @@ USER PROFILE
   */
   .ind-message{
     font-size: 90%;
+    margin: 1px 1px;
   }
   .follow-container{
     width: 100%;

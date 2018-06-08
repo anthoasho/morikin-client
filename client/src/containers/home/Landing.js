@@ -88,7 +88,7 @@ function mapStateToProps(state){
   return {
     errors: state.errors,
     animate: state.animate,
-    isLoggedIn: state.currentUser.isLoggedIn
+    isLoggedIn: state.myProfile.auth.isLoggedIn
   };
 }
 export default connect(mapStateToProps, {authUser, animateEnter, animateEnterReverse, animateExit, animateExitReverse, removeError})(LandingPage);

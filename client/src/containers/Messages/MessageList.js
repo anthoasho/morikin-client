@@ -8,19 +8,20 @@ import NewMessage from "./NewMessage";
 const MessageList = props =>{
   const  {messages, removeMessage, currentUser, likeMessage, ui} = props;
   let MessageList;
-  if(messages.loading ){
-      MessageList = <Message loading/>;
-  }else{
+  // if(messages.loading ){
+  //     MessageList = <Message loading/>;
+  // }else{
     //Map through and generate the list of Messages
   MessageList = messages.data.map((m)=>
     (<Message {...m} key={m._id}
       removeMessage ={removeMessage.bind(this, m.userId._id, m._id)}
-      likeMessage = {likeMessage.bind(this, m._id)}
+      likeMessage = {likeMessage.bind(null, m._id)}
       ownerCheck = {currentUser === m.userId._id}
       animate = {props.animate}
+
     />)
   );
-  }
+  // }
   return(
     <div className="message-container">
     {ui.newMessage.display &&
@@ -49,14 +50,14 @@ MessageList.propTypes = {
   removeMessage: PropTypes.func,
   currentUser: PropTypes.string,
   likeMessage: PropTypes.func,
-  ui: PropTypes.object
+  ui: PropTypes.object,
 }
 
 function mapStateToProps(state){
   return {
     ui: state.ui,
-    messages: state.messages,
-    currentUser: state.currentUser.user.userId
+    currentUser: state.myProfile.auth.userId
+
     };
 }
 export default connect(mapStateToProps, {removeMessage, likeMessage})(MessageList);

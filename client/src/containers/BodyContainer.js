@@ -1,28 +1,29 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import TabNav from "./Mobile/Tab";
 import Timeline from "./home/Timeline";
 import {withRouter} from "react-router-dom";
+import {setContext} from "../store/actions/UI";
+import Navbar from "./Navbar";
+import classNames from "classnames";
 import {connect} from "react-redux";
+
 const BodyContainer = (props) => {
-//     return(
-//     <div className="body-container">
-//       <Mobile
-//         key={`timeline:${props.match.url}`}
-//         />
-//     </div>
-//   )
-// }
-// else{
+  let user = {
+    dashboard: null,
+    profile: props.match.params.id,
+    myProfile: props.currentUser.username
+  }
+
   return(
-      <div className="body-container">
+      <div className={classNames({"body-container": true, "animation-test": props.profileHide})}>
+       <Navbar history={props.history} location={props.location} match={props.match} />
         <Timeline
           key={`timeline:${props.match.url}`}
+          page={props.page}
+          fetcher={user[props.page]}
           />
-        {props.isMobile &&<TabNav />}
       </div>
     )
-    // }
 };
 
 BodyContainer.propTypes = {
@@ -33,9 +34,12 @@ BodyContainer.propTypes = {
 
 function mapStateToProps(state){
   return {
-    currentUser: state.currentUser,
+    currentUser: state.myProfile.auth,
     errors: state.errors,
-    isMobile: state.ui.isMobile
+    isMobile: state.ui.isMobile,
+    context: state.ui.context,
+    profileHide: state.animate.profileHide,
+    loading: state.ui.isLoading
   };
 }
-export default withRouter(connect(mapStateToProps)(BodyContainer));
+export default withRouter(connect(mapStateToProps, {setContext})(BodyContainer));

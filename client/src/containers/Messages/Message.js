@@ -17,7 +17,7 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, _id,  showLikesList, ui}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, _id,  showLikesList, ui, context}) => {
   function handleLikesShow(id){
     let obj = {
       method: "list",
@@ -38,7 +38,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
 
   function showLikes(){
   if(likeId === _id){
-      return  <ListUsers type="likes" />
+    return  <ListUsers type={"likes"} context={context} />
   }
 }
 
@@ -107,4 +107,4 @@ ui:PropTypes.object
       ui: state.ui.likes
     };
   }
-export default connect(mapStateToProps, {  showLikesList})(Message);
+export default connect(mapStateToProps, {showLikesList})(Message);

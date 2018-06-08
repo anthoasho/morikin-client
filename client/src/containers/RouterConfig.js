@@ -18,17 +18,18 @@ const RouterConfig = props => {
   return(
     currentUser.isLoggedIn ?
       <div className="container">
-       <Navbar history={props.history} location={props.location} />
+         <Navbar history={props.history} location={props.location} match={props.match} />
         <Switch>
-          <Route exact path = "/" component={BodyContainer} />
+          <Route exact path = "/" render = { props => <BodyContainer page={"dashboard"}  /> } />
           <Route exact path="/new" component={withAuth(NewMessage)} />
           <Route exact path ="/editprofile" component={withAuth(EditProfile)} />
           <Route exact path ="/discover" component={apiHOC(Discover)} />
           <Route exact path="/signin" render={props =>  <LandingPage {...props} /> } /> {/* These are both present to prevent a bug which the route */}
-          <Route exact path="/signup" render={props =>  <LandingPage {...props} /> } />{/*"/:id/" tries to do an API call on "signin" / "signup" after auth */} 
-          <Route path="/:id/" component={BodyContainer}/>
+          <Route exact path="/signup" render={props =>  <LandingPage {...props} /> } />{/*"/:id/" tries to do an API call on "signin" / "signup" after auth */}
+          <Route exact path="/myprofile" render = { props => <BodyContainer page={"myProfile"} user={currentUser.username}  /> } />
+          <Route path="/:id/" render = { props => <BodyContainer page={"profile"}  /> } />
         </Switch>
-         <TabNav history={props.history}   currentUser={currentUser.user.username} isMobile={props.isMobile} />
+         <TabNav history={props.history}   currentUser={currentUser.username} isMobile={props.isMobile} context={props.context}/>
       </div>
       :
       <Route path="/" render={props =>
@@ -43,9 +44,10 @@ RouterConfig.propTypes = {
 
 function mapStateToProps(state){
   return {
-    currentUser: state.currentUser,
+    currentUser: state.myProfile.auth,
     errors: state.errors,
-    isMobile: state.ui.isMobile
+    isMobile: state.ui.isMobile,
+    context: state.ui.context
   };
 }
 

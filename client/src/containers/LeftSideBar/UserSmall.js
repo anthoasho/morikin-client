@@ -64,8 +64,8 @@ UserSmall.propTypes ={
 function mapStateToProps(state){
   return {
     ui: state.ui.follow,
-    profile: state.userProfile,
-    currentUser:state.currentUser.username,
+    // profile: state.profile,
+    currentUser:state.myProfile.auth.username,
     isMobile: state.ui.isMobile
   };
 }

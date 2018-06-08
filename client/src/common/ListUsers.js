@@ -17,10 +17,18 @@ const ListUsers =  (props) => {
       props.popUpHide("follow");
     }
   }
+  let tester = {
+    likes: {
+      list: props.context && props.state[props.context].messages.likes
+    },
+    follow: {
+      list: props.follow
+    }
+  }
     let List
-    if(!props[type].length < 1){
+    if(!tester[type].list.length < 1){
       //Similar to messages; maps over the the returned data and makes a list of followers with functioning following buttons (reason for currentUser)
-    List = props[type].map( (user, index) => (
+    List = tester[type].list.map( (user, index) => (
       <SingleListItem {...user} currentUser={props} followType={`${type}List`} className={classNames({[`${type}-list-box`]:true, "list-box":true, "list-exit":props.ui[type].animateOut})}  itemNum={index} key={`${index}${user.username}`} />
     ))}else{
     List = <h3 className="likes-title">Uh-oh, there is nothing here yet! :(</h3>
@@ -48,9 +56,11 @@ ListUsers.propTypes = {
 function mapStateToProps(state){
   return {
     follow: state.follow,
-    current: state.currentUser.user.username,
+    current: state.myProfile.auth.username,
     ui: state.ui,
-    likes: state.messages.likes
+    context: state.ui.context,
+    // likes: state.messages.likes,
+    state: state
   };
 }
 

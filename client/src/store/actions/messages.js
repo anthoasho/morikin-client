@@ -7,58 +7,70 @@ import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FET
 export const fetchingData = () =>({
   type:FETCHING_MESSAGES,
 })
-export const loadMessages = messages => ({
+export const loadMessages = (messages, context) => ({
   type: LOAD_MESSAGES,
-  messages
-});
+  messages,
+  context
+})
 
-export const updateMessageList = messages => ({
+export const updateMessageList = (messages, context) => ({
   type: UPDATE_MESSAGES,
-  messages
+  messages,
+  context
 })
-export const loadLikes = users => ({
+export const loadLikes = (users, context) => ({
   type: LOAD_MSG_LIKES,
-  users
+  users,
+  context
 })
-export const updateLikeList = (update, id) => ({
+export const updateLikeList = (update, id, context) => ({
   type: UPDATE_LIKE_LIST,
   update,
-  id
+  id,
+  context
 })
-export const remove = id => ({
+export const remove = (id, context) => ({
   type: REMOVE_MESSAGE,
-  id
+  id,
+  context
 });
 
-export const animateRemove = id => ({
+export const animateRemove = (id, context) => ({
   type: ANIMATE_REMOVE_MESSAGE,
-  id
+  id,
+  context
 })
-export const likeMsg = message => ({
+export const likeMsg = (message, context)=> ({
   type: LIKE_MESSAGE,
-  message
+  message,
+  context
 })
-export const postMessage = message => ({
+export const postMessage = (message, context) => ({
   type: POST_MESSAGE,
-  message
+  message,
+  context
 })
-export const lastMessage = () =>({
-  type: LAST_MESSAGE
+export const lastMessage = (context) =>({
+  type: LAST_MESSAGE,
+  context
 })
 
 
-export const lastMessageCheck = (message, dispatch) =>{
+export const lastMessageCheck = (message, dispatch, context) =>{
   if(message && message.isLast){
-  return  dispatch(lastMessage());
+  return  dispatch(lastMessage(context));
   };
 }
 
 // Use context to combine this with Follow list
 export const getLikeList = (url) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let {ui} = getState()
+    let {context} = ui
     return apiCall("get", `/api/${url}`)
       .then((res) => {
-        dispatch(loadLikes(res));
+        console.log(context)
+        dispatch(loadLikes(res, context));
         dispatch(removeError());
       })
       .catch((err) => {
@@ -68,7 +80,9 @@ export const getLikeList = (url) => {
 }
 
 export const followUser = ([userId, location, itemNum]) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    // let {ui} = getState()
+    // let {context} = ui
     return apiCall("post", `/api/${userId}/follow`)
     .then((res) => {
       if(location==="followList"){
@@ -87,13 +101,15 @@ export const followUser = ([userId, location, itemNum]) => {
 //soft deletes the message, sets isDeleted: true
 //if a message isDeleted, it does not return from the api call
 export const removeMessage = (user, message) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let {ui} = getState()
+    let {context} = ui
     return apiCall("put", `/api/users/${user}/messages/${message}/delete`, {isDeleted: true})
     .then(() =>
-    dispatch(animateRemove(message))
+    dispatch(animateRemove(message, context))
   )
     .then(() => setTimeout(() => {
-      dispatch(remove(message));
+      dispatch(remove(message, context));
       dispatch(removeError());
     }, 500))
     .catch((err) => {
@@ -103,10 +119,13 @@ export const removeMessage = (user, message) => {
 };
 
 export const likeMessage = (id) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let {ui} = getState()
+    let {context} = ui
     return apiCall("post", `/api/messages/${id}/like`)
       .then((res) => {
-        dispatch(likeMsg(res));
+        console.log(context)
+        dispatch(likeMsg(res, context));
         dispatch(removeError());
       })
       .catch((error) => {
@@ -116,11 +135,13 @@ export const likeMessage = (id) => {
 }
 
 export const updateMessages = (user, lastMessage) =>{
-  return dispatch => {
+  return (dispatch, getState) => {
+    let {ui} = getState()
+    let {context} = ui
     if(user){
       return apiCall("get", `/api/user/${user}/messages/?from=${lastMessage}`)
               .then((res) => {
-                dispatch(updateMessageList(res));
+                dispatch(updateMessageList(res, context));
               lastMessageCheck(res[res.length -1], dispatch)
                 dispatch(removeError());
               })
@@ -130,7 +151,7 @@ export const updateMessages = (user, lastMessage) =>{
     }else if(!user){
     return apiCall("get", `/api/messages/?from=${lastMessage}`)
             .then((res) => {
-              dispatch(updateMessageList(res));
+              dispatch(updateMessageList(res, context));
               lastMessageCheck(res[res.length -1], dispatch)
               dispatch(removeError());
             })
@@ -143,13 +164,14 @@ export const updateMessages = (user, lastMessage) =>{
 
 //posts with the current user
 //Backend checks login authentication and authorisation
-export const postNewMessage = text => (dispatch, getState) => {
-  let {currentUser} = getState();
-  const id = currentUser.user.userId;
+export const postNewMessage = (text) => (dispatch, getState) => {
+  let {myProfile, ui} = getState();
+  let {context} = ui
+  const id = myProfile.auth.userId;
   dispatch(isLoading())
   return apiCall("post", `/api/users/${id}/messages`, {text})
   .then(res => {
-    dispatch(postMessage(res));
+    dispatch(postMessage(res, context));
     dispatch(isLoaded())
   })
   .catch(err => {

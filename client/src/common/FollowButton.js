@@ -53,7 +53,7 @@ followButton.propTypes ={
 }
 function mapStateToProps(state){
   return {
-    current: state.currentUser.user.username
+    current: state.myProfile.auth.username
   };
 }
 export default connect(mapStateToProps, {followUser})(followButton);

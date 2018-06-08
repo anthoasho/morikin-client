@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED, WINDOW_RESIZE} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED, WINDOW_RESIZE, SET_CONTEXT} from "../actionTypes";
 
 const DEFAULT_STATE = {
   popUp: {
@@ -20,7 +20,8 @@ const DEFAULT_STATE = {
     url: null
   },
   loading: false,
-  isMobile: window.innerWidth <= 500
+  isMobile: window.innerWidth <= 500,
+  context: null
 }
 
 export default(state = DEFAULT_STATE, action) =>{
@@ -91,10 +92,16 @@ export default(state = DEFAULT_STATE, action) =>{
         ...state,
         isMobile: action.size
       }
+    case SET_CONTEXT:
+      return{
+        ...state,
+        context: action.context
+      }
     case CLEAR_ALL:
       return {...DEFAULT_STATE,
               loading: state.loading,
-              isMobile: state.isMobile
+              isMobile: state.isMobile,
+              context: state.context
             }
     default:
         return state;

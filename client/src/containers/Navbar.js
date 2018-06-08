@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 import { connect } from "react-redux"
 import {logout } from "../store/actions/auth";
-import {animateEnter} from "../store/actions/animate";
+import {animateEnter, animateProfile} from "../store/actions/animate";
+import classNames from "classnames";
 import {Logo} from "../common/logo.js";
 import {showNewMessage} from "../store/actions/UI";
 import "./Navbar.css";
@@ -15,7 +16,7 @@ const Navbar = (props) => {
     props.showNewMessage(obj)
   }
 
-  const {logout, history, animateEnter, currentUser} = props;
+  const {logout, history, animateEnter, currentUser, context } = props;
   //logout removes the token in headers, followed by a redirect to login page
   const handleLogout = e =>{
     e.preventDefault();
@@ -29,11 +30,24 @@ const Navbar = (props) => {
   //     return true
   //   }
   // }
-
+  const handleLogoClick = () => {
+    window.scrollTo({
+      top:0,
+      behavior: "smooth"
+    })
+  }
+  const handleBack = () => {
+    props.animateProfile()
+    setTimeout(history.goBack, 300)
+    setTimeout(props.animateProfile, 300)
+  }
   if(props.isMobile){
     return (<nav>
-      <NavLink to="/"  className="nav-logo" > <Logo /> </NavLink>
-        <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
+      <div onClick={handleLogoClick}  className="nav-logo" ><Logo /> </div>
+        {context === "profile" && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
+        {context === "profile" && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
+        {context === "myProfile" && <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>}
+
       </nav>
     )
   }
@@ -42,7 +56,7 @@ const Navbar = (props) => {
         <div className="nav-logo"> <Logo /> </div>
         <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
         <a  onClick={handlePopUpShow} className="nav-new-message"> <li > POST </li> </a>
-        <NavLink  to={`/${currentUser.username}`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
+        <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
         <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
       </nav>
     );
@@ -52,14 +66,19 @@ Navbar.propTypes= {
   isMobile: PropTypes.bool,
   logout: PropTypes.func,
   animateEnter: PropTypes.func,
-  showNewMessage: PropTypes.func
+  showNewMessage: PropTypes.func,
+
 
 }
 
 function mapStateToProps(state){
   return {
-    currentUser: state.currentUser.user,
+    currentUser: state.myProfile.auth,
     isMobile: state.ui.isMobile,
+    context: state.ui.context,
+    profile: state.profile.profile.user,
+    profileHide: state.animate.profileHide,
+    isLoading: state.ui.isLoading
   };
 }
-export default connect(mapStateToProps, {logout, animateEnter, showNewMessage})(Navbar);
+export default connect(mapStateToProps, {logout, animateEnter, showNewMessage, animateProfile})(Navbar);
