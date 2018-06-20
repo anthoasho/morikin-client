@@ -1,4 +1,4 @@
-#Morikin
+# Morikin
 
 This is a work in progress by [Anthony Ashurst](https://github.com/anthoasho).
 
@@ -23,17 +23,17 @@ It's currently a "private" application, meaning it requires some kind of login t
 
 ## Future Plans
 
-[ ] Message replies
-[ ] Preview mode (look at basic profile before following/logging in)
-[ ] Hashtag feature
-[ ] Improve privacy with follow requests and denials
-[ ] Improve discover box with appropriate people to follow
-[ ] General code cleanup
-[ ] Expand Edit Profile
+- [ ] Message replies
+- [ ] Preview mode (look at basic profile before following/logging in)
+- [ ] Hashtag feature
+- [ ] Improve privacy with follow requests and denials
+- [ ] Improve discover box with appropriate people to follow
+- [ ] General code cleanup
+- [ ] Expand Edit Profile
 
 ## Application Details
 
-The front end was created with [Create React App](https://github.com/facebook/create-react-app). 
+The front end was created with [Create React App](https://github.com/facebook/create-react-app).
 
 
 ## History and About the Author
