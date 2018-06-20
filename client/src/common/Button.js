@@ -7,7 +7,7 @@ export const Button = (props) => {
   let {type, onClick, text, loading} = props;
   switch(type){
  case "submit":
-   return <button id="submit" className={classNames({"submit-button": true, "button-loading":loading})} onClick={onClick} >{text}</button>
+   return <button id="submit" className={classNames({"submit-button": true, "button-loading":loading})} onClick={onClick} >{props.children}</button>
  case "signin":
   return <button id="signin" className="sign-in-btn" onClick={onClick} >{text}</button>
   case "signup":

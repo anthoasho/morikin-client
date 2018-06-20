@@ -9,7 +9,7 @@ const UserMeta = ({text, data, classDefine, username, type, popUpDisplay, ui, hi
     let obj = {
       method: "list",
       title: `${type[0].toUpperCase()}${type.slice(1)}`, //bit hacky
-      url: `/user/${username}/${type}`
+      url: `user/${username}/${type}`
     }
     if(obj.url === ui.url ){
       popUpDisplay(obj, true)

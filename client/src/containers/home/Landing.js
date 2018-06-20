@@ -68,7 +68,7 @@ const LandingPage = (props) =>{
             "enter-animation-reverse": animate.enterReverse,
             "enter-animation": animate.enter,
           })}>
-            <div className="welcome-title"><h2>Welcome to Kinkon</h2></div>
+            <div className="welcome-title"><h2>Welcome to Morikin</h2></div>
             <div className="signup-btn-div"> <Button onClick={handleClick.bind(this, "/signup", "next")} type="signup" text="Sign Up" /></div>
             <div className="signin-btn-div"> <Button onClick={handleClick.bind(this, "/signin", "next")} type="signin" value="value" text="Sign in"/></div>
         </div>

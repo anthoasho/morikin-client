@@ -1,6 +1,6 @@
 {
   "name": "morikin-client",
-  "version": "0.2",
+  "version": "0.2.5",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -20,7 +20,6 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },
-  "proxy": "http://localhost:8081",
   "author": "Anthony Ashurst",
   "scripts": {
     "start": "react-scripts start",

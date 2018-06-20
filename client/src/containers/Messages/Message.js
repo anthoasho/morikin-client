@@ -22,7 +22,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
     let obj = {
       method: "list",
       title: "Message likes",
-      url: `/message/${id}/likes`
+      url: `message/${id}/likes`
     }
     if(ui.display === true && likeId ===_id){
       showLikesList(null, "likes");
@@ -33,7 +33,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
   let likeId
 
   if(ui.url){
-    likeId = ui.url.split("/")[2]
+    likeId = ui.url.split("/")[1]
   }
 
   function showLikes(){

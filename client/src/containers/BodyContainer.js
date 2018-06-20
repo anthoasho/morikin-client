@@ -16,7 +16,7 @@ const BodyContainer = (props) => {
 
   return(
       <div className={classNames({"body-container": true, "animation-test": props.profileHide})}>
-       <Navbar history={props.history} location={props.location} match={props.match} />
+
         <Timeline
           key={`timeline:${props.match.url}`}
           page={props.page}

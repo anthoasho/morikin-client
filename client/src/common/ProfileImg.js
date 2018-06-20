@@ -11,10 +11,10 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 const ProfileImg = (props) => {
+  console.log(props)
   return(
     !props.loading ?
     <div className="img-wrapper">
-
     <Link className="img-link" to={`/${props.username}`} >
         <object onLoad={e => props.profileImg && (e.target.style.opacity = 1)} //If there is an error with the loading of the profile picture, the default logo will display instead
         // onError = {e => e.target.src = require("../images/logo.svg")}
@@ -27,7 +27,7 @@ const ProfileImg = (props) => {
           opacity: 0.3,                                                  //This displays the logo with an opacity of 0.3 if the user does not have a profile picture
         }}
         >
-        <img alt="" className="profile-picture no-img" src={require("../images/logo.svg")} />
+          <img alt="" className="profile-picture no-img" src={require("../images/logo.svg")} />
         </object>
     </Link>
     </div>

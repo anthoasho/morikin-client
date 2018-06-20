@@ -83,6 +83,7 @@ class Input extends Component{
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onChange={this.handleChange}
+              autoFocus={this.props.autoFocus}
             />
             <div className={classNames({"input-hr-holder":true, "input-hr-holder-active":this.state.active})}>
             <hr

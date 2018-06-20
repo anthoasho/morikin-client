@@ -72,7 +72,7 @@
 }
 .back-icon::after{
   transform:translate(6px, 6px);
-    border-color: #eaedf26b;
+  border-color: #eaedf26b;
 }
 .login-form{
   grid-row: 3/11;

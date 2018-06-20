@@ -93,8 +93,9 @@ class NewMessage extends Component{
           </p>
           <Button
             type="submit"
-            text="POST"
-            loading={this.state.loading}/>
+            loading={this.state.loading}>
+            <span style={{width: "100%"}}>Post</span>
+            </Button>
         </form>
       </div>
     )

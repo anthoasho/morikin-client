@@ -10,8 +10,9 @@ export function setAuthToken(token){
 
 //Typical Api call used throughout requests on the front end
 export function apiCall(method, path, data, attempt = 1){
+  let apiUrl = process.env.REACT_APP_API;
   return new Promise(function withRetry(resolve, reject){
-    axios[method](path, data)
+    axios[method](`${apiUrl}${path}`, data)
     .then(res => {
       resolve(res.data)
     })

@@ -7,11 +7,16 @@ import {animateEnter, animateProfile} from "../store/actions/animate";
 import classNames from "classnames";
 import {Logo} from "../common/logo.js";
 import {showNewMessage} from "../store/actions/UI";
+import FontAwesome from "react-fontawesome";
 import "./Navbar.css";
 const Navbar = (props) => {
   function handlePopUpShow(){
     let obj = {
       method: "postMessage",
+    }
+    if(props.location.pathname === "/editprofile"){
+      props.history.push("/")
+      setTimeout(() => props.showNewMessage(obj), 200)
     }
     props.showNewMessage(obj)
   }
@@ -53,9 +58,9 @@ const Navbar = (props) => {
   }
   return(
       <nav>
-        <div className="nav-logo"> <Logo /> </div>
+         <div onClick={() => this.props.push("/")} className="nav-logo"> <Logo /> </div>
         <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
-        <a  onClick={handlePopUpShow} className="nav-new-message"> <li > POST </li> </a>
+        <a  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </a>
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
         <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
       </nav>

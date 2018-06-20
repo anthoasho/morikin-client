@@ -2,6 +2,7 @@ import {apiCall, setAuthToken } from "../../services/api";
 import { SET_CURRENT_USER } from "../actionTypes";
 import {addError, removeError} from "./errors";
 import {animateExit, removeAnimation} from "./animate";
+import {isLoading, isLoaded} from "./UI";
 
 export function setCurrentUser(user){
   return {
@@ -29,9 +30,11 @@ export function logout(){
 export function authUser(type, userData){
   return dispatch => {
     return new Promise((resolve, reject) => {
-      return apiCall("post", `/api/auth/${type}`, userData)
+        dispatch(isLoading())
+      return apiCall("post", `api/auth/${type}`, userData)
         .then(({token, ...user}) => {
           dispatch(animateExit())
+          dispatch(isLoaded())
           localStorage.setItem("jwtToken", token)
           return {token, ...user}
           })
@@ -47,6 +50,7 @@ export function authUser(type, userData){
         .catch(err => {
           console.log(err)
           dispatch(addError(err));
+          dispatch(isLoaded())
           reject();
         });
     });

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./Auth.css"
 import Input from "../../common/InputField";
 import {Button} from "../../common/Button";
+import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import { removeError } from "../../store/actions/errors";
 import {connect} from "react-redux";
@@ -13,7 +14,8 @@ class AuthForm extends Component {
     this.state = {username: "",
                   email: "",
                   password: "",
-                  profileImgUrl: ""
+                  profileImgUrl: "",
+                  loading: false
                   };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,11 +35,18 @@ class AuthForm extends Component {
     //Clarify type of API call to be used through props to simplify the API call in store/actions
     const authType = this.props.signUp ? "signup" : "signin";
     this.props.onAuth(authType, this.state)
-    this.setState({username: "",
-              email: "",
+    this.setState({
               password: "",
               profileImgUrl: ""
               });
+
+  }
+  componentWillMount(){
+    if(this.props.errors.message){
+      this.setState({
+        loading: false
+      })
+    }
   }
   componentWillUnmount(){
     this.props.history.push("/")
@@ -60,6 +69,7 @@ render(){
         value={username}
         onChange={this.handleChange}
         isRequired={true}
+        autoFocus
       />
       <Input
         type="password"
@@ -89,7 +99,21 @@ render(){
       )}
       <Button
         type="submit"
-        text={buttonText} />
+        text={buttonText} >
+        <div className="button-text">
+          {buttonText}
+          </div>
+        <div className="button-loading">
+        {this.props.loading &&      <PreloaderIcon
+                      type={ICON_TYPE.TAIL_SPIN}
+                      size={20}
+                      strokeWidth={4}
+                      strokeColor="white"
+                      duration={800}
+                    />}
+
+        </div>
+     </Button>
   </form></div>)
     return(
       <SlideBox
@@ -116,7 +140,8 @@ function mapStateToProps(state){
   return {
     animate: state.animate,
     errors: state.errors,
-    isLoggedIn: state.myProfile.auth.isLoggedIn
+    isLoggedIn: state.myProfile.auth.isLoggedIn,
+    loading: state.ui.loading
   };
 }
 

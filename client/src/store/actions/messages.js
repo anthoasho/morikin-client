@@ -67,7 +67,7 @@ export const getLikeList = (url) => {
   return (dispatch, getState) => {
     let {ui} = getState()
     let {context} = ui
-    return apiCall("get", `/api/${url}`)
+    return apiCall("get", `api/${url}`)
       .then((res) => {
         console.log(context)
         dispatch(loadLikes(res, context));
@@ -83,7 +83,7 @@ export const followUser = ([userId, location, itemNum]) => {
   return (dispatch, getState) => {
     // let {ui} = getState()
     // let {context} = ui
-    return apiCall("post", `/api/${userId}/follow`)
+    return apiCall("post", `api/${userId}/follow`)
     .then((res) => {
       if(location==="followList"){
         dispatch(updateLikeList(res.following, itemNum));
@@ -104,7 +104,7 @@ export const removeMessage = (user, message) => {
   return (dispatch, getState) => {
     let {ui} = getState()
     let {context} = ui
-    return apiCall("put", `/api/users/${user}/messages/${message}/delete`, {isDeleted: true})
+    return apiCall("put", `api/users/${user}/messages/${message}/delete`, {isDeleted: true})
     .then(() =>
     dispatch(animateRemove(message, context))
   )
@@ -122,9 +122,8 @@ export const likeMessage = (id) => {
   return (dispatch, getState) => {
     let {ui} = getState()
     let {context} = ui
-    return apiCall("post", `/api/messages/${id}/like`)
+    return apiCall("post", `api/messages/${id}/like`)
       .then((res) => {
-        console.log(context)
         dispatch(likeMsg(res, context));
         dispatch(removeError());
       })
@@ -139,20 +138,20 @@ export const updateMessages = (user, lastMessage) =>{
     let {ui} = getState()
     let {context} = ui
     if(user){
-      return apiCall("get", `/api/user/${user}/messages/?from=${lastMessage}`)
+      return apiCall("get", `api/user/${user}/messages/?from=${lastMessage}`)
               .then((res) => {
                 dispatch(updateMessageList(res, context));
-              lastMessageCheck(res[res.length -1], dispatch)
+              lastMessageCheck(res[res.length -1], dispatch, context)
                 dispatch(removeError());
               })
               .catch((error) => {
                 dispatch(addError(error));
               });
     }else if(!user){
-    return apiCall("get", `/api/messages/?from=${lastMessage}`)
+    return apiCall("get", `api/messages/?from=${lastMessage}`)
             .then((res) => {
               dispatch(updateMessageList(res, context));
-              lastMessageCheck(res[res.length -1], dispatch)
+              lastMessageCheck(res[res.length -1], dispatch, context)
               dispatch(removeError());
             })
             .catch((error) => {
@@ -169,7 +168,7 @@ export const postNewMessage = (text) => (dispatch, getState) => {
   let {context} = ui
   const id = myProfile.auth.userId;
   dispatch(isLoading())
-  return apiCall("post", `/api/users/${id}/messages`, {text})
+  return apiCall("post", `api/users/${id}/messages`, {text})
   .then(res => {
     dispatch(postMessage(res, context));
     dispatch(isLoaded())
