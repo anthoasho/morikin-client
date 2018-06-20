@@ -49,7 +49,7 @@ export function authUser(type, userData){
         })
         .catch(err => {
           console.log(err)
-          dispatch(addError(err));
+          // dispatch(addError(err));
           dispatch(isLoaded())
           reject();
         });

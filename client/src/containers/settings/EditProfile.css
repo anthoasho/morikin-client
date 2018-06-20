@@ -1,11 +1,14 @@
 .edit-profile-container{
-  margin: 50px auto;
+  /* margin: 50px auto; */
   background: #efefef;
   display: grid;
   grid-template-columns: repeat(9, 1fr) ;
   grid-template-rows: 20px 1fr 1fr 1fr 5fr 20px;
-  width: 50%;
+  /* width: 50%; */
   text-align: center;
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
 }
 .edit-profile-title{
   grid-column: 6/9;
@@ -40,9 +43,9 @@
   justify-self: end;
   width: 50%;
 }
-.small img{
+/* .small img{
   max-width: 150px;
-}
+} */
 @media only screen and (max-device-width: 500px) {
   .edit-profile-container{
     display: flex;

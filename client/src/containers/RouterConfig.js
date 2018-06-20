@@ -11,6 +11,7 @@ import NewMessage from "./Messages/NewMessage";
 import withAuth, {apiHOC} from "../hocs/withAuth";
 import LandingPage from "./home/Landing";
 import Discover from "./RightSideBar/Discover";
+import Sidebar from "./settings/sidebar.js";
 
 //React Router config
 const RouterConfig = props => {
@@ -18,6 +19,7 @@ const RouterConfig = props => {
   return(
     currentUser.isLoggedIn ?
       <div className="container">
+
          <Navbar history={props.history} location={props.location} match={props.match} />
         <Switch>
           <Route exact path = "/" render = { props => <BodyContainer page={"dashboard"}  /> } />

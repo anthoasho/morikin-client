@@ -1,3 +1,14 @@
+
+## 0.2.6
+
+- UX improvements
+  - Loading indicator upon login
+  - Improved navigation 
+
+## 0.2.5
+
+- Initial deployment
+
 ## 0.2.0
 
 First changelog creation
@@ -38,4 +49,3 @@ First changelog creation
   - Responsive layout which slightly resembles a mobile application when viewed on a Mobile device (500px)
   - Shows a bottom navigation bar used to use different elements of the application
   - Also restructures in 700px viewing format
-  

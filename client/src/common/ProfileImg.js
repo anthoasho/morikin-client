@@ -11,7 +11,6 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 const ProfileImg = (props) => {
-  console.log(props)
   return(
     !props.loading ?
     <div className="img-wrapper">

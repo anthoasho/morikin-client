@@ -23,7 +23,7 @@ app.get("/", function(req, res){
 
 app.use("/api/users/:id/messages", auth.loginRequired, auth.ensureCorrectUser, messagesRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/user", auth.loginRequired, userInfoRoutes);
+app.use("/api/user", userInfoRoutes);
 app.post("/api/:username/follow", helpers.followUser);
 app.use("/api/messages/:mid/like", helpers.likeMessage);
 app.get("/api/messages/", helpers.getGetAllMessages);

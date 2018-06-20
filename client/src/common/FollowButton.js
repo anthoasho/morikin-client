@@ -38,6 +38,7 @@ const followButton = (props) => {
     }
   }
   return(
+    props.current &&
     <div className="follow-container">
       {buttonSelector(buttonType)}
     </div>

@@ -1,7 +1,8 @@
 
 .user-profile-small{
   padding-top: 10px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-gap: 0.5em;
   box-sizing: border-box;
   overflow: hidden;
@@ -18,7 +19,10 @@
   flex: 1 0 ;
 }
 .user-profile-small .img-wrapper{
-  width: 65%;
+  /* width: 65%; */
+  min-height: 100%;
+  flex-shrink: 0;
+
 }
 .meta-number{
   font-weight: 700;
