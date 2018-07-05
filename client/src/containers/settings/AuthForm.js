@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "./Auth.css"
 import Input from "../../common/InputField";
 import {Button} from "../../common/Button";
-import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import { removeError } from "../../store/actions/errors";
 import {connect} from "react-redux";
@@ -15,7 +14,7 @@ class AuthForm extends Component {
                   email: "",
                   password: "",
                   profileImgUrl: "",
-                  loading: false
+                  loading: true
                   };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,6 +33,7 @@ class AuthForm extends Component {
     this.props.removeError();
     //Clarify type of API call to be used through props to simplify the API call in store/actions
     const authType = this.props.signUp ? "signup" : "signin";
+    console.log(this.state)
     this.props.onAuth(authType, this.state)
     this.setState({
               password: "",
@@ -53,7 +53,7 @@ class AuthForm extends Component {
   }
 render(){
     const {username, email, password, profileImgUrl } = this.state;
-    const {heading, buttonText, signUp, errors, backAction, exit, exitReverse } = this.props;
+    const {heading, buttonText, signUp, errors, backAction, exit, exitReverse, loading } = this.props;
 
     const form = (<div className="login-form-container"><p className="title"> {heading} </p>
     {errors.message && (<p className="login-error"> {errors.message} </p>) }
@@ -99,20 +99,9 @@ render(){
       )}
       <Button
         type="submit"
-        text={buttonText} >
-        <div className="button-text">
+        text={buttonText}
+        loading={loading}>
           {buttonText}
-          </div>
-        <div className="button-loading">
-        {this.props.loading &&      <PreloaderIcon
-                      type={ICON_TYPE.TAIL_SPIN}
-                      size={20}
-                      strokeWidth={4}
-                      strokeColor="white"
-                      duration={800}
-                    />}
-
-        </div>
      </Button>
   </form></div>)
     return(

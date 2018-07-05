@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Timeline from "./home/Timeline";
 import {withRouter} from "react-router-dom";
 import {setContext} from "../store/actions/UI";
-import Navbar from "./Navbar";
 import classNames from "classnames";
 import {connect} from "react-redux";
 

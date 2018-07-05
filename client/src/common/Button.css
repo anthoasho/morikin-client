@@ -24,8 +24,9 @@ height: 100%;
 }
 .button-loading{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex: 0 0  40%;
+  position: relative;
 }
 .delete-btn{
   background: #f7f7f700;

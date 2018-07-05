@@ -4,7 +4,7 @@ import UserSmall from "../LeftSideBar/UserSmall";
 import {getUserProfile, followUser, getDiscoverUsers} from "../../store/actions/userProfile";
 import { updateMessages } from "../../store/actions/messages";
 import {clearAllPopUps, resizeFunction, setContext} from "../../store/actions/UI";
-import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+import LoaderIcon from "../../common/Loader";
 import { withRouter} from "react-router-dom";
 import {connect } from "react-redux";
 import PopError from "../../common/error";
@@ -93,14 +93,7 @@ Timeline.propTypes = {
 const Loading = (props) => {
   return(
     <div className="loading" style={{background: props.isMobile ? "#fdfdfd" : "#fdfdfdcc"}}>
-      <PreloaderIcon
-        className="profile-picture"
-        type={ICON_TYPE.TAIL_SPIN}
-        size={50}
-        strokeWidth={4}
-        strokeColor="#ae27e8"
-        duration={800}
-      />
+      <LoaderIcon />
     </div>
   )
 }

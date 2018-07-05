@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import "./Button.css";
 import classNames from "classnames";
+import {MiniLoader} from "./Loader";
 import PropTypes from "prop-types";
 
 export const Button = (props) => {
   let {type, onClick, text, loading} = props;
   switch(type){
  case "submit":
-   return <button id="submit" className={classNames({"submit-button": true, "button-loading":loading})} onClick={onClick} >{props.children}</button>
+   return <button id="submit" className={classNames({"submit-button": true, "button-loading":loading})} onClick={onClick} ><span className="button-text"> {props.children} </span>{loading && <div className="button-loading"> <MiniLoader /></div> }</button>
  case "signin":
   return <button id="signin" className="sign-in-btn" onClick={onClick} >{text}</button>
   case "signup":

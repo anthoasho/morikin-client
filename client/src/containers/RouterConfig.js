@@ -11,7 +11,7 @@ import NewMessage from "./Messages/NewMessage";
 import withAuth, {apiHOC} from "../hocs/withAuth";
 import LandingPage from "./home/Landing";
 import Discover from "./RightSideBar/Discover";
-import Sidebar from "./settings/sidebar.js";
+// import Sidebar from "./settings/sidebar.js";
 
 //React Router config
 const RouterConfig = props => {
