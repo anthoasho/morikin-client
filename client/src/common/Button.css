@@ -144,17 +144,18 @@
   color: black !important;
 }
 .submit-button{
-  width: 60%;
   color: white;
   font-weight: 700;
   background-color: #ae27e8;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
-  height: 40px;
+  height: 100%;
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
   justify-content: stretch;
   align-items: center;
   align-self: flex-end;
+  grid-column: 3/4;
+  grid-row: 5/6;
 }

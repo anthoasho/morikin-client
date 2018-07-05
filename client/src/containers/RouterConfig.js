@@ -35,8 +35,8 @@ const RouterConfig = props => {
       </div>
       :
       <Switch>
-      <Route exact path="/signin" render={props =>  <LandingPage {...props} /> } />
-      <Route exact path="/signup" render={props =>  <LandingPage {...props} /> } />
+      <Route exact path="/signin" render={props =>  <LandingPage locationState="signin" {...props} /> } />
+      <Route exact path="/signup" render={props =>  <LandingPage locationState="signup" {...props} /> } />
       <Route path="/" render={props =>
         <LandingPage {...props} />
       } />

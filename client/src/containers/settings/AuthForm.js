@@ -55,8 +55,8 @@ render(){
     const {username, email, password, profileImgUrl } = this.state;
     const {heading, buttonText, signUp, errors, backAction, exit, exitReverse, loading } = this.props;
 
-    const form = (<div className="login-form-container"><p className="title"> {heading} </p>
-    {errors.message && (<p className="login-error"> {errors.message} </p>) }
+    const form = (<div className="login-form-container"><p className="title">      {errors.message ? (<p className="login-error"> {errors.message}  </p>) : heading }</p>
+
     <form
     className="login-form"
       onSubmit = {this.handleSubmit}

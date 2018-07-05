@@ -26,6 +26,7 @@ class LandingPage extends Component {
       this.setState({
         page: e
       })
+      this.props.removeError();
 }
   authThenRedirect = (...args) =>{
     this.props.authUser(...args).then(()=>{
@@ -33,7 +34,11 @@ class LandingPage extends Component {
     })
   }
   componentWillMount(){
-
+    if(this.props.locationState){
+      this.setState({
+        page: this.props.locationState
+      })
+    }
     if(this.props.isLoggedIn){
       this.props.history.push("/")
     }
@@ -77,7 +82,7 @@ class LandingPage extends Component {
               </div>
               <div className="top-right">
                 <h2>Welcome to Morikin </h2>
-                <p>Message. Share. Catchy title.</p>
+                <p>Message. Share. Discover.</p>
                 <div className="landing-buttons">
                   <button onClick={() => this.handleClick("signup")} className="sign-up-btn">Sign Up</button>
                   <button onClick={() => this.handleClick("signin")} className="sign-in-btn">Sign In</button>
@@ -88,7 +93,7 @@ class LandingPage extends Component {
                 <div className="icon-holder">
                   <FontAwesome name='comment' className="icon landing-icon"  />
                 </div>
-                <h4> Post your thoughts out on to the internet!  </h4>
+                <h4> Post your thoughts out on to the internet </h4>
               </div>
               <div className="bottom-item">
               <div className="icon-holder">

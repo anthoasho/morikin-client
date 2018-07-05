@@ -57,13 +57,16 @@
   box-sizing: border-box;
 }
 .device:hover{
-  transform: translateY(0%);
+  transform: translateY(10%);
 }
 .reset-transform-y{
   transform: translateY(0%);
 }
+.reset-transform-y:hover{
+  transform: translateY(0%);
+}
 .device img{
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   overflow: hidden;
   grid-column: 2/3;
   grid-row: 2/3;
@@ -81,17 +84,23 @@
   flex-direction: column;
   justify-content: space-around;
   padding: 15px;
+  letter-spacing: 1px;
 }
 .landing-buttons{
   display: flex;
   justify-content: flex-start;
 }
 .top-right h2{
-  color: #ffffffae;
+  color: #eee;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 1px #000;
 }
 .top-right p {
-  color: #fff;
+  color: #333;
   font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 1px 1px 1px #fff;
 }
 .bottom-content{
   grid-column: 1/5;
