@@ -1,17 +1,33 @@
 
 .title{
   text-align: center;
-  grid-row: 2/3;
-  grid-column: 5/6;
+  grid-row: 1/2;
+  grid-column: 2/4;
   margin: 0;
   font-weight: 700;
   align-self: center;
 }
 .login-form-container{
-  /* display: subgrid; */
-  display: contents;
-  grid-column: 2/7;
-  grid-row: 1/12;
+  display: grid;
+  grid-template-columns: 5px 1fr 1fr 5px;
+  grid-auto-rows: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  align-self: center;
+  /* width: 70%; */
+  /* margin: auto; */
+  height: 100%;
+  padding: 10px;
+}
+@keyframes fadeIn {
+  100%{
+    opacity: 1;
+  }
+
 }
 .back-button{
   grid-column: 1/2;
@@ -75,12 +91,17 @@
   border-color: #eaedf26b;
 }
 .login-form{
-  grid-row: 3/11;
-  grid-column: 3/8;
+  grid-row: 2/4;
+  grid-column: 1/3;
   display:flex;
   flex-direction: column;
   align-items: center;
+  /* height: 50%; */
+  justify-content: space-around;
+  width: 70%;
+  margin: auto;
 }
+
 @media  only screen and (max-device-width: 480px){
 
   .login-form{

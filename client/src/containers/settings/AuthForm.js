@@ -105,12 +105,7 @@ render(){
      </Button>
   </form></div>)
     return(
-      <SlideBox
-        exit={exit}
-        exitReverse={exitReverse}
-        backAction={backAction}
-        content={form}
-        />
+      form
       );
   }
 }

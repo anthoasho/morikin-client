@@ -34,9 +34,13 @@ const RouterConfig = props => {
          <TabNav history={props.history}   currentUser={currentUser.username} isMobile={props.isMobile} context={props.context}/>
       </div>
       :
+      <Switch>
+      <Route exact path="/signin" render={props =>  <LandingPage {...props} /> } />
+      <Route exact path="/signup" render={props =>  <LandingPage {...props} /> } />
       <Route path="/" render={props =>
         <LandingPage {...props} />
       } />
+      </Switch>
     );
 };
 

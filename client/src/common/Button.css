@@ -1,20 +1,31 @@
-.sign-up-btn{
+.sign-up-btn, .sign-in-btn{
   color: white;
   font-weight: 700;
+  background-color: #ae27e801;
+  border: 1px solid #dbdbdb;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 5px #00000033;
+  padding: 15px 40px;
+  margin: 4px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.sign-up-btn:hover, .sign-in-btn:hover{
   background-color: #ae27e8;
-  border: 1px solid #dbdbdb;
-  width: 100%;
-  height: 100%;
-  text-transform: uppercase;
+  border-color: #ae27e8;
 }
-.sign-in-btn{
+.sign-up-btn
+/* .sign-in-btn{
   color: white;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0);
   border: 1px solid #dbdbdb;
-width: 100%;
-height: 100%;
   text-transform: uppercase;
-}
+  padding: 15px 40px;
+} */
 .button-text{
   display: flex;
   justify-content: flex-end;
@@ -133,7 +144,7 @@ height: 100%;
   color: black !important;
 }
 .submit-button{
-  width: 80%;
+  width: 60%;
   color: white;
   font-weight: 700;
   background-color: #ae27e8;
@@ -145,4 +156,5 @@ height: 100%;
   display: flex;
   justify-content: stretch;
   align-items: center;
+  align-self: flex-end;
 }
