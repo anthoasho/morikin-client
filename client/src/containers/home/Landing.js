@@ -43,6 +43,12 @@ class LandingPage extends Component {
       this.props.history.push("/")
     }
   }
+  componentDidMount(){
+    // if(navigator.userAgent.match(/Android/i)){
+
+    setTimeout(() => window.scrollTo(0,0), 100 )
+    // }
+  }
   render(){
     let {errors} = this.props;
 
@@ -52,12 +58,12 @@ class LandingPage extends Component {
     <Switch>
       <Route path = "/" render={props =>{
         return(
-          <div className="landing-page">
+          <div className={classNames({"landing-page": true,"login-form-show":(this.state.page === "signup" || this.state.page==="signin")})}>
             <div className="landing-logo"  onClick= {() => this.setState({page: "default"})}>
               <Logo />
             </div>
-              <div className={classNames({"top-left":true, "extra-height":(this.state.page === "signup" || this.state.page==="signin")})} >
-              <div className={classNames({"device": true, "reset-transform-y": (this.state.page === "signup" || this.state.page==="signin")})}>
+              <div className="top-left" >
+              <div className="device">
                 {(this.state.page === "signup") &&   <AuthForm
                     errors={errors}
                     onAuth={this.authThenRedirect}
@@ -88,7 +94,7 @@ class LandingPage extends Component {
                   <button onClick={() => this.handleClick("signin")} className="sign-in-btn">Sign In</button>
                 </div>
               </div>
-            <div className={classNames({"bottom-content": true, "transform-y": (this.state.page === "signup" || this.state.page==="signin")})}>
+            <div className="bottom-content">
               <div className="bottom-item">
                 <div className="icon-holder">
                   <FontAwesome name='comment' className="icon landing-icon"  />

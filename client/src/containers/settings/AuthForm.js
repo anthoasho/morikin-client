@@ -70,6 +70,7 @@ render(){
         onChange={this.handleChange}
         isRequired={true}
         autoFocus
+        autocomplete="off"
       />
       <Input
         type="password"

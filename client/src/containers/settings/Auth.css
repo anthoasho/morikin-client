@@ -115,8 +115,5 @@
 }
 @media  only screen and (max-device-width: 480px){
 
-  .login-form{
-    display: flex;
-    justify-content: space-around;
-  }
+
 }

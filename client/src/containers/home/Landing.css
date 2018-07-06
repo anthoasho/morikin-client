@@ -59,10 +59,12 @@
 .device:hover{
   transform: translateY(10%);
 }
-.reset-transform-y{
+.login-form-show .device{
   transform: translateY(0%);
+  border-radius: 0px;
+  box-shadow:-1px 0px 3px 1px #3e3e3ebb;
 }
-.reset-transform-y:hover{
+.login-form-show .device:hover{
   transform: translateY(0%);
 }
 .device img{
@@ -112,7 +114,7 @@
   z-index: 10;
   transition: 1s ease-in-out;
 }
-.transform-y{
+.login-form-show .bottom-content{
   transform: translateY(50%);
 }
 .auth-form-container{
@@ -122,7 +124,7 @@
   opacity: 1;
   transition: opacity 1s ease;
 }
-.transform-y h4{
+.login-form-show .bottom-content h4{
   opacity: 0;
 }
 .icon-holder{
@@ -147,14 +149,149 @@
   color: #00c6fbf0;
 }
 .bottom-item:nth-of-type(even) .landing-icon{
-  color: #ae27e8FF;
+  color:#ae27e8;
 }
 
 .bottom-item{
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   padding: 20px;
+}
+@media  only screen and (max-device-width: 500px) {
+  .landing-page{
+    width: 100vw;
+    height: 100vh!important;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
+    overflow-y: hidden;
+    position: relative;
+  }
+  .landing-logo{
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+  }
+  .login-form-show .landing-logo{
+    background: #ae27e8FF;
+
+  }
+  .top-right{
+    grid-column: 1/5;
+    grid-row: 2/3;
+    flex: 0 1 50%;
+    order: 2;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+  }
+  .login-form{
+
+  }
+  .top-right{
+    width: 100%;
+  }
+  .top-left{
+    /* grid-column: 1/5; */
+    /* grid-row: 3/4; */
+    /* flex: 1 1 60%; */
+    /* order: 3; */
+    /* overflow: hidden; */
+    position: absolute;
+    bottom: 50%;
+    top: 50%;
+    /* height: 60%; */
+    height: 100vh;
+    right: 0;
+    left: 0;
+    transition: top 1s ease;
+  }
+  .login-form-show .top-left{
+    /* bottom: 0; */
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+    .login-form-show .top-right{
+      top: 0;
+    }
+  .bottom-content{
+    grid-row: 4/5;
+    order: 4;
+    position: absolute;
+    bottom: 0;
+    transition-duration: 600ms;
+  }
+  .device{
+    transform-origin: 50% 50%;
+    transform: translateY(10%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    /* position: absolute; */
+    transition-duration: 600ms;
+    padding: 20px;
+    /* top: 0; */
+    /* bottom:auto; */
+  }
+  .login-form-container{
+    width: 100%;
+    height: 80%;
+  }
+  .device img{
+    height: auto;
+  }
+    .login-form-show .bottom-content{
+    /* transform: translateY(50%); */
+    /* opacity: 0; */
+    /* z-index: -1; */
+    /* display: none; */
+  }
+  .device:hover{
+    transform: translateY(0%);
+  }
+  .login-form-show .top-right p{
+    opacity: 0;
+    display: none;
+  }
+  .login-form-show .top-right h2{
+    opacity: 0;
+    /* display: none; */
+  }
+  .login-form-show .top-right{
+    flex: 1 1 1%;
+  }
+    .login-form-show .device{
+    justify-content: center;
+    transform: translateY(0%);
+    width: 100%;
+    border-radius: 0px;
+    z-index: 5;
+    /* height: 100%; */
+  }
+  .login-form-show .sign-up-btn,   .login-form-show .sign-in-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #eeeeee;
+    padding: 15px;
+  }
+  .sign-up-btn{
+    left: 0;
+  }
+  .sign-in-btn{
+    right: 0;
+  }
+    .login-form-show .device:hover{
+    transform: translateY(0%);
+  }
 }
