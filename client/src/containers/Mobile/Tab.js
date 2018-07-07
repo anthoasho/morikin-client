@@ -18,7 +18,7 @@ export const TabNav = props =>{
 if(props.isMobile){
   return(
     <div className="tab-nav">
-      <div className={classNames({"tab-item": true, "icon-current": (props.context === "dashboard" || props.context ===  "profile")})} onClick = {()=> pageSelector("")}>
+      <div className={classNames({"tab-item": true, "icon-current": (props.context === "dashboard" || props.context ===  "profile") && ((props.history.location.pathname === "/"))})} onClick = {()=> pageSelector("")}>
           <FontAwesome name='home' className="icon"  />
       </div>
       <div className={classNames({"tab-item": true, "icon-current": props.history.location.pathname === "/new"})} onClick = {()=> pageSelector("new")}>
@@ -27,7 +27,7 @@ if(props.isMobile){
       <div className={classNames({"tab-item": true, "icon-current": props.history.location.pathname === "/discover" })} onClick = {()=> pageSelector("discover")}>
           <FontAwesome name='dice' className="icon"  />
       </div>
-      <div className={classNames({"tab-item": true, "icon-current": props.context === `myProfile`})} onClick = {()=> pageSelector("myprofile")}>
+      <div className={classNames({"tab-item": true, "icon-current": (props.context === `myProfile`) && (props.history.location.pathname === "/myprofile")})} onClick = {()=> pageSelector("myprofile")}>
           <FontAwesome name='user' className="icon"  />
       </div>
 

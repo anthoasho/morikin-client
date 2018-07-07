@@ -12,14 +12,12 @@ class EditProfile extends Component{
     let {user} = this.props;
     //Decided to fill with default values of information already present - password is exempt from this
     //TODO handle password change, make it a separate entity
-    this.state = {username: user.username,
-                  email: user.email,
-                  passwordOne: "",
-                  passwordTwo: "",
-                  profileImgUrl: user.profileImgUrl,
-                  displayName: user.displayName,
-                  profileColor: user.profileColor,
-                  description: user.description
+    this.state = {username: user.username || "",
+                  email: user.email || "",
+                  profileImgUrl: user.profileImgUrl|| "",
+                  displayName: user.displayName || "",
+                  profileColor: user.profileColor || "",
+                  description: user.description || ""
                   };
 
     this.handleChange = this.handleChange.bind(this);

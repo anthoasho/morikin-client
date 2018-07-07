@@ -10,7 +10,6 @@ const LoaderIcon = props => {
   )
 }
 export const MiniLoader = props => {
-  console.log("hello")
   return(
       <div className="loader-mini"> </div>
   )

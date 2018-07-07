@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 import { connect } from "react-redux"
 import {logout } from "../store/actions/auth";
-import {animateEnter, animateProfile} from "../store/actions/animate";
+import {animateProfile} from "../store/actions/animate";
 import classNames from "classnames";
 import {Logo} from "../common/logo.js";
 import {showNewMessage} from "../store/actions/UI";
@@ -14,20 +14,19 @@ const Navbar = (props) => {
     let obj = {
       method: "postMessage",
     }
-    if(props.location.pathname === "/editprofile"){
+    if(props.location.pathname !== "/"){
       props.history.push("/")
       setTimeout(() => props.showNewMessage(obj), 200)
     }
     props.showNewMessage(obj)
   }
 
-  const {logout, history, animateEnter, currentUser, context } = props;
+  const {logout, history, currentUser, context } = props;
   //logout removes the token in headers, followed by a redirect to login page
   const handleLogout = e =>{
     e.preventDefault();
     logout()
     history.push("/");
-    animateEnter();
   }
   // let place = location.pathname.split("/")[1];
   // const locationTest = (test) =>{
@@ -58,7 +57,7 @@ const Navbar = (props) => {
   }
   return(
       <nav>
-         <div onClick={() => this.props.push("/")} className="nav-logo"> <Logo /> </div>
+         <div onClick={() => props.history.push("/")} className="nav-logo"> <Logo /> </div>
         <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
         <a  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </a>
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
@@ -70,7 +69,6 @@ Navbar.propTypes= {
   currentUser: PropTypes.object,
   isMobile: PropTypes.bool,
   logout: PropTypes.func,
-  animateEnter: PropTypes.func,
   showNewMessage: PropTypes.func,
 
 
@@ -82,8 +80,7 @@ function mapStateToProps(state){
     isMobile: state.ui.isMobile,
     context: state.ui.context,
     profile: state.profile.profile.user,
-    profileHide: state.animate.profileHide,
     isLoading: state.ui.isLoading
   };
 }
-export default connect(mapStateToProps, {logout, animateEnter, showNewMessage, animateProfile})(Navbar);
+export default connect(mapStateToProps, {logout, showNewMessage, animateProfile})(Navbar);

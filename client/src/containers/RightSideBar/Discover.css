@@ -15,10 +15,9 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-image: -webkit-radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
-  background-image: -o-radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
-  background-image: radial-gradient(circle closest-corner, #eef1f5, #e6e9f0 );
+  background: #fdfdfd;
   border-radius: 3px;
+
   width:100%;
   -webkit-box-shadow: -1px 2px 10px rgba(0,0,0,0.3);
           box-shadow: -1px 2px 10px rgba(0,0,0,0.3);

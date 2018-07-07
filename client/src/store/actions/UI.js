@@ -60,7 +60,7 @@ export const showMessageBox = (obj) => {
     dispatch(showNewMessage())
   }
 }
-export const showLikesList = (obj, hide ) => {
+export const showLikesList = (obj, hide) => {
   return (dispatch, getState) => {
     if(hide) {
       dispatch(animateHide(hide))

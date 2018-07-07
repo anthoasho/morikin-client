@@ -1,10 +1,8 @@
 import React, {Component} from "react";
-import {Button} from "../../common/Button";
 import AuthForm from "../settings/AuthForm";
 import {Switch, Route} from "react-router-dom";
 import {connect } from "react-redux";
 import {authUser } from "../../store/actions/auth";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import {removeError} from "../../store/actions/errors";
 import {Logo} from "../../common/logo";
 import FontAwesome from "react-fontawesome";
@@ -30,7 +28,6 @@ class LandingPage extends Component {
 }
   authThenRedirect = (...args) =>{
     this.props.authUser(...args).then(()=>{
-      this.props.animateEnter();
     })
   }
   componentWillMount(){
@@ -83,7 +80,7 @@ class LandingPage extends Component {
               />
             }
 
-            {(this.state.page === "default") &&  <img src={require("../../images/morikin-sh.jpg")} /> }
+            {(this.state.page === "default") &&  <img alt="" src={require("../../images/morikin-sh.jpg")} /> }
               </div>
               </div>
               <div className="top-right">
@@ -124,18 +121,16 @@ class LandingPage extends Component {
 }
 
 LandingPage.propTypes = {
-  animate: PropTypes.object,
   errors: PropTypes.object,
   authUser: PropTypes.func
 }
 function mapStateToProps(state){
   return {
     errors: state.errors,
-    animate: state.animate,
     isLoggedIn: state.myProfile.auth.isLoggedIn
   };
 }
-export default connect(mapStateToProps, {authUser, animateEnter, animateEnterReverse, animateExit, animateExitReverse, removeError})(LandingPage);
+export default connect(mapStateToProps, {authUser,  removeError})(LandingPage);
 
 
 

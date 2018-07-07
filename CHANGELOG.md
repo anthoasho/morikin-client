@@ -1,9 +1,11 @@
-
+## 0.2.7
+- Redesign of the landing page
+  - improved fluidity of Sign in and Sign up pages
 ## 0.2.6
 
 - UX improvements
   - Loading indicator upon login
-  - Improved navigation 
+  - Improved navigation
 
 ## 0.2.5
 

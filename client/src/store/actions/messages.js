@@ -1,6 +1,6 @@
 import {apiCall } from "../../services/api";
 import {addError, removeError} from "./errors";
-import {isLoading, isLoaded} from "./UI";
+import {showNewMessage} from "./UI";
 import {LOAD_MESSAGES, REMOVE_MESSAGE, LIKE_MESSAGE, ANIMATE_REMOVE_MESSAGE, FETCHING_MESSAGES, UPDATE_MESSAGES, LAST_MESSAGE, POST_MESSAGE, LOAD_MSG_LIKES, UPDATE_LIKE_LIST } from "../actionTypes";
 
 
@@ -167,11 +167,12 @@ export const postNewMessage = (text) => (dispatch, getState) => {
   let {myProfile, ui} = getState();
   let {context} = ui
   const id = myProfile.auth.userId;
-  dispatch(isLoading())
+  // dispatch(isLoading())
   return apiCall("post", `api/users/${id}/messages`, {text})
   .then(res => {
     dispatch(postMessage(res, context));
-    dispatch(isLoaded())
+    dispatch(showNewMessage())
+    // dispatch(isLoaded())
   })
   .catch(err => {
     dispatch(addError(err));

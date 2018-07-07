@@ -123,10 +123,12 @@ export const clearFollowList = () => {
 //Edits part of the profile (not the password currently - TODO)
 //Upon edit, it will update the token within the local storage
 export const editProfile = userData => (dispatch, getState) => {
+  let {ui} = getState()
+  let {context}  = ui;
   return apiCall("post", `api/user/updateprofile`, {userData})
   .then(res => {
     localStorage.setItem("jwtToken", res.token)
-    dispatch(updateCurrentUser(res.response));
+    dispatch(updateCurrentUser(res.response, context));
     dispatch(removeError());
   })
   .catch(err => {

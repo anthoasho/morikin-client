@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 import {connect } from "react-redux";
 import "./NewMessage.css";
 import  {postNewMessage}  from "../../store/actions/messages";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import {Button} from "../../common/Button";
 import {showNewMessage} from "../../store/actions/UI";
 import {withRouter} from "react-router-dom";
+import classNames from "classnames";
 import SlideBox from "../../common/SlideBox"
 class NewMessage extends Component{
     constructor(props){
     super(props);
     this.state = {text: "",
-                  loading: false
+                  loading: false,
+                  show: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,12 +33,21 @@ class NewMessage extends Component{
   }
   //At the moment this just sends the user back to the previous page - either don't use router or think of a better solution
   goBack(){
-    this.props.animateExitReverse();
-    this.props.showNewMessage();
-    this.props.history.push("/");
+    // this.props.animateExitReverse();
+    this.setState({
+      show: false
+    })
+    setTimeout(() => this.props.showNewMessage(), 1000)
+    // this.props.showNewMessage();
+    // this.props.history.push("/");
+  }
+  componentDidMount(){
+    this.setState({
+      show: true
+    })
   }
   componentWillMount(){
-    this.props.animateEnter();
+    // this.props.animateEnter();
   }
 
   handleSubmit(e){
@@ -52,8 +62,7 @@ class NewMessage extends Component{
       });
 
       //2 second delay to simulate loading - purely for test purposes
-      setTimeout(this.goBack, 400)
-      this.props.animateExit();
+      // setTimeout(this.goBack, 400)
       }else if(lengthCheck === 0 ){
         this.setState({
           error:"Please write a message!"
@@ -100,7 +109,7 @@ class NewMessage extends Component{
       </div>
     )
     return(
-      <div className="new-message-box">
+      <div className={classNames({"new-message-box": true, "show-message-box": this.state.show})}>
         <SlideBox
           exit={null}
           exitReverse={null}
@@ -113,10 +122,6 @@ class NewMessage extends Component{
 NewMessage.propTypes = {
   errors: PropTypes.object,
   postNewMessage: PropTypes.func,
-  animateEnter: PropTypes.func,
-  animateEnterReverse: PropTypes.func,
-  animateExit: PropTypes.func,
-  animateExitReverse: PropTypes.func,
   showNewMessage: PropTypes.func
 }
 
@@ -125,4 +130,4 @@ function mapStateToProps(state){
     errors: state.errors
   };
 }
-export default withRouter(connect(mapStateToProps, {postNewMessage, animateEnter, animateEnterReverse, animateExit, animateExitReverse, showNewMessage})(NewMessage));
+export default withRouter(connect(mapStateToProps, {postNewMessage, showNewMessage})(NewMessage));

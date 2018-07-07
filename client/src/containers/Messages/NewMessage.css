@@ -1,8 +1,25 @@
 .new-message-box{
   width: 100%;
   margin: auto;
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
+  transform: translateY(-100%);
+  transition: all 1s ease;
 }
+.show-message-box{
+  /* animation: slideItIn 1s ease-in-out forwards; */
+  transform: translateY(0%);
+
+}
+@keyframes slideItIn {
+  from{
+    transform: translateY(-100%);
+  }
+  to{
+    transform: translateY(0%);
+  }
+}
+
+
 .new-message-form{
   display:contents;
   grid-gap: 1.5em;
@@ -30,11 +47,14 @@
 }
 .new-message-form button{
   grid-column: 4/5;
-  grid-row: 4/5;
+  grid-row: 5/6;
   height: auto;
-  width: 75px;
-  margin: 0;
-  padding: 5px 0;
+  margin: 5px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .new-message-textarea{
   font-size: 1.5rem;

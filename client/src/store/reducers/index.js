@@ -19,7 +19,14 @@ import ui from "./UI";
 //   ui
 // });
 
-const rootReducer = combineReducers({
+const rootReducer = (state, action) => {
+  if(action.type === "USER_LOGOUT"){
+    state = undefined
+  }
+  return appReducer(state, action)
+}
+
+const appReducer = combineReducers({
   myProfile: combineReducers({
     auth,
     profile: profile.bind(null, "myProfile"),
@@ -39,4 +46,6 @@ const rootReducer = combineReducers({
   discover,
   ui
 });
+
+
 export default rootReducer;

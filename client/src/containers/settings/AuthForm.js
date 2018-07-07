@@ -3,17 +3,14 @@ import PropTypes from "prop-types";
 import "./Auth.css"
 import Input from "../../common/InputField";
 import {Button} from "../../common/Button";
-import {animateEnter, animateEnterReverse, animateExit, animateExitReverse} from "../../store/actions/animate";
 import { removeError } from "../../store/actions/errors";
 import {connect} from "react-redux";
-import SlideBox from "../../common/SlideBox";
 class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state = {username: "",
-                  email: "",
                   password: "",
-                  profileImgUrl: "",
+                  email: "",
                   loading: true
                   };
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +30,6 @@ class AuthForm extends Component {
     this.props.removeError();
     //Clarify type of API call to be used through props to simplify the API call in store/actions
     const authType = this.props.signUp ? "signup" : "signin";
-    console.log(this.state)
     this.props.onAuth(authType, this.state)
     this.setState({
               password: "",
@@ -53,7 +49,7 @@ class AuthForm extends Component {
   }
 render(){
     const {username, email, password, profileImgUrl } = this.state;
-    const {heading, buttonText, signUp, errors, backAction, exit, exitReverse, loading } = this.props;
+    const {heading, buttonText, signUp, errors, loading } = this.props;
 
     const form = (<div className="login-form-container"><p className="title">      {errors.message ? (<p className="login-error"> {errors.message}  </p>) : heading }</p>
 
@@ -84,7 +80,7 @@ render(){
         <Input
           type="text"
           name="email"
-          placeholder="Email Address"
+          placeholder="Email Address (optional)"
           value={email}
           isRequired={true}
           onChange={this.handleChange}
@@ -93,7 +89,7 @@ render(){
         <Input
           type="text"
           name="profileImgUrl"
-          placeholder="Url of your Profile Picture"
+          placeholder="Url of your Profile Picture (optional)"
           value={profileImgUrl}
           onChange={this.handleChange}
         />
@@ -116,18 +112,14 @@ AuthForm.propTypes = {
   buttonText: PropTypes.string,
   signUp: PropTypes.bool,
   errors: PropTypes.object,
-  backAction: PropTypes.func,
-  exit: PropTypes.func,
-  exitReverse: PropTypes.func
 }
 
 function mapStateToProps(state){
   return {
-    animate: state.animate,
     errors: state.errors,
     isLoggedIn: state.myProfile.auth.isLoggedIn,
     loading: state.ui.loading
   };
 }
 
-export default connect(mapStateToProps, {removeError, animateEnter, animateEnterReverse, animateExit, animateExitReverse})(AuthForm)
+export default connect(mapStateToProps, {removeError})(AuthForm)

@@ -5,7 +5,13 @@ var userSchema = new mongoose.Schema({
   email:{
     type: String,
     required: false,
-    unique: true
+    index: {
+      unique: true,
+      partialFilterExpression: {
+        email: {$type: "string"}
+      }
+    }
+
   },
   username:{
     type: String,

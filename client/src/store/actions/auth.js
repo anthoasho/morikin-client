@@ -1,7 +1,6 @@
 import {apiCall, setAuthToken } from "../../services/api";
 import { SET_CURRENT_USER } from "../actionTypes";
 import {addError, removeError} from "./errors";
-import {animateExit, removeAnimation} from "./animate";
 import {isLoading, isLoaded} from "./UI";
 
 export function setCurrentUser(user){
@@ -10,7 +9,11 @@ export function setCurrentUser(user){
     user
   };
 }
-
+export function userLogout(){
+  return {
+    type: "USER_LOGOUT"
+  }
+}
 export function setAuthorizationToken(token){
   setAuthToken(token);
 }
@@ -20,9 +23,10 @@ export function logout(){
   return dispatch =>{
     localStorage.removeItem("jwtToken");
     setAuthorizationToken(false);
-    dispatch(setCurrentUser({}));
+    dispatch(userLogout());
   };
 }
+
 //Logs in with a post request
 //when response is recieved, it animates away the login area and sets the token in local storage
 //from that, the animation is removed and state is updated
@@ -33,14 +37,12 @@ export function authUser(type, userData){
         dispatch(isLoading())
       return apiCall("post", `api/auth/${type}`, userData)
         .then(({token, ...user}) => {
-          dispatch(animateExit())
           dispatch(isLoaded())
           localStorage.setItem("jwtToken", token)
           return {token, ...user}
           })
           .then(({token, ...user}) => {
             setTimeout(() => {
-              dispatch(removeAnimation());
               setAuthorizationToken(token);
               dispatch(setCurrentUser(user));
               dispatch(removeError());

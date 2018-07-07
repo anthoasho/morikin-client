@@ -10,14 +10,21 @@
   padding: 15px 40px;
   margin: 4px;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
   z-index: 10;
   transition: all 1s;
+  white-space: nowrap;
 }
 
-.sign-up-btn:hover, .sign-in-btn:hover{
+.sign-up-btn:hover, .sign-in-btn:hover, .sign-up-btn-active{
   background-color: #ae27e8;
   border-color: #ae27e8;
+}
+.sign-up-btn-active:hover{
+  /* background-color: #ae27e801; */
+  border-color:  #dbdbdb;
+  text-shadow: 2px 2px 3px #00000088;
+  /* color: #000; */
 }
 .sign-up-btn
 /* .sign-in-btn{
