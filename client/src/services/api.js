@@ -18,7 +18,8 @@ export function apiCall(method, path, data, attempt = 1){
     })
     .catch(err => {
       if(attempt > 2) {
-        reject(err.response ? err.response : {statusText: "Something went wrong", status: 520})
+
+        reject(err.response ? err.response : {statusText: "Sorry, we couldn't connect you to our server! Please try again later", status: 520})
       } else {
           attempt+=1;
           withRetry(resolve, reject);

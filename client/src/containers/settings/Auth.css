@@ -33,19 +33,22 @@
 
 }
 .back-button{
-  grid-column: 1/2;
-  grid-row:1/12;
+  grid-column: 1/12;
+  grid-row:1/2;
   width: 100%;
-  background-image: linear-gradient(to right, #ae27e8f5, #cf27e8f7);
+  background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF);
   border-radius: 1%;
+  padding: 12px 10px;
   cursor: pointer;
+  /* display: flex; */
+  /* justify-content: flex-start; */
 }
 .back-button-reverse{
   display: flex;
     flex: 0 0;
-    background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF)!important;
     z-index: 2;
     position:relative;
+    padding: 3px;
 }
 .back-icon-reverse{
   transform: rotate(45deg)!important;
@@ -83,7 +86,8 @@
   z-index: 20;
   margin: 0;
   border-color: #eaedf2;
-  margin: 10px 4px;
+  /* margin: 10px 4px; */
+  margin-top: -5px;
 }
 
 

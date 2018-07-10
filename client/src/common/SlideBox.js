@@ -10,8 +10,6 @@ const SlideBox = ({backAction, content}) =>{
   }
     return(
     <div className={classNames({"container-box": true})}>
-      <div className={classNames({"hide-box": true})} >
-      </div>
       <div onClick={back} className="back-button">
         <div className="back-icon"></div>
       </div>

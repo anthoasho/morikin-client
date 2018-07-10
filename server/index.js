@@ -18,7 +18,7 @@ process.on('unhandledRejection', function(reason, promise) {
     console.log(promise);
 });
 app.get("/", function(req, res){
-  res.json({message:"Make a post request to sign up!"});
+  res.json({message:"Please connect through an approved method"});
 });
 
 app.use("/api/users/:id/messages", auth.loginRequired, auth.ensureCorrectUser, messagesRoutes);

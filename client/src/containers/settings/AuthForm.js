@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import "./Auth.css"
 import Input from "../../common/InputField";
 import {Button} from "../../common/Button";
-import { removeError } from "../../store/actions/errors";
+import { removeError, addError } from "../../store/actions/errors";
 import {connect} from "react-redux";
 class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state = {username: "",
                   password: "",
-                  email: "",
-                  loading: true
+                  repeatPassword: "",
+                  profileImgUrl: "",
+                  loading: true,
                   };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,12 +31,17 @@ class AuthForm extends Component {
     this.props.removeError();
     //Clarify type of API call to be used through props to simplify the API call in store/actions
     const authType = this.props.signUp ? "signup" : "signin";
-    this.props.onAuth(authType, this.state)
-    this.setState({
-              password: "",
-              profileImgUrl: ""
-              });
+    if(this.props.signUp && (this.state.password !== this.state.repeatPassword)){
+      this.props.addError({statusText: "The passwords do not match!"})
+    }else{
+      this.props.onAuth(authType, this.state)
+      this.setState({
+        password: "",
+        repeatPassword: "",
+        profileImgUrl: ""
+      });
 
+    }
   }
   componentWillMount(){
     if(this.props.errors.message){
@@ -48,10 +54,9 @@ class AuthForm extends Component {
     this.props.history.push("/")
   }
 render(){
-    const {username, email, password, profileImgUrl } = this.state;
-    const {heading, buttonText, signUp, errors, loading } = this.props;
-
-    const form = (<div className="login-form-container"><p className="title">      {errors.message ? (<p className="login-error"> {errors.message}  </p>) : heading }</p>
+    const {username, email, password, profileImgUrl, repeatPassword} = this.state;
+    const {heading, buttonText, signUp, loading, errors } = this.props;
+    const form = (<div className="login-form-container"><p className="title">{errors.message ? (<span className="login-error">{errors.message}</span>) : heading }</p>
 
     <form
     className="login-form"
@@ -75,16 +80,28 @@ render(){
         value={password}
         isRequired={true}
         onChange={this.handleChange}
+
       />
-      {signUp && (
+      {signUp &&(
+        <Input
+          type="password"
+          name="repeatPassword"
+          placeholder="Repeat your Password"
+          value={repeatPassword}
+          isRequired={true}
+          onChange={this.handleChange}
+        />
+      )
+
+      }
+      {/*signUp && (
         <Input
           type="text"
           name="email"
           placeholder="Email Address (optional)"
           value={email}
-          isRequired={true}
           onChange={this.handleChange}
-        /> )}
+        /> )*/}
       {signUp && (
         <Input
           type="text"
@@ -122,4 +139,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, {removeError})(AuthForm)
+export default connect(mapStateToProps, {removeError, addError})(AuthForm)

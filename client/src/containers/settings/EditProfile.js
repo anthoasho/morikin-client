@@ -43,10 +43,7 @@ class EditProfile extends Component{
     const {errors, user} = this.props;
     return(
       <div className="edit-profile-container" style={{boxShadow: `0 -5px 4px -4px ${user.profileColor}`}}>
-
-
       <div>
-
       {errors.message && (<div> {errors.message} </div>) }
       </div>
         <div className="img-wrapper">

@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 class Timeline extends Component{
   constructor(props) {
     super(props);
-    this.getUserProfile = this.props.getUserProfile.bind(this, this.props.page)
+    this.getUserProfile = this.props.getUserProfile.bind(this)
     this.updateMessages = this.props.updateMessages.bind(this)
     this.handleBottom = this.handleBottom.bind(this);
   }

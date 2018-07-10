@@ -38,12 +38,9 @@ export const discoverUsers = users => ({
   users
 })
 
-
-
 export function setAuthorizationToken(token){
   setAuthToken(token);
 }
-
 
 export const getDiscoverUsers = () => {
   return dispatch => {
@@ -51,19 +48,13 @@ export const getDiscoverUsers = () => {
     .then(res => {
       dispatch(discoverUsers(res));
     })
+    .catch(err => {
+      dispatch(addError(err));
+    })
   }
 }
 
-//In process of making this function to collect user profile etcetera on profile open
-//Dashboard shall be separate
-//Own profile maybe separate too?
-
-//I really want three separate states; Dashboard, currentUser and viewing profile.
-//It's a difficult problem I have been working on and failing multiple times
-//TODO everything
-
-
-export const getUserProfile = (context1, username) => {
+export const getUserProfile = (username) => {
   return (dispatch, getState) => {
     let {myProfile, ui} = getState()
     let {context}  = ui;
@@ -83,17 +74,17 @@ export const getUserProfile = (context1, username) => {
       }
     }
     if((getState()[context].messages.data.length < 1) || ((context === "profile") && (getState().profile.profile.username !== username)) ){
-    dispatch(isLoading());
-    Promise.all([apiCall("get", apiUrl[context].messages), apiCall("get", apiUrl[context].profile)])
-    .then((res) => {
-      dispatch(loadMessages(res[0], context));
-      lastMessageCheck(res[0][res[0].length -1], dispatch, context)
-      dispatch(loadProfile(res[1], context));
-      dispatch(removeError());
-      dispatch(isLoaded());
+      dispatch(isLoading());
+      Promise.all([apiCall("get", apiUrl[context].messages), apiCall("get", apiUrl[context].profile)])
+      .then((res) => {
+        dispatch(loadMessages(res[0], context));
+        lastMessageCheck(res[0][res[0].length -1], dispatch, context)
+        dispatch(loadProfile(res[1], context));
+        dispatch(removeError());
+        dispatch(isLoaded());
     })
     .catch((err) => {
-      dispatch(addError(err));
+        dispatch(addError(err));
     });
   }
   }
@@ -136,8 +127,6 @@ export const editProfile = userData => (dispatch, getState) => {
   });
 };
 
-//This took a long time, this is intended to handle an update in both the user profile and follow followList
-//TODO - Make this more reusable with context in the reducer
 export const followUser = ([userId, location, itemNum]) => {
   return (dispatch, getState) => {
     let {ui} = getState()

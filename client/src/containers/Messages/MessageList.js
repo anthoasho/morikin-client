@@ -8,10 +8,6 @@ import NewMessage from "./NewMessage";
 const MessageList = props =>{
   const  {messages, removeMessage, currentUser, likeMessage, ui} = props;
   let MessageList;
-  // if(messages.loading ){
-  //     MessageList = <Message loading/>;
-  // }else{
-    //Map through and generate the list of Messages
   MessageList = messages.data.map((m)=>
     (<Message {...m} key={m._id}
       removeMessage ={removeMessage.bind(this, m.userId._id, m._id)}
@@ -41,7 +37,7 @@ const loadMoreContent = props =>{
     return <div className={"item-box page-change inactive"}> <h3> Nothing to show! </h3> </div>
   }
   else{
-    return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}> <h1> + </h1> </div>
+    return <div className={"item-box page-change page-change-active"}  onClick={bottomClick}><h1>  + </h1> </div>
   }
 }
 
