@@ -30,7 +30,7 @@ const UserSmall = ({currentUser, profile, ui, isMobile}) => {
     let {username, following, profileImgUrl, profileColor, description, displayName} = profile.user;
 
     return(
-      <div className = "user-profile-container" >
+      <div className = "user-profile-container " >
         <div className = "user-profile-small" >
           <ProfileImg
             username={username}

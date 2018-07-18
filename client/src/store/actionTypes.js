@@ -50,3 +50,6 @@ export const IS_LOADING = "IS_LOADING";
 export const IS_LOADED = "IS_LOADED";
 export const WINDOW_RESIZE = "WINDOW_RESIZE";
 export const SET_CONTEXT="SET_CONTEXT";
+export const SHOW_SIDEBAR = "SHOW_SIDEBAR";
+export const HIDE_SIDEBAR = "HIDE_SIDEBAR";
+export const EDIT_PROFILE_PAGE = "EDIT_PROFILE_PAGE";

@@ -39,13 +39,10 @@
 } */
 .device{
   overflow: hidden;
-  background: white;
   width: 80%;
   display: grid;
   grid-template-columns: 20px 1fr 20px;
   grid-template-rows: 20px 1fr 20px;
-  /* border-top-left-radius: 20px;
-  border-top-right-radius: 20px; */
   border-radius: 20px;
   bottom: 0;
   height: 100%;
@@ -62,6 +59,11 @@
   transform: translateY(0%);
   border-radius: 0px;
   box-shadow:-1px 0px 3px 1px #3e3e3ebb;
+}
+
+.white-box-style{
+  box-shadow:-1px 0px 3px 1px #3e3e3ebb;
+  background: #fefefe;
 }
 .login-form-show .device:hover{
   transform: translateY(0%);

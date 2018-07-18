@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect } from "react-redux";
 import {editProfile} from "../../store/actions/userProfile";
-// import {Link} from "react-router-dom";
+import {sidebarHide} from "../../store/actions/UI";
 import "./EditProfile.css";
-import ProfileImg from "../../common/ProfileImg";
 import Input from "../../common/InputField";
 class EditProfile extends Component{
   constructor(props){
@@ -16,10 +15,12 @@ class EditProfile extends Component{
                   email: user.email || "",
                   profileImgUrl: user.profileImgUrl|| "",
                   displayName: user.displayName || "",
+                  passwordOne: "",
+                  passwordTwo:"",
                   profileColor: user.profileColor || "",
                   description: user.description || ""
-                  };
-
+                };
+    this.handlePageChange = this.handlePageChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -31,97 +32,106 @@ class EditProfile extends Component{
   handleSubmit = e =>{
     e.preventDefault();
     this.props.editProfile(this.state)
-    setTimeout( () => this.props.history.push("/"), 300)
   }
   handleFocus = e=>{
     e.preventDefault();
   }
-
+  handlePageChange = page => {
+    this.setState({
+      page: page
+    })
+  }
+  title = () => {
+    switch(this.props.editPage){
+      case "info":
+        return "Edit your Personal Information"
+      case "customisation":
+        return "Make your profile yours"
+      case "security":
+        return "Want to change your email address?"
+      case "password":
+        return "Change your password"
+      default:
+        return "Edit profile"
+  }
+}
   //TODO redesign/alter this
   render(){
-    const {username, email, displayName,  profileImgUrl, profileColor, description} = this.state;
-    const {errors, user} = this.props;
-    return(
-      <div className="edit-profile-container" style={{boxShadow: `0 -5px 4px -4px ${user.profileColor}`}}>
-      <div>
-      {errors.message && (<div> {errors.message} </div>) }
-      </div>
-        <div className="img-wrapper">
-            <ProfileImg
-              username={user.username}
-              profileImg= {user.profileImgUrl}
-              profileColor={user.profileColor}
-            />
-          </div>
-
-          <div className="edit-profile-title">
-            <h3>Edit profile </h3>
-            <h3>{user.username}</h3>
-          </div>
+    const {username, email, displayName,  profileImgUrl, profileColor, description, passwordOne, passwordTwo} = this.state;
+    const {errors, editPage, sidebarHide} = this.props;
+    return(<div className="fullscreen">
+    <h3> {this.title()} </h3>
+      <div className="fullscreen"  onClick ={() => {this.props.history.push("/"); sidebarHide() } }></div>
       <form
       className="edit-profile-form"
         onSubmit = {this.handleSubmit}
         >
-
-        <Input
+        {errors.message && (<div> {errors.message} </div>) }
+        {editPage === "info" &&<Input
           type="text"
           name="username"
           placeholder="Username"
           value={username}
           onChange={this.handleChange}
-        />
-        <Input
+        />}
+          {editPage === "customisation" &&<Input
           type="text"
           name="displayName"
           placeholder="Display Name"
           value={displayName}
           onChange={this.handleChange}
         />
-        <Input
+      }
+          {editPage === "info" &&<Input
               type="text"
               name="description"
               placeholder="Profile Description"
               value={description}
               onChange={this.handleChange}
           />
-        <Input
+        }
+          {editPage === "security" &&<Input
           type="text"
           name="email"
           placeholder="Email Address"
           value={email}
           onChange={this.handleChange}
         />
-{/*
-        <Input
+      }
+
+          {editPage === "password" &&<Input
           type="password"
           name="passwordOne"
           placeholder="Password"
           value={passwordOne}
           onChange={this.handleChange}
-        />
-        <Input
+        />}
+          {editPage === "password" && <Input
           type="password"
           name="passwordTwo"
           placeholder="Repeat your password"
           value={passwordTwo}
           onChange={this.handleChange}
         />
-      */}
-        <Input
+      }
+
+          {editPage === "customisation" && <Input
           type="text"
           name="profileImgUrl"
           placeholder="URL of your Profile Image"
           value={profileImgUrl}
           onChange={this.handleChange}
         />
+        }
 
-        <Input
+        {editPage === "customisation" &&  <Input
           type="text"
           name="profileColor"
           placeholder="Profile Color"
           value={profileColor}
           onChange={this.handleChange}
         />
+      }
         <button className="submit-button"> submit  </button>
       </form>
       </div>
@@ -141,8 +151,9 @@ function mapStateToProps(state){
   return {
     user: state.myProfile.auth,
     isLoggedIn: state.myProfile.auth.isLoggedIn,
-    errors: state.errors
+    errors: state.errors,
+    editPage: state.ui.editProfilePage
   };
 }
 
-export default connect(mapStateToProps, {editProfile})(EditProfile);
+export default connect(mapStateToProps, {editProfile, sidebarHide})(EditProfile);

@@ -32,7 +32,7 @@ class Timeline extends Component{
   componentDidMount(){
     this.getUserProfile(this.props.fetcher);
     this.props.getDiscoverUsers();
-    this.props.clearAllPopUps()
+    // this.props.clearAllPopUps()
   }
   componentWillUnmount(){
     window.removeEventListener("resize", this.handleResize)

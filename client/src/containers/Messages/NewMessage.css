@@ -10,14 +10,7 @@
   transform: translateY(0%);
 
 }
-@keyframes slideItIn {
-  from{
-    transform: translateY(-100%);
-  }
-  to{
-    transform: translateY(0%);
-  }
-}
+
 
 
 .new-message-form{

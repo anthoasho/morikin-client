@@ -3,6 +3,8 @@ import {connect } from "react-redux";
 import {followUser} from "../store/actions/userProfile";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {sidebarShow} from "../store/actions/UI";
+
 const followButton = (props) => {
   const handleFollow = () =>{
     props.followUser(props.followType)
@@ -32,7 +34,7 @@ const followButton = (props) => {
     case "unfollow":
       return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`}onClick={handleFollow} >unfollow </button>
     case "profileEdit":
-      return   <Link to={`/editprofile`} style={{width: "100%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%", fontSize: "70%"}} onClick={props.handleProfileOptions} >Edit Profile</button></Link>
+      return   <Link to={`/editprofile`} style={{width: "100%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%", fontSize: "70%"}} onClick={() => props.sidebarShow(true)} >Edit Profile</button></Link>
     default:
     return  <button  className={`follow-button unfollow-button`} style={{background: "gray"}}>loading...</button>
     }
@@ -57,4 +59,4 @@ function mapStateToProps(state){
     current: state.myProfile.auth.username
   };
 }
-export default connect(mapStateToProps, {followUser})(followButton);
+export default connect(mapStateToProps, {followUser, sidebarShow })(followButton);

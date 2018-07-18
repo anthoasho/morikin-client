@@ -60,7 +60,7 @@ class LandingPage extends Component {
               <Logo />
             </div>
               <div className="top-left" >
-              <div className="device">
+              <div className="device white-box-style">
                 {(this.state.page === "signup") &&   <AuthForm
                     errors={errors}
                     onAuth={this.authThenRedirect}

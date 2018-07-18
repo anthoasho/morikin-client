@@ -61,7 +61,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
       loading={loading}
     />
     <div className="message-username">
-          <Link to={`/${userId.username}`}>{userId.displayName} <span  style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
+          <Link to={`/u/${userId.username}`}>{userId.displayName} <span  style={{color:"gray", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{userId.username}  </span></Link>
     </div>
     <div className="time">
             <span ><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>

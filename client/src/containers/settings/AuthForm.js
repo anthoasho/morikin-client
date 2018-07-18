@@ -54,7 +54,7 @@ class AuthForm extends Component {
     this.props.history.push("/")
   }
 render(){
-    const {username, email, password, profileImgUrl, repeatPassword} = this.state;
+    const {username, password, profileImgUrl, repeatPassword} = this.state;
     const {heading, buttonText, signUp, loading, errors } = this.props;
     const form = (<div className="login-form-container"><p className="title">{errors.message ? (<span className="login-error">{errors.message}</span>) : heading }</p>
 

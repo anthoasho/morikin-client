@@ -6,7 +6,7 @@ import {logout } from "../store/actions/auth";
 import {animateProfile} from "../store/actions/animate";
 import classNames from "classnames";
 import {Logo} from "../common/logo.js";
-import {showNewMessage} from "../store/actions/UI";
+import {showNewMessage, sidebarShow} from "../store/actions/UI";
 import FontAwesome from "react-fontawesome";
 import "./Navbar.css";
 const Navbar = (props) => {
@@ -35,10 +35,11 @@ const Navbar = (props) => {
   //   }
   // }
   const handleLogoClick = () => {
-    window.scrollTo({
-      top:0,
-      behavior: "smooth"
-    })
+    // window.scrollTo({
+    //   top:0,
+    //   behavior: "smooth"
+    // })
+    props.sidebarShow()
   }
   const handleBack = () => {
     props.animateProfile()
@@ -47,6 +48,7 @@ const Navbar = (props) => {
   }
   if(props.isMobile){
     return (<nav>
+      <div className="hamburger" onClick={handleLogoClick} > <div className="hamburger-line"></div></div>
       <div onClick={handleLogoClick}  className="nav-logo" ><Logo /> </div>
         {context === "profile" && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
         {context === "profile" && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
@@ -57,8 +59,9 @@ const Navbar = (props) => {
   }
   return(
       <nav>
+        <div className="hamburger" onClick={handleLogoClick} > <div className="hamburger-line"></div></div>
          <div onClick={() => props.history.push("/")} className="nav-logo"> <Logo /> </div>
-        <NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink>
+        {/*<NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink> */}
         <a  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </a>
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
         <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
@@ -83,4 +86,4 @@ function mapStateToProps(state){
     isLoading: state.ui.isLoading
   };
 }
-export default connect(mapStateToProps, {logout, showNewMessage, animateProfile})(Navbar);
+export default connect(mapStateToProps, {logout, showNewMessage, animateProfile, sidebarShow})(Navbar);

@@ -1,21 +1,24 @@
 .edit-profile-container{
-  /* margin: 50px auto; */
-  background: #efefef;
   display: grid;
   grid-template-columns: repeat(9, 1fr) ;
-  grid-template-rows: 20px 1fr 1fr 1fr 5fr 20px;
-  /* width: 50%; */
+  grid-template-rows: 20px 1fr 1fr 1fr 3fr 20px;
   text-align: center;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding-top: 50px;
 }
+.fullscreen{
+  background: blue;
+  width: 100vw;
+  height: 100vh;
+}
 .edit-profile-title{
-  grid-column: 6/9;
-  grid-row: 2/4;
+  /* grid-column: 6/9;
+  grid-row: 2/4; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 20%;
 }
 .edit-profile-title h3{
   margin: 0;
@@ -30,18 +33,50 @@
   grid-row: 2/5;
 }
 .edit-profile-form{
-  grid-row: 5/6;
-  grid-column: 2/9;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 1em;
+  display:flex;
   flex-direction: column;
-  align-items: center;
+  justify-content:flex-start;
+  padding: 25px;
+  position: relative;
+  box-sizing: border-box;
+  background: #fefefe;
+  margin: auto;
+  width: 40%;
+  height: 50%;
+  z-index: 40;
+}
+.fullscreen h3{
+  margin: 50px 10px ;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  font-size: 3vw;
+  color: white;
+  text-shadow: 1px 1px 1px #00000090;
+  padding: 0;
+  z-index: 20;
+}
+.edit-profile-form .input-container{
+  /* animation: fadeMeIn 1s ease forwards; */
+
+}
+@keyframes fadeMeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+    }
 }
 .edit-profile-form > .submit-button{
   grid-column: 2/3;
   justify-self: end;
-  width: 50%;
+  width: 20%;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
 }
 /* .small img{
   max-width: 150px;

@@ -28,6 +28,4 @@ app.yaml
 #font-awesome
 
 public/fontawesome-all.min.js
-src/containers/settings/sidebar.js
-src/containers/settings/sidebar.css
 debug.log

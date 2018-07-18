@@ -14,7 +14,7 @@ const ProfileImg = (props) => {
   return(
     !props.loading ?
     <div className="img-wrapper">
-    <Link className="img-link" to={`/${props.username}`} >
+    <Link className="img-link" to={`/u/${props.username}`} >
         <object onLoad={e => props.profileImg && (e.target.style.opacity = 1)} //If there is an error with the loading of the profile picture, the default logo will display instead
         // onError = {e => e.target.src = require("../images/logo.svg")}
         className="profile-picture"

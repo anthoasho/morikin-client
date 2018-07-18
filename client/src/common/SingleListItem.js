@@ -14,7 +14,7 @@ const SingleListItem = (props) => {
         profileImg= {props.profileImgUrl}
         profileColor={props.profileColor}
       />
-      <Link to={`/${props.username}`} onClick={props.popUpHide}>
+      <Link to={`/u/${props.username}`} onClick={props.popUpHide}>
       {props.username}
       </Link>
       <FollowButton

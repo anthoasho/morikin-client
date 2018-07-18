@@ -33,7 +33,7 @@ const DiscoverUserIndividual = ({user}) => {
         loading={false}
       />
       <div className="discover-username">
-            <Link to={`/${user.username}`}><span  style={{color:user.profileColor, textAlign: "left", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{user.username}  </span></Link>
+            <Link to={`/u/${user.username}`}><span  style={{color:user.profileColor, textAlign: "left", fontSize:"0.7rem", padding:"0 0 0 3px"}}> @{user.username}  </span></Link>
       </div>
     </div>
   )

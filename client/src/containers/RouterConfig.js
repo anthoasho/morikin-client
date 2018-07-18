@@ -11,25 +11,24 @@ import NewMessage from "./Messages/NewMessage";
 import withAuth, {apiHOC} from "../hocs/withAuth";
 import LandingPage from "./home/Landing";
 import Discover from "./RightSideBar/Discover";
-// import Sidebar from "./settings/sidebar.js";
-
+import Sidebar from "./settings/sidebar.js";
 //React Router config
 const RouterConfig = props => {
   const {currentUser } = props;
   return(
     currentUser.isLoggedIn ?
       <div className="container">
-
          <Navbar history={props.history} location={props.location} match={props.match} />
+         <Sidebar  history={props.history} isMobile={props.isMobile} user={props.currentUser}/>
+         <Route exact path ="/editprofile" component={withAuth(EditProfile)} />
         <Switch>
-          <Route exact path = "/" render = { props => <BodyContainer page={"dashboard"}  /> } />
           <Route exact path="/new" component={withAuth(NewMessage)} />
-          <Route exact path ="/editprofile" component={withAuth(EditProfile)} />
           <Route exact path ="/discover" component={apiHOC(Discover)} />
           <Route exact path="/signin" render={props =>  <LandingPage {...props} /> } /> {/* These are both present to prevent a bug which the route */}
           <Route exact path="/signup" render={props =>  <LandingPage {...props} /> } />{/*"/:id/" tries to do an API call on "signin" / "signup" after auth */}
-          <Route exact path="/myprofile" render = { props => <BodyContainer page={"myProfile"} user={currentUser.username}  /> } />
-          <Route path="/:id/" render = { props => <BodyContainer page={"profile"}  /> } />
+          <Route path="/myprofile" render = { props => <BodyContainer page={"myProfile"} user={currentUser.username}  /> } />
+          <Route path="/u/:id/" render = { props => <BodyContainer page={"profile"}  /> } />
+          <Route path = "/" render = { props => <BodyContainer page={"dashboard"}  /> } />
         </Switch>
          <TabNav history={props.history}   currentUser={currentUser.username} isMobile={props.isMobile} context={props.context}/>
       </div>
@@ -53,7 +52,8 @@ function mapStateToProps(state){
     currentUser: state.myProfile.auth,
     errors: state.errors,
     isMobile: state.ui.isMobile,
-    context: state.ui.context
+    context: state.ui.context,
+    sidebarShow: state.ui.sidebarShow
   };
 }
 

@@ -1,4 +1,4 @@
-import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE, IS_LOADING, IS_LOADED, WINDOW_RESIZE, SET_CONTEXT} from "../actionTypes";
+import {SHOW_FOLLOW, CLOSE_FOLLOW, SHOW_LIKES, CLOSE_LIKES, EDIT_PROFILE_PAGE,  SHOW_NEW_MESSAGE, CLEAR_ALL, ANIMATE_CLOSE,SHOW_SIDEBAR, HIDE_SIDEBAR, IS_LOADING, IS_LOADED, WINDOW_RESIZE, SET_CONTEXT} from "../actionTypes";
 
 const DEFAULT_STATE = {
   popUp: {
@@ -21,7 +21,9 @@ const DEFAULT_STATE = {
   },
   loading: false,
   isMobile: window.innerWidth <= 500,
-  context: null
+  context: null,
+  sidebarShow: false,
+  editProfilePage: "info"
 }
 
 export default(state = DEFAULT_STATE, action) =>{
@@ -97,11 +99,28 @@ export default(state = DEFAULT_STATE, action) =>{
         ...state,
         context: action.context
       }
+    case SHOW_SIDEBAR:
+      return{
+        ...state,
+        sidebarShow: true
+      }
+    case HIDE_SIDEBAR:
+      return{
+        ...state,
+        sidebarShow: false
+      }
+    case EDIT_PROFILE_PAGE:
+      return{
+        ...state,
+        editProfilePage: action.page
+
+      }
     case CLEAR_ALL:
       return {...DEFAULT_STATE,
               loading: state.loading,
               isMobile: state.isMobile,
-              context: state.context
+              context: state.context,
+              sidebarShow: state.sidebarShow
             }
     default:
         return state;
