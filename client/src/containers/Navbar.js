@@ -37,10 +37,10 @@ const Navbar = (props) => {
   }
   if(props.isMobile){
     return (<nav>
-      <div className={classNames({"hamburger": true, "shift-hamburger": (context === "profile")})} onClick={handleHamburger} > <div className="hamburger-line"></div></div>
+      {currentUser.isLoggedIn && <div className={classNames({"hamburger": true, "shift-hamburger": (context === "profile")})} onClick={handleHamburger} > <div className="hamburger-line"></div></div>}
       <div onClick={handleLogoClick}  className="nav-logo" ><Logo /> </div>
-        {context === "profile" && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
-        {context === "profile" && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
+        {((context === "profile") && (currentUser.isLoggedIn))  && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
+        {((context === "profile") && (currentUser.isLoggedIn)) && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
       </nav>
     )
   }

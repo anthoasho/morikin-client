@@ -133,7 +133,7 @@ TODO: Separate into own file
 
 const combineData = (users, currentUser) => {
   let finalData = users.map(function(obj){
-      mappedFollowing = obj.followers.some(e => e.toString() === currentUser.userId);
+      let mappedFollowing = currentUser && obj.followers.some(e => e.toString() === currentUser.userId);
       let finalObject = {
         username: obj.username,
         profileImgUrl: obj.profileImgUrl,
