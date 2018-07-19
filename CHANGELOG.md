@@ -1,3 +1,6 @@
+## 0.2.8 
+- Added Sidebar for easier navigation of profile editing
+  - Separated the edit profile options to multiple segments
 ## 0.2.7
 - Redesign of the landing page
   - improved fluidity of Sign in and Sign up pages

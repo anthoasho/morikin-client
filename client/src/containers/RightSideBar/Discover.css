@@ -48,8 +48,8 @@
 }
 
 .discover-box > div {
-  margin: 2px auto;
-  padding: 4px 0;
+  /* margin: 2px auto; */
+  /* padding: 4px 0; */
   width: 100%;
 
 }
@@ -61,6 +61,8 @@
   -ms-grid-row-span: 1;
   grid-row: 1/2;
   text-align: center;
+  margin: 10px;
+  /* margin-bottom: 5px; */
 }
 .discover-popular{
   border-top: 1px solid white;
@@ -106,21 +108,11 @@
 }
 .discover-titles{
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
+  color: gray;
   position: relative;
-  padding: 5px;
+  padding-right: 5px;
   -ms-flex-item-align: end;
       align-self: flex-end;
 
-}
-.discover-titles::after {
-  content: "";
-  background: purple;
-  width: 10%;
-  height: 2px;
-  position: absolute;
-  opacity: 0.5;
-  -webkit-transform: translateX(820%);
-      -ms-transform: translateX(820%);
-          transform: translateX(820%);
 }

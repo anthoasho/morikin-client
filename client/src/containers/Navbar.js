@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 import { connect } from "react-redux"
-import {logout } from "../store/actions/auth";
 import {animateProfile} from "../store/actions/animate";
 import classNames from "classnames";
 import {Logo} from "../common/logo.js";
@@ -21,24 +20,14 @@ const Navbar = (props) => {
     props.showNewMessage(obj)
   }
 
-  const {logout, history, currentUser, context } = props;
-  //logout removes the token in headers, followed by a redirect to login page
-  const handleLogout = e =>{
-    e.preventDefault();
-    logout()
-    history.push("/");
-  }
-  // let place = location.pathname.split("/")[1];
-  // const locationTest = (test) =>{
-  //   if(place === test ){
-  //     return true
-  //   }
-  // }
+  const {history, currentUser, context } = props;
   const handleLogoClick = () => {
-    // window.scrollTo({
-    //   top:0,
-    //   behavior: "smooth"
-    // })
+    window.scrollTo({
+      top:0,
+      behavior: "smooth"
+    })
+  }
+  const handleHamburger = () => {
     props.sidebarShow()
   }
   const handleBack = () => {
@@ -48,23 +37,20 @@ const Navbar = (props) => {
   }
   if(props.isMobile){
     return (<nav>
-      <div className="hamburger" onClick={handleLogoClick} > <div className="hamburger-line"></div></div>
+      <div className={classNames({"hamburger": true, "shift-hamburger": (context === "profile")})} onClick={handleHamburger} > <div className="hamburger-line"></div></div>
       <div onClick={handleLogoClick}  className="nav-logo" ><Logo /> </div>
         {context === "profile" && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
         {context === "profile" && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
-        {context === "myProfile" && <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>}
-
       </nav>
     )
   }
   return(
       <nav>
-        <div className="hamburger" onClick={handleLogoClick} > <div className="hamburger-line"></div></div>
+        <div className="hamburger" onClick={handleHamburger} > <div className="hamburger-line"></div></div>
          <div onClick={() => props.history.push("/")} className="nav-logo"> <Logo /> </div>
         {/*<NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink> */}
         <a  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </a>
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
-        <NavLink  to="/"  onClick={handleLogout} className="nav-logout"><li >Logout </li></NavLink>
       </nav>
     );
 }
@@ -86,4 +72,4 @@ function mapStateToProps(state){
     isLoading: state.ui.isLoading
   };
 }
-export default connect(mapStateToProps, {logout, showNewMessage, animateProfile, sidebarShow})(Navbar);
+export default connect(mapStateToProps, { showNewMessage, animateProfile, sidebarShow})(Navbar);

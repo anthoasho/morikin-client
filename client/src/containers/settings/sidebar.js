@@ -11,7 +11,9 @@ class Sidebar extends Component{
     super(props)
     this.state = {page: "default"};
     this.handlePageChange = this.handlePageChange.bind(this);
-    this.handleSidebarHide = this.handleSidebarHide.bind(this)
+    this.handleSidebarHide = this.handleSidebarHide.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutisde = this.handleClickOutisde.bind(this);
   }
   handlePageChange = (page, url) => {
     this.setState({
@@ -37,12 +39,32 @@ class Sidebar extends Component{
       page: "default"
     })
   }
+  componentDidMount(){
+    if(this.props.isMobile){
+
+      document.addEventListener("mousedown", this.handleClickOutisde);
+    }
+  }
+  componentWillUnmount(){
+    if(this.props.isMobile){
+      document.removeEventListener("mousedown", this.handleClickOutisde);
+    }
+  }
+  handleClickOutisde(e){
+    if(this.wrapperRef && !this.wrapperRef.contains(e.target)){
+      this.props.sidebarHide();
+
+    }
+  }
+  setWrapperRef = (node) =>{
+    this.wrapperRef = node;
+  }
 
   render(){
     let {sidebarVisibility, logout} = this.props
     let {page} = this.state
   return(
-    <div className={classNames({"sidebar-main": true, "sidebar-show": sidebarVisibility})} >
+    <div ref={this.setWrapperRef} className={classNames({"sidebar-main": true, "sidebar-show": sidebarVisibility})} >
       <div onClick={this.handleSidebarHide} className="exit-sidebar">  </div>
         <ul className="sidebar-menu">
           <li onClick={()=> this.handlePageChange("default", "/")}>Home</li>

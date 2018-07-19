@@ -14,7 +14,6 @@ nav{
   z-index: 100;
   padding: 0;
   border: 1px solid #dbdbdb;
-  /* border: 2px solid #ae27e8; */
   align-items: center;
   justify-items:center;
   overflow: hidden;
@@ -33,6 +32,10 @@ nav{
   align-items: center;
   padding: 15px 0;
   cursor: pointer;
+  transition: all 1s ease;
+}
+.shift-hamburger{
+  grid-column: 4/5;
 }
 .hamburger:hover::before, .hamburger:hover::after, .hamburger:hover .hamburger-line {
   transform: scale(1.1);
@@ -64,7 +67,6 @@ nav{
 }
 
 .nav-icon{
-  /* transform: translate(0%, -50%) rotate(0deg); */
   position: absolute;
   top: -10px;
   right: -40%;
@@ -83,7 +85,6 @@ nav{
 @keyframes writingAnim {
   0%{
     transform: translate(0%) rotate(10deg);
-    /* transform-origin: 50% 50%; */
   }
   20%{
     transform: translate(20%) rotate(0deg);
@@ -129,6 +130,7 @@ nav{
   position: relative;
 
 }
+
 nav .back-button{
   grid-column: 1/2!important;
   grid-row: 1/4!important;
@@ -137,7 +139,6 @@ nav .back-button{
   position: relative;
 }
 nav .back-button .back-icon{
-  /* margin: auto; */
   position: absolute;
   top: 0;
   bottom: 0;
@@ -167,20 +168,7 @@ nav .back-button .back-icon::after{
   margin-left: 10px;
   justify-self: flex-start;
 }
-/* .back-icon::before,
-.back-icon::after{
-  content:"";
-  width: 8px;
-  height: 8px;
-  border-radius: 10%;
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-  position: absolute;
 
-} */
-
-.nav-links{
-}
 nav li{
   width: 100%;
   height: 100%;
@@ -196,10 +184,8 @@ nav a {
 @media only screen and (max-device-width: 500px) {
   nav{
     width: 100%;
-    /* display: flex; */
-    /* text-align: center; */
-
   }
+
   .nav-logo{
     border: none;
     grid-column: 6/7;
@@ -208,6 +194,5 @@ nav a {
   }
   .nav g{
     border: none;
-    /* margin: none!important; */
   }
 }
