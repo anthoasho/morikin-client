@@ -8,6 +8,9 @@
   max-height: calc(100vh - 65px);
   box-sizing: border-box;
 }
+.message-container-no-auth{
+  grid-column: 4/7;
+}
 .page-change{
   width: 100%;
   color: white;

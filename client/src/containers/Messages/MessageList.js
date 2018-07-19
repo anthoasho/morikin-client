@@ -4,6 +4,7 @@ import Message from "./Message";
 import { removeMessage, likeMessage } from "../../store/actions/messages";
 import "./MessageList.css";
 import {connect } from "react-redux";
+import classNames from "classnames";
 import NewMessage from "./NewMessage";
 const MessageList = props =>{
   const  {messages, removeMessage, currentUser, likeMessage, ui} = props;
@@ -12,14 +13,15 @@ const MessageList = props =>{
     (<Message {...m} key={m._id}
       removeMessage ={removeMessage.bind(this, m.userId._id, m._id)}
       likeMessage = {likeMessage.bind(null, m._id)}
-      ownerCheck = {currentUser === m.userId._id}
+      ownerCheck = {currentUser.userId === m.userId._id}
       animate = {props.animate}
+      isLoggedIn = {currentUser.isLoggedIn}
 
     />)
   );
   // }
   return(
-    <div className="message-container">
+    <div className={classNames({"message-container": true, "message-container-no-auth": !currentUser.isLoggedIn})}>
     {ui.newMessage.display &&
       <NewMessage />}
       {MessageList}
@@ -44,7 +46,7 @@ const loadMoreContent = props =>{
 MessageList.propTypes = {
   messages: PropTypes.object,
   removeMessage: PropTypes.func,
-  currentUser: PropTypes.string,
+  currentUser: PropTypes.object,
   likeMessage: PropTypes.func,
   ui: PropTypes.object,
 }
@@ -52,7 +54,7 @@ MessageList.propTypes = {
 function mapStateToProps(state){
   return {
     ui: state.ui,
-    currentUser: state.myProfile.auth.userId
+    currentUser: state.myProfile.auth
 
     };
 }

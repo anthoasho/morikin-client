@@ -25,32 +25,38 @@ const followButton = (props) => {
     }
   }
   const buttonType = following();
+  if(props.current){
 
-  //Pass in a "type" to choose the correct kind of button
-  const buttonSelector = (buttonType) => {
-     switch(buttonType){
-    case "follow":
-      return <button className={`follow-button ${props.extraClass && props.extraClass}`} onClick={handleFollow} > Follow </button>
-    case "unfollow":
-      return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`}onClick={handleFollow} >unfollow </button>
-    case "profileEdit":
-      return   <Link to={`/editprofile`} style={{width: "100%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%", fontSize: "70%"}} onClick={() => props.sidebarShow(true)} >Edit Profile</button></Link>
-    default:
-    return  <button  className={`follow-button unfollow-button`} style={{background: "gray"}}>loading...</button>
+
+    //Pass in a "type" to choose the correct kind of button
+    const buttonSelector = (buttonType) => {
+      switch(buttonType){
+        case "follow":
+        return <button className={`follow-button ${props.extraClass && props.extraClass}`} onClick={handleFollow} > Follow </button>
+        case "unfollow":
+        return <button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`}onClick={handleFollow} >unfollow </button>
+        case "profileEdit":
+        return   <Link to={`/editprofile`} style={{width: "100%", margin: "auto"}}><button  className={`follow-button unfollow-button ${props.extraClass && props.extraClass}`} style={{width: "100%", fontSize: "70%"}} onClick={() => props.sidebarShow(true)} >Edit Profile</button></Link>
+        default:
+        return  <button  className={`follow-button unfollow-button`} style={{background: "gray"}}>loading...</button>
+      }
     }
-  }
-  return(
-    props.current &&
-    <div className="follow-container">
+    return(
+      props.current &&
+      <div className="follow-container">
       {buttonSelector(buttonType)}
-    </div>
-  )
+      </div>
+    )
+  }
+  else{
+    return(null)
+  }
 }
 
 followButton.propTypes ={
   followType: PropTypes.array,
   username: PropTypes.string.isRequired,
-  current: PropTypes.string.isRequired,
+  current: PropTypes.string,
 
 
 }

@@ -47,7 +47,7 @@ exports.likeMessage = function(req, res, next){
 }
 
 exports.getMessageLikes = function(req, res, next){
-  var currentUser = jwt.decode(req.headers.authorization.split(" ")[1]);
+  var currentUser = req.headers.authorization && jwt.decode(req.headers.authorization.split(" ")[1]);
   db.Message.findById(req.params.mid)
   .populate("likedBy", {username: true, profileImgUrl: true, followers: true, profileColor: true})
   .then(function(messages){

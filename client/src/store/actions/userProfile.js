@@ -43,7 +43,9 @@ export function setAuthorizationToken(token){
 }
 
 export const getDiscoverUsers = () => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let {myProfile} = getState();
+    if(myProfile.auth.isLogged){
     return apiCall("get", "api/discover/users")
     .then(res => {
       dispatch(discoverUsers(res));
@@ -52,6 +54,7 @@ export const getDiscoverUsers = () => {
       dispatch(addError(err));
     })
   }
+}
 }
 
 export const getUserProfile = (username) => {

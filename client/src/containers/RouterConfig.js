@@ -34,6 +34,7 @@ const RouterConfig = props => {
       </div>
       :
       <Switch>
+      <Route path="/u/:id/" render = { props => <div className="container"> <Navbar history={props.history} location={props.location} match={props.match} /><BodyContainer page={"profile"}  /></div> } />
       <Route exact path="/signin" render={props =>  <LandingPage locationState="signin" {...props} /> } />
       <Route exact path="/signup" render={props =>  <LandingPage locationState="signup" {...props} /> } />
       <Route path="/" render={props =>

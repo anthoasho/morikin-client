@@ -31,7 +31,9 @@ class Timeline extends Component{
   }
   componentDidMount(){
     this.getUserProfile(this.props.fetcher);
-    this.props.getDiscoverUsers();
+    if(this.props.currentUser){
+      this.props.getDiscoverUsers();
+    }
     // this.props.clearAllPopUps()
   }
   componentWillUnmount(){
@@ -39,7 +41,7 @@ class Timeline extends Component{
     // clearInterval(this.refreshInterval);
   }
   render(){
-    const { errors, discover, loadingBool, page} = this.props;
+    const { errors, discover, loadingBool, page, currentUser} = this.props;
     const {url} = this.urlData;
     let messages = this.props.state[page].messages;
     let profile = this.props.state[page].profile;
@@ -59,18 +61,18 @@ class Timeline extends Component{
       return(
         <div className="timeline-container">
           {loadingBool && <Loading isMobile={this.props.isMobile} /> }
-          <UserSmall
+          {currentUser && <UserSmall
             key={`user ${this.props.state[page].username}`}
             profile={profile}
 
-          />
+          /> }
           <MessageList
             key={`messages ${url}`}
             bottomClick={this.handleBottom}
             messages={messages}
           />
 
-          {!this.props.isMobile &&<Discover users={discover.users}/>}
+          {(!this.props.isMobile &&  currentUser.isLoggedIn) &&<Discover users={discover.users}/>}
           </div>
       );
   }

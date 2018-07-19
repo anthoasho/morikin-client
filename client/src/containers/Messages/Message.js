@@ -17,7 +17,7 @@ function randomColor(){
   return `rgb(${red}, ${blue}, ${green})`;
 }
 let color = randomColor();
-const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, _id,  showLikesList, ui, context}) => {
+const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, likedBy, likeMessage, isLiked, isDeleted, _id,  showLikesList, ui, context, isLoggedIn}) => {
   function handleLikesShow(id){
     let obj = {
       method: "list",
@@ -76,7 +76,10 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            likedBy refers to the number of likes the post has recieved
            this is returned from the API as a number only (array.length())
            */}
-      <div className="message-likes"> <div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} >    </div><a onClick={() =>  handleLikesShow(_id)}><span> {likedBy} likes</span> </a> </div>
+      <div className="message-likes">
+        {isLoggedIn &&<div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} ></div>}
+        <a onClick={() =>  handleLikesShow(_id)}><span> {likedBy} likes</span> </a>
+      </div>
       <div className="color-message-border"
         style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>
 
