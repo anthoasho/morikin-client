@@ -10,13 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.1",
-    "mongodb": "^3.0.3",
-    "mongoose": "^5.0.7",
-    "nodemon": "^1.17.2"
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "^3.1.1",
+    "mongoose": "^5.2.4",
+    "nodemon": "^1.18.3"
   }
 }

@@ -4,7 +4,7 @@ import "./Loader.css";
 const LoaderIcon = props => {
   return(
     <div className="loader">
-    <div className="loader-after" ><Logo color="#ae27e8FF" /></div>
+    <div className="loader-after" ><Logo /></div>
       <div className="loader-before"></div>
     </div>
   )

@@ -1,16 +1,16 @@
 .loader{
-height: 150px;
-width: 150px;
-top: 0;
-right:0;
-left:0;
-bottom: 0;
-z-index: -1;
-position: relative;
-opacity: 0.7;
+  height: 150px;
+  width: 150px;
+  top: 0;
+  right:0;
+  left:0;
+  bottom: 0;
+  z-index: -1;
+  position: relative;
+  opacity: 0.7;
 }
 .loader svg{
-  background: white;
+  background: var(--white);
   animation: rotateSVG 0.9s infinite alternate ease-in-out;
 }
 .loader-after{
@@ -40,11 +40,11 @@ opacity: 0.7;
   bottom: 0;
   border-radius: 50%;
   margin: auto;
-  background: #000000ae;
+  background: var(--white);
   filter: blur(2px);
   opacity: 0.4;
   animation: shadow 0.9s infinite  linear;
-  box-shadow: 0px 0px 8px 0px #000000;
+  box-shadow: 0px 0px 8px 0px var(--white);
 }
 @keyframes rotateSVG {
   from{
@@ -118,12 +118,10 @@ opacity: 0.7;
   left:0;
   right:0;
   bottom:0;
-  border: 1px solid white;
+  border: 1px solid var(--white);
   border-top: 1px solid transparent;
-
   margin: auto;
   border-radius: 50%;
-
   animation: miniRotate 0.9s infinite  linear;
 }
 .loader-mini::after{

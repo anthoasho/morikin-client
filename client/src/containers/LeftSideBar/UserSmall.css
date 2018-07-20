@@ -10,7 +10,7 @@
   box-sizing: border-box;
   overflow: hidden;
   justify-items: center;
-  background: #fdfdfd;
+  background: var(--white);
   border-radius: 3px;
   width:100%;
   box-shadow: -1px 2px 10px rgba(0,0,0,0.7);
@@ -23,7 +23,7 @@
 }
 .user-profile-small .img-wrapper{
   /* width: 65%; */
-  min-height: 100%;
+  /* min-height: 100%; */
   flex-shrink: 0;
 
 }
@@ -48,23 +48,18 @@
 .profile-description{
   text-align: center;
   font-size: 0.8rem;
-  background: #FFFFFFB2;
+  background: var(--white);
   line-height: 1.5rem;
-  border-top:1px solid #ae27e8;
-  border-bottom: 1px solid #ae27e8;
+  border-top:1px solid var(--purple);
+  border-bottom: 1px solid var(--purple);
   width: 100%;
-}
-
-.meta-mid{
-  /* border-left: 1px solid #ae27e8;
-  border-right: 1px solid #ae27e8; */
 }
 .user-meta{
   display:flex;
   font-size: 0.8rem;
   width: 100%;
   text-align: center;
-  border-top: 1px solid #ae27e8;
+  border-top: 1px solid var(--purple);
   margin-bottom: 0px;
   padding: 4px 0;
 
@@ -78,5 +73,5 @@
   flex: 1;
 }
 .user-meta-item a{
-  color:  #ae27e8;
+  color:  var(--purple);
 }

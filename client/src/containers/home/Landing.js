@@ -39,11 +39,11 @@ class LandingPage extends Component {
     if(this.props.isLoggedIn){
       this.props.history.push("/")
     }
+    setTimeout(() => window.scrollTo(0,0), 100 )
   }
   componentDidMount(){
     // if(navigator.userAgent.match(/Android/i)){
 
-    setTimeout(() => window.scrollTo(0,0), 100 )
     // }
   }
   render(){
@@ -87,8 +87,8 @@ class LandingPage extends Component {
                 <h2>Welcome to Morikin </h2>
                 <p>Message. Share. Discover.</p>
                 <div className="landing-buttons">
-                  <button onClick={() => this.handleClick("signup")} className="sign-up-btn">Sign Up</button>
-                  <button onClick={() => this.handleClick("signin")} className="sign-in-btn">Sign In</button>
+                  <button onClick={() => this.handleClick("signin")} className={classNames({"sign-in-btn":true, "auth-btn-active": (this.state.page === "signin")})}>Sign In</button>
+                  <button onClick={() => this.handleClick("signup")} className={classNames({"sign-up-btn":true, "auth-btn-active": (this.state.page === "signup")})}>Sign Up</button>
                 </div>
               </div>
             <div className="bottom-content">
@@ -96,19 +96,19 @@ class LandingPage extends Component {
                 <div className="icon-holder">
                   <FontAwesome name='comment' className="icon landing-icon"  />
                 </div>
-                <h4> Post your thoughts out on to the internet </h4>
+                <h4>Message </h4>
               </div>
               <div className="bottom-item">
               <div className="icon-holder">
               <FontAwesome name='users' className="icon landing-icon"  />
               </div>
-              <h4> Follow your friends </h4>
+              <h4> Share </h4>
               </div>
               <div className="bottom-item">
               <div className="icon-holder">
               <FontAwesome name='dice' className="icon landing-icon"  />
               </div>
-              <h4> Discover new and interesting people </h4>
+              <h4> Discover </h4>
               </div>
             </div>
           </div>

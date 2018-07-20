@@ -3,34 +3,27 @@
   grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
   grid-template-rows: 5px 20px 1fr 20px 5px;
   overflow: hidden;
-  /* border-radius: 3px; */
-  /* margin-bottom: 3px; */
   border: none!important;
-
   transition: transform 0.15s ease-out;
   -webkit-font-smoothing: subpixel-antialiased;
   grid-row-gap: 4px;
 }
 .message-tester:nth-of-type(even) .ind-message{
-background: #fdfdfd;
+background: var(--white);
 }
 .message-tester:nth-of-type(even) .ind-message:hover{
-background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
+/* background-image: radial-gradient(circle closest-corner, var(--light-gray), var(--gray)); */
+background: var(--light-gray);
 }
-
 .color-message-border{
   grid-column: 1/2;
   grid-row: 1/6;
   margin: 0;
 }
-.ind-message:hover{
-  /* transform: translateY(-1px) ; */
-}
-
 .message-loading-text{
   grid-column: 5/6;
   grid-row: 3/6;
-  color: rgba(0, 0, 0, 0.2);
+  color: var(--light-gray);
   font-size: 2rem;
 }
 .ind-message-on-delete{
@@ -72,10 +65,11 @@ background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
 .like-button{
   width: 8px;
   height: 8px;
-  background: gray;
+  background: var(--dark-gray);
   transform: rotate(-45deg);
   transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: -1px 1px 3px  var(--shadow-black);
 }
 .like-button:before,
 .like-button:after{
@@ -95,12 +89,14 @@ background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
 }
 .like-button:hover{
   transform:scale(1.1) rotate(-45deg);
+  box-shadow: 0px 0px 6px 1px  var(--shadow-black);
+
 }
 .like-button:active{
   transform: rotate(-60deg) scale(1.2);
 }
 .like-button-true{
-  background: red;
+  background: var(--red-danger);
 }
 
 @media only screen and (max-device-width: 500px) { /* edit this later for mobiles*/

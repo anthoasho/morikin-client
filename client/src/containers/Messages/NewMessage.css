@@ -8,11 +8,7 @@
 .show-message-box{
   /* animation: slideItIn 1s ease-in-out forwards; */
   transform: translateY(0%);
-
 }
-
-
-
 .new-message-form{
   display:contents;
   grid-gap: 1.5em;

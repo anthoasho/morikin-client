@@ -53,18 +53,18 @@
 .login-form-show .device{
   transform: translateY(0%);
   border-radius: 0px;
-  box-shadow:-1px 0px 3px 1px #3e3e3ebb;
+  box-shadow:-1px 0px 3px 1px var(--shadow-black);
 }
 
 .white-box-style{
-  box-shadow:-1px 0px 3px 1px #3e3e3ebb;
-  background: #fefefe;
+  box-shadow:-1px 0px 3px 1px var(--shadow-black);
+  background: var(--white);
 }
 .login-form-show .device:hover{
   transform: translateY(0%);
 }
 .device img{
-  border: 2px solid #eee;
+  border: 1px solid var(--gray);
   overflow: hidden;
   grid-column: 2/3;
   grid-row: 2/3;
@@ -104,8 +104,8 @@
   grid-column: 1/5;
   grid-row: 3/4;
   display: flex;
-  background: #fdfdfd;
-  box-shadow: 0px 0px 1px 1px #00000040;
+  background: var(--white);
+  box-shadow: 0px 0px 1px 1px var(--shadow-black);
   z-index: 10;
   transition: 1s ease-in-out;
 }
@@ -140,10 +140,10 @@
   height: 100%;
 }
 .bottom-item:nth-of-type(odd) .landing-icon{
-  color: #00c6fbf0;
+  color: var(--blue-light);
 }
 .bottom-item:nth-of-type(even) .landing-icon{
-  color:#ae27e8;
+  color: var(--purple);
 }
 
 .bottom-item{
@@ -213,7 +213,10 @@
     position: absolute;
     bottom: 0;
     transition-duration: 600ms;
+    font-size: 2.4vw;
+    width: 100%;
   }
+
   .device{
     transform-origin: 50% 50%;
     transform: translateY(10%);
@@ -251,19 +254,23 @@
     width: 100%;
     border-radius: 0px;
     z-index: 5;
+    height:90%;
   }
   .login-form-show .sign-up-btn,   .login-form-show .sign-in-btn{
     position: absolute;
     top: 0;
     right: 0;
-    color: #eeeeee;
+    color: var(--light-gray);
     padding: 15px;
   }
   .sign-up-btn{
-    left: 0;
+    right: 0;
   }
   .sign-in-btn{
-    right: 0;
+    left: 0;
+  }
+  .login-form-show .bottom-content{
+    transform: translateY(100%);
   }
     .login-form-show .device:hover{
     transform: translateY(0%);

@@ -1,5 +1,5 @@
 html{
-  background-image: radial-gradient(circle closest-corner, #00c6fbf0, #005beaf0);
+  background-image: radial-gradient(circle closest-corner, var(--blue-light), var(--blue-dark));
   background-size: cover;
   width:100%;
   overflow-x: hidden;
@@ -10,6 +10,44 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+:root{
+  --purple: #eb7d39;
+  --blue-light: #29a7eb;
+  --blue-dark: #5da5d2;
+  --green: #0fee2c;
+  --red-danger: #ff2828;
+  --gray:  #4444447d;
+  --light-gray:  #f4f4f4EE;
+  --dark-gray: #3f3f3f;
+  --white: #fefefe;
+  --shadow-black: #3e3e3ebb;
+  --clear-box: #ffffff30;
+  --black: #000;
+}
+/*
+Color Scheme 1
+--purple: #eb7d39;
+--blue-light: #29a7eb;
+--blue-dark: #5da5d2;
+
+*/
+
+/*
+
+Color Scheme 2
+--purple: #de0357;
+--blue-light: #03c4de;
+--blue-dark: #2ab3c5;
+
+Color Scheme 3
+--purple: #ff86a0;
+--blue-light: #86ddff;
+--blue-dark: #85ddff;
+
+
+
+*/
+
 ::-webkit-scrollbar{
   width: 4px;
 }

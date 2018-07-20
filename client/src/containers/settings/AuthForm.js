@@ -55,7 +55,7 @@ class AuthForm extends Component {
   }
 render(){
     const {username, password, profileImgUrl, repeatPassword} = this.state;
-    const {heading, buttonText, signUp,  errors, loading } = this.props;
+    const {heading, buttonText, signUp,  errors, loading, isMobile } = this.props;
     const form = (<div className="login-form-container"><p className="title">{errors.message ? (<span className="login-error">{errors.message}</span>) : heading }</p>
 
     <form
@@ -70,7 +70,7 @@ render(){
         value={username}
         onChange={this.handleChange}
         isRequired={true}
-        autoFocus
+        autoFocus = {!isMobile}
         autocomplete="off"
       />
       <Input
@@ -135,7 +135,8 @@ function mapStateToProps(state){
   return {
     errors: state.errors,
     isLoggedIn: state.myProfile.auth.isLoggedIn,
-    loading: state.ui.loading
+    loading: state.ui.loading,
+    isMobile: state.ui.isMobile
   };
 }
 

@@ -10,17 +10,14 @@
   position: fixed;
   bottom: 0;
   z-index: 100;
-  /* border-top: 1px solid gray; */
-  box-shadow: 1px -1px 3px  #00000030;
-  background-image: radial-gradient(circle closest-corner, #eef1f5EE, #f4f4f4EE );
-  background: #fdfdfd;
+  box-shadow: 1px -1px 3px  var(--shadow-black);
+  background: var(--white);
 }
 .tab-item{
   flex: 1 1;
   height: 50px;
   margin-right:  1px ;
   font-size: 1.7rem;
-  /* max-width: 20%; */
   display: flex;
   font-weight: 300;
   align-items: center;
@@ -35,15 +32,14 @@
   transition: all 0.2s ease-in;
 }
 .icon-current{
-  color:#cf27e8FF!important;
+  color:var(--light-gray)!important;
   opacity: 0.8;
-  /* background: #00000015; */
   position: relative;
   z-index: 2;
   overflow: hidden;
 }
 .icon-current:before{
-  background: #00000015;
+  background: var(--light-gray);
   position: absolute;
   border-radius: 50%;
   content: "";
@@ -52,9 +48,9 @@
   left: 0;
   bottom: 0;
   width: 50px;
+  opacity: 0.1;
   height:50px;
   margin: auto;
-  /* transform: scale(3); */
   animation: currentHighlight 0.2s ease-in  forwards;
 }
 
@@ -62,8 +58,6 @@
   0% {
     transform: scale(0) translateY(200%);
     /* transform-origin: center -300%; */
-
-
   }
   50% {
   transform: scale(1.5) translateY(0%);
@@ -78,7 +72,6 @@
   display: none!important;
 }
 .tab{
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,7 +169,7 @@ USER PROFILE
   .profile-description{
     grid-column: 2/5;
     grid-row: 5/6;
-    background-color: #FFFFFF00;
+    background-color: var(--white);
     margin: 0;
     border: none;
   }

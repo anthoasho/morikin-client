@@ -14,7 +14,7 @@
 .page-change{
   width: 100%;
   color: white;
-  background-image: linear-gradient(to top, #ae27e8FF, #cf27e8FF)!important;
+  background: var(--purple)!important;
   justify-content: center;
   border: none !important;
   transition: all 0.3s ease;
@@ -22,7 +22,7 @@
 }
 .inactive{
   opacity: 0.65;
-  background: #FFF!important;
+  background: var(--white)!important;
   color: gray;
 }
 .page-change-active{
