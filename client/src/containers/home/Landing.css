@@ -5,7 +5,6 @@
   grid-template-rows: 70px 2fr 1fr;
   grid-template-columns: 1fr 35px 35px 1fr;
 }
-
 .landing-logo{
   height: auto;
   width: auto;
@@ -29,14 +28,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* overflow: hidden; */
   justify-content: space-around;
   position: relative;
   height: auto;
 }
-/* .extra-height{
-  height: 120%;
-} */
 .device{
   overflow: hidden;
   width: 80%;
@@ -110,7 +105,6 @@
   grid-row: 3/4;
   display: flex;
   background: #fdfdfd;
-  /* border-top: 2px solid black; */
   box-shadow: 0px 0px 1px 1px #00000040;
   z-index: 10;
   transition: 1s ease-in-out;
@@ -134,7 +128,6 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  /* padding: 10px; */
   position: relative;
 }
 .landing-icon{
@@ -181,10 +174,7 @@
     position: absolute;
     top: 0;
   }
-  .login-form-show .landing-logo{
-    background: #ae27e8FF;
 
-  }
   .top-right{
     grid-column: 1/5;
     grid-row: 2/3;
@@ -201,22 +191,15 @@
     width: 100%;
   }
   .top-left{
-    /* grid-column: 1/5; */
-    /* grid-row: 3/4; */
-    /* flex: 1 1 60%; */
-    /* order: 3; */
-    /* overflow: hidden; */
     position: absolute;
     bottom: 50%;
     top: 50%;
-    /* height: 60%; */
     height: 100vh;
     right: 0;
     left: 0;
     transition: top 1s ease;
   }
   .login-form-show .top-left{
-    /* bottom: 0; */
     right: 0;
     left: 0;
     top: 0;
@@ -238,11 +221,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
-    /* position: absolute; */
     transition-duration: 600ms;
     padding: 20px;
-    /* top: 0; */
-    /* bottom:auto; */
+
   }
   .login-form-container{
     width: 100%;
@@ -250,12 +231,6 @@
   }
   .device img{
     height: auto;
-  }
-    .login-form-show .bottom-content{
-    /* transform: translateY(50%); */
-    /* opacity: 0; */
-    /* z-index: -1; */
-    /* display: none; */
   }
   .device:hover{
     transform: translateY(0%);
@@ -266,7 +241,6 @@
   }
   .login-form-show .top-right h2{
     opacity: 0;
-    /* display: none; */
   }
   .login-form-show .top-right{
     flex: 1 1 1%;
@@ -277,7 +251,6 @@
     width: 100%;
     border-radius: 0px;
     z-index: 5;
-    /* height: 100%; */
   }
   .login-form-show .sign-up-btn,   .login-form-show .sign-in-btn{
     position: absolute;

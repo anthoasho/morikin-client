@@ -1,6 +1,4 @@
-
 .loader{
-/* position: absolute; */
 height: 150px;
 width: 150px;
 top: 0;
@@ -9,10 +7,10 @@ left:0;
 bottom: 0;
 z-index: -1;
 position: relative;
-opacity: 0.5;
+opacity: 0.7;
 }
 .loader svg{
-  background: #ae27e8;
+  background: white;
   animation: rotateSVG 0.9s infinite alternate ease-in-out;
 }
 .loader-after{
@@ -22,7 +20,6 @@ opacity: 0.5;
   top: 0;
   right:0;
   left:0;
-  background: blue;
   bottom: 25%;
   margin: auto;
   padding: 0;
@@ -30,8 +27,6 @@ opacity: 0.5;
   overflow: hidden;
   animation: objectBounce 0.9s infinite  linear;
   z-index: 1;
-  /* border: 1px solid black; */
-  /* clip-path: circle(35%); */
 }
 
 .loader-before{
@@ -53,10 +48,10 @@ opacity: 0.5;
 }
 @keyframes rotateSVG {
   from{
-    transform: rotate(-10deg);
+    transform: rotate(-5deg);
   }
   to{
-    transform: rotate(10deg);
+    transform: rotate(5deg);
   }
 }
 @keyframes shadow {
@@ -68,31 +63,25 @@ opacity: 0.5;
     25%{
       width: 45%;
       opacity: 0.5;
-      /* height: 10%; */
     }
     40%{
       width: 50%;
       opacity: 0.7;
-      /* height: 10%; */
     }
     55%{
       width: 25%;
       opacity: 0.5;
-      /* height: 9.5%; */
     }
     70%{
       opacity: 0.4;
       width: 20%;
-      /* height: 9.5%; */
 
     }90%{
       width:25%
-      /* height: 9% */
 
     }
     100%{
       width: 30%;
-      /* height: 10%; */
     }
 }
 
@@ -122,52 +111,29 @@ opacity: 0.5;
   }
 }
 
-.loader-mini{
-  position:absolute;
-  width: 5px;
-  height: 5px;
-  background: white;
+.loader-mini::before, .loader-mini::after{
+  content: "";
+  position: absolute;
   top:0;
   left:0;
   right:0;
   bottom:0;
+  border: 1px solid white;
+  border-top: 1px solid transparent;
+
   margin: auto;
   border-radius: 50%;
-    animation: fourRotate 0.5s   reverse infinite  linear;
-}
-.loader-mini::after, .loader-mini::before{
-  content: "";
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  background: white;
-  top:0;
-  right:0;
-  bottom:0;
-  margin: auto;
-  border-radius: 50%;
-    animation: fourBounce 1s infinite linear;
+
+  animation: miniRotate 0.9s infinite  linear;
 }
 .loader-mini::after{
-  right:-200%;
-  animation: fourBounce 1s  reverse infinite  linear;
+  width: 50%;
+  height: 50%;
+  animation: miniRotate 0.9s reverse infinite  linear;
+
 }
-.loader-mini::before{
-  right:200%;
+@keyframes miniRotate {
+0%{
+  transform: rotateZ(360deg);
 }
-@keyframes fourRotate {
-  25%{
-        transform: translateY(-5%) ;
-  }
-  75%{
-        transform: translateY(5%) ;
-  }
-}
-@keyframes fourBounce {
-  25%{
-        transform: translate(0%, 50%) scale(1.2);
-  }
-  75%{
-        transform: translate(0%, -50%) scale(0.8);
-  }
 }

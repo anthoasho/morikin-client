@@ -100,7 +100,7 @@ a:visted{
   height: 30vw;
   margin: auto;
   border: 3px solid #c947ff80;
-  background: #c947ff80;
+  /* background: #c947ff80; */
 }
 .error-content-right{
   grid-column: 3/4;

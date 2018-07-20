@@ -12,7 +12,7 @@ class AuthForm extends Component {
                   password: "",
                   repeatPassword: "",
                   profileImgUrl: "",
-                  loading: true,
+                  loading: false,
                   };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +38,7 @@ class AuthForm extends Component {
       this.setState({
         password: "",
         repeatPassword: "",
-        profileImgUrl: ""
+        profileImgUrl: "",
       });
 
     }
@@ -55,7 +55,7 @@ class AuthForm extends Component {
   }
 render(){
     const {username, password, profileImgUrl, repeatPassword} = this.state;
-    const {heading, buttonText, signUp, loading, errors } = this.props;
+    const {heading, buttonText, signUp,  errors, loading } = this.props;
     const form = (<div className="login-form-container"><p className="title">{errors.message ? (<span className="login-error">{errors.message}</span>) : heading }</p>
 
     <form

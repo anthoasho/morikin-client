@@ -57,7 +57,7 @@ class LandingPage extends Component {
         return(
           <div className={classNames({"landing-page": true,"login-form-show":(this.state.page === "signup" || this.state.page==="signin")})}>
             <div className="landing-logo"  onClick= {() => this.setState({page: "default"})}>
-              <Logo />
+              <Logo color="#3e3e3e"/>
             </div>
               <div className="top-left" >
               <div className="device white-box-style">

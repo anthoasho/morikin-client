@@ -38,7 +38,7 @@ const Navbar = (props) => {
   if(props.isMobile){
     return (<nav>
       {currentUser.isLoggedIn && <div className={classNames({"hamburger": true, "shift-hamburger": (context === "profile")})} onClick={handleHamburger} > <div className="hamburger-line"></div></div>}
-      <div onClick={handleLogoClick}  className="nav-logo" ><Logo /> </div>
+      <div onClick={handleLogoClick}  className="nav-logo" ><Logo color="#ae27e8FF" /> </div>
         {((context === "profile") && (currentUser.isLoggedIn))  && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
         {((context === "profile") && (currentUser.isLoggedIn)) && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
       </nav>
@@ -47,7 +47,7 @@ const Navbar = (props) => {
   return(
       <nav>
         {currentUser.isLoggedIn && <div className="hamburger" onClick={handleHamburger} > <div className="hamburger-line"></div></div>}
-         <div onClick={() => props.history.push("/")} className="nav-logo"> <Logo /> </div>
+         <div onClick={() => props.history.push("/")} className="nav-logo"> <Logo color="#ae27e8FF" /> </div>
         {/*<NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink> */}
           {currentUser.isLoggedIn && <a  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </a> }
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>

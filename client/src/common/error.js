@@ -19,7 +19,7 @@ const PopError = (props) => {
       <div className="error-content-left">
           <div className="logo-error">
           <FontAwesome name='exclamation' className="icon-error "  />
-          <Logo />
+          <Logo  color="#ae27e8FF" style ={{opacity: "0.6"}}/>
           </div>
       </div>
     </div>

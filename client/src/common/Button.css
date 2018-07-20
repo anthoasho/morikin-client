@@ -44,8 +44,11 @@
 .button-loading{
   display: flex;
   /* justify-content: center; */
-  flex: 0 0  40%;
+  flex: 0 0  20px;
+  justify-content: flex-end;
   position: relative;
+  height: 20px;
+
 }
 .delete-btn{
   background: #f7f7f700;
@@ -161,7 +164,7 @@
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items: center;
   align-self: flex-end;
   grid-column: 3/4;
