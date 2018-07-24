@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import ProfileImg from "../../common/ProfileImg";
+import {LikeButton} from "../../common/logo";
 import classNames from "classnames";
 import {DeleteButton} from "../../common/Button";
+import Dropdown, {DropdownItem} from "./Dropdown";
 import {connect} from "react-redux";
 import {showLikesList} from "../../store/actions/UI";
 import ListUsers from "../../common/ListUsers";
@@ -67,8 +69,11 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
             <span ><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
             <span > <Moment format="HH:mm">{createdAt}</Moment></span>
     </div>
+    <Dropdown>
+      {(ownerCheck && <DropdownItem> <DeleteButton type="delete" onClick={removeMessage} /></DropdownItem>)}
+      <DropdownItem onClick={likeMessage}> <p> Like</p>  </DropdownItem>
+    </Dropdown>
           <p className="message-text">{text}</p>
-          {ownerCheck && (<DeleteButton type="delete" onClick={removeMessage} />)}
           {/* This handles liking
            if the user has already liked it (as returned from the API in a truthy) it will show a red heart
            otherwise it is clear
@@ -77,7 +82,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            this is returned from the API as a number only (array.length())
            */}
       <div className="message-likes">
-        {isLoggedIn &&<div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} ></div>}
+        {isLoggedIn &&<div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} ><LikeButton /></div>}
         <a onClick={() =>  handleLikesShow(_id)}><span> {likedBy} likes</span> </a>
       </div>
       <div className="color-message-border"
@@ -103,6 +108,8 @@ _id:PropTypes.string,
 showLikesList:PropTypes.func,
 ui:PropTypes.object
 }
+
+
 
 
   function mapStateToProps(state){

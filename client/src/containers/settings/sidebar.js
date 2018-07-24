@@ -15,7 +15,7 @@ class Sidebar extends Component{
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutisde = this.handleClickOutisde.bind(this);
   }
-  handlePageChange = (page, url) => {
+  handlePageChange = (page, url, close) => {
     this.setState({
       page: page
     })
@@ -23,7 +23,7 @@ class Sidebar extends Component{
     if((this.props.history.location.pathname !== url)){
       this.props.history.push(url)
     }
-    if(page === "default"){
+    if(close){
       this.handleSidebarHide()
     }
     if(this.props.isMobile){
@@ -67,8 +67,8 @@ class Sidebar extends Component{
     <div ref={this.setWrapperRef} className={classNames({"sidebar-main": true, "sidebar-show": sidebarVisibility})} >
       <div onClick={this.handleSidebarHide} className="exit-sidebar">  </div>
         <ul className="sidebar-menu">
-          <li onClick={()=> this.handlePageChange("default", "/")}>Home</li>
-          <li className={classNames({"active": (this.props.history.location.pathname === "/myprofile")})} onClick={()=> this.handlePageChange("default", "/myprofile")}>My Profile</li>
+          <li className={classNames({"active": (this.props.history.location.pathname === "/")})} onClick={()=> this.handlePageChange("default", "/", true)}>Home</li>
+          <li className={classNames({"active": (this.props.history.location.pathname === "/myprofile")})} onClick={()=> this.handlePageChange("info", "/myprofile", true)}>My Profile</li>
           <li className={classNames({"active": (this.props.history.location.pathname === "/editprofile") && (page === "info")})} onClick={()=> this.handlePageChange("info", "/editprofile")}>Personal Info</li>
           <li className={classNames({"active": (this.props.history.location.pathname === "/editprofile") && (page === "security")})} onClick={()=> this.handlePageChange("security", "/editprofile")}>Security</li>
           <li className={classNames({"active": (this.props.history.location.pathname === "/editprofile") && (page === "customisation")})} onClick={()=> this.handlePageChange("customisation", "/editprofile")}>Customisation</li>

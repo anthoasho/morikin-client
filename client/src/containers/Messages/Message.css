@@ -2,7 +2,6 @@
   display:grid!important;
   grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
   grid-template-rows: 5px 20px 1fr 20px 5px;
-  overflow: hidden;
   border: none!important;
   transition: transform 0.15s ease-out;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -54,24 +53,92 @@ background: var(--light-gray);
 .message-likes span {
   margin-left: 6px;
 }
-
-.time{
-  font-size: 0.7rem;
-  grid-column:5/6;
+.dropdown{
+  position:relative;
   grid-row: 2/3;
+  grid-column: 4/6;
+  justify-self: flex-end;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.dropdown-button{
+  width: 17px;
+  height: 17px;
+  flex: 0 0 20px;
+  align-self: flex-end;
+  position: relative;
+  cursor: pointer;
+  fill: var(--black);
+  transition: fill 0.5s ease;
+}
+.dropdown-button-active{
+  fill: var(--purple);
+}
+.dropdown-menu{
+  width: 100px;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  box-shadow: -1px 1px 3px var(--shadow-black);
+  background: var(--white);
+}
+.dropdown-show{
+  visibility: visible;
+  opacity: 1;
+}
+.dropdown-item{
+  width: 100%;
+  color: var(--black);
+  font-size: 0.7rem;
+  background:var(--white);
+  cursor: pointer;
+  text-align: left;
+  justify-self:end;
   align-self: center;
-  justify-self: center;
+  font-size: 0.8rem;
+  height: auto;
+  white-space: nowrap;
+}
+.dropdown-item p {
+  padding: 5px;
+  margin: 0;
+}
+.dropdown-item:hover{
+  background: var(--light-gray);
+}
+.time{
+  font-size: 0.55rem;
+  grid-column: 3/4;
+  grid-row: 4/5;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: var(--dark-gray);
+  justify-self: flex-start;
 }
 .like-button{
-  width: 8px;
-  height: 8px;
-  background: var(--dark-gray);
-  transform: rotate(-45deg);
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: -1px 1px 3px  var(--shadow-black);
+  display: flex;
+  align-items: center;
 }
-.like-button:before,
+.like-button{
+  width: 16px;
+  overflow: visible;
+  height: 16px;
+  transition: all 0.5s ease;
+  fill: #00000000;
+  stroke: var(--dark-gray);
+  stroke-width: 30;
+  stroke-opacity: 1;
+  fill-opacity: 1;
+  stroke-linecap:butt;
+  stroke-linejoin:round;
+  filter: drop-shadow(0px 0px 0px var(--shadow-black));
+}
+/* .like-button:before,
 .like-button:after{
   content: "";
   border-radius: 50%;
@@ -86,17 +153,19 @@ background: var(--light-gray);
 }
 .like-button:after{
   right:-4px;
-}
+} */
 .like-button:hover{
-  transform:scale(1.1) rotate(-45deg);
-  box-shadow: 0px 0px 6px 1px  var(--shadow-black);
+  /* transform:scale(1.01) ; */
+  /* text-shadow: 0px 0px 6px 1px  var(--shadow-black); */
+  filter: drop-shadow(0px 5px 3px var(--shadow-black));
 
 }
 .like-button:active{
-  transform: rotate(-60deg) scale(1.2);
+  transform: rotate(-1deg) scale(1.2);
 }
 .like-button-true{
-  background: var(--red-danger);
+  fill: var(--red-danger);
+  stroke: var(--red-danger);
 }
 
 @media only screen and (max-device-width: 500px) { /* edit this later for mobiles*/

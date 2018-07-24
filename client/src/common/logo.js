@@ -31,7 +31,55 @@ export const Logo = (props) => {
            style={{fill:props.color || logoColor,fillOpacity:1, stroke: props.color || logoColor, strokeWidth:1.80727434, strokeOpacity:1}} />
       </g>
       </svg>
-
-
   )
+}
+export const LikeButton = (props)=> {
+  return(
+    <svg  width="100%" height="100%" viewBox="0 0 901.000000 902.000000"
+         preserveAspectRatio="xMidYMid meet">
+
+      <g
+         id="layer2">
+        <path
+           id="path895"
+           d="M 447.62543,812.13332 C 553.4104,664.11009 666.07571,588.42218 779.6849,480.07386 1010.578,249.18072 717.24493,-76.515318 447.62543,148.0144 221.24372,-58.489435 -114.76764,249.74024 115.56598,480.07386 225.23312,591.27002 395.21369,674.87447 447.62543,812.13332 Z"
+          />
+      </g>
+    </svg>
+  )
+}
+
+export const DropdownIcon = () => {
+return(  <svg
+     width="100%"
+     height="100%"
+     viewBox="0 0 901.000000 902.000000"
+     preserveAspectRatio="xMidYMid meet">
+
+    <g
+       id="layer2">
+      <rect
+         y="103"
+         x="381.48322"
+         height="138.03357"
+         width="138.03357"
+         id="rect897"
+         />
+      <rect
+         y="381.98322"
+         x="381.48322"
+         height="138.03357"
+         width="138.03357"
+         id="rect897-6"
+       />
+      <rect
+         y="660"
+         x="381.48322"
+         height="138.03357"
+         width="138.03357"
+         id="rect897-3"
+         />
+    </g>
+  </svg>
+)
 }

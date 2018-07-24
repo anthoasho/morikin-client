@@ -83,7 +83,7 @@
   border-left: 2px solid var(--black);
   background: none;
   position: relative;
-  transform: rotate(-45deg);
+  transform: rotate(45deg);
   z-index: 20;
   margin: 0;
   border-color: var(--white);

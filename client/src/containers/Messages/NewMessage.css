@@ -3,7 +3,7 @@
   margin: auto;
   margin-bottom: 10px;
   transform: translateY(-100%);
-  transition: all 1s ease;
+  transition: all 0.3s ease;
 }
 .show-message-box{
   /* animation: slideItIn 1s ease-in-out forwards; */

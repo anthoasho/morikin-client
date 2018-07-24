@@ -63,7 +63,7 @@ export class DeleteButton extends Component{
     const {verify, text} = this.state;
 
     return(
-     <div tabIndex="0" className={classNames({"delete-btn": true, "delete-btn-danger": verify, "delete-btn-loading": this.state.loading})} onClick={this.verifyDelete} onBlur={this.reset}> {text} </div>
+     <div tabIndex="0" className={classNames({"delete-btn": true, "delete-btn-danger": verify, "delete-btn-loading": this.state.loading})} onClick={this.verifyDelete} onBlur={this.reset}> <p> {text} </p></div>
     )
   }
 
