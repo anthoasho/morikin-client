@@ -6,7 +6,7 @@ This is a work in progress by [Anthony Ashurst](https://github.com/anthoasho).
 
 Morikin is a very basic social networking single page application written in the MERN stack (Mongo, Express, React, Node).
 
-It's currently a "private" application, meaning it requires some kind of login to access (a preview mode is to be made also). The application is currently quite minimal in total features.
+It's currently a "private" application, meaning it requires some kind of login to access (a preview mode of individual profiles is possible). This application is currently quite minimal in total features.
 
 ## Features
 
@@ -21,7 +21,7 @@ It's currently a "private" application, meaning it requires some kind of login t
 ## Future Plans
 
 - [ ] Message replies
-- [ ] Preview mode (look at basic profile before following/logging in)
+- [X] Preview mode (look at basic profile before following/logging in)
 - [ ] Hashtag feature
 - [ ] Improve privacy with follow requests and denials
 - [ ] Improve discover box with appropriate people to follow
@@ -30,7 +30,7 @@ It's currently a "private" application, meaning it requires some kind of login t
 
 ## Application Details
 
-The front end was created with [Create React App](https://github.com/facebook/create-react-app).
+The front end was generated with [Create React App](https://github.com/facebook/create-react-app).
 
 
 ## History and About the Author

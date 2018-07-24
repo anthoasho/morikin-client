@@ -69,10 +69,11 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
             <span ><Moment format="YYYY/MM/DD">{createdAt}</Moment></span>
             <span > <Moment format="HH:mm">{createdAt}</Moment></span>
     </div>
-    <Dropdown>
-      {(ownerCheck && <DropdownItem> <DeleteButton type="delete" onClick={removeMessage} /></DropdownItem>)}
-      <DropdownItem onClick={likeMessage}> <p> Like</p>  </DropdownItem>
-    </Dropdown>
+    {isLoggedIn &&<Dropdown>
+        {(ownerCheck && <DropdownItem> <DeleteButton type="delete" onClick={removeMessage} /></DropdownItem>)}
+        <DropdownItem onClick={likeMessage}> <p> Like</p>  </DropdownItem>
+      </Dropdown>
+    }
           <p className="message-text">{text}</p>
           {/* This handles liking
            if the user has already liked it (as returned from the API in a truthy) it will show a red heart

@@ -1,4 +1,11 @@
-## 0.2.8 
+## 0.2.9
+- Added dropdown menu for individual messages
+- Set a colour scheme with CSS variables
+- Began implementation of custom made SVG files as functional components
+- Allow API to view a single user's profile without need to log in
+  - Preview Mode shows a login/logout button in Navigation bar and shows basic information of that user. 
+
+## 0.2.8
 - Added Sidebar for easier navigation of profile editing
   - Separated the edit profile options to multiple segments
 ## 0.2.7

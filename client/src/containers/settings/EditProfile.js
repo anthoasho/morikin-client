@@ -31,7 +31,11 @@ class EditProfile extends Component{
   }
   handleSubmit = e =>{
     e.preventDefault();
-    this.props.editProfile(this.state)
+    this.props.editProfile(this.state, this.redirect)
+  }
+  redirect = () => {
+    this.props.sidebarHide()
+    this.props.history.push("/")
   }
   handleFocus = e=>{
     e.preventDefault();
@@ -58,10 +62,10 @@ class EditProfile extends Component{
   //TODO redesign/alter this
   render(){
     const {username, email, displayName,  profileImgUrl, profileColor, description, passwordOne, passwordTwo} = this.state;
-    const {errors, editPage, sidebarHide} = this.props;
+    const {errors, editPage} = this.props;
     return(<div className="fullscreen">
     <h3> {this.title()} </h3>
-      <div className="fullscreen"  onClick ={() => {this.props.history.push("/"); sidebarHide() } }></div>
+      <div className="fullscreen"  onClick ={() => {this.redirect() } }></div>
       <form
       className="edit-profile-form"
         onSubmit = {this.handleSubmit}
@@ -125,7 +129,9 @@ class EditProfile extends Component{
         }
 
         {editPage === "customisation" &&  <Input
-          type="text"
+          type="dropdown"
+          options={["Teal", "Olive", "Purple", "Green", "Orange"]}
+          color={this.state.profileColor}
           name="profileColor"
           placeholder="Profile Color"
           value={profileColor}

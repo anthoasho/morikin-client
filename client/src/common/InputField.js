@@ -60,40 +60,76 @@ class Input extends Component{
   }
 
   render(){
-    let {type, name, placeholder} = this.props;
+    let {type, name, placeholder, options} = this.props;
     //May alter this to accept other types of input (textarea/dropdown etc)
-    const inputField =
-    <div className="input-container">
-            <p
-              className={classNames({
-                          "input-placeholder":true,
-                          "input-placeholder-active":this.state.placeholderFloat,
-                          "input-placeholder-default": !this.state.placeholderFloat,
-                          "input-placeholder-error": this.state.error
-                        })}>
-                {placeholder} {this.state.error && <span> is required </span>}
-            </p>
-            <input
-              className={classNames({"input-box": true, "input-error": this.state.error})}
-              style={this.state.error ? {boxShadow: "0 2px 0px 0px #FF0000"} : {boxShadow: "0 1px 0px 0px gray"}}
-              type={type}
-              name={name}
-              placeholder=""
-              value={this.props.value}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onChange={this.handleChange}
-              autoFocus={this.props.autoFocus}
-            />
-            <div className={classNames({"input-hr-holder":true, "input-hr-holder-active":this.state.active})}>
-            <hr
-              className={classNames({"input-hr":true, "hr-active":this.state.active})}
-            />
+    const inputField = () =>{
+      if(type === "text"){
+        return(<div className="input-container">
+              <p
+                className={classNames({
+                            "input-placeholder":true,
+                            "input-placeholder-active":this.state.placeholderFloat,
+                            "input-placeholder-default": !this.state.placeholderFloat,
+                            "input-placeholder-error": this.state.error
+                          })}>
+                  {placeholder} {this.state.error && <span> is required </span>}
+              </p>
+              <input
+                className={classNames({"input-box": true, "input-error": this.state.error})}
+                style={this.state.error ? {boxShadow: "0 2px 0px 0px #FF0000"} : {boxShadow: "0 1px 0px 0px gray"}}
+                type={type}
+                name={name}
+                placeholder=""
+                value={this.props.value}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+                onChange={this.handleChange}
+                autoFocus={this.props.autoFocus}
+              />
+              <div className={classNames({"input-hr-holder":true, "input-hr-holder-active":this.state.active})}>
+              <hr
+                className={classNames({"input-hr":true, "hr-active":this.state.active})}
+              />
+              </div>
             </div>
-          </div>
+          )}
+        if(type ==="dropdown"){
+          return(
+          <div className="input-container">
+                <p
+                  className={classNames({
+                              "input-placeholder":true,
+                              "input-placeholder-active":true,
+                              "input-placeholder-default": !this.state.placeholderFloat,
+                              "input-placeholder-error": this.state.error
+                            })}>
+                    {placeholder}
+                </p>
+                <select
+                  className={classNames({"input-box": true, "input-error": this.state.error})}
+                  style={this.state.error ? {boxShadow: "0 2px 0px 0px #FF0000"} : {boxShadow: "0 1px 0px 0px gray"}}
+                  type={type}
+                  name={name}
+                  placeholder=""
+                  value={this.props.value}
+                  onFocus={this.handleFocus}
+                  onBlur={this.handleBlur}
+                  onChange={this.handleChange}
+                  autoFocus={this.props.autoFocus}
+                >
+                {options.map(name => <option key={name}  value={name} > {name} </option>)}
+                </select>
+                <div style={{background: this.props.color}} className={classNames({"input-hr-holder":true, "input-hr-holder-active":true})}>
+                <hr
+                  className={classNames({"input-hr":true, "hr-active":false})}
+                />
+                </div>
+              </div>)
+    }
 
+      }
     return(
-      inputField
+      inputField()
     )
   }
 }
