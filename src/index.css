@@ -1,0 +1,69 @@
+html{
+  background-image: radial-gradient(circle closest-corner, var(--blue-light), var(--blue-dark));
+  background-size: cover;
+  width:100%;
+  overflow-x: hidden;
+  height:100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+:root{
+  --purple: #eb7d39;
+  --blue-light: #29a7eb;
+  --blue-dark: #5da5d2;
+  --green: #0fee2c;
+  --red-danger: #ff2828;
+  --red-highlight: #ff5858;
+  --gray:  #888888;
+  --light-gray:  #f4f4f4EE;
+  --dark-gray: #3f3f3f;
+  --white: #fefefe;
+  --shadow-black: #3e3e3ebb;
+  --clear-box: #ffffff30;
+  --black: #000;
+}
+/*
+Color Scheme 1
+--purple: #eb7d39;
+--blue-light: #29a7eb;
+--blue-dark: #5da5d2;
+
+*/
+
+/*
+
+Color Scheme 2
+--purple: #de0357;
+--blue-light: #03c4de;
+--blue-dark: #2ab3c5;
+
+Color Scheme 3
+--purple: #ff86a0;
+--blue-light: #86ddff;
+--blue-dark: #85ddff;
+
+
+
+*/
+
+::-webkit-scrollbar{
+  width: 4px;
+}
+::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  border-radius: 0px;
+  background: rgba(44, 44, 44, 0.8);
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background: rgba(44, 44, 44, 0.5);
+  width: 4px;
+}

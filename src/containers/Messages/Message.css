@@ -1,0 +1,183 @@
+.ind-message{
+  display:grid!important;
+  grid-template-columns: 5px 1fr 3fr 1fr 1fr 5px;
+  grid-template-rows: 5px 20px 1fr 20px 5px;
+  border: none!important;
+  transition: max-height 0.8s linear, opacity 1s 0.2s ease-in-out, background 1s 0.2s  ease-in-out;
+  max-height: 400px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  grid-row-gap: 4px;
+}
+.message-tester:nth-of-type(even) .ind-message{
+background: var(--white);
+}
+.message-tester:nth-of-type(even) .ind-message:hover{
+background: var(--light-gray);
+}
+.color-message-border{
+  grid-column: 1/2;
+  grid-row: 1/6;
+  margin: 0;
+}
+.message-loading-text{
+  grid-column: 5/6;
+  grid-row: 3/6;
+  color: var(--light-gray);
+  font-size: 2rem;
+}
+.ind-message-on-delete{
+  /* transform: scale(0.001) !important; */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  background: var(--red-danger)!important;
+}
+
+.ind-message .img-wrapper{
+  grid-row: 2/5;
+  grid-column: 2/3;
+}
+.message-username{
+  grid-row: 2/3;
+  grid-column: 3/5;
+  overflow: hidden;
+}
+.message-text{
+  grid-row: 3/4;
+  grid-column: 3/6;
+  margin: 0;
+  white-space: pre-line;
+}
+.message-likes{
+  grid-row: 4/5;
+  grid-column: 5/6;
+  display: flex;
+  align-items:center;
+  justify-content: space-around;
+}
+.message-likes span {
+  margin-left: 6px;
+}
+.dropdown{
+  position:relative;
+  grid-row: 2/3;
+  grid-column: 5/6;
+  justify-self: flex-end;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.dropdown-button{
+  width: 17px;
+  height: 17px;
+  flex: 0 0 20px;
+  align-self: flex-end;
+  position: relative;
+  cursor: pointer;
+  fill: var(--black);
+  transition: fill 0.5s ease;
+}
+.dropdown-button-active{
+  fill: var(--purple);
+}
+.dropdown-menu{
+  width: 100px;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  box-shadow: -1px 1px 3px var(--shadow-black);
+  background: var(--white);
+}
+.dropdown-show{
+  visibility: visible;
+  opacity: 1;
+}
+.dropdown-item{
+  width: 100%;
+  color: var(--black);
+  font-size: 0.7rem;
+  background:var(--white);
+  cursor: pointer;
+  text-align: left;
+  justify-self:end;
+  align-self: center;
+  font-size: 0.8rem;
+  height: auto;
+  white-space: nowrap;
+}
+.dropdown-item p {
+  padding: 5px;
+  margin: 0;
+}
+.dropdown-item:hover{
+  background: var(--light-gray);
+}
+.time{
+  font-size: 0.55rem;
+  grid-column: 3/4;
+  grid-row: 4/5;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: var(--dark-gray);
+  justify-self: flex-start;
+}
+.like-button{
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.like-button{
+  width: 16px;
+  overflow: visible;
+  height: 16px;
+  transition: all 0.5s ease;
+  fill: #00000000;
+  stroke: var(--dark-gray);
+  stroke-width: 30;
+  stroke-opacity: 1;
+  fill-opacity: 1;
+  stroke-linecap:butt;
+  stroke-linejoin:round;
+  filter: drop-shadow(0px 0px 0px var(--shadow-black));
+}
+/* .like-button:before,
+.like-button:after{
+  content: "";
+  border-radius: 50%;
+  height:8px;
+  width:8px;
+  position:absolute;
+  background: inherit;
+}
+.like-button:before{
+  top: -4px;
+  left:0;
+}
+.like-button:after{
+  right:-4px;
+} */
+.like-button:hover{
+  /* transform:scale(1.01) ; */
+  /* text-shadow: 0px 0px 6px 1px  var(--shadow-black); */
+  filter: drop-shadow(0px 5px 3px var(--shadow-black));
+
+}
+.like-button:active{
+  transform: rotate(-1deg) scale(1.2);
+}
+.like-button-true{
+  fill: var(--red-danger);
+  stroke: var(--red-danger);
+}
+
+@media only screen and (max-device-width: 500px) { /* edit this later for mobiles*/
+
+  .message-container{
+    overflow:visible;
+    margin: 5px 0 45px;
+    max-height: none!important;
+  }
+}

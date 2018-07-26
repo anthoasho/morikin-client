@@ -1,2 +1,5 @@
 node_modules/
-server/.env
+.env.development.local
+.env.production.local
+app.yaml
+build/
