@@ -51,6 +51,8 @@ class Timeline extends Component{
                 messages = {messages}
                 bottomClick={this.handleBottom}
               />
+              <PopupDialog goBack={this.props.history.goBack}/>{/* This will later become a general popup dialog, not just errors*/}
+
             </div>)
     }
       return(

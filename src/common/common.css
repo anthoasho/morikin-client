@@ -240,4 +240,11 @@ transform-origin: 0% 0%;
   .popup-box{
     width: 100%;
   }
+  .bottom-popup-show{
+    transform: translateY(-50px);
+    font-size: 0.7rem;
+    z-index: 100;
+    justify-content: space-between;
+    padding: 5px;
+  }
 }

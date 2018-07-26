@@ -83,3 +83,30 @@ return(  <svg
   </svg>
 )
 }
+
+
+export const BackIcon = () => {
+  return(
+    <svg
+       width="100%"
+       height="100%"
+       viewBox="0 0 901.000000 902.000000"
+       preserveAspectRatio="xMidYMid meet">
+      <g
+         id="layer1">
+        <path
+           id="path863"
+           d="M 373.27203,780.2468 44.025229,451 373.27203,121.7532"
+           style={{strokeOpacity: 1}} />
+        <path
+           id="path863-2"
+           d="M 598.99824,737.31783 312.68042,451 598.99824,164.68217"
+           style={{strokeOpacity: 0.8}}  />
+        <path
+           id="path863-2-8"
+           d="M 856.00413,707.59776 599.40638,451 856.00413,194.40224"
+           style={{strokeOpacity: 0.6}}  />
+      </g>
+    </svg>
+  )
+}

@@ -20,6 +20,7 @@ const BodyContainer = (props) => {
           page={props.page}
           fetcher={user[props.page]}
           />
+
       </div>
     )
 };

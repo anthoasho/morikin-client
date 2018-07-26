@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import {connect} from "react-redux";
+import {BackIcon} from "./logo";
 import PropTypes from "prop-types";
 
 const SlideBox = ({backAction, content}) =>{
@@ -11,7 +12,7 @@ const SlideBox = ({backAction, content}) =>{
     return(
     <div className={classNames({"container-box": true})}>
       <div onClick={back} className="back-button">
-        <div className="back-icon"></div>
+        <div className="back-icon back-icon-reverse"><BackIcon /> </div>
       </div>
         {content}
     </div>)

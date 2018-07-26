@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import { connect } from "react-redux"
 import {animateProfile} from "../store/actions/animate";
 import classNames from "classnames";
-import {Logo} from "../common/logo.js";
+import {Logo, BackIcon} from "../common/logo.js";
 import {showNewMessage, sidebarShow} from "../store/actions/UI";
 import FontAwesome from "react-fontawesome";
 import "./Navbar.css";
@@ -39,7 +39,7 @@ const Navbar = (props) => {
     return (<nav>
       {currentUser.isLoggedIn && <div className={classNames({"hamburger": true, "shift-hamburger": (context === "profile")})} onClick={handleHamburger} > <div className="hamburger-line"></div></div>}
       <div onClick={handleLogoClick}  className="nav-logo" ><Logo  /> </div>
-        {((context === "profile") && (currentUser.isLoggedIn))  && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}> </div> </div>}
+        {((context === "profile") && (currentUser.isLoggedIn))  && <div className={classNames({"back-button": true, "transition": true, "no-opacity": props.profileHide})} onClick={handleBack }> <div className={classNames({"back-icon": true, "transition": true, "no-opacity": props.profileHide})}><BackIcon /> </div> </div>}
         {((context === "profile") && (currentUser.isLoggedIn)) && <div  className={classNames({"profile-user-nav": true, "transition": true, "no-opacity": props.profileHide})}> {!props.isLoading && props.profile.username} </div>}
       </nav>
     )

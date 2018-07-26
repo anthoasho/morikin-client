@@ -4,6 +4,7 @@ import {getFollowList} from "../store/actions/userProfile";
 import "./ListUsers.css";
 import {popUpHide, showLikesList} from "../store/actions/UI";
 import {connect} from "react-redux";
+import{BackIcon} from "./logo";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
@@ -36,7 +37,7 @@ const ListUsers =  (props) => {
     }
     return(
       <div className={type === "follow" ? "follow-list-container" : "likes-area"}>
-        <div  onClick={goBack} className="back-button back-button-reverse"> <div className="back-icon back-icon-reverse"></div>  <h3 className="likes-title">
+        <div  onClick={goBack} className="back-button back-button-reverse"> <div className="back-icon back-icon-reverse"><BackIcon /> </div>  <h3 className="likes-title">
           {props.ui[type].title}
 
         </h3> </div>

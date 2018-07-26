@@ -39,7 +39,7 @@
   /* background-image: linear-gradient(to top, var(--purple), #cf27e8FF); */
   background: var(--purple);
   border-radius: 1%;
-  padding: 12px 10px;
+  padding: 3px;
   cursor: pointer;
   /* display: flex; */
   /* justify-content: flex-start; */
@@ -52,8 +52,10 @@
     padding: 3px;
 }
 .back-icon-reverse{
-  transform: rotate(45deg)!important;
+  transform: rotate(90deg)!important;
   margin: 3px 7px !important;
+  stroke:var(--light-gray)!important;
+
 }
 .login-error{
   color: var(--red-danger);
@@ -66,30 +68,34 @@
 }
 .back-icon::before,
 .back-icon::after{
-  content:"";
+  /* content:"";
   width: 8px;
   height: 8px;
   border-radius: 10%;
   border-left: 2px solid var(--black);
   border-top: 2px solid var(--black);
-  position: absolute;
+  position: absolute; */
 
 }
 .back-icon{
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border-radius: 10%;
-  border-top: 2px solid var(--black);
-  border-left: 2px solid var(--black);
+  /* border-top: 2px solid var(--black);
+  border-left: 2px solid var(--black); */
   background: none;
   position: relative;
-  transform: rotate(45deg);
+  fill: none;
+  stroke: black;
+  stroke:var(--purple);
+  stroke-width:70pt;
+  /* transform: rotate(45deg); */
   z-index: 20;
   margin: 0;
+  stroke-opacity: 1;
   border-color: var(--white);
   /* margin: 10px 4px; */
   margin-top: -5px;
-  opacity: 0.8;
 }
 
 
