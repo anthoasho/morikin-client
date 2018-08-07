@@ -1,6 +1,6 @@
 # Morikin
 
-This is a work in progress by [Anthony Ashurst](https://github.com/anthoasho).
+This is a work in progress by [Anthony Ashurst](https://github.com/anthoasho). A live demonstration of the application can be found [here](https://morikin-207206.appspot.com/).
 
 ## Outline
 
