@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2c32f6f277f2fcaebaf3bf09cd8ee5e2",
+    "revision": "9c14b31e6466323652d82c2f0263146a",
     "url": "https://anthonyashurst.com/morikin/index.html"
   },
   {
-    "revision": "81678d5570f157a21bfb",
+    "revision": "298ece110c5bc19f5c8e",
     "url": "https://anthonyashurst.com/morikin/static/css/main.503c4789.chunk.css"
   },
   {
-    "revision": "f37b64e470b667cccdd8",
-    "url": "https://anthonyashurst.com/morikin/static/js/2.9c1908d3.chunk.js"
+    "revision": "63120d6aa0b3c02c8521",
+    "url": "https://anthonyashurst.com/morikin/static/js/2.5f8238b6.chunk.js"
   },
   {
-    "revision": "81678d5570f157a21bfb",
-    "url": "https://anthonyashurst.com/morikin/static/js/main.77ffc71f.chunk.js"
+    "revision": "298ece110c5bc19f5c8e",
+    "url": "https://anthonyashurst.com/morikin/static/js/main.8c86cc08.chunk.js"
   },
   {
     "revision": "2b4b1b6128924df9a290",
