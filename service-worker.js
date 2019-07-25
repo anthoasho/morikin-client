@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://anthonyashurst.com/morikin/precache-manifest.ad083bbee578f1b8ad55355d173f96aa.js"
+  "https://anthonyashurst.com/morikin/precache-manifest.cbf83815315077d56338d4276ebdc7fd.js"
 );
 
 self.addEventListener('message', (event) => {
