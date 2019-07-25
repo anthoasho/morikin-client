@@ -72,6 +72,12 @@
   padding: 0 8px;
   flex: 1;
 }
-.user-meta-item a{
+.user-meta-item button{
   color:  var(--purple);
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.user-meta-item button:active{
+  outline: 0px;
 }

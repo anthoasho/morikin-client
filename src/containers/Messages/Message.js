@@ -84,7 +84,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
            */}
       <div className="message-likes">
         {isLoggedIn &&<div onClick={likeMessage} className={classNames({"like-button": true, "like-button-true": isLiked})} ><LikeButton /></div>}
-        <a onClick={() =>  handleLikesShow(_id)}><span> {likedBy} likes</span> </a>
+        <button onClick={() =>  handleLikesShow(_id)}><span> {likedBy} likes</span> </button>
       </div>
       <div className="color-message-border"
         style={{background: `${userId.profileColor? userId.profileColor:randomColor()} `}}>

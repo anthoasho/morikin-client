@@ -32,7 +32,7 @@ const ProfileImg = (props) => {
     </div>
     :
     <div className="img-wrapper">
-    <a className="img-link">
+    <button className="img-link">
     <PreloaderIcon
       className="profile-picture"
       type={ICON_TYPE.TAIL_SPIN}
@@ -41,7 +41,7 @@ const ProfileImg = (props) => {
       strokeColor="#ae27e8"
       duration={800}
     />
-    </a>
+    </button>
     </div>
 
   )

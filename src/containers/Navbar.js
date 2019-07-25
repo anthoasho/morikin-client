@@ -49,7 +49,7 @@ const Navbar = (props) => {
         {currentUser.isLoggedIn && <div className="hamburger" onClick={handleHamburger} > <div className="hamburger-line"></div></div>}
          <div onClick={() => props.history.push("/")} className="nav-logo"> <Logo  /> </div>
         {/*<NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink> */}
-          {currentUser.isLoggedIn && <a  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </a> }
+          {currentUser.isLoggedIn && <button  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </button> }
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
       {!currentUser.isLoggedIn &&  <NavLink  to={`/signin`} className="nav-signin"> <li >Sign in</li></NavLink>}
       {!currentUser.isLoggedIn &&  <NavLink  to={`/signup`} className="nav-signup"> <li >Sign up</li></NavLink>}

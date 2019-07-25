@@ -24,14 +24,14 @@ const UserMeta = ({text, data, classDefine, username, type, popUpDisplay, ui, hi
   }
   return(
         <div className={classDefine}>
-          <a onClick={handleFollowShow}>
+          <button onClick={handleFollowShow}>
           <div className="meta-number">
           {data}
           </div>
             <div className="">
               {text}
             </div>
-          </a>
+          </button>
         </div>
     );
 };
