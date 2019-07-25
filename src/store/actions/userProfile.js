@@ -110,7 +110,7 @@ export const retry = (func, args)=>{
 //url is passed as an argument to clarify following || followers
 export const getFollowList = (url) => {
   return dispatch => {
-    return apiCall("get", `api/${url}`)
+    return apiCall("get", `api/user/${url}`)
       .then((res) => {
         dispatch(loadFollow(res));
         dispatch(removeError());
@@ -153,7 +153,7 @@ export const followUser = ([userId, location, itemNum]) => {
   return (dispatch, getState) => {
     let {ui} = getState()
     let {context} = ui
-    return apiCall("post", `api/${userId}/follow`)
+    return apiCall("post", `api/user/${userId}/follow`)
     .then((res) => {
       if(location==="followList"){
         dispatch(updateFollowList(res.following, itemNum));

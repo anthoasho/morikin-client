@@ -105,7 +105,7 @@ export const removeMessage = (user, message) => {
   return (dispatch, getState) => {
     let {ui} = getState()
     let {context} = ui
-    return apiCall("put", `api/users/${user}/messages/${message}/delete`, {isDeleted: true})
+    return apiCall("put", `api/messages/${message}/${user}/delete`, {isDeleted: true})
     .then(() =>
     dispatch(animateRemove(message, context))
   )
@@ -166,11 +166,11 @@ export const updateMessages = (user, lastMessage) =>{
 //posts with the current user
 //Backend checks login authentication and authorisation
 export const postNewMessage = (text) => (dispatch, getState) => {
-  let {myProfile, ui} = getState();
+  let {ui} = getState();
   let {context} = ui
-  const id = myProfile.auth.userId;
+  // const id = myProfile.auth.userId;
   // dispatch(isLoading())
-  return apiCall("post", `api/users/${id}/messages`, {text})
+  return apiCall("post", `api/messages`, {text})
   .then(res => {
     dispatch(postMessage(res, context));
     dispatch(showNewMessage())

@@ -28,3 +28,4 @@ app.yaml
 
 public/fontawesome-all.min.js
 debug.log
+.env
