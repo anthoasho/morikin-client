@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "http://localhost:3000/static/css/main.503c4789.chunk.css",
-    "main.js": "http://localhost:3000/static/js/main.8e55b918.chunk.js",
-    "main.js.map": "http://localhost:3000/static/js/main.8e55b918.chunk.js.map",
-    "runtime~main.js": "http://localhost:3000/static/js/runtime~main.8a6cbfe7.js",
-    "runtime~main.js.map": "http://localhost:3000/static/js/runtime~main.8a6cbfe7.js.map",
-    "static/js/2.df541849.chunk.js": "http://localhost:3000/static/js/2.df541849.chunk.js",
-    "static/js/2.df541849.chunk.js.map": "http://localhost:3000/static/js/2.df541849.chunk.js.map",
-    "index.html": "http://localhost:3000/index.html",
-    "precache-manifest.399b48f58de3ef738537792b832de70b.js": "http://localhost:3000/precache-manifest.399b48f58de3ef738537792b832de70b.js",
-    "service-worker.js": "http://localhost:3000/service-worker.js",
-    "static/css/main.503c4789.chunk.css.map": "http://localhost:3000/static/css/main.503c4789.chunk.css.map",
-    "static/media/logo.svg": "http://localhost:3000/static/media/logo.b6931a33.svg",
-    "static/media/morikin-sh.jpg": "http://localhost:3000/static/media/morikin-sh.e28ca059.jpg"
+    "main.css": "https://anthonyashurst.com/morikin/static/css/main.503c4789.chunk.css",
+    "main.js": "https://anthonyashurst.com/morikin/static/js/main.77ffc71f.chunk.js",
+    "main.js.map": "https://anthonyashurst.com/morikin/static/js/main.77ffc71f.chunk.js.map",
+    "runtime~main.js": "https://anthonyashurst.com/morikin/static/js/runtime~main.f863216b.js",
+    "runtime~main.js.map": "https://anthonyashurst.com/morikin/static/js/runtime~main.f863216b.js.map",
+    "static/js/2.9c1908d3.chunk.js": "https://anthonyashurst.com/morikin/static/js/2.9c1908d3.chunk.js",
+    "static/js/2.9c1908d3.chunk.js.map": "https://anthonyashurst.com/morikin/static/js/2.9c1908d3.chunk.js.map",
+    "index.html": "https://anthonyashurst.com/morikin/index.html",
+    "precache-manifest.6fcbeb50dff6803dbd6ff4ea63065d13.js": "https://anthonyashurst.com/morikin/precache-manifest.6fcbeb50dff6803dbd6ff4ea63065d13.js",
+    "service-worker.js": "https://anthonyashurst.com/morikin/service-worker.js",
+    "static/css/main.503c4789.chunk.css.map": "https://anthonyashurst.com/morikin/static/css/main.503c4789.chunk.css.map",
+    "static/media/logo.svg": "https://anthonyashurst.com/morikin/static/media/logo.b6931a33.svg",
+    "static/media/morikin-sh.jpg": "https://anthonyashurst.com/morikin/static/media/morikin-sh.e28ca059.jpg"
   }
 }
