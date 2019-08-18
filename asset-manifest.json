@@ -1,17 +1,16 @@
 {
   "files": {
-    "main.css": "https://anthonyashurst.com/morikin/static/css/main.503c4789.chunk.css",
-    "main.js": "https://anthonyashurst.com/morikin/static/js/main.ab46f4d4.chunk.js",
-    "main.js.map": "https://anthonyashurst.com/morikin/static/js/main.ab46f4d4.chunk.js.map",
+    "main.css": "https://anthonyashurst.com/morikin/static/css/main.d394b0ba.chunk.css",
+    "main.js": "https://anthonyashurst.com/morikin/static/js/main.33e3f209.chunk.js",
+    "main.js.map": "https://anthonyashurst.com/morikin/static/js/main.33e3f209.chunk.js.map",
     "runtime~main.js": "https://anthonyashurst.com/morikin/static/js/runtime~main.f863216b.js",
     "runtime~main.js.map": "https://anthonyashurst.com/morikin/static/js/runtime~main.f863216b.js.map",
-    "static/js/2.b731feb9.chunk.js": "https://anthonyashurst.com/morikin/static/js/2.b731feb9.chunk.js",
-    "static/js/2.b731feb9.chunk.js.map": "https://anthonyashurst.com/morikin/static/js/2.b731feb9.chunk.js.map",
+    "static/js/2.e5e725c2.chunk.js": "https://anthonyashurst.com/morikin/static/js/2.e5e725c2.chunk.js",
+    "static/js/2.e5e725c2.chunk.js.map": "https://anthonyashurst.com/morikin/static/js/2.e5e725c2.chunk.js.map",
     "index.html": "https://anthonyashurst.com/morikin/index.html",
-    "precache-manifest.cbf83815315077d56338d4276ebdc7fd.js": "https://anthonyashurst.com/morikin/precache-manifest.cbf83815315077d56338d4276ebdc7fd.js",
+    "precache-manifest.b5181b324ced8da8fc74b1f46964c5a3.js": "https://anthonyashurst.com/morikin/precache-manifest.b5181b324ced8da8fc74b1f46964c5a3.js",
     "service-worker.js": "https://anthonyashurst.com/morikin/service-worker.js",
-    "static/css/main.503c4789.chunk.css.map": "https://anthonyashurst.com/morikin/static/css/main.503c4789.chunk.css.map",
-    "static/media/logo.svg": "https://anthonyashurst.com/morikin/static/media/logo.b6931a33.svg",
-    "static/media/morikin-sh.jpg": "https://anthonyashurst.com/morikin/static/media/morikin-sh.e28ca059.jpg"
+    "static/css/main.d394b0ba.chunk.css.map": "https://anthonyashurst.com/morikin/static/css/main.d394b0ba.chunk.css.map",
+    "static/media/logo.svg": "https://anthonyashurst.com/morikin/static/media/logo.b6931a33.svg"
   }
 }
