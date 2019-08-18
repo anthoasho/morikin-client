@@ -24,7 +24,7 @@ const Message = ({text, userId, createdAt, ownerCheck, removeMessage, loading, l
     let obj = {
       method: "list",
       title: "Message likes",
-      url: `message/${id}/likes`
+      url: `messages/${id}/likes`
     }
     if(ui.display === true && likeId ===_id){
       showLikesList(null, "likes");

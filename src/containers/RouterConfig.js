@@ -23,7 +23,7 @@ color: white;
 
 `
 let LinkToPortfolio = styled.div`
-position: absolute;
+position: fixed;
 right: ${props => props.isMobile ?"30px" : "30px"};
 left:  ${props => props.isMobile?"30px" : "auto"};
 bottom: 70px;
