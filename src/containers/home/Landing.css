@@ -1,7 +1,7 @@
 .landing-page{
   width: 100vw;
   height: 100vh;
-  display: grid;
+  display: flex;
   grid-template-rows: 70px 2fr 1fr;
   grid-template-columns: 1fr 35px 35px 1fr;
 }

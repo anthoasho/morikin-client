@@ -76,9 +76,16 @@ export const getUserProfile = (username) => {
         profile: `api/user/${usernameCurrent}`
       }
     }
+    let callDetails
+    if(  !usernameCurrent && !username ){
+      apiUrl.dashboard.messages = "api/messages/allMessages/";
+      callDetails = [apiCall("get", apiUrl[context].messages)]
+    }else{
+      callDetails = [apiCall("get", apiUrl[context].messages), apiCall("get", apiUrl[context].profile)]
+    }
     if((getState()[context].messages.data.length < 1) || ((context === "profile") && (getState().profile.profile.username !== username)) ){
       dispatch(isLoading());
-      Promise.all([apiCall("get", apiUrl[context].messages), apiCall("get", apiUrl[context].profile)])
+      Promise.all(callDetails)
       .then((res) => {
         dispatch(loadMessages(res[0], context));
         lastMessageCheck(res[0][res[0].length -1], dispatch, context)
@@ -88,6 +95,7 @@ export const getUserProfile = (username) => {
         dispatch(isLoaded());
     })
     .catch((err) => {
+      console.log(err)
         dispatch(popupShow())
         dispatch(addError(err, "error"));
         if(err.code === 404){

@@ -19,7 +19,7 @@ if(localStorage.jwtToken){
 }
 const App = () => (
   <Provider store = {store}>
-    <Router>
+    <Router basename={(!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?process.env.DEV_URL: "morikin" } >
         <RouterConfig />
     </Router>
   </Provider>

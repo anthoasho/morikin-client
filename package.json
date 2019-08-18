@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
+    "gh-pages": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
@@ -18,15 +19,18 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.3.2"
   },
-  "proxy": "http://localhost:3000",
   "author": "Anthony Ashurst",
+  "homepage": "https://anthonyashurst.com/morikin/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [

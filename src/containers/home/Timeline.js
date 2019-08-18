@@ -38,11 +38,12 @@ class Timeline extends Component{
     // clearInterval(this.refreshInterval);
   }
   render(){
+    console.log(this.props)
     const { discover, loadingBool, page, currentUser} = this.props;
     const {url} = this.urlData;
+    
     let messages = this.props.state[page].messages;
     let profile = this.props.state[page].profile;
-
     if((this.props.isMobile) && (this.props.page === "dashboard")){
       return     (<div className="timeline-container">
             {loadingBool && <Loading isMobile={this.props.isMobile}/> }

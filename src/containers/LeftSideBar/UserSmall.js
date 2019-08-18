@@ -12,20 +12,34 @@ import {connect} from "react-redux";
 //adapts to the url following a fetch request
 //Has automatic updating of the follow button and can distinguish current user (to display a edit profile button)
 const UserSmall = ({currentUser, profile, ui, isMobile}) => {
-  if(profile.loading || !profile.user.username){
-   return(
-       <div className = "user-profile-container" >
-     <div className = "user-profile-small" >
-       <ProfileImg
-         loading={profile.loading}
-       />
-       <div className="user-follow">
-       <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px 50px"}}> Loading  </p>
-
+  if(!currentUser && !profile.user.username){
+    return(
+      <div className = "user-profile-container" >
+      <div className = "user-profile-small" >
+        <ProfileImg
+          loading={profile.loading}
+        />
+        <div className="user-follow">
+        <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"center", margin:"15px 0"}}> Please <a href="/signin">Login</a> or <a href="/signup"> Sign up! </a>  </p>
+        </div>
        </div>
       </div>
-     </div>
-     );
+      );
+  }
+  if(profile.loading || !profile.user.username){
+    return(
+        <div className = "user-profile-container" >
+      <div className = "user-profile-small" >
+        <ProfileImg
+          loading={profile.loading}
+        />
+        <div className="user-follow">
+        <p style={{color:"gray", fontSize:"0.9rem", padding:"0 0 0 3px", textAlign:"right", margin:"0 0 5px 50px"}}> Loading  </p>
+
+        </div>
+       </div>
+      </div>
+      );
    }
     let {username, following, profileImgUrl, profileColor, description, displayName} = profile.user;
 
