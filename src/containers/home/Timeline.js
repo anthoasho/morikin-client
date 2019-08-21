@@ -23,6 +23,7 @@ class Timeline extends Component{
   handleBottom = () => {
     let method = this.paramsID ? this.paramsID : ""
     let lastMessage = this.props.state[this.props.page].messages.data[this.props.state[this.props.page].messages.data.length -1]
+    console.log(lastMessage)
     this.updateMessages(method, lastMessage._id);
   }
   componentWillMount(){

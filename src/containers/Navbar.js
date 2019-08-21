@@ -52,8 +52,8 @@ const Navbar = (props) => {
         {/*<NavLink to="/"  className="site-logo" ><li>Morikin</li></NavLink> */}
         {currentUser.isLoggedIn && <button  onClick={handlePopUpShow} className="nav-new-message"><span > New Post </span><FontAwesome name='pencil-alt' className="nav-icon"  />  </button> }
         <NavLink  to={`/myprofile`} className="nav-username"> <li >{currentUser.username} </li></NavLink>
-      {!currentUser.isLoggedIn &&  <a  href={`/signin`} className="nav-signin"> <li >Sign in</li></a>}
-      {!currentUser.isLoggedIn &&  <a  href={`/signup`} className="nav-signup"> <li >Sign up</li></a>}
+      {!currentUser.isLoggedIn &&  <a  href={`https://anthonyashurst.com/morikin/signin`} className="nav-signin"> <li >Sign in</li></a>} {/* Temporary URL quickfix*/}
+      {!currentUser.isLoggedIn &&  <a  href={`https://anthonyashurst.com/morikin/signup`} className="nav-signup"> <li >Sign up</li></a>}
       </nav>
     );
 }

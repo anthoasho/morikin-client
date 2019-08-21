@@ -140,13 +140,18 @@ export const likeMessage = (id) => {
 
 export const updateMessages = (user, lastMessage) =>{
   return (dispatch, getState) => {
-    let {ui} = getState()
-    let {context} = ui
+    let {myProfile, ui} = getState()
 
+    let {context} = ui
+    let usernameCurrent = myProfile.auth.username
     let url
-    if(user){
+    if(user && usernameCurrent){
       url = `api/user/${user}/messages/?from=${lastMessage}`
-    }else{
+    }
+      else if(!usernameCurrent){
+        url=`api/messages/allMessages/?from=${lastMessage}`
+      }
+    else {
       url =`api/messages/?from=${lastMessage}`
     }
       return apiCall("get", url)

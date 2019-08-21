@@ -24,9 +24,9 @@ color: white;
 `
 let LinkToPortfolio = styled.div`
 position: fixed;
-right: ${props => props.isMobile ?"30px" : "30px"};
-left:  ${props => props.isMobile?"30px" : "auto"};
-bottom: 70px;
+right: ${props => props.isMobile ?"30px" : "auto"};
+left:  ${props => props.isMobile?"30px" : "30px"};
+bottom: 5px;
 width: auto;
 height: auto;
 box-shadow: 3px 2px 4px #00000080;
